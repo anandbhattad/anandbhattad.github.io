@@ -1,16 +1,14 @@
 #!/bin/bash
+rm -r public
 
-echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
+git rm -r --cached public
 
+git submodule add -f -b master https://github.com/anandbhattad/anandbhattad.github.io.git public
 # Build the project.
-hugo -t academic # if using a theme, replace by `hugo -t <yourtheme>`
+hugo
 
 # Go To Public folder
-cd ..
-
-cd anandbhattad.github.io
-
-cp -av /Users/anand/My_Website/* .
+cd public/
 
 
 # Add changes to git.
@@ -24,7 +22,7 @@ fi
 git commit -m "$msg"
 
 # Push source and build repos.
-git push origin master
+git push -u origin master
 
 # Come Back
 cd ..
