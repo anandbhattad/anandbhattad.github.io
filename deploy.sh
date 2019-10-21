@@ -3,7 +3,6 @@ rm -r public
 
 git rm -r --cached public
 
-git submodule add -f -b master https://github.com/anandbhattad/anandbhattad.github.io.git public
 # Go To Public folder
 # Add changes to git.
 git add -A
