@@ -1,0 +1,10 @@
+- Train Deep Networks like a Mario Game
+    - Keep training until you make 10 errors. If you reach 10 errors, start from scratch
+    - Final Goal matters not the intermediate rewards (Finding princess)
+    - Inspired from Mark Rober's Ted video: https://www.youtube.com/watch?v=9vJRopau0g0 
+- Semantic Mesh
+    - Segmentation as rendering of an image
+- Fast Reshading
+    - Style Transfer Like Networks
+    - Complete Attention Based Model Contextual Learning
+    
