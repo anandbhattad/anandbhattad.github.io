@@ -2,6 +2,7 @@
     - Keep training until you make 10 errors. If you reach 10 errors, start from scratch
     - Final Goal matters not the intermediate rewards (Finding princess)
     - Inspired from Mark Rober's Ted video: https://www.youtube.com/watch?v=9vJRopau0g0 
+    - Title: The Super Mario Effect - Tricking Your Neural Network into Learning More
 - Semantic Mesh
     - Segmentation as rendering of an image
 - Fast Reshading
