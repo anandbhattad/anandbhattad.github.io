@@ -1,0 +1,637 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>\small\text{Cut-and-Paste Neural Rendering}</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="12eb027e-3ffd-4c5c-a99f-3af9e99e241d" class="page serif"><header><h1 class="page-title"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathsize="0.9em"><mtext>Cut-and-Paste Neural Rendering</mtext></mstyle></mrow><annotation encoding="application/x-tex">\small\text{Cut-and-Paste Neural Rendering}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.799992em;vertical-align:-0.174996em;"></span><span class="mord text sizing reset-size6 size5"><span class="mord">Cut-and-Paste Neural Rendering</span></span></span></span></span></span><span>﻿</span></span></h1></header><div class="page-body"><p id="a079119c-cf5d-46a0-a343-bfb32231fafc" class=""><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathsize="1.2em"><mrow><mtext>Anand Bhattad</mtext><mspace width="0.8333333333333335em"/><mtext>David A. Forsyth</mtext></mrow></mstyle></mrow><annotation encoding="application/x-tex">\large\text{{Anand Bhattad}\hspace{10pt}David A. Forsyth}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.066656em;vertical-align:-0.23332799999999998em;"></span><span class="mord text sizing reset-size6 size7"><span class="mord"><span class="mord">A</span><span class="mord">n</span><span class="mord">a</span><span class="mord">n</span><span class="mord">d</span><span class="mord"> </span><span class="mord">B</span><span class="mord">h</span><span class="mord">a</span><span class="mord">t</span><span class="mord">t</span><span class="mord">a</span><span class="mord">d</span></span><span class="mspace" style="margin-right:0.8333333333333335em;"></span><span class="mord">David A. Forsyth</span></span></span></span></span></span><span>﻿</span></span></p><p id="7254383d-8640-4e51-89c3-55faf4a4e7b2" class=""><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathsize="1.2em"><mtext>Univeristy of Illinois at Urbana-Champaign</mtext></mstyle></mrow><annotation encoding="application/x-tex">\large\text{Univeristy of Illinois at Urbana-Champaign}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.066656em;vertical-align:-0.23332799999999998em;"></span><span class="mord text sizing reset-size6 size7"><span class="mord">Univeristy of Illinois at Urbana-Champaign</span></span></span></span></span></span><span>﻿</span></span></p><div id="86f8f53e-66c1-4c1c-8190-9c264ae0c087" class="column-list"><div id="e78b2bc4-839e-4579-9971-bbd0ce8fa004" style="width:20%" class="column"><p id="aa12d147-e651-445a-8242-dcce4e51a464" class="block-color-pink">arXiv 2020</p></div><div id="f1f70b12-5402-428a-9f10-f1ee7ca4041f" style="width:27.500000000000004%" class="column"><p id="5308a9ae-adfe-4107-8823-cf2e4c29667c" class="block-color-pink"><a href="https://anandbhattad.github.io/projects/reshading/supp.pdf">Supplementary</a></p></div><div id="82f0e7d0-49ae-4ae7-8a0e-438dff430021" style="width:22.5%" class="column"><p id="40594c59-d9df-4472-83b1-bf4062e8749b" class="block-color-pink"><a href="https://github.com/anandbhattad/reshading">Code</a></p></div><div id="546ab629-927b-4c10-877a-7fa52df2a5b5" style="width:10%" class="column"><p id="27647607-c417-4a54-a83a-1e9e79c2fa30" class="block-color-pink">Video</p></div><div id="664460cf-f5d7-4df4-b8f8-3c21d182b3f4" style="width:19.99999999999999%" class="column"><p id="bd6b3127-1ed3-4da7-ac13-74b9e119b0d3" class="">
+</p></div></div><figure id="0ad9ebcb-41d7-4281-aa06-29fc88d3bdc6" class="image"><a href="figures/Screen_Shot_2020-10-08_at_2.57.15_PM.png"><img style="width:1573px" src="figures/Screen_Shot_2020-10-08_at_2.57.15_PM.png"/></a></figure><blockquote id="0ed14258-1e75-4e92-ac1c-d33a70d8d987" class="block-color-gray">We generate realistic renderings of cut-and-paste images. Our method is entirely image-based and can convincingly reshade/relight fragments with complex surface properties (a lego dozer, a plant and a chair in the top row) and matte, glossy and specular fragments (a set of 16 different materials in the bottom row) added to a spatially varying illuminated target scene (indoor-outdoor and day-night) without requiring the geometry of the inserted fragment or the parameters of the target scene</blockquote><p id="c7e4a950-2d5c-461c-834e-25f4665b5524" class="">
+</p><p id="0d92167e-e13e-448d-b68c-2d07e76843ef" class=""><strong>Abstract:</strong> Cut-and-paste methods take an object from one image and insert it into another. Doing so often results in unrealistic looking images because the inserted object’s shading is inconsistent with the target scene’s shading. Existing reshading methods require a geometric and physical model of the inserted object, which is then rendered using environment parameters. Accurately constructing such a model only from a single image is beyond the current understanding of computer vision. We describe an alternative procedure – cut-and-paste neural rendering, to render the inserted fragment’s shading field consistent with the target scene.</p><p id="63a626e9-1397-45cc-8305-5ee1df61353f" class="">We use a Deep Image Prior (DIP) as a neural renderer trained to render an image with consistent image decomposition inferences. The resulting rendering from DIP should have an albedo consistent with cut-and-paste albedo; it should have a shading field that, outside the inserted fragment, is the same as the target scene’s shading field; and cut-and-paste surface normals are consistent with the final rendering’s shading field. The result is a simple procedure that produces convincing and realistic shading. Moreover, our procedure does not require rendered images or image decomposition from real images or any form of labeled annotations in the training. In fact, our only use of simulated ground truth is our use of a pre-trained normal estimator. Qualitative results are strong, supported by a user study comparing against state-of-the-art (SOTA) image harmonization baseline.</p><p id="e1f1d399-9c2f-46dd-a497-da5ad286508c" class="">
+</p><h3 id="0d902481-bd47-43db-89c8-be79e03f5a64" class="">Main Idea: Consistent Image Decomposition Inferences </h3><p id="3de44347-7dc2-47b6-a298-27b6feb0e92b" class="">
+</p><figure id="80a393c7-9a06-4e97-89bb-990efae0faf2" class="image"><a href="figures/drag_and_drop_method.png"><img style="width:1201px" src="figures/drag_and_drop_method.png"/></a></figure><p id="5ad08a7e-fcea-42de-98d0-1fcf85bc1280" class="block-color-gray"><code><strong>Cut-and-Paste Neural Renderer</strong></code><strong>.</strong> Given two images, a target scene (top row) and a new fragment added to this target scene (bottom row), our approach generates a plausible, realistic rendering of the composite image by correcting the fragment’s shading. Our method uses Deep ImagePrior (DIP) as a neural renderer trained to produce consistent image decomposition inferences. The resulting rendering from DIP should have an albedo same as the cut-and-paste albedo; it should have shading and gloss field that, outside the inserted fragment, is the same as the target scene’s shading and gloss field. </p><p id="f96b4850-b41e-4a5b-a19f-3f3b7eb8aca9" class="">
+</p><p id="c421fcc2-943d-4836-af16-1eb4d50215d1" class="">We train DIP with additional constraints so as to produce images that have consistent image decomposition inferential properties. The final reshaded image’s albedo must be like the cut-and-paste albedo; the reshaded image’s shading must match the shading of the target scene outside the fragment; and the shading of the reshaded image must have reasonable spherical harmonic properties and meet a consistency test everywhere. We use pretrained surface normals to meet these spherical harmonic properties and consistency tests and one should think of a surface normal as a latent variable that explains shading similarities in images. Details of these shading consistencies are available in our paper.</p><p id="5ea2f250-81f2-4c00-aa1c-793d5224ba25" class="">
+</p><p id="9d2b5c1e-b59e-4f7f-a17e-9649499f57dc" class=""><strong>Does it matter the type of image decomposition inferences that we use? </strong></p><p id="5782a8d4-614e-4ab2-8d2c-6fd46932d1be" class="">Short Answer: Yes!</p><p id="7275c5a1-284f-45bf-93ce-ae5eba84fd0a" class="">We find accurate albedo recovery (measured by strong WHDR performance) results in poor reshading outcomes.  We show that improvements in WHDR do not result in improvements in reshading from DIP.  Instead of relying on existing image decomposition methods, therefore we built an image decomposition around approximate statistical models of albedo, shading and gloss (<code><strong>paradigms</strong></code>) to train our image decomposition network without requiring real image ground truth decompositions. Our method has reasonable, but not SOTA, WHDR; but has realistic and convincing reshading. </p><p id="ba3bd970-fefb-4e29-ada1-d32e3104efd4" class=""><strong>Paradigms</strong>: Our albedo, shading and gloss paradigms are a simple extension of the Retinex model. Albedo paradigms (A) are Mondrian images. Shading paradigms (S) are Perlin noise and gloss paradigms (G) comprise light bars on a dark background. These are used to produce fake images by a simple composition (AS + G) that in turn are used to train the image decomposition network. The following figure shows some samples from each. The figure also illustrates, the resulting intrinsic image models are satisfactory on MSCOCO real images.</p><figure id="ad2a74b4-8bbb-4edd-b044-327acf01abef" class="image"><a href="figures/inv_rendering.png"><img style="width:672px" src="figures/inv_rendering.png"/></a></figure><p id="72466d9b-c780-415f-85f9-38c987e006a3" class="block-color-gray"><code><strong>Image Decomposition</strong></code><strong>.</strong> Left: samples drawn from our paradigms that are used to train our image decomposition network. Right: examples showing MS COCO image decompositions after training on paradigms. </p><p id="17b7a1ab-c256-4781-b270-4ce3734a1d4e" class="">
+</p><p id="01f466d0-62ee-44d6-8cce-774b45b760a6" class=""><strong>What properties image decompositions must satisfy for convincing reshading?</strong></p><p id="e4220bbd-c080-41ca-a70c-544811cc25ad" class="">To answer this question, we trained two models (Paradigm I and Paradigm II); samples drawn from different statistical models. The difference between the two is that Paradigm I has high-frequency, fine-grained details in albedo and not shading, and for Paradigm II it is the opposite. Our findings are discussed below in the following figure.</p><figure id="116bf99a-c7f2-49bf-9481-b0e391583838" class="image"><a href="figures/Screen_Shot_2020-10-08_at_4.51.23_PM.png"><img style="width:1566px" src="figures/Screen_Shot_2020-10-08_at_4.51.23_PM.png"/></a></figure><p id="b80e2f36-b9a8-41ef-9e50-10201cd858ae" class="block-color-gray"><code>Better WHDR does not mean better reshading.</code> Paradigm I achieves (relatively weak) WHDR of 22%; Paradigm II achieves 19%, close to state-of-the-art (SOTA) for an image decomposition network that does not see rendered images (Liu et al., 2020). However, Paradigm II produces significantly worse reshading results. Furthermore, reshading using CGIntrinsics (Li &amp; Snavely, 2018) (a supervised SOTA method) is also qualitatively worse than using Paradigm I. This reflects that better recovery of albedo, as measured by WHDR, does not produce better reshading. The key issue is that methods that get low WHDR do so by suppressing small spatial details in the albedo field (for example, the surface detail on the lego), but the normal inference method cannot recover these details, and so they do not appear in the reshaded image. From the perspective of reshading, it is better to model them as fine detail in albedo than in shading.</p><p id="fcaf1ec0-e1bb-4336-9031-ab90f754c66c" class="">
+</p><p id="28291d0f-089b-44e4-b3c0-1a3636576f19" class=""><strong>Does our method has any 3D understanding of the scene?</strong></p><p id="8c405c4b-e66b-4eeb-931a-3854241fa838" class="">Our method has some implicit notion of the 3D layout of the scene, which is required to choose the appropriate shading. Our method shades the white discs as spheres (implying it &quot;knows&quot; about shape). The reshading also makes it look as if those spheres are placed at the appropriate depth.</p><figure id="6cc6fdee-9440-4b43-937b-9b2391d2cb4c" class="image"><a href="figures/implicit_3D_spheres.png"><img style="width:672px" src="figures/implicit_3D_spheres.png"/></a></figure><p id="616aac1b-8b48-4c94-a9be-a7c1b127da45" class="">
+</p><p id="01ec3d78-895a-4078-aa26-2e2ae6600128" class=""><strong>How well we do for objects with complex reflective properties?</strong></p><p id="2ae9b27c-cd48-4f4a-b94b-5df7ab638cd2" class="">Glossy effects in car paint make reshading cars a particularly challenging case with their complex reflective properties. Our method successfully reshades cars without a distinct shift in object and background color produced by image harmonization baseline (IH).</p><figure id="e39adac1-8d06-4c73-b08d-f5b28eefac56" class="image"><a href="figures/Untitled.png"><img style="width:1579px" src="figures/Untitled.png"/></a></figure><p id="d39f2ee9-8cf9-43a6-bf62-124eeec94451" class="">
+</p><p id="adf8f955-6a3e-40be-be35-52fcb83056ac" class=""><strong>Drawbacks of our method</strong></p><p id="42cf5232-57e8-4f3e-9a60-ec2cd9dd32a5" class=""><code>Need For Speed</code>. A desirable cut-and-paste reshading application would correct shading on inserted objects requiring no explicit 3D reasoning about either fragment or scene. It would do so in ways that produce consistent inferences of image analysis. Finally, it would be quick. We described a method that meets two of these three desiderata (our DIP renderer still requires minutes to render an image).</p><p id="bcd14398-f0b4-4d19-9475-5113a5bf4f0c" class=""><code>Background Shadows</code>. Our renderer can adjust the background with cast-shadows but often unrealistically. Therefore, we only show shading corrections on the fragment in this paper. Having better inferences (for eg., normal prediction network) should improve our results significantly. Also, adding GAN based losses may help in correcting background shadows.</p></div></article></body></html>
