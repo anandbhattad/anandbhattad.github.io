@@ -30,14 +30,14 @@
                 <br>
               </p>
           <p>
-            I am a third-year PhD student in the <a href ="http://vision.cs.illinois.edu/vision_website/">Computer Vision Group</a> at <a href="https://illinois.edu/">UIUC</a> working with  Prof. <a href = "http://luthuli.cs.uiuc.edu/~daf/">David Forsyth</a>.  
-            I also closely collaborate with Prof. <a href="https://dhoiem.cs.illinois.edu/">Derek Hoiem</a>. My research interests are in computer vision, computer graphics and learning-based computational photography. 
+            I am a fourth-year PhD student in the <a href ="http://vision.cs.illinois.edu/vision_website/">Computer Vision Group</a> at <a href="https://illinois.edu/">UIUC</a> working with  Prof. <a href = "http://luthuli.cs.uiuc.edu/~daf/">David A. Forsyth</a>.  
+            I also closely collaborate with Prof. <a href="https://dhoiem.cs.illinois.edu/">Derek Hoiem</a> and <a href="https://www.cs.cmu.edu/~aayushb/">Aayush Bansal</a>. My research interests are in computer vision, computer graphics and computational photography. 
           </p>
             <p>
            Before starting my PhD, I completed my MS in Computer Science at UIUC. In previous lives, I worked on Damage Assessment of Civil Infrastructure Systems and graduated with an MS from UIUC and BTech from NITK Surathkal in Civil Engineering.
             </p>
             <p>
-          I spent my summer 2019 at Fyusion Inc, working with <a href = "https://abhishekkar.info/">Abhishek Kar</a> on image-based relighting. In 2020, I interned in <a href="https://ctnzr.io/">Bryan Catanzaro</a>'s Applied Deep Learning Research team at NVIDIA, working with <a href = "https://scholar.google.com/citations?user=pvu770UAAAAJ&hl=en">Aysegul Dundar</a> on differentiable rendering. I am currently a Research Intern in <a href = "http://vladlen.info/">Vladlen Koltun</a>'s <a href = "http://vladlen.info/lab/">Intelligent Systems Lab</a> at Intel working with <a href= "http://www.stephanrichter.org/">Stephan Richter</a>.  
+          I spent my summer 2019 at Fyusion Inc, working with <a href = "https://abhishekkar.info/">Abhishek Kar</a> on image-based relighting. In 2020, I interned in <a href="https://ctnzr.io/">Bryan Catanzaro</a>'s Applied Deep Learning Research team at NVIDIA, working with <a href = "https://scholar.google.com/citations?user=pvu770UAAAAJ&hl=en">Aysegul Dundar</a> on differentiable rendering. In 2021, I interned in <a href = "http://vladlen.info/">Vladlen Koltun</a>'s <a href = "http://vladlen.info/lab/">Intelligent Systems Lab</a> at Intel working with <a href= "http://www.stephanrichter.org/">Stephan Richter</a> on image-based object insertion.  
           <p style="text-align:center">
             <a href="mailto:anandbhattad92@gmail.com">Email</a> &nbsp/&nbsp
             <a href="./anand_bhattad_cv.pdf">CV</a> &nbsp/&nbsp
@@ -96,7 +96,7 @@
           <td align="center" style="vertical-align: middle"><font size="2">Siemens<br>Summer 2017</font></td>
           <td align="center" style="vertical-align: middle"><font size="2">Fyusion Inc<br>Summer 2019</font></td>
           <td align="center" style="vertical-align: middle"><font size="2">NVIDIA<br>Summer & Fall 2020</font></td>
-          <td align="center" style="vertical-align: middle"><font size="2">Intel<br>Present</font></td>
+          <td align="center" style="vertical-align: middle"><font size="2">Intel<br>Spring & Summer 2021</font></td>
         </tr>
       </tbody></table>
   <!-- <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>   
@@ -118,28 +118,142 @@
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <p><heading>Publications</heading></p>
           <br>
-          <tr onmouseout="3Dinference_stop()" onmouseover="3Dinference_start()">
+          <tr onmouseout="illuminator_stop()" onmouseover="illuminator_start()">
             <td style="padding:20px;width:25%;vertical-align:middle">
               <div class="one">
-                <div class="two" id='3Dinference_image'>
-                  <img src='images/car3D.gif' width="160"></div>
-                <img src='images/car_single_view.png' width="160">
+                <div class="two" id='illuminator_image'>
+                  <img src='images/illuminator_ours.png' width="160"></div>
+                <img src='images/illuminator_cutpaste_marking.png' width="160">
               </div>
               <script type="text/javascript">
-                function 3Dinference_start() {
-                  document.getElementById('3Dinference_image').style.opacity = "1";
+                function illuminator_start() {
+                  document.getElementById('illuminator_image').style.opacity = "1";
                 }
 
-                function 3Dinference_stop() {
-                  document.getElementById('3Dinference_image').style.opacity = "0";
+                function illuminator_stop() {
+                  document.getElementById('illuminator_image').style.opacity = "0";
                 }
-                3Dinference_stop()
+                illuminator_stop()
               </script>
             </td>
             <td style="padding:20px;width:75%;vertical-align:middle">
               <a href="">
-                <papertitle>View Generalization for Single Image Textured 3D Models</papertitle>
+                <papertitle>Image-based Object Insertion using Persistent and Transient Decomposition</papertitle>
 
+              </a>
+              <br>
+              <strong> Anand Bhattad</strong>,
+              <a href="https://brianc5.github.io/">Brian Chen</a>,
+              <a href="http://stephanrichter.org/">Stephan R. Richter</a>,
+              <a href="http://luthuli.cs.uiuc.edu/~daf/">David A. Forsyth</a>              
+              <br>
+              <em><strong>arXiv</strong></em>, 2022 
+              <br>
+              <a href=""><em>Coming Soon</em></a>
+              <p></p>
+              <p> First self-supervised, image-based object relighting method trained without labeled paired data, CGI data, geometry, or environment maps.</p>
+            </td>
+          </tr>
+          <tr onmouseout="sirfyn_stop()" onmouseover="sirfyn_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='sirfyn_image'>
+                  <img src='images/relighter_2170.gif' width="160"></div>
+                <img src='images/relighter_2170.jpg' width="160">
+              </div>
+              <script type="text/javascript">
+                function sirfyn_start() {
+                  document.getElementById('sirfyn_image').style.opacity = "1";
+                }
+
+                function sirfyn_stop() {
+                  document.getElementById('sirfyn_image').style.opacity = "0";
+                }
+                sirfyn_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://arxiv.org/abs/2112.04497">
+                <papertitle>SIRfYN: Single Image Relighting from Your Neighbors</papertitle>
+
+              </a>
+              <br>
+              <a href="http://luthuli.cs.uiuc.edu/~daf/">David A. Forsyth</a>,              
+              <strong> Anand Bhattad</strong>,
+              <a href="https://github.com/pranav-asthana">Pranav Asthana</a>,
+              <a href="https://www.linkedin.com/in/yuanyi-zhong/">Yuani Zhong</a>,
+              <a href="https://yxw.web.illinois.edu/">Yuxiong Wang</a>
+              <br>
+              <em><strong>arXiv</strong></em>, 2022 
+              <br>
+              <a href="https://arxiv.org/abs/2112.04497"><em>Early Draft</em></a>
+              <p></p>
+              <p> First scene relighting method that requires no
+                labeled or paired image data.</p>
+            </td>
+          </tr>
+          <tr onmouseout="diver_stop()" onmouseover="diver_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='diver_image'>
+                  <img src='images/nerf_fail_ours.png' width="160"></div>
+                <img src='images/nerf_fail.png' width="160">
+              </div>
+              <script type="text/javascript">
+                function diver_start() {
+                  document.getElementById('diver_image').style.opacity = "1";
+                }
+
+                function diver_stop() {
+                  document.getElementById('diver_image').style.opacity = "0";
+                }
+                diver_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://arxiv.org/abs/2111.10427">
+                <papertitle>DIVeR: Real-time and Accurate Neural Radiance Fields with Deterministic Integration for Volume Rendering</papertitle>
+
+              </a>
+              <br>
+              <a href="https://lwwu2.github.io/">Liwen Wu</a>,
+              <a href="https://jyl.kr/">Jae Yong Lee</a>,
+              <strong> Anand Bhattad</strong>,
+              <a href="https://yxw.web.illinois.edu/">Yuxiong Wang</a>, 
+              <a href="http://luthuli.cs.uiuc.edu/~daf/">David A. Forsyth</a>              
+              <br>
+              <em><strong>CVPR</strong></em>, 2022 
+              <br>
+              <a href="https://lwwu2.github.io/diver/"><em>Project</em></a> /
+              <a href="https://github.com/lwwu2/diver">
+                <em>Training Code</em></a> /
+              <a href="https://github.com/lwwu2/diver-rt">
+                <em>Real-time Code</em></a>
+              <p></p>
+              <p> Improving Real-Time NeRF with Deterministic Integration.</p>
+            </td>
+          </tr>
+          <tr onmouseout="tex3Dinference_stop()" onmouseover="tex3Dinference_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='tex3Dinference_image'>
+                  <img src='images/car3D.gif' width="160"></div>
+                <img src='images/car_single_view.png' width="160">
+              </div>
+              <script type="text/javascript">
+                function tex3Dinference_start() {
+                  document.getElementById('tex3Dinference_image').style.opacity = "1";
+                }
+
+                function tex3Dinference_stop() {
+                  document.getElementById('tex3Dinference_image').style.opacity = "0";
+                }
+                tex3Dinference_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://arxiv.org/abs/2106.06533">
+                <papertitle>View Generalization for Single Image Textured 3D Models</papertitle>
               </a>
               <br>
               <strong> Anand Bhattad</strong>,
@@ -149,6 +263,8 @@
               <a href="https://ctnzr.io/">Bryan Catanzaro</a>
               <br>
               <em><strong>CVPR</strong></em>, 2021 
+              <br>
+              <a href="https://nv-adlr.github.io/view-generalization/"><em>Project</em></a>
               <p></p>
               <p> Consistent textured 3D inferences from a single 2D image.</p>
             </td>
@@ -178,9 +294,10 @@
               </a>
               <br>
               <strong> Anand Bhattad</strong>,
-              <a href="http://luthuli.cs.uiuc.edu/~daf/">David Forsyth</a>
+              <a href="http://luthuli.cs.uiuc.edu/~daf/">David A. Forsyth</a>
               <br>
               <em>arXiv</em>, 2020 
+              <br>
               <a href="https://anandbhattad.github.io/projects/reshading/index.html">
               <em>Project</em>
               </a>
@@ -214,7 +331,7 @@
               <a href="https://dblp.uni-trier.de/pers/hd/c/Chong:Min_Jin">Min Jin Chong*</a>,
               <a href="https://kaizhaoliang.github.io/Portfolio/">Kaizhao Liang</a>,
               <a href="https://aisecure.github.io/">Bo Li</a>,
-              <a href="http://luthuli.cs.uiuc.edu/~daf/">David Forsyth</a>
+              <a href="http://luthuli.cs.uiuc.edu/~daf/">David A. Forsyth</a>
               <br>
               <em><strong>ICLR</strong></em>, 2020 
               <br>
@@ -239,7 +356,7 @@
               <a href="">Shuai Tang*</a>,
               <strong> Anand Bhattad</strong>,
               <a href="http://czou4.web.engr.illinois.edu/">Chuhang Zou</a>,
-              <a href="http://luthuli.cs.uiuc.edu/~daf/">David Forsyth</a>
+              <a href="http://luthuli.cs.uiuc.edu/~daf/">David A. Forsyth</a>
               <br>
               <em><strong>WACV</strong></em>, 2020
               <br>
@@ -273,15 +390,13 @@
               <br>
               <strong> Anand Bhattad</strong>,
               <a href="https://scholar.google.com/citations?user=107hH58AAAAJ&hl=en">Jason Rock</a>,
-              <a href="http://luthuli.cs.uiuc.edu/~daf/">David Forsyth</a>
+              <a href="http://luthuli.cs.uiuc.edu/~daf/">David A. Forsyth</a>
               <br>
               <em><strong>CVPR Workshop</strong> on <a href="https://vbsd2018.github.io/">Vision with Biased or Scarce Data</a></em>, 2018
               <br>
               <p> A simple unsupervised method for detecting anomalous faces by carefully constructing features from "No Peeking" or inpainting autoencoders. </p>
             </td>
           </tr>
-
-
         </tbody></table>
 
        <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20"><tbody>
