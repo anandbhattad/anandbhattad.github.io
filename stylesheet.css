@@ -131,12 +131,14 @@ padding:20px;width:75%;vertical-align:top
   vertical-align: top;
   }
 
-papertitle {
+papertitle, .papertitle {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 700;
-  color: black
+  color: black;
+  margin-bottom:5px
 }
+
 
 name {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
