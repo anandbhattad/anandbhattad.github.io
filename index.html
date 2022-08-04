@@ -240,6 +240,42 @@
                 labeled or paired image data.</p>
             </td>
           </tr>
+          <tr onmouseout="reshade_stop()" onmouseover="reshade_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='reshade_image'>
+                  <img src='images/reshaded.png' width="160"></div>
+                <img src='images/cutpaste.png' width="160">
+              </div>
+              <script type="text/javascript">
+                function reshade_start() {
+                  document.getElementById('reshade_image').style.opacity = "1";
+                }
+
+                function reshade_stop() {
+                  document.getElementById('reshade_image').style.opacity = "0";
+                }
+                reshade_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://anandbhattad.github.io/projects/dipr.pdf">
+                <papertitle>Cut-and-Paste Object Insertion by Enabling Deep Image Prior for Reshading</papertitle>
+
+              </a>
+              <br>
+              <strong> Anand Bhattad</strong>,
+              <a href="http://luthuli.cs.uiuc.edu/~daf/">David A. Forsyth</a>
+              <br>
+              <em>3DV</em>, 2022 
+              <br>
+              <a href="https://anandbhattad.github.io/projects/reshading/index.html">
+              <em>Project</em>
+              </a>
+              <p></p>
+              <p>Convincing cut-and-paste reshading with consistent image decomposition inferences.</p>
+            </td>
+          </tr>
           <tr onmouseout="diver_stop()" onmouseover="diver_start()">
             <td style="padding:20px;width:25%;vertical-align:middle">
               <div class="one">
@@ -315,42 +351,6 @@
               <a href="https://nv-adlr.github.io/view-generalization/"><em>Project</em></a>
               <p></p>
               <p> Consistent textured 3D inferences from a single 2D image.</p>
-            </td>
-          </tr>
-          <tr onmouseout="reshade_stop()" onmouseover="reshade_start()">
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <div class="one">
-                <div class="two" id='reshade_image'>
-                  <img src='images/reshaded.png' width="160"></div>
-                <img src='images/cutpaste.png' width="160">
-              </div>
-              <script type="text/javascript">
-                function reshade_start() {
-                  document.getElementById('reshade_image').style.opacity = "1";
-                }
-
-                function reshade_stop() {
-                  document.getElementById('reshade_image').style.opacity = "0";
-                }
-                reshade_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-              <a href="https://arxiv.org/abs/2010.05907">
-                <papertitle>Cut-and-Paste Neural Rendering</papertitle>
-
-              </a>
-              <br>
-              <strong> Anand Bhattad</strong>,
-              <a href="http://luthuli.cs.uiuc.edu/~daf/">David A. Forsyth</a>
-              <br>
-              <em>arXiv</em>, 2020 
-              <br>
-              <a href="https://anandbhattad.github.io/projects/reshading/index.html">
-              <em>Project</em>
-              </a>
-              <p></p>
-              <p>Convincing cut-and-paste reshading with consistent image decomposition inferences.</p>
             </td>
           </tr>
           <tr onmouseout="adv_stop()" onmouseover="adv_start()">
