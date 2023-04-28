@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Make It So is a novel GAN Inversion method that preserves editing capabilities, even for out-of-domain images.">
+  <meta name="keywords" content="GAN, GAN Inversion, Make It So">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Make It So: Steering StyleGAN for Any Image Inversion and Editing</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Make It So: Steering StyleGAN for Any Image Inversion and Editing</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="">Anand Bhattad</a>,</span>
+            <span class="author-block">
+              <a href="https://virajshah.com">Viraj Shah</a>,</span>
+            <span class="author-block">
+              <a href="https://dhoiem.cs.illinois.edu">Derek Hoiem</a>,
+            </span>
+            <span class="author-block">
+              <a href="http://luthuli.cs.uiuc.edu/~daf/">David A. Forsyth</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Illinois Urbana-Champaign</span>
+<!--            <span class="author-block"><sup>2</sup>Google Research</span>-->
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2304.14403"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2304.14403"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link.
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- <img id="teaser" src="./static/images/make_it_so_single_model.png" alt="Image description"> -->
+
+
+  <div class='before-after-container'>
+    <div class='img background-img'></div>
+    <div class='img foreground-img'></div>
+    <input type="range" min="1" max="100" value="90" class="slider-payal" name='slider' id="slider">
+    <div class='slider-button'></div>
+  </div>
+
+
+
+
+
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Make It So</span> can edit diverse out-of-domain images by using a StyleGAN model trained on bedroom images. This includes images of people, cars, animals, and outdoor scenes. Unlike PTI, a leading inversion method that tends to generate unrealistic bedroom images after editing, <span class="dnerf">Make It So</span> produces more realistic results (use the slider to compare).
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            StyleGAN's disentangled style representation enables powerful image editing by manipulating the latent variables, but accurately mapping real-world images to their latent variables (GAN inversion) remains a challenge. Existing GAN inversion methods struggle to maintain editing directions and produce realistic results.
+          </p>
+          <p>
+           To address these limitations, we propose Make It So, a novel GAN inversion method that operates in the Z (noise) space rather than the typical W (latent style) space. Make It So preserves editing capabilities, even for out-of-domain images. This is a crucial property that was overlooked in prior methods.
+          </p>
+          <p>
+            Our quantitative evaluations demonstrate that Make It So outperforms the state-of-the-art method Pivotal Tuning Inversion by a factor of five in inversion accuracy and achieves ten times better edit quality for complex indoor scenes.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <div class="container is-max-desktop">
+      <h2 class="title is-3" style="text-align:center">Qualitative Results</h2>
+      <table style="margin-left:auto;margin-right:auto;">
+        <tr>
+          <td><img src="static/images/bedroom/dreamy_stays/orig.png" width="200px" height="200px" alt="(1) Target Scene"></td>
+          <td><img src="static/images/bedroom/dreamy_stays/makeitso.png" width="200px" height="200px"  alt="(2) Make It So"></td>
+          <td><img src="static/images/bedroom/dreamy_stays/relit4.png" width="200px" height="200px" alt="(3) Relighted"></td>
+          <td><img src="static/images/bedroom/dreamy_stays/dreamy_stays_recolor.png" width="200px" height="200px"  alt="(4) Resurfacing"></td>
+        </tr>
+        <tr>
+          <td><img src="static/images/bedroom/electric/orig.png" width="200px" height="200px" alt="(1) Target Scene"></td>
+          <td><img src="static/images/bedroom/electric/makeitso.png" width="200px" height="200px"  alt="(2) Make It So"></td>
+          <td><img src="static/images/bedroom/electric/relit4.png"width="200px" height="200px" alt="(3) Relighted"></td>
+          <td><img src="static/images/bedroom/electric/electric_orange.png" width="200px" height="200px" alt="(4) Resurfacing"></td>
+        </tr>
+        <tr>
+          <td><img src="static/images/bedroom/burke_design/orig.png" width="200px" height="200px" alt="(1) Target Scene"></td>
+          <td><img src="static/images/bedroom/burke_design/makeitso.png" width="200px" height="200px" alt="(2) Make It So"></td>
+          <td><img src="static/images/bedroom/burke_design/relit4.png" width="200px" height="200px"  alt="(3) Relighted"></td>
+          <td><img src="static/images/bedroom/burke_design/recolor_075.png" width="200px" height="200px"  alt="(4) Resurfacing"></td>
+        </tr>
+        <tr>
+          <td style="text-align:center">Target Image</td>
+          <td style="text-align:center">Make It So</td>
+          <td style="text-align:center">Edit-1 (Relighting)</td>
+          <td style="text-align:center">Edit-2 (Recoloring)</td>
+        </tr>
+      </table>
+      <br>
+      <div class="caption">
+        <h2 class="subtitle has-text-centered">
+        <p>Inversion and Editing of Complex Indoor Scenes</p>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div>
+      <table style="margin-left:auto;margin-right:auto;">
+        <tbody>
+          <tr>
+            <td><img src="./static/images/figures_supp/face_stylespace1/face1.jpg" style="width:200px;height:200px"></td>
+            <td><img src="./static/images/figures_supp/face_stylespace1/inv.png" style="width:200px;height:200px;"></td>
+            <td><img src="./static/images/figures_supp/face_stylespace1/face2_black_hairs.jpeg" style="width:200px;height:200px;"></td>
+            <td><img src="./static/images/figures_supp/face_stylespace1/glass.jpg" style="width:200px;height:200px;"></td>
+          </tr>
+          <tr>
+            <td><img src="./static/images/figures_supp/face_stylespace3/face1.jpeg" style="width:200px;height:200px;"></td>
+            <td><img src="./static/images/figures_supp/face_stylespace3/face1.jpeg" style="width:200px;height:200px;"></td>
+            <td><img src="./static/images/figures_supp/face_stylespace3/face1_smile.jpeg" style="width:200px;height:200px;"></td>
+            <td><img src="./static/images/figures_supp/face_stylespace3/face1_lipstick.jpeg" style="width:200px;height:200px;"></td>
+          </tr>
+          <tr>
+            <td style="text-align:center">Target Image</td>
+            <td style="text-align:center">Make It So</td>
+            <td style="text-align:center">Edited</td>
+            <td style="text-align:center">Edited</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="caption">
+        <h2 class="subtitle has-text-centered">
+      <br>
+      <p>Inversion and Editing of Faces</p>
+    </div>
+    </div>
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3" style="text-align:center">Differences between <span class="dnerf">Make It So</span>  and Previous Methods </h2>
+      <img id="teaser" src="./static/images/make_it_so_intuition.png" alt="Image description">
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Make It So</span> inverts in the noise space, which is different from previous methods that invert in the latent style space of StyleGAN. 
+      </h2>
+    </div>
+  </div>
+  
+</section>
+
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{bhattad2023makeitso,
+  author    = {Bhattad, Anand and Shah, Viraj and Hoeim, Derek and Forsyth, D.A.},
+  title     = {Make It So: Steering StyleGAN for Any Image Inversion and Editing},
+  journal   = {arXiv},
+  year      = {2023},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <!-- <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website template borrowed from: <a href="https://nerfies.github.io"> Nerfies</a>, <a href="https://github.com/nerfies/nerfies.github.io">source code</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
