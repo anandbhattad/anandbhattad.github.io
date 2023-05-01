@@ -241,6 +241,40 @@
                 <heading id="pubs">Publications</heading>
               </p>
               <br>
+              <tr onmouseout="stylit_stop()" onmouseover="stylit_start()">
+                <td class="paper-img">
+                  <div class="one">
+                    <div class="two" id='stylit_image'>
+                      <img src='stylitgan/splash/1_relight1.png' width="160">
+                    </div>
+                    <img src='stylitgan/splash/1_orig.png' width="160">
+                  </div>
+                  <script type="text/javascript">
+                    function stylit_start() {
+                      document.getElementById('stylit_image').style.opacity = "1";
+                    }
+
+                    function stylit_stop() {
+                      document.getElementById('stylit_image').style.opacity = "0";
+                    }
+                    stylit_stop()
+                  </script>
+                </td>
+                <td class="paper-details">
+                  <a href="https://arxiv.org/abs/2205.10351" target="_blank">
+                    <div class="papertitle">StyLitGAN: Prompting StyleGAN to Produce New Illumination Conditions
+                    </div>
+                  </a>
+                  <strong> Anand Bhattad</strong>,
+                  <a href="http://luthuli.cs.uiuc.edu/~daf/" target="_blank">David A. Forsyth</a>
+                  <br>
+                  <em><strong>arXiv</strong></em>, 2023
+                  <br>
+                  <a href="https://arxiv.org/abs/2205.10351" target="_blank"><em>arXiv</em></a> <a href="https://anandbhattad.github.io/stylitgan/" target="_blank"><em>Project</em></a>
+                  <p></p>
+                  <p> By imposing known physical facts about images, we can prompt StyleGAN to generate relighted or resurfaced images without using labeled data. </p>
+                </td>
+              </tr>
               <tr onmouseout="makeitso_stop()" onmouseover="makeitso_start()">
                 <td class="paper-img">
                   <div class="one">
@@ -276,41 +310,6 @@
 
                   <p></p>
                   <p> A novel near-perfect GAN Inversion method that preserves editing capabilities, even for out-of-domain images </p>
-                </td>
-              </tr>
-              <tr onmouseout="stylit_stop()" onmouseover="stylit_start()">
-                <td class="paper-img">
-                  <div class="one">
-                    <div class="two" id='stylit_image'>
-                      <img src='images/stylit.gif' width="160">
-                    </div>
-                    <img src='images/stylit.png' width="160">
-                  </div>
-                  <script type="text/javascript">
-                    function stylit_start() {
-                      document.getElementById('stylit_image').style.opacity = "1";
-                    }
-
-                    function stylit_stop() {
-                      document.getElementById('stylit_image').style.opacity = "0";
-                    }
-                    stylit_stop()
-                  </script>
-                </td>
-                <td class="paper-details">
-                  <a href="https://arxiv.org/abs/2205.10351" target="_blank">
-                    <div class="papertitle">Enriching StyleGAN with Illumination Physics
-                    </div>
-                  </a>
-                  <strong> Anand Bhattad</strong>,
-                  <a href="http://luthuli.cs.uiuc.edu/~daf/" target="_blank">David A. Forsyth</a>
-                  <br>
-                  <em><strong>arXiv</strong></em>, 2022
-                  <br>
-                  <a href="https://arxiv.org/abs/2205.10351" target="_blank"><em>arXiv</em></a>
-                  <p></p>
-                  <p> We show that by imposing known physical facts about images, the distribution of images produced by
-                    a StyleGAN can be significantly enriched. </p>
                 </td>
               </tr>
               <tr onmouseout="illuminator_stop()" onmouseover="illuminator_start()">
