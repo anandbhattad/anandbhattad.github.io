@@ -1,0 +1,277 @@
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./resources/style.css" media="screen" />
+
+<html lang="en">
+
+<head>
+    <title>This is my paper title</title>
+    <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/
+        if you update and want to force Facebook to re-scrape. -->
+    <meta property="og:video-container" content="./movies/1_general_examples/bed1.mov" />
+    <meta property="og:video-container" content="./movies/1_general_examples/bed2.mov" />
+    <meta property="og:video-container" content="./movies/1_general_examples/bed3.mov" />
+    <meta property="og:title" content="Creative and Descriptive Paper Title." />
+    <meta property="og:description" content="Paper description." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Add your Google Analytics tag here -->
+    <!--
+    <script async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-97476543-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-97476543-1');
+    </script>
+    -->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="title" style="color:#070707">
+            StylitGAN: Prompting StyleGAN to Produce
+            <br> New Illumination Conditions
+        </div>
+
+        <br>
+        <br>
+
+        <div class="author">
+            <a href="https://anandbhattad.github.io/">Anand Bhattad</a>
+            <!-- <sup>1</sup> -->
+        </div>
+        <div class="author">
+            <a href="http://luthuli.cs.uiuc.edu/~daf/">D.A. Forsyth</a>
+            <!-- <sup>2</sup> -->
+        </div>
+        <!-- <div class="author">
+        <a href="https://en.wikipedia.org/wiki/James_J._Gibson">Third Author</a><sup>3</sup>
+    </div>
+    <div class="author">
+        <a href="https://en.wikipedia.org/wiki/James_J._Gibson">Fourth Author</a><sup>4</sup>
+    </div>
+    <div class="author">
+        <a href="https://en.wikipedia.org/wiki/James_J._Gibson">Fifth Author</a><sup>1</sup>
+    </div> -->
+
+        <br>
+        <br>
+
+        <div class="affiliation" style="color:#ef4a0d">University of Illinois Urbana-Champaign</div>
+        <!-- <div class="affiliation"><sup>2&nbsp;</sup>Affiliation Number Two</div>
+    <div class="affiliation"><sup>3&nbsp;</sup>Affiliation Number Three</div>
+    <div class="affiliation"><sup>4&nbsp;</sup>Affiliation Number Four</div> -->
+
+        <br>
+        <br>
+
+        <div class="links"><a href="https://arxiv.org/abs/2205.10351">[Paper]</a></div>
+        <div class="links"><a href="">[Video]</a></div>
+        <div class="links"><a href="https://github.com/anandbhattad/stylitgan">[Code]</a></div>
+
+        <br>
+        <br>
+        <div class="teaser">
+            <table>
+                <tr>
+                <td style="text-align: center; width: 16.5%;">Image</td>
+                <td style="text-align: center;">Relit-1(w<sup>+</sup>+d<sub>1</sub>)</td>
+                  <td style="text-align: center;">Relit-2(w<sup>+</sup>+d<sub>2</sub>)</td>
+                  <td style="text-align: center;">Relit-3(w<sup>+</sup>+d<sub>3</sub>)</td>
+                  <td style="text-align: center;">Relit-4(w<sup>+</sup>+d<sub>4</sub>)</td>
+                  <td style="text-align: center;">Relit-5(w<sup>+</sup>+d<sub>5</sub>)</td>
+                </tr>
+                <tr>
+                  <td><img src="splash/1_orig.png" width="100%"></td>
+                  <td><img src="splash/1_relight1.png" width="100%"></td>
+                  <td><img src="splash/1_relight2.png" width="100%"></td>
+                  <td><img src="splash/1_relight4.png" width="100%"></td>
+                  <td><img src="splash/1_relight3.png" width="100%"></td>
+                  <td><img src="splash/1_relight5.png" width="100%"></td>
+                </tr>
+                <tr>
+                  <td><img src="splash/7_orig.png" width="100%"></td>
+                  <td><img src="splash/7_relight1.png" width="100%"></td>
+                  <td><img src="splash/7_relight2.png" width="100%"></td>
+                  <td><img src="splash/7_relight4.png" width="100%"></td>
+                  <td><img src="splash/7_relight3.png" width="100%"></td>
+                  <td><img src="splash/7_relight5.png" width="100%"></td>
+                </tr>
+                <tr>
+                  <td><img src="splash/13_orig.png" width="100%"></td>
+                  <td><img src="splash/13_relight1.png" width="100%"></td>
+                  <td><img src="splash/13_relight2.png" width="100%"></td>
+                  <td><img src="splash/13_relight4.png" width="100%"></td>
+                  <td><img src="splash/13_relight3.png" width="100%"></td>
+                  <td><img src="splash/13_relight5.png" width="100%"></td>
+                </tr>
+              </table>
+            <p class="util-justify-text figure-caption">
+                Our approach, StyLitGAN, searches for a set of directions (d<sub>i</sub>) in StyleGAN’s W style space that when added to w+ style code can
+                change a generated image’s lighting while maintaining its albedo. Our method does not require a per-image search or fine-tuning. The first
+                column shows images generated by a vanilla StyleGAN2, while the other columns show the same scenes relit with the same applied direction.
+                The relighting directions (di) are obtained from a forward selection process to promote diversity in relighting and are not cherry-picked. The
+                illumination of the scene changes significantly, while the geometry and albedo remain unchanged, resulting in realistic images. It is also
+                worth noting that the effects of the directions are consistent across scenes
+                </a>
+            </p>
+        </div>
+
+        <br><br>
+        <hr>
+
+        <h1>Abstract</h1>
+        <p class="util-justify-text"> 
+            We propose a novel method, StyLitGAN, for relighting and resurfacing
+            generated images in the absence of labeled data. Our approach generates images
+            with realistic lighting effects, including cast shadows, soft shadows,
+            inter-reflections, and glossy effects, without the need for paired or CGI data.
+    
+        </p>
+        <br><p class="util-justify-text">  StyLitGAN uses an intrinsic image method to decompose an image, followed by a
+            search of the latent space of a pre-trained StyleGAN to identify a set of
+            directions. By prompting the model to fix one component (e.g., albedo) and vary
+            another (e.g., shading), we generate relighted images by adding the identified
+            directions to the latent style codes. Quantitative metrics of change in albedo
+            and lighting diversity allow us to choose effective directions using a forward
+            selection process. Qualitative evaluation confirms the effectiveness of our
+            method.        </p>
+
+        <br><br>
+        
+        <hr>
+
+        <h1>Latent Interpolation Videos</h1>
+
+        <div class="video">
+            <table>
+                <tr>
+                  <td>
+                    <video src="bed1.mp4" controls width="285" autoplay loop></video>
+                  </td>
+                  <td>
+                    <video src="bed2.mp4" controls width="285" autoplay loop></video>
+                  </td>
+                  <td>
+                    <video src="bed3.mp4" controls width="285" autoplay loop></video>
+                  </td>
+                </tr>
+              </table>
+        </div>
+<hr>
+<h1>User Controllable Relighting</h1>
+
+<div class="video">
+    <table>
+        <tr>
+          <td style="vertical-align: bottom;">
+            <video src="lighting_control_by_scale.mp4" controls width="400" height="360" autoplay loop></video>
+          </td>
+          <td>
+            <video src="lighting_control_by_interpolation_between_two_directions.mp4" controls width="400" height ="400" autoplay loop></video>
+          </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">Scaling single lighting direction</td>
+            <td style="text-align: center;">Two lighting direction composition</td>
+        </tr>
+      </table>
+</div>
+<hr>
+<h1>Choice of Decomposition Matters</h1>
+
+<div class="video">
+    <table>
+        <tr>
+            <td style="text-align: center;">SOTA Decomposition (Better WHDR Score)</td>
+            <td style="text-align: center;">Not SOTA Decomposition (Worse WHDR Score)</td>
+        </tr>
+        <tr>
+          <td>
+            <video src="choice_of_decomp_matters/decomp_1_geometry_shifts.mp4" controls width="400" autoplay loop></video>
+          </td>
+          <td>
+            <video src="choice_of_decomp_matters/decomp_3_stable_imperceptible_shifts.mp4" controls width="400" autoplay loop></video>
+          </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">Unstable and large geometry shifts</td>
+            <td style="text-align: center;">Stable and small geometry shifts</td>
+        </tr>
+      </table>
+</div>
+<hr>
+        <h1><a href="https://anandbhattad.github.io/makeitso/">Real Image Relighting with Make It So</a></h1>
+
+        <div class="paper-thumbnail">
+            <a href="https://anandbhattad.github.io/makeitso/">
+                <img class="layered-paper-big" width="120%" src="./resources/make_it_so_paper.png" alt="Paper thumbnail." />
+            </a>
+        </div>
+        <div class="video">
+            <video src="real_relighting.mp4" controls width="400" autoplay loop style="vertical-align: bottom;"></video>
+
+        </div>
+
+        <br><br>
+<hr>
+        <h1>Paper</h1>
+
+        <div class="paper-thumbnail">
+            <a href="https://arxiv.org/abs/2205.10351">
+                <img class="layered-paper-big" width="120%" src="./resources/paper.png" alt="Paper thumbnail." />
+            </a>
+        </div>
+        <div class="paper-info">
+            <h4> StylitGAN: Prompting StyleGAN to Generate New Illumination Conditions</h4>
+            <h5>
+                Anand Bhattad, D.A. Forsyth
+            </h5>
+            <pre><code>@InProceedings{bhattad2023StylitGAN,
+    title = {StylitGAN: Prompting StyleGAN to Generate New Illumination Conditions},
+    author = {Bhattad, Anand and Forsyth, D.A.},
+    booktitle = {arXiv},
+    year = {2023},
+}</code></pre>
+        </div>
+
+        <br><br>
+        <hr><br>
+<!-- 
+        <h1>Video</h1>
+
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+
+        <br><br>
+        <hr> -->
+
+        <h1>Code</h1>
+        <a href="https://github.com/anandbhattad/stylitgan">
+            <img style="width:80%;" src="./stylitgan_overview.png" alt="Model overview figure" />
+        </a>
+        <br>
+        <a class="links" href="https://github.com/anandbhattad/stylitgan">[GitHub]</a>
+
+        <br><br>
+        <hr>
+        <h1>Acknowledgements</h1>
+        <p class="util-justify-text"> 
+            We thank Aniruddha Kembhavi, Derek Hoiem, Min Jin Chong, and Shenlong Wang for their feedback and suggestions. This material is based upon work supported by the National Science Foundation under Grant No. 2106825 and by a gift from the Boeing Corporation. This webpage template was adpated from some <a href="http://richzhang.github.io/colorization/">colorful</a> folks.
+        </p>
+
+        <br><br>
+    </div>
+
+</body>
+
+</html>
