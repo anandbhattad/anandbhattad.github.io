@@ -220,17 +220,18 @@
           <p>
             In the next few years, I plan to explore generative models for advanced visual perception and neural rendering. In particular, I am interested in:            
             
-            <ul>
-                        
-            <li> <span style="color:blue">Understanding Emergent Properties in Generative Models:</span> Generative models are capable of creating realistic and complex images, but we don't yet fully understand how they do it. In particular, we don't understand how generative models are able to learn the underlying statistical structure of the data they are trained on. I believe that understanding these emergent properties is essential for developing more powerful and effective generative models.
-            </li>
-            <br>
-            <li>
-              <span style="color:#028502">Generative Models as the Backbone of Visual Perception:</span> State-of-the-art computer vision relies on using generative models for creating realistic images and data, and discriminative models for classifying and understanding them. I envision a future in which generative models serve as the foundation for modern computer vision systems. Moving beyond the current divide-and-conquer strategy for generative and discriminative tasks, my goal is to establish a single framework capable of effectively performing both generative and discriminative tasks. </li>
-              <br>
-            <li><span style="color:#c48615">Generative Models as Next-Generation Neural Rendering Engines:</span> Traditional rendering engines are based on physically-based models that simulate the way light interacts with objects in the real world. However, these models can be computationally expensive to run, and they may not be able to capture the full complexity of real-world scenes. Generative models offer a more efficient and flexible alternative. My research will explore the creation of realistic and interactive graphics by using generative models.  
-          </li>
-        </ul>
+            <details>
+              <summary> <span style="color:blue">Emergent Properties in Generative Models:</span> </summary>
+              Generative models are capable of creating realistic and complex images, but we don't yet fully understand how they do it. In particular, we don't understand how generative models are able to learn the underlying statistical structure of the data they are trained on. I believe that understanding these emergent properties is essential for developing more powerful and effective generative models. </p>
+            </details>          
+            <details>
+              <summary> <span style="color:#028502">Generative Models as the Backbone of Visual Perception:</span> </summary>
+              State-of-the-art computer vision relies on using generative models for creating realistic images and data, and discriminative models for classifying and understanding them. I envision a future in which generative models serve as the foundation for modern computer vision systems. Moving beyond the current divide-and-conquer strategy for generative and discriminative tasks, my goal is to establish a single framework capable of effectively performing both generative and discriminative tasks. </p>
+            </details>
+            <details>
+              <summary> <span style="color:#c48615">Generative Models as Next-Generation Neural Rendering Engines:</span> </summary>
+              Traditional rendering engines are based on physically-based models that simulate the way light interacts with objects in the real world. However, these models can be computationally expensive to run, and they may not be able to capture the full complexity of real-world scenes. Generative models offer a more efficient and flexible alternative. My research will explore the creation of realistic and interactive graphics by using generative models. </p>
+            </details> 
           </p>
           <p> </p>
           <br>
@@ -241,6 +242,38 @@
                 <heading id="pubs">Publications</heading>
               </p>
               <br>
+            <!-- StyleGAN knows Normal, Depth, Albedo and more -->
+              <tr onmouseout="stylegan_stop()" onmouseover="stylegan_start()">
+                <td class="paper-img">
+                  <div class="one">
+                    <div class="two" id='stylegan_knows'>
+                      <img src='./images/stylegan_knows.gif' width="160">
+                    </div>
+                    <img src='./images/stylegan_knows.png' width="160">
+                  </div>
+                  <script type="text/javascript">
+                    function stylegan_start() {
+                      document.getElementById('stylegan_knows').style.opacity = "1";
+                    }
+
+                    function stylegan_stop() {
+                      document.getElementById('stylegan_knows').style.opacity = "0";
+                    }
+                    stylegan_stop()
+                  </script>
+                </td>
+                <td class="paper-details">
+                  <a href="./projects/stylegan_knows.pdf" target="_blank">StyleGAN knows Normal, Depth, Albedo and more</a>
+                  <br>
+                  <b>Anand Bhattad</b>, <a href="https://www.danielbmckee.com/">Daniel McKee</a>,  <a href="https://dhoiem.cs.illinois.edu">Derek Hoiem</a>, <a href="http://luthuli.cs.uiuc.edu/~daf/">David Forsyth</a>
+                  <br>
+                  <i>Coming Soon</i>, 2023
+                  <p></p>
+                  <p> 
+                  Stylegan has easy accssible internal encoding of intrinsic images as originally defined by Barrow and Tenenbaum in their influential paper of 1978.</p>
+                </td>
+              </tr>
+            <!-- StyLitGAN: Prompting StyleGAN to Produce New Illumination Conditions -->
               <tr onmouseout="stylit_stop()" onmouseover="stylit_start()">
                 <td class="paper-img">
                   <div class="one">
