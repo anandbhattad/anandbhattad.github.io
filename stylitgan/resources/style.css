@@ -173,3 +173,15 @@ a:hover {
     width: fit-content;
     font-style: italic;
 }
+
+/* Remove default arrow icon */
+summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  /* Add custom styles for summary */
+  summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
