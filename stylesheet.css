@@ -64,13 +64,13 @@
 }
 /* #911a1a */
 a {
-  color:#012557;
+  color:#911a1a ;
   text-decoration: none;
 }
 
 a:focus,
 a:hover {
-  color: #878a8f;
+  color: #012557;
   text-decoration: underline;
 }
 
