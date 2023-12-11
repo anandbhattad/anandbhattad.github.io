@@ -144,6 +144,12 @@
                     <li> CVPRW: Vision with Biased or Scarce Data, June 03rd, 2023 </li>  -->
 
                   </ul>
+                  <heading><strong> Recent Awards</strong></heading>
+                  <ul>
+                    <li> Outstanding Reviewer Award, ICCV 2023 </li>
+                    <li> Best Paper Finalist, CVPR 2022 </li>
+                    <li> Outstanding Emergency Reviewer Award, CVPR 2021 </li>
+                  </ul>
                 </td>
               </tr>
             </tbody>
@@ -254,15 +260,85 @@
               <br>
 
                   <p>
-                    <heading id="pubs">Publications</heading>
+                    <heading id="preprints">Preprints / Technical Reports / Work in Progress </heading>
+                    <table
+                    style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+                    <tbody>
                   </p>
-                  <br>
+
+                  <tr onmouseout="ilora_stop()" onmouseover="ilora_start()">
+                    <td class="paper-img">
+                      <div class="one">
+                        <div class="two" id='ilora_image'>
+                          <img src='./images/I-lora.gif' width="240">
+                        </div>
+                        <img src='./images/I-lora.gif' width="240">
+                      </div>
+                      <script type="text/javascript">
+                        function ilora_start() {
+                          document.getElementById('ilora_image').style.opacity = "1";
+                        }
+                  
+                        function ilora_stop() {
+                          document.getElementById('ilora_image').style.opacity = "0";
+                        }
+                        ilora_stop()
+                      </script>
+                    </td>
+                    <td class="paper-details">
+                      <div class="papertitle"><a href="https://intrinsic-lora.github.io/static/files/paper.pdf" target="_blank">Generative Models: What do they know? Do they know things? Let's find out!</a></div>
+                      <br>
+                     <a href="https://xiaodan.io/">Xiaodan Du</a>, <a href"https://home.ttic.edu/~nickkolkin/home.html">Nicholas Kolkin</a>,  <a href="https://home.ttic.edu/~gregory/"></a>Greg Shakhnarovich, <b>Anand Bhattad</b>
+                      <br>
+                      <em><strong>arXiv</strong></em>, 2023
+                     <br>
+                      <a href="https://arxiv.org/abs/2311.17137" target="_blank"><em>[arXiv]</em></a> <a href="https://intrinsic-lora.github.io/" target="_blank"><em>[project page]</em></a> <a href="https://github.com/duxiaodan/intrinsic-lora">[code]</a>
+                      <p></p>
+                      <p>
+                        Intrinsic LoRA: A method to extract intrinsic images from ANY generative model, be it Autoregressive, GAN, Diffusion!
+                      </p>
+                    </td>
+                  </tr>
+                  <tr onmouseout="projgeom_stop()" onmouseover="projgeom_start()">
+                    <td class="paper-img">
+                      <div class="one">
+                        <div class="two" id='projgeom_image'>
+                          <img src='./images/projgeom.gif' width="240">
+                        </div>
+                        <img src='./images/projgeom.gif' width="240">
+                      </div>
+                      <script type="text/javascript">
+                        function projgeom_start() {
+                          document.getElementById('projgeom_image').style.opacity = "1";
+                        }
+                  
+                        function projgeom_stop() {
+                          document.getElementById('projgeom_image').style.opacity = "0";
+                        }
+                        projgeom_stop()
+                      </script>
+                    </td>
+                    <td class="paper-details">
+                      <div class="papertitle"><a href="https://projective-geometry.github.io/static/files/Evaluating_Projective_Geometry.pdf" target="_blank">Shadows Don't Lie and Lines Can't Bend! Generative Models don't know Projective Geometry...for now</a></div>
+                      <br>
+                     Ayush Sarkar*, <a href="https://hanlinmai.web.illinois.edu/">Hanlin Mai*</a>,  Amitabh Mahapatra*, <a href="https://slazebni.cs.illinois.edu/">Svetlana Lazebnik</a>, <a href="http://luthuli.cs.uiuc.edu/~daf/">David Forsyth</a>, <b>Anand Bhattad</b>
+                      <br>
+                      <em><strong>arXiv</strong></em>, 2023
+                     <br>
+                      <a href="https://arxiv.org/abs/2311.17138" target="_blank"><em>[arXiv]</em></a> <a href="https://projective-geometry.github.io/" target="_blank"><em>[project page]</em></a>
+                      <p></p>
+                      <p>
+                        Generative models are not aware of projective geometry. We show that generated images can be easily distinguished by looking at derived projective geometry cues.
+                      </p>
+                    </td>
+                  </tr>
+                  <!-- <br>
                   <details>
-                    <summary><subheading id="preprints">Preprints / Technical Reports </subheading></summary>
-                    <br>
+                    <summary><subheading id="preprints">Preprints / Technical Reports / Work in Progress </subheading></summary>
+                    <br> -->
                     
-                    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                      <tbody>
+                    <!-- <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+                      <tbody> -->
                   <!-- UrbanIR: Large-Scale Urban Scene Inverse Rendering from a Single Video -->
 <tr onmouseout="urbanIR_stop()" onmouseover="urbanIR_start()">
   <td class="paper-img">
@@ -286,7 +362,7 @@
   <td class="paper-details">
     <div class="papertitle"><a href="https://arxiv.org/abs/2306.09349" target="_blank">UrbanIR: Large-Scale Urban Scene Inverse Rendering from a Single Video</a></div>
     <br>
-    Zhi-Hao Lin, Bohan Liu, <a href="#">Yi-Ting Chen</a>, <a href="#">David Forsyth</a>, <a href="#">Jia-Bin Huang</a>, <b>Anand Bhattad</b>, <a href="#">Shenlong Wang</a>
+    <a href="https://zhihao-lin.github.io/">Zhi-Hao Lin</a>, <a href="https://www.linkedin.com/in/bohanliu524/en">Bohan Liu</a>, <a href="https://jamie725.github.io/website/index.html">Yi-Ting Chen</a>, <a href="http://luthuli.cs.uiuc.edu/~daf/">David Forsyth</a>, <a href="https://jbhuang0604.github.io/">Jia-Bin Huang</a>, <b>Anand Bhattad</b>, <a href="https://shenlong.web.illinois.edu/">Shenlong Wang</a>
     <br>
     <em><strong>arXiv</strong></em>, 2023
    <br>
@@ -484,6 +560,8 @@
                     <div class="dotted-line"></div>
               </details>
               <br>
+              <heading id="pubs">Refereed Publications</heading>
+
               <table
               style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
@@ -735,10 +813,10 @@
                   <a href="http://luthuli.cs.uiuc.edu/~daf/" target="_blank">David A. Forsyth</a>
                   <br>
                   <em><strong>ICLR</strong></em>, 2020
-                  <br>
+                  <!-- <br>
                   <em>CVPR-W on <a href="https://amlcvpr2019.github.io/">Adversarial ML in Real-World Computer Vision
                       Systems</a></em>, 2019
-                  <br>
+                  <br> -->
                   <p></p>
                   <p>Generating realistic adversarial examples by image re-colorization and texture transfer.</p>
                 </td>
