@@ -112,6 +112,9 @@
                         <strong>Feb 2024:</strong> Organzing <a href="https://sites.google.com/view/retrocv">CV 20/20: A Retrospective Vision</a> workshop at CVPR 2024. 
                         </li>
                       <li>
+                        <strong>Feb 2024:</strong> Two papers accepted by CVPR 2024. One on image-based relighting and another on analyzing projective geometry in generative models.  
+                        </li>
+                      <li>
                       <strong>Sept 2023:</strong> Two papers accepted by NeurIPS 2023. One on discovering hidden gems in StyleGAN and another on language guided 3D aware image editing. 
                       </li>
                         <strong>Sept 2023:</strong> Excited to start as a Research Assistant Professor at TTIC!
@@ -307,39 +310,6 @@
                       </p>
                     </td>
                   </tr>
-                  <tr onmouseout="projgeom_stop()" onmouseover="projgeom_start()">
-                    <td class="paper-img">
-                      <div>
-                        <div class="two" id='projgeom_image'>
-                          <video controls muted loop autoplay src='./images/proj_geom_teaser.mp4' width="240">
-                        </div>
-                        <video controls muted loop autoplay src='./images/proj_geom_teaser.mp4' width="240">
-                      </div>
-                      <script type="text/javascript">
-                        function projgeom_start() {
-                          document.getElementById('projgeom_image').style.opacity = "1";
-                        }
-                  
-                        function projgeom_stop() {
-                          document.getElementById('projgeom_image').style.opacity = "0";
-                        }
-                        projgeom_stop()
-                      </script>
-                    </td>
-                    <td class="paper-details">
-                      <div class="papertitle"><a href="https://projective-geometry.github.io/static/files/Evaluating_Projective_Geometry.pdf" target="_blank">Shadows Don't Lie and Lines Can't Bend! Generative Models don't know Projective Geometry...for now</a></div>
-                      <br>
-                     Ayush Sarkar*, <a href="https://hanlinmai.web.illinois.edu/">Hanlin Mai*</a>,  Amitabh Mahapatra*, <a href="https://slazebni.cs.illinois.edu/">Svetlana Lazebnik</a>, <a href="http://luthuli.cs.uiuc.edu/~daf/">David Forsyth</a>, <b>Anand Bhattad</b>
-                      <br>
-                      <em><strong>arXiv</strong></em>, 2023
-                     <br>
-                      <a href="https://arxiv.org/abs/2311.17138" target="_blank"><em>[arXiv]</em></a> <a href="https://projective-geometry.github.io/" target="_blank"><em>[project page]</em></a>
-                      <p></p>
-                      <p>
-                        Generative models are not aware of projective geometry. We show that generated images can be easily distinguished by looking at derived projective geometry cues.
-                      </p>
-                    </td>
-                  </tr>
                   <!-- <br>
                   <details>
                     <summary><subheading id="preprints">Preprints / Technical Reports / Work in Progress </subheading></summary>
@@ -417,41 +387,6 @@
   </td>
 </tr>
 
-                        <!-- StyLitGAN: Prompting StyleGAN to Produce New Illumination Conditions -->
-                        <tr onmouseout="stylit_stop()" onmouseover="stylit_start()">
-                          <td class="paper-img">
-                            <div class="one">
-                              <div class="two" id='stylit_image'>
-                                <img src='stylitgan/splash/1_relight1.png' width="240">
-                              </div>
-                              <img src='stylitgan/splash/1_orig.png' width="240">
-                            </div>
-                            <script type="text/javascript">
-                              function stylit_start() {
-                                document.getElementById('stylit_image').style.opacity = "1";
-                              }
-          
-                              function stylit_stop() {
-                                document.getElementById('stylit_image').style.opacity = "0";
-                              }
-                              stylit_stop()
-                            </script>
-                          </td>
-                          <td class="paper-details">
-                            <a href="https://arxiv.org/abs/2205.10351" target="_blank">
-                              <div class="papertitle">StyLitGAN: Prompting StyleGAN to Produce New Illumination Conditions
-                              </a>
-                            </div>
-                            <strong> Anand Bhattad</strong>,
-                            <a href="http://luthuli.cs.uiuc.edu/~daf/" target="_blank">David A. Forsyth</a>
-                            <br>
-                            <em><strong>arXiv</strong></em>, 2023
-                            <br>
-                            <a href="https://arxiv.org/abs/2205.10351" target="_blank"><em>[arXiv]</em></a> <a href="https://anandbhattad.github.io/stylitgan/" target="_blank"><em>[project page]</em></a>
-                            <p></p>
-                            <p> By imposing known physical facts about images, we can prompt StyleGAN to generate relighted or resurfaced images without using labeled data. </p>
-                          </td>
-                        </tr>
                         <tr onmouseout="makeitso_stop()" onmouseover="makeitso_start()">
                           <td class="paper-img">
                             <div class="one">
@@ -566,11 +501,79 @@
               </details>
               <br>
               <heading id="pubs">Publications</heading>
-
               <table
               style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
-            <!-- StyleGAN knows Normal, Depth, Albedo and more -->
+                  <tr onmouseout="projgeom_stop()" onmouseover="projgeom_start()">
+                    <td class="paper-img">
+                      <div>
+                        <div class="two" id='projgeom_image'>
+                          <video controls muted loop autoplay src='./images/proj_geom_teaser.mp4' width="240">
+                        </div>
+                        <video controls muted loop autoplay src='./images/proj_geom_teaser.mp4' width="240">
+                      </div>
+                      <script type="text/javascript">
+                        function projgeom_start() {
+                          document.getElementById('projgeom_image').style.opacity = "1";
+                        }
+                  
+                        function projgeom_stop() {
+                          document.getElementById('projgeom_image').style.opacity = "0";
+                        }
+                        projgeom_stop()
+                      </script>
+                    </td>
+                    <td class="paper-details">
+                      <div class="papertitle"><a href="https://projective-geometry.github.io/static/files/Evaluating_Projective_Geometry.pdf" target="_blank">Shadows Don't Lie and Lines Can't Bend! Generative Models don't know Projective Geometry...for now</a></div>
+                      <br>
+                     Ayush Sarkar*, <a href="https://hanlinmai.web.illinois.edu/">Hanlin Mai*</a>,  Amitabh Mahapatra*, <a href="https://slazebni.cs.illinois.edu/">Svetlana Lazebnik</a>, <a href="http://luthuli.cs.uiuc.edu/~daf/">David Forsyth</a>, <b>Anand Bhattad</b>
+                      <br>
+                      <em><strong>CVPR</strong></em>, 2024
+                     <br>
+                      <a href="https://arxiv.org/abs/2311.17138" target="_blank"><em>[arXiv]</em></a> <a href="https://projective-geometry.github.io/" target="_blank"><em>[project page]</em></a>
+                      <p></p>
+                      <p>
+                        Generative models are not aware of projective geometry. We show that generated images can be easily distinguished by looking at derived projective geometry cues.
+                      </p>
+                    </td>
+                  </tr>
+
+                        <!-- StyLitGAN: Prompting StyleGAN to Produce New Illumination Conditions -->
+                        <tr onmouseout="stylit_stop()" onmouseover="stylit_start()">
+                          <td class="paper-img">
+                            <div class="one">
+                              <div class="two" id='stylit_image'>
+                                <img src='stylitgan/splash/1_relight1.png' width="240">
+                              </div>
+                              <img src='stylitgan/splash/1_orig.png' width="240">
+                            </div>
+                            <script type="text/javascript">
+                              function stylit_start() {
+                                document.getElementById('stylit_image').style.opacity = "1";
+                              }
+          
+                              function stylit_stop() {
+                                document.getElementById('stylit_image').style.opacity = "0";
+                              }
+                              stylit_stop()
+                            </script>
+                          </td>
+                          <td class="paper-details">
+                            <a href="https://arxiv.org/abs/2205.10351" target="_blank">
+                              <div class="papertitle">StyLitGAN: Image-based Relighting via Latent Control
+                              </a>
+                            </div>
+                            <strong> Anand Bhattad</strong>, James Soole, 
+                            <a href="http://luthuli.cs.uiuc.edu/~daf/" target="_blank">David A. Forsyth</a>
+                            <br>
+                            <em><strong>CVPR</strong></em>, 2024
+                            <br>
+                            <a href="https://arxiv.org/abs/2205.10351" target="_blank"><em>[arXiv]</em></a> <a href="https://anandbhattad.github.io/stylitgan/" target="_blank"><em>[project page]</em></a>
+                            <p></p>
+                            <p> By imposing known physical facts about images, we can prompt StyleGAN to generate relighted or resurfaced images without using labeled data. </p>
+                          </td>
+                        </tr>
+                  <!-- StyleGAN knows Normal, Depth, Albedo and more -->
               <tr onmouseout="stylegan_stop()" onmouseover="stylegan_start()">
                 <td class="paper-img">
                   <div class="one">
