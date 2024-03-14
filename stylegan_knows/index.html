@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .table-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .centered-table {
+        margin-left: auto;
+        margin-right: auto;
+        border-collapse: collapse;
+        width: 90%;
+    }
+    .centered-table th, .centered-table td {
+        text-align: center;
+        padding: 8px;
+        vertical-align: middle; /* Centers content vertically */
+    }
+    .centered-table thead th {
+        border-bottom: 2px solid black;
+    }
+    .centered-table tfoot td {
+        border-top: 2px solid black;
+    }
+    .image-table {
+    width: 100%;
+  }
+  .image-table img {
+    width: 100%;
+    max-width: 100px; /* adjust as needed */
+  }
+  .image-table th, .image-table td {
+    text-align: center;
+  }
+  .caption {
+    text-align: center;
+    margin-top: 10px;
+</style>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="StyleGAN knows Normals, Depth, Albedo, and More">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StyleGAN knows Normals, Depth, Albedo, and More</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
+  <!-- <script> 
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Generative Models: What do they know? <br> Do they know things? Let's find out!</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://anandbhattad.github.io/">Anand Bhattad</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+            <a href="https://www.danielbmckee.com/">Daniel McKee</a>
+            </span>
+            <span class="author-block">
+            <a href="https://dhoiem.cs.illinois.edu/">Derek Hoiem</a>
+            </span>
+            <span class="author-block">
+            <a href="http://luthuli.cs.uiuc.edu/~daf/">D.A. Forsyth</a>
+            </span>
+        </div>
+
+    <div class="is-size-5 publication-authors">
+  <span class="author-block">University of Illinois Urbana-Champaign</span>
+</div>
+<div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">            
+        <table>
+                <tr>
+                <td style="text-align: center; width: 16.5%;">Image</td>
+                <td style="text-align: center;">Normals</td>
+                  <td style="text-align: center;">Depth</td>
+                  <td style="text-align: center;">Albedo</td>
+                  <td style="text-align: center;">Shading</td>
+                  <td style="text-align: center;">Segment</td>
+                </tr>
+                <tr>
+                  <td><img src="teaser.png" width="100%"></td>
+                  <td><img src="./normals.png" width="100%"></td>
+                  <td><img src="./depth.png" width="100%"></td>
+                  <td><img src="./albedo_teaser_v2.png" width="100%"></td>
+                  <td><img src="./shading_teaser_v2.png" width="100%"></td>
+                  <td><img src="./seg.png" width="100%"></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td><img src="./normals_sup.png" width="100%"></td>
+                  <td><img src="./depth_sup.png" width="100%"></td>
+                  <td><img src="./albedo_supervised_v2.png" width="100%"></td>
+                  <td><img src="./shading_supervised_v2.png" width="100%"></td>
+                  <td><img src="./seg_sup.png" width="100%"></td>
+                </tr>
+              </table>
+              <h2 class="subtitle has-text-centered">
+        <span class="dnerf">INTRINSIC LoRA (I-LoRA)</span> uncovers the hidden capabilities of generative models like VQGAN, StyleGAN-XL, StyleGAN-v2, and Stable Diffusion. I-LoRA modulates key feature maps to extract intrinsic scene properties such as normals, depth, albedo, and shading, using the models' existing decoders without additional layers, revealing their deep understanding of scene intrinsics.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Generative models have been shown to be capable of synthesizing highly detailed and realistic images. It is natural to suspect that they implicitly learn to model some image intrinsics such as surface normals, depth, or shadows. In this paper, we present compelling evidence that generative models indeed internally produce high-quality scene intrinsic maps. We introduce <span class="dnerf">INTRINSIC LoRA (I-LoRA)</span>, a universal, plug-and-play approach that transforms any generative model into a scene intrinsic predictor, capable of extracting intrinsic scene maps directly from the original generator network without needing additional decoders or fully fine-tuning the original network. Our method employs a Low-Rank Adaptation (LoRA) of key feature maps, with newly learned parameters that make up less than 0.6% of the total parameters in the generative model. Optimized with a small set of labeled images, our model-agnostic approach adapts to various generative architectures, including Diffusion models, GANs, and Autoregressive models.  We show that the scene intrinsic maps produced by our method compare well with, and in some cases surpass those generated by leading supervised techniques.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video.
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <table class="centered-table">
+
+      <caption>
+          Summary of scene intrinsic extraction capabilities across different generative models without changing generator head. <span style="color: green;">✓</span>: Intrinsics can be extracted with high quality. <span style="color: orange;">~</span>: Intrinsics can be extracted with medium quality. <span style="color: red;">✗</span>: Intrinsics cannot be extracted.
+      </caption>
+      <thead>
+      <tr>
+
+          <th>Model</th>
+          <th>Pretrain Type</th>
+          <th>Domain</th>
+          <th>Normal</th>
+          <th>Depth</th>
+          <th>Albedo</th>
+          <th>Shading</th>
+      </tr>
+    </thead>
+
+      <tr>
+          <td>VQGAN</td>
+          <td>Autoregressive.</td>
+          <td>FFHQ</td>
+          <td style="color: orange;">~</td>
+          <td style="color: orange;">~</td>
+          <td style="color: green;">✓</td>
+          <td style="color: green;">✓</td>
+      </tr>
+      <tr>
+          <td>StyleGAN-v2</td>
+          <td>GAN</td>
+          <td>FFHQ</td>
+          <td style="color: green;">✓</td>
+          <td style="color: orange;">~</td>
+          <td style="color: green;">✓</td>
+          <td style="color: green;">✓</td>
+      </tr>
+      <tr>
+          <td>StyleGAN-v2</td>
+          <td>GAN</td>
+          <td>LSUN Bed</td>
+          <td style="color: green;">✓</td>
+          <td style="color: green;">✓</td>
+          <td style="color: green;">✓</td>
+          <td style="color: green;">✓</td>
+      </tr>
+      <tr>
+          <td>StyleGAN-XL</td>
+          <td>GAN</td>
+          <td>FFHQ</td>
+          <td style="color: green;">✓</td>
+          <td style="color: orange;">~</td>
+          <td style="color: green;">✓</td>
+          <td style="color: green;">✓</td>
+      </tr>
+      <tr>
+          <td>StyleGAN-XL</td>
+          <td>GAN</td>
+          <td>ImageNet</td>
+          <td style="color: red;">✗</td>
+          <td style="color: red;">✗</td>
+          <td style="color: red;">✗</td>
+          <td style="color: red;">✗</td>
+      </tr>
+      <tr>
+          <td>Stable Diffusion-UNet</td>
+          <td>Diffusion</td>
+          <td>Open</td>
+          <td style="color: green;">✓</td>
+          <td style="color: green;">✓</td>
+          <td style="color: green;">✓</td>
+          <td style="color: green;">✓</td>
+      </tr>
+      <tr>
+          <td>Stable Diffusion</td>
+          <td>Diffusion</td>
+          <td>Open</td>
+          <td style="color: green;">✓</td>
+          <td style="color: green;">✓</td>
+          <td style="color: green;">✓</td>
+          <td style="color: green;">✓</td>
+      </tr>
+      <tfoot>
+        <tr>
+            <td colspan="7"></td>
+        </tr>
+    </tfoot>
+  </table>
+<br>
+<br>
+  <table class="image-table">
+    <tr>
+    <th>Image</th>
+    <th colspan="2">Surface Normals</th>
+    <th colspan="2">Depth</th>
+    <th colspan="2">Albedo</th>
+    <th colspan="2">Shading</th>
+  </tr>
+  <!-- Repeat for each row with your image paths -->
+  <tr>
+    <td><img src="path_to_image.jpg" alt="Original Image"></td>
+    <td><img src="path_to_normal.jpg" alt="Surface Normal"></td>
+    <td><img src="path_to_generated_normal.jpg" alt="Generated Surface Normal"></td>
+    <td><img src="path_to_depth.jpg" alt="Depth"></td>
+    <td><img src="path_to_generated_depth.jpg" alt="Generated Depth"></td>
+    <td><img src="path_to_albedo.jpg" alt="Albedo"></td>
+    <td><img src="path_to_generated_albedo.jpg" alt="Generated Albedo"></td>
+    <td><img src="path_to_shading.jpg" alt="Shading"></td>
+    <td><img src="path_to_generated_shading.jpg" alt="Generated Shading"></td>
+  </tr>
+  <tr>
+    <td><img src="path_to_image.jpg" alt="Original Image"></td>
+    <td><img src="path_to_normal.jpg" alt="Surface Normal"></td>
+    <td><img src="path_to_generated_normal.jpg" alt="Generated Surface Normal"></td>
+    <td><img src="path_to_depth.jpg" alt="Depth"></td>
+    <td><img src="path_to_generated_depth.jpg" alt="Generated Depth"></td>
+    <td><img src="path_to_albedo.jpg" alt="Albedo"></td>
+    <td><img src="path_to_generated_albedo.jpg" alt="Generated Albedo"></td>
+    <td><img src="path_to_shading.jpg" alt="Shading"></td>
+    <td><img src="path_to_generated_shading.jpg" alt="Generated Shading"></td>
+  </tr>
+  <tr>
+  <td> </td>
+  <td>Omnidata-v2</td>
+  <td><span class="dnerf">I-LoRA</span></td>
+  <td>ZoeDepth</td>
+  <td><span class="dnerf">I-LoRA</span></td>
+  <td>Paradigms</td>
+  <td><span class="dnerf">I-LoRA</span></td>
+  <td>Paradigms</td>
+  <td><span class="dnerf">I-LoRA</span></td>
+</tr>
+</table>
+<div class="caption">
+  Figure: Comparison of intrinsic maps generated by our method using augmented Stable Diffusion 2.1 and the pseduo ground truth
+</div>
+  
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{du2023generative,
+  author    = {Du, Xiaodan and Kolkin, Nicholas and Shakhnarovich, Greg and Bhattad, Anand},
+  title     = {Generative Models: What do they know? Do they know things? Let's find out!},
+  journal   = {arXiv},
+  year      = {2023},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is cloned from <a
+              href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> website repo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
