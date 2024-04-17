@@ -5,8 +5,8 @@
 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113053854-1"></script>
-    <!-- include script file -->
-    <script src="./js/hidebib.js"></script>
+  <!-- include script file -->
+  <script src="./js/hidebib.js"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -14,7 +14,7 @@
 
     gtag('config', 'UA-113053854-1');
 
-   
+
   </script>
 
 
@@ -100,7 +100,8 @@
                     build advanced computer vision systems capable of creating and modeling digital twins.
                   <p>
                     I am also interested in leveraging generative models for neural rendering and 3D-aware
-                    image editing. This aims to provide easy-to-use tools for interacting with and manipulating visual content.
+                    image editing. This aims to provide easy-to-use tools for interacting with and manipulating visual
+                    content.
                   <p> </p>
                   <heading><strong>News</strong></heading>
                   <ul>
@@ -173,7 +174,7 @@
             <!-- add links to hide or show below sections-->
             <p class="section-links">
               <a href="javascript:showHighlights()" class="highlight-background"
-               id="section-link-highlights">Highlights</a> &nbsp;|&nbsp;
+                id="section-link-highlights">Highlights</a> &nbsp;|&nbsp;
               <a href="javascript:showOrHide('publications')" id="section-link-publications">Publications</a>
               &nbsp;|&nbsp;
               <a href="javascript:showOrHide('preprints')" id="section-link-preprints">Preprints/Technical Reports</a>
@@ -185,13 +186,15 @@
           </section>
 
           <section id="preprints-section" class="list">
-  
+
             <table
               style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
 
                 <tr>
-                  <td class="year-heading" colspan="2"><br>Preprints<hr width="95%" align="left"></td>
+                  <td class="year-heading" colspan="2"><br>Preprints
+                    <hr width="95%" align="left">
+                  </td>
                 </tr>
                 <tr onmouseout="ilora_stop()" onmouseover="ilora_start()" data-highlight="y">
                   <td class="paper-img">
@@ -430,7 +433,7 @@
 
           <!-- <div class="dotted-line"></div> -->
 
-      
+
 
           <section id="publications-section" class="list">
 
@@ -438,7 +441,9 @@
               style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
                 <tr>
-                  <td class="year-heading"  colspan="2"><br>2024<hr width="95%" align="left"></td>
+                  <td class="year-heading" colspan="2"><br>2024
+                    <hr width="95%" align="left">
+                  </td>
                 </tr>
                 <tr onmouseout="projgeom_stop()" onmouseover="projgeom_start()" data-highlight="y">
                   <td class="paper-img">
@@ -481,49 +486,50 @@
                     </p>
                   </td>
                 </tr>
-                                <!-- StyLitGAN: Prompting StyleGAN to Produce New Illumination Conditions -->
-                                <tr onmouseout="stylit_stop()" onmouseover="stylit_start()" data-highlight="y">
-                                  <td class="paper-img">
-                                    <div class="one">
-                                      <div class="two" id='stylit_image'>
-                                        <img src='stylitgan/splash/1_relight1.png' width="240">
-                                      </div>
-                                      <img src='stylitgan/splash/1_orig.png' width="240">
-                                    </div>
-                                    <script type="text/javascript">
-                                      function stylit_start() {
-                                        document.getElementById('stylit_image').style.opacity = "1";
-                                      }
-                
-                                      function stylit_stop() {
-                                        document.getElementById('stylit_image').style.opacity = "0";
-                                      }
-                                      stylit_stop()
-                                    </script>
-                                  </td>
-                                  <td class="paper-details">
-                                    <a href="https://arxiv.org/abs/2205.10351" target="_blank">
-                                      <div class="papertitle">StyLitGAN: Image-based Relighting via Latent Control
-                                    </a>
-                                    </div>
-                                    <strong> Anand Bhattad</strong>, James Soole,
-                                    <a href="http://luthuli.cs.uiuc.edu/~daf/" target="_blank">David A. Forsyth</a>
-                                    <br>
-                                    <em><strong>CVPR</strong></em>, 2024
-                                    <br>
-                                    <a href="files/2024_CVPR_StyLitGAN.pdf" target="_blank"><em>[paper]</em></a> <a
-                                      href="https://arxiv.org/abs/2205.10351" target="_blank"><em>[arXiv]</em></a> <a
-                                      href="https://anandbhattad.github.io/stylitgan/" target="_blank"><em>[project page]</em></a>
-                                      href="https://github.com/anandbhattad/stylitgan" target="_blank"><em>[code]</em></a>
+                <!-- StyLitGAN: Prompting StyleGAN to Produce New Illumination Conditions -->
+                <tr onmouseout="stylit_stop()" onmouseover="stylit_start()" data-highlight="y">
+                  <td class="paper-img">
+                    <div class="one">
+                      <div class="two" id='stylit_image'>
+                        <img src='stylitgan/splash/1_relight1.png' width="240">
+                      </div>
+                      <img src='stylitgan/splash/1_orig.png' width="240">
+                    </div>
+                    <script type="text/javascript">
+                      function stylit_start() {
+                        document.getElementById('stylit_image').style.opacity = "1";
+                      }
 
-                                    <p></p>
-                                    <p> By imposing known physical facts about images, we can prompt StyleGAN to generate relighted or
-                                      resurfaced images without using labeled data. </p>
-                                  </td>
-                                </tr>
+                      function stylit_stop() {
+                        document.getElementById('stylit_image').style.opacity = "0";
+                      }
+                      stylit_stop()
+                    </script>
+                  </td>
+                  <td class="paper-details">
+                    <a href="https://arxiv.org/abs/2205.10351" target="_blank">
+                      <div class="papertitle">StyLitGAN: Image-based Relighting via Latent Control
+                    </a>
+                    </div>
+                    <strong> Anand Bhattad</strong>, James Soole,
+                    <a href="http://luthuli.cs.uiuc.edu/~daf/" target="_blank">David A. Forsyth</a>
+                    <br>
+                    <em><strong>CVPR</strong></em>, 2024
+                    <br>
+                    <a href="files/2024_CVPR_StyLitGAN.pdf" target="_blank"><em>[paper]</em></a> 
+                    <a href="https://arxiv.org/abs/2205.10351" target="_blank"><em>[arXiv]</em></a>
+                    <a href="https://anandbhattad.github.io/stylitgan/" target="_blank"><em>[project page]</em></a>
+                    <a href="https://github.com/anandbhattad/stylitgan" target="_blank"><em>[code]</em></a>
+                    <p></p>
+                    <p> By imposing known physical facts about images, we can prompt StyleGAN to generate relighted or
+                      resurfaced images without using labeled data. </p>
+                  </td>
+                </tr>
 
-                <tr >
-                  <td class="year-heading" colspan="2" ><br>2023<hr width="95%" align="left"></td>
+                <tr>
+                  <td class="year-heading" colspan="2"><br>2023
+                    <hr width="95%" align="left">
+                  </td>
                 </tr>
 
                 <!-- StyleGAN knows Normal, Depth, Albedo and more -->
@@ -643,8 +649,10 @@
                   </td>
                 </tr>
 
-                <tr >
-                  <td class="year-heading"  colspan="2" ><br>2022<hr width="95%" align="left"></td>
+                <tr>
+                  <td class="year-heading" colspan="2"><br>2022
+                    <hr width="95%" align="left">
+                  </td>
                 </tr>
                 <tr onmouseout="reshade_stop()" onmouseover="reshade_start()">
                   <td class="paper-img">
@@ -727,7 +735,9 @@
                   </td>
                 </tr>
                 <tr>
-                  <td  colspan="2" class="year-heading" ><br>2021<hr width="95%" align="left"></td>
+                  <td colspan="2" class="year-heading"><br>2021
+                    <hr width="95%" align="left">
+                  </td>
                 </tr>
                 <tr onmouseout="tex3Dinference_stop()" onmouseover="tex3Dinference_start()">
                   <td class="paper-img">
@@ -769,7 +779,9 @@
                   </td>
                 </tr>
                 <tr>
-                  <td colspan="2" class="year-heading" ><br>2020<hr width="95%" align="left"></td>
+                  <td colspan="2" class="year-heading"><br>2020
+                    <hr width="95%" align="left">
+                  </td>
                 </tr>
                 <tr onmouseout="adv_stop()" onmouseover="adv_start()">
                   <td class="paper-img">
@@ -834,7 +846,9 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="year-heading"  colspan="2"><br>2018<hr width="95%" align="left"></td>
+                  <td class="year-heading" colspan="2"><br>2018
+                    <hr width="95%" align="left">
+                  </td>
                 </tr>
 
                 <tr onmouseout="anom_stop()" onmouseover="anom_start()">
@@ -888,30 +902,29 @@
               </p>
 
 
-              </td>
-              <td width="75%" valign="center">
-                Course Instructor, TTIC 41000 <a href="./teaching/past_meets_present/"
-                  target="_blank">
-                  Past Meets Present: A Tale of Two Visions</a>, Spring 2024
-                  <br>
-                  <br>
-                Teaching Assistant, CS498 <a href="http://luthuli.cs.uiuc.edu/~daf/courses/AML-18-Fall/aml-home.html"
-                  target="_blank">
-                  Applied Machine Learning</a>, Fall 2018
-                <br>
-                <br>
-                Teaching Assistant, CS225 <a href="">Data Structures</a>, Spring 2017
-                <br>
-                <br>
-                Teaching Assistant, CS101 <a href="">Intro Computer Science</a> Fall 2017
-                  <br>
-                  <br>
-                  Teaching Assistant, CS101 <a href="">Intro Computer Science</a>, Spring 2016 <font color="blue">
-                    <strong>(Rated as Outstanding TA)
-              </td>
-              </tr>
-            </tbody>
-          </table>
+        </td>
+        <td width="75%" valign="center">
+          Course Instructor, TTIC 41000 <a href="./teaching/past_meets_present/" target="_blank">
+            Past Meets Present: A Tale of Two Visions</a>, Spring 2024
+          <br>
+          <br>
+          Teaching Assistant, CS498 <a href="http://luthuli.cs.uiuc.edu/~daf/courses/AML-18-Fall/aml-home.html"
+            target="_blank">
+            Applied Machine Learning</a>, Fall 2018
+          <br>
+          <br>
+          Teaching Assistant, CS225 <a href="">Data Structures</a>, Spring 2017
+          <br>
+          <br>
+          Teaching Assistant, CS101 <a href="">Intro Computer Science</a> Fall 2017
+          <br>
+          <br>
+          Teaching Assistant, CS101 <a href="">Intro Computer Science</a>, Spring 2016 <font color="blue">
+            <strong>(Rated as Outstanding TA)
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <p></p>
   <br>
   <div style="text-align: right;"> Template adapted from:
