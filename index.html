@@ -47,7 +47,7 @@
                   <a href="https://www.ttic.edu/" target="_blank">Toyota Technological Institute at Chicago</a>
                   <p></p>
                   <p></p>
-                  Visiting Researcher
+                  S Researcher
                   <br>
                   <a href="https://www.berkeley.edu/" target="_blank">UC Berkeley</a>
                   <p></p>
@@ -143,6 +143,12 @@
                   <p>
                   <ul>
                     <li>
+                      <strong>July 2024:</strong> VideoShop has been accepted to ECCV 2024! Congratulations, Xiang Fan! 
+                    </li>
+                    <li>
+                      <strong>May 2024:</strong> Spending some time with Alyosha Efros and the BAIR folks at UC Berkeley.
+                    </li>
+                    <li>
                       <strong>Mar 2024:</strong> Teaching a new course: <a href="./teaching/past_meets_present/">Past
                         Meets Present: A Tale of Two Visions</a> at TTIC this Spring.
                     </li>
@@ -233,43 +239,42 @@
                     <hr width="95%" align="left">
                   </td>
                 </tr>
-                <tr onmouseout="ilora_stop()" onmouseover="ilora_start()" data-highlight="y">
+                <tr onmouseout="latent_intrinsics_stop()" onmouseover="latent_intrinsics_start()" data-highlight="y"> 
                   <td class="paper-img">
                     <div class="one">
-                      <div class="two" id='ilora_image'>
-                        <img src='./images/I-lora.gif' width="240">
+                      <div class="two" id='latent_intrinsics_image'>
+                        <img src='./images/latent_intrinsics.png' width="360">
                       </div>
-                      <img src='./images/I-lora.gif' width="240">
+                      <img src='./images/latent_intrinsics.png' width="360">
                     </div>
                     <script type="text/javascript">
-                      function ilora_start() {
-                        document.getElementById('ilora_image').style.opacity = "1";
+                      function latent_intrinsics_start() {
+                        document.getElementById('latent_intrinsics_image').style.opacity = "1";
                       }
 
-                      function ilora_stop() {
-                        document.getElementById('ilora_image').style.opacity = "0";
+                      function latent_intrinsics_stop() {
+                        document.getElementById('latent_intrinsics_image').style.opacity = "0";
                       }
-                      ilora_stop()
+                      latent_intrinsics_stop()
                     </script>
                   </td>
                   <td class="paper-details">
-                    <div class="papertitle"><a href="https://intrinsic-lora.github.io/static/files/paper.pdf"
-                        target="_blank">Generative Models: What do they know? Do they know things? Let's find out!</a>
-                    </div>
+                    <div class="papertitle"><a href="https://arxiv.org/abs/2306.09349" target="_blank">Latent Intrinsics Emerge from  Training to Relight</a></div>
                     <br>
-                    <a href="https://xiaodan.io/">Xiaodan Du</a>, <a
-                      href"https://home.ttic.edu/~nickkolkin/home.html">Nicholas Kolkin</a>, <a
-                      href="https://home.ttic.edu/~gregory/"></a>Greg Shakhnarovich, <b>Anand Bhattad</b>
+                    <a href="https://xiao7199.github.io/">Xiao Zhang</a>, <a
+                      href="https://scholar.google.co.il/citations?user=SacEpXoAAAAJ&hl=en">William Gao</a>, <a
+                      href="https://scholar.google.com/citations?user=Fi0JMRYAAAAJ&hl=en">Seemandhar Jain</a>, <a
+                      href="https://people.cs.uchicago.edu/~mmaire/">Michael Maire</a>, <a
+                      href="http://luthuli.cs.uiuc.edu/~daf/">David Forsyth</a>,
+                      <b>Anand Bhattad</b>
                     <br>
-                    <em><strong>arXiv</strong></em>, 2023
+                    <em><strong>arXiv</strong></em>, 2024
                     <br>
-                    <a href="https://arxiv.org/abs/2311.17137" target="_blank"><em>[arXiv]</em></a> <a
-                      href="https://intrinsic-lora.github.io/" target="_blank"><em>[project page]</em></a> <a
-                      href="https://github.com/duxiaodan/intrinsic-lora">[code]</a>
+                    <a href="https://arxiv.org/abs/2405.21074" target="_blank"><em>[arXiv]</em></a> <a
+                      href="https://latent-intrinsics.github.io/" target="_blank"><em>[project page]</em></a>
                     <p></p>
                     <p>
-                      Intrinsic LoRA: A method to extract intrinsic images from ANY generative model, be it
-                      Autoregressive, GAN, Diffusion!
+                      Free albedo extraction from latent features in a relighting-trained model, without seeing albedo like images
                     </p>
                   </td>
                 </tr>
@@ -482,6 +487,39 @@
                     <hr width="95%" align="left">
                   </td>
                 </tr>
+                <tr onmouseout="videoshop_stop()" onmouseover="videoshop_start()" data-highlight="y">
+                  <td class="paper-img">
+                    <div class="one">
+                      <div class="two" id='videoshop'>
+                        <img src='./images/videoshop.gif' width="360">
+                      </div>
+                      <img src='./images/videoshop.gif' width="360">
+                    </div>
+                    <script type="text/javascript">
+                      function stylegan_start() {
+                        document.getElementById('videoshop').style.opacity = "1";
+                      }
+
+                      function stylegan_stop() {
+                        document.getElementById('videoshop').style.opacity = "0";
+                      }
+                      stylegan_stop()
+                    </script>
+                  </td>
+                  <td class="paper-details">
+                    <div class="papertitle"><a href="https://videoshop-editing.github.io/" target="_blank">VideoShop: Localized Semantic Video Editing with Noise-Extrapolated Diffusion Inversion</a></div>
+                    <br> <a href="https://xiangfan.io/">Xiang Fan</a>,
+                     <b>Anand Bhattad*</b>, <a href="https://www.ranjaykrishna.com/">Ranjay Krishna*</a>
+                    <br>
+                    <em><strong>ECCV</strong></em>, 2024
+                    <br>
+                    <a href="https://arxiv.org/abs/2403.14617" target="_blank"><em>[arXiv]</em></a>
+                    <a href="https://videoshop-editing.github.io/" target="_blank"><em>[project page]</em></a>
+
+                    <p></p>
+                    <p>Videoshop is a new training-free algorithm that allows users to edit videos by modifying only the first frame using familiar image editing tools. It automatically propagates these edits throughout the video, maintaining consistency and allowing for precise, localized semantic changes. </p>
+                  </td>
+                </tr>                
                 <tr onmouseout="projgeom_stop()" onmouseover="projgeom_start()" data-highlight="y">
                   <td class="paper-img">
                     <div>
@@ -513,8 +551,10 @@
                     <br>
                     <em><strong>CVPR</strong></em>, 2024
                     <br>
-                    <a href="https://arxiv.org/abs/2311.17138" target="_blank"><em>[arXiv]</em></a> <a
-                      href="https://projective-geometry.github.io/" target="_blank"><em>[project page]</em></a>
+                    <a href="https://arxiv.org/abs/2311.17138" target="_blank"><em>[arXiv]</em></a> 
+                    <a href="https://projective-geometry.github.io/" target="_blank"><em>[project page]</em></a>
+                    <a href="https://github.com/hanlinm2/projective-geometry/" target="_blank"><em>[code]</em></a>
+
                     <p></p>
                     <p>
                       Generative models are not aware of projective geometry. We show that generated images can be
@@ -523,14 +563,56 @@
                     </p>
                   </td>
                 </tr>
+                <tr onmouseout="ilora_stop()" onmouseover="ilora_start()" data-highlight="y">
+                  <td class="paper-img">
+                    <div class="one">
+                      <div class="two" id='ilora_image'>
+                        <img src='./images/I-lora.gif' width="240">
+                      </div>
+                      <img src='./images/I-lora.gif' width="240">
+                    </div>
+                    <script type="text/javascript">
+                      function ilora_start() {
+                        document.getElementById('ilora_image').style.opacity = "1";
+                      }
+
+                      function ilora_stop() {
+                        document.getElementById('ilora_image').style.opacity = "0";
+                      }
+                      ilora_stop()
+                    </script>
+                  </td>
+                  <td class="paper-details">
+                    <div class="papertitle"><a href="https://intrinsic-lora.github.io/static/files/paper.pdf"
+                        target="_blank">Generative Models: What do they know? Do they know things? Let's find out!</a>
+                    </div>
+                    <br>
+                    <a href="https://xiaodan.io/">Xiaodan Du</a>, 
+                    <a href="https://home.ttic.edu/~nickkolkin/home.html">Nicholas Kolkin</a>, <a
+                      href="https://home.ttic.edu/~gregory/"></a>Greg Shakhnarovich, <b>Anand Bhattad</b>
+                    <br>
+                    <em><strong>CVPR-W</strong></em>, 2024 (short paper)
+                    <br>
+                    <em><strong>arXiv</strong></em>, 2023
+                    <br>                    
+                    <a href="https://arxiv.org/abs/2311.17137" target="_blank"><em>[arXiv]</em></a> <a
+                      href="https://intrinsic-lora.github.io/" target="_blank"><em>[project page]</em></a> <a
+                      href="https://github.com/duxiaodan/intrinsic-lora">[code]</a>
+                    <p></p>
+                    <p>
+                      Intrinsic LoRA: A method to extract intrinsic images from ANY generative model, be it
+                      Autoregressive, GAN, Diffusion!
+                    </p>
+                  </td>
+                </tr>
                 <!-- StyLitGAN: Prompting StyleGAN to Produce New Illumination Conditions -->
                 <tr onmouseout="stylit_stop()" onmouseover="stylit_start()" data-highlight="y">
                   <td class="paper-img">
                     <div class="one">
                       <div class="two" id='stylit_image'>
-                        <img src='stylitgan/splash/1_relight1.png' width="240">
+                        <video src='stylitgan/bed1.mp4' width="240" autoplay loop muted> </video>>
                       </div>
-                      <img src='stylitgan/splash/1_orig.png' width="240">
+                      <video src='stylitgan/bed1.mp4' width="240" autoplay loop muted> </video>
                     </div>
                     <script type="text/javascript">
                       function stylit_start() {
