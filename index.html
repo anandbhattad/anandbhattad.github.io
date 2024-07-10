@@ -278,47 +278,6 @@
                     </p>
                   </td>
                 </tr>
-                <tr onmouseout="urbanIR_stop()" onmouseover="urbanIR_start()">
-                  <td class="paper-img">
-                    <div class="one">
-                      <div class="two" id='urbanIR_image'>
-                        <video controls muted loop autoplay src='./images/urban_ir.mp4' width="360">
-                      </div>
-                      <video controls muted loop autoplay src='./images/urban_ir.mp4' width="360">
-                    </div>
-                    <script type="text/javascript">
-                      function urbanIR_start() {
-                        document.getElementById('urbanIR_image').style.opacity = "1";
-                      }
-
-                      function urbanIR_stop() {
-                        document.getElementById('urbanIR_image').style.opacity = "0";
-                      }
-                      urbanIR_stop()
-                    </script>
-                  </td>
-                  <td class="paper-details">
-                    <div class="papertitle"><a href="https://arxiv.org/abs/2306.09349" target="_blank">UrbanIR:
-                        Large-Scale Urban Scene Inverse Rendering from a Single Video</a></div>
-                    <br>
-                    <a href="https://zhihao-lin.github.io/">Zhi-Hao Lin</a>, <a
-                      href="https://www.linkedin.com/in/bohanliu524/en">Bohan Liu</a>, <a
-                      href="https://jamie725.github.io/website/index.html">Yi-Ting Chen</a>, <a
-                      href="http://luthuli.cs.uiuc.edu/~daf/">David Forsyth</a>, <a
-                      href="https://jbhuang0604.github.io/">Jia-Bin Huang</a>, <b>Anand Bhattad</b>, <a
-                      href="https://shenlong.web.illinois.edu/">Shenlong Wang</a>
-                    <br>
-                    <em><strong>arXiv</strong></em>, 2023
-                    <br>
-                    <a href="https://arxiv.org/abs/2306.09349" target="_blank"><em>[arXiv]</em></a> <a
-                      href="https://urbaninverserendering.github.io/" target="_blank"><em>[project page]</em></a>
-                    <p></p>
-                    <p>
-                      UrbanIR creates realistic 3D renderings of urban scenes from single videos, allowing for novel
-                      lighting conditions and controllable editing.
-                    </p>
-                  </td>
-                </tr>
 
                 <!-- Blocks2World: Controlling Realistic Scenes with Editable primitives -->
                 <tr onmouseout="blocks2World_stop()" onmouseover="blocks2World_start()">
@@ -644,7 +603,50 @@
                       resurfaced images without using labeled data. </p>
                   </td>
                 </tr>
+                <tr onmouseout="urbanIR_stop()" onmouseover="urbanIR_start()">
+                  <td class="paper-img">
+                    <div class="one">
+                      <div class="two" id='urbanIR_image'>
+                        <video controls muted loop autoplay src='./images/urban_ir.mp4' width="360">
+                      </div>
+                      <video controls muted loop autoplay src='./images/urban_ir.mp4' width="360">
+                    </div>
+                    <script type="text/javascript">
+                      function urbanIR_start() {
+                        document.getElementById('urbanIR_image').style.opacity = "1";
+                      }
 
+                      function urbanIR_stop() {
+                        document.getElementById('urbanIR_image').style.opacity = "0";
+                      }
+                      urbanIR_stop()
+                    </script>
+                  </td>
+                  <td class="paper-details">
+                    <div class="papertitle"><a href="https://arxiv.org/abs/2306.09349" target="_blank">UrbanIR:
+                        Large-Scale Urban Scene Inverse Rendering from a Single Video</a></div>
+                    <br>
+                    <a href="https://zhihao-lin.github.io/">Zhi-Hao Lin</a>, <a
+                      href="https://www.linkedin.com/in/bohanliu524/en">Bohan Liu</a>, <a
+                      href="https://jamie725.github.io/website/index.html">Yi-Ting Chen</a>, <a
+                      href="http://luthuli.cs.uiuc.edu/~daf/">David Forsyth</a>, <a
+                      href="https://jbhuang0604.github.io/">Jia-Bin Huang</a>, <b>Anand Bhattad</b>, <a
+                      href="https://shenlong.web.illinois.edu/">Shenlong Wang</a>
+                    <br>
+                    <br>
+                    <em><strong>CVPR-W</strong></em>, 2024 (short paper)
+                    <br>
+                    <em><strong>arXiv</strong></em>, 2023
+                    <br>
+                    <a href="https://arxiv.org/abs/2306.09349" target="_blank"><em>[arXiv]</em></a> <a
+                      href="https://urbaninverserendering.github.io/" target="_blank"><em>[project page]</em></a>
+                    <p></p>
+                    <p>
+                      UrbanIR creates realistic 3D renderings of urban scenes from single videos, allowing for novel
+                      lighting conditions and controllable editing.
+                    </p>
+                  </td>
+                </tr>
                 <tr>
                   <td class="year-heading" colspan="2"><br>2023
                     <hr width="95%" align="left">
