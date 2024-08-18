@@ -49,25 +49,28 @@ footer {
 
 .header-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Align items starting from the left */
     align-items: center;
-    align-self: flex-start; /* Align the text at the top */
+    max-width: 1000px; /* Ensure the same width as the main content */
+    margin: 0 auto; /* Center the header-content within the page */
+    padding: 20px; /* Add padding for consistent spacing */
 }
 
 .header-text {
     flex: 2;
     text-align: left;
-    align-self: flex-start; /* Align the text at the top */
-    margin-top: 0px; /* Adjust the value to move the text down or up */
+    margin-left: 10px; /* Add space between the image and the text */
+    margin-top: -35px; /* Add space between the image and the text */
+
 }
 
 .header-image {
-    margin-top: 20px;
     flex: 0 0 325px;
+    margin-right: 20px; /* Add space between the image and the text */
 }
 
 .header-image img {
-    width: 275px;
+    width: 280px;
     height: auto;
     border: 2px solid #767676;
     border-radius: 8px;
@@ -233,17 +236,29 @@ a:hover {
 @media (max-width: 768px) {
     .header-content {
         flex-direction: column;
+        align-items: center; /* Center-align the content */
         text-align: center;
+        width: 100%; /* Ensure it takes the full width */
     }
 
     .header-image {
-        width: 100%;
+        width: auto; /* Let the image take its natural width */
         max-width: 250px;
         margin-bottom: 15px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto; /* Ensure image is centered */
     }
 
     .header-text {
         text-align: center;
+        width: 100%; /* Ensure text takes full width */
+        padding: 0;
+    }
+
+    .header-text p {
+        margin: 5px 0; /* Reduce space between paragraphs */
+        padding: 0;
     }
 
     .publication-item {
@@ -269,3 +284,4 @@ a:hover {
         padding: 10px 20px; /* Adjust padding for smaller screens */
     }
 }
+
