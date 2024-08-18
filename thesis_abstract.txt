@@ -1,9 +1,0 @@
-Title: Exploring Knowledge in Generative Models
-
-Abstract: Generative models can produce compelling pictures of realistic scenes. Objects are in sensible places, surfaces have rich textures, illumination effects appear accurate, and the models are controllable. These models, such as StyleGAN, can also generate semantically meaningful edits of scenes by modifying internal parameters. But do these models manipulate a purely abstract representation of the world, or do they work in terms of familiar rendering variables?
-
-In this presentation, I will first introduce StyLitGAN, our method that prompts StyleGAN to produce scenes with new lighting conditions. StyLitGAN generates scenes with realistic lighting effects, including cast shadows, soft shadows, inter-reflections, and glossy effects, eliminating the need for labeled, paired, or CGI data. It also easily extends to generate scenes with new surface conditions like changing colors or material properties.
-
-Following this, I will demonstrate a near-perfect GAN inversion technique, Make It So, which surpasses previous state-of-the-art GAN inversion methods by order of magnitude. It can invert and relight real scenes, even those never seen, out-of-domain images.
-
-Finally, I will present a few hidden gems in StyleGAN. I will show strong evidence that StyleGAN has encodings of easily accessible and accurate internal representations of familiar scene properties or “intrinsic images” in the original sense defined by Barrow and Tenenbaum in their immensely influential paper of 1978. Through our discoveries, we not only shed light on the implicit understanding of the worldly knowledge present within these generative models but also pave the way for improved manipulability, understanding, and refinement of generative models, with potential applications in a variety of fields, including computer vision, computational photography, computer graphics, and machine learning.

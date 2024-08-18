@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Interpolation Slider</title>
+<style>
+  #interactive_container {
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%; 
+    height: 330px;
+  }
+
+  #container {
+    position: relative;
+    float: left;
+    width: 33%;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .slider {
+    width: 80%;
+    accent-color: navy;
+    opacity: 0.7;
+  }
+
+  #image-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+  #image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: 1px solid white;
+  }
+ 
+</style>
+</head>
+<body>
+
+<div id="interactive_container">
+  <div id="container">
+    <input id="slider0" class="slider" value="0" type="range" min="0" max="100" value="50">
+    <div id="image-container">
+      <img src="teaser_images/9_orig.png" id="0_image0">
+      <img src="teaser_images/9_relight1.png" id="0_image1">
+      <img src="teaser_images/9_relight2.png" id="0_image2">
+      <img src="teaser_images/9_relight3.png" id="0_image3">
+      <img src="teaser_images/9_relight4.png" id="0_image4">
+      <img src="teaser_images/9_relight5.png" id="0_image5">
+      <img src="teaser_images/9_relight6.png" id="0_image6">
+    </div>
+  </div>
+  <div id="container">
+    <input id="slider1" class="slider" value="0" type="range" min="0" max="100" value="50">
+    <div id="image-container">
+      <img src="teaser_images/6_orig.png" id="1_image0">
+      <img src="teaser_images/6_relight1.png" id="1_image1">
+      <img src="teaser_images/6_relight2.png" id="1_image2">
+      <img src="teaser_images/6_relight3.png" id="1_image3">
+      <img src="teaser_images/6_relight4.png" id="1_image4">
+      <img src="teaser_images/6_relight5.png" id="1_image5">
+      <img src="teaser_images/6_relight6.png" id="1_image6">
+    </div>
+  </div>
+  <div id="container">
+    <input id="slider2" class="slider" value="0" type="range" min="0" max="100" value="50">
+    <div id="image-container">
+      <img src="teaser_images/13_orig.png" id="2_image0">
+      <img src="teaser_images/13_relight1.png" id="2_image1">
+      <img src="teaser_images/13_relight2.png" id="2_image2">
+      <img src="teaser_images/13_relight3.png" id="2_image3">
+      <img src="teaser_images/13_relight4.png" id="2_image4">
+      <img src="teaser_images/13_relight5.png" id="2_image5">
+      <img src="teaser_images/13_relight6.png" id="2_image6">
+    </div>
+  </div>  
+</div>
+
+<div id="interactive_container">
+  <div id="container">
+    <input id="slider3" class="slider" type="range" min="0" max="100" value="50">
+    <div id="image-container">
+      <img src="scene0012/light00.png" id="3_image0">
+      <img src="scene0012/light01.png" id="3_image1">
+      <img src="scene0012/light02.png" id="3_image2">
+      <img src="scene0012/light03.png" id="3_image3">
+      <img src="scene0012/light04.png" id="3_image4">
+      <img src="scene0012/light05.png" id="3_image5">
+      <img src="scene0012/light06.png" id="3_image6">
+  </div>
+  </div>
+  <div id="container">
+    <input id="slider4" class="slider" type="range" min="0" max="100" value="50">
+    <div id="image-container">
+      <img src="scene1999/light00.png" id="4_image0">
+      <img src="scene1999/light01.png" id="4_image1">
+      <img src="scene1999/light02.png" id="4_image2">
+      <img src="scene1999/light03.png" id="4_image3">
+      <img src="scene1999/light04.png" id="4_image4">
+      <img src="scene1999/light05.png" id="4_image5">
+      <img src="scene1999/light06.png" id="4_image6">
+    </div>
+  </div>
+  <div id="container">
+    <input id="slider5" class="slider" type="range" min="0" max="100" value="50">
+    <div id="image-container">
+      <img src="scene0028/light00.png" id="5_image0">
+      <img src="scene0028/light01.png" id="5_image1">
+      <img src="scene0028/light02.png" id="5_image2">
+      <img src="scene0028/light03.png" id="5_image3">
+      <img src="scene0028/light04.png" id="5_image4">
+      <img src="scene0028/light05.png" id="5_image5">
+      <img src="scene0028/light06.png" id="5_image6">
+    </div>
+  </div>  
+</div>
+
+<div id="interactive_container">
+  <div id="container">
+    <input id="slider6" class="slider" type="range" min="0" max="100" value="50">
+    <div id="image-container">
+      <img src="scene0051/light00.png" id="6_image0">
+      <img src="scene0051/light01.png" id="6_image1">
+      <img src="scene0051/light02.png" id="6_image2">
+      <img src="scene0051/light03.png" id="6_image3">
+      <img src="scene0051/light04.png" id="6_image4">
+      <img src="scene0051/light05.png" id="6_image5">
+      <img src="scene0051/light06.png" id="6_image6">
+  </div>
+  </div>
+  <div id="container">
+    <input id="slider7" class="slider" type="range" min="0" max="100" value="50">
+    <div id="image-container">
+      <img src="scene0055/light00.png" id="7_image0">
+      <img src="scene0055/light01.png" id="7_image1">
+      <img src="scene0055/light02.png" id="7_image2">
+      <img src="scene0055/light03.png" id="7_image3">
+      <img src="scene0055/light04.png" id="7_image4">
+      <img src="scene0055/light05.png" id="7_image5">
+      <img src="scene0055/light06.png" id="7_image6">
+    </div>
+  </div>
+  <div id="container">
+  <input id="slider8" class="slider" type="range" min="0" max="100" value="50">
+  <div id="image-container">
+    <img src="scene0058/light00.png" id="8_image0">
+    <img src="scene0058/light01.png" id="8_image1">
+    <img src="scene0058/light02.png" id="8_image2">
+    <img src="scene0058/light03.png" id="8_image3">
+    <img src="scene0058/light04.png" id="8_image4">
+    <img src="scene0058/light05.png" id="8_image5">
+    <img src="scene0058/light06.png" id="8_image6">
+  </div>
+</div>  
+
+</div>
+
+<script>
+  const num_images = 7;
+  const num = num_images-1; // num images to 'turn on'
+
+  function handleSliderInput(sliderElement) {
+    sliderElement.addEventListener('input', () => {
+      input_id = sliderElement.getAttribute('id')
+      example_no = input_id[input_id.length - 1]
+
+      const value = sliderElement.value / 100;
+      let part = Math.floor(value / (1/num) );
+
+      let opacity = num * (value % (part*(1/num))); // for that img only
+      if (part==0) {
+          opacity = value / (1/num);
+      }
+      img_use = part + 1; // img to turn on 
+
+      for (let i = 0; i < num_images; i++) {
+          elem_name = example_no + '_image' + i;
+          let img = document.getElementById(elem_name);
+          if (i < img_use) {
+              img.style.opacity = 1;
+          } else if (i==img_use) {
+              img.style.opacity = opacity;
+          } else {
+              img.style.opacity = 0;
+          }
+      }
+    });
+  }
+
+  handleSliderInput(document.getElementById('slider0'));
+  handleSliderInput(document.getElementById('slider1'));
+  handleSliderInput(document.getElementById('slider2'));
+  handleSliderInput(document.getElementById('slider3'));
+  handleSliderInput(document.getElementById('slider4'));
+  handleSliderInput(document.getElementById('slider5'));
+  handleSliderInput(document.getElementById('slider6'));
+  handleSliderInput(document.getElementById('slider7'));
+  handleSliderInput(document.getElementById('slider8'));
+
+</script>
+
+</body>
+</html>
