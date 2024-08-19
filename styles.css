@@ -78,20 +78,26 @@ footer {
 }
 
 nav {
-    background-color: #333;
+    background-color: #767676;
     max-width: 1000px;
     width: 100%;
-    margin: 20px auto; /* Center the nav and add margin above and below */
+    margin: 0 auto 20px auto;
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 10px 0;
+    /* padding: 10px 0; */
+    /* position: sticky; Stick the nav bar when scrolling */
+    /* top: 0px; */
+    z-index: 1000;
+    transition: top 0.3s ease; /* Smooth transition */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    white-space: nowrap; /* Prevent wrapping of the items */
 }
 
 nav a {
-    color: #f35815;
+    color: #ffffff;
     text-decoration: none;
-    padding: 0px 25px;
+    padding: 5px 40px;
     font-size: 1.2em;
     transition: color 0.3s ease, background-color 0.3s ease;
     display: inline-block;
@@ -100,7 +106,7 @@ nav a {
 nav a:hover {
     color: #fff;
     background-color: #555;
-    border-radius: 5px;
+    border-radius: 0px;
 }
 
 main {
@@ -217,7 +223,7 @@ h2::after {
 #show-more {
     margin-top: 15px;
     padding: 8px 16px;
-    background-color: #007bff;
+    background-color: #767676;
     color: white;
     border: none;
     cursor: pointer;
@@ -234,36 +240,63 @@ a:hover {
 
 /* Responsive design */
 @media (max-width: 768px) {
+    body::before {
+        background: none; /* Remove background for mobile */
+        content: ''; /* Keep the pseudo-element empty */
+    }
+
+    body {
+        background-color: #ffffff; /* Optional: Set a solid color for mobile */
+    }
+
     .header-content {
         flex-direction: column;
-        align-items: center; /* Center-align the content */
+        align-items: center;
         text-align: center;
-        width: 100%; /* Ensure it takes the full width */
+        width: 100%;
+        padding: 0 15px; /* Add padding for alignment */
+        box-sizing: border-box;
     }
 
     .header-image {
-        width: auto; /* Let the image take its natural width */
-        max-width: 250px;
+        width: auto;
+        max-width: 280px;
         margin-bottom: 15px;
         display: block;
         margin-left: auto;
-        margin-right: auto; /* Ensure image is centered */
+        margin-right: auto;
     }
 
     .header-text {
-        text-align: center;
-        width: 100%; /* Ensure text takes full width */
-        padding: 0;
+        text-align: left;
+        width: 100%;
+        padding: 0 15px; /* Add padding for alignment */
+        box-sizing: border-box;
     }
 
-    .header-text p {
-        margin: 5px 0; /* Reduce space between paragraphs */
-        padding: 0;
+    main, footer {
+        width: 100%;
+        padding: 0 15px; /* Add padding for alignment */
+        box-sizing: border-box;
+    }
+
+    nav {
+        justify-content: center;
+        max-width: 100%;
+        padding: 0 15px; /* Add padding for alignment */
+        box-sizing: border-box;
+        overflow-x: auto; /* Allow horizontal scroll if needed */
+        white-space: nowrap; /* Prevent wrapping */
+    }
+
+    nav a {
+        flex: none;
+        padding: 10px 15px; /* Adjust padding for smaller screens */
     }
 
     .publication-item {
         flex-direction: column;
-        text-align: center;
+        text-align: left;
     }
 
     .pub-image {
@@ -271,17 +304,14 @@ a:hover {
         max-width: 300px;
         margin-bottom: 10px;
     }
-
-    nav {
-        justify-content: center;
-        max-width: 100%; /* Ensure it fits the mobile screen width */
+    .news-item {
+        flex-direction: column; /* Stack date and content on top of each other */
+        align-items: flex-start; /* Align items to the start */
     }
 
-    nav a {
-        flex: 1 1 100%;
-        border-right: none;
-        text-align: center;
-        padding: 10px 20px; /* Adjust padding for smaller screens */
+    .news-item .date{
+        width: auto; /* Let the date take its natural width */
+        text-align: left; /* Align the date text to the left */
+        margin-bottom: 5px; /* Add space between date and content */
     }
 }
-

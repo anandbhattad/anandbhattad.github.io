@@ -39,40 +39,56 @@ function loadSection(sectionName) {
 
             // Call renderPublications with the desired filter AFTER the section loads
             renderPublications('all'); // Show all publications by default 
-        } else if (sectionName === 'news') {
+        } else if (sectionName.toLowerCase() === 'news') {
             setupNews();
         }
     });
 }
 
+
 function setupNews() {
-    const initialNewsCount = 5;
+    const initialNewsCount = 5; // Number of news items to show initially
     let currentNewsCount = initialNewsCount;
 
-    const $newsItems = $('#news-container .news-item'); // Select all news items
-    const $showMoreButton = $('#show-more'); // Select the button
+    const newsItems = document.querySelectorAll('.news-container .news-item'); // Select all news items
+    const showMoreButton = document.getElementById('show-more'); // Select the "Show More" button
 
     function updateNewsVisibility() {
-        $newsItems.each(function(index) { 
-            // Iterate through news items
+        // Hide all news items initially
+        newsItems.forEach((item, index) => {
             if (index < currentNewsCount) {
-                $(this).show(); // Show if index is less than current count
+                item.style.display = 'block'; // Show this item
             } else {
-                $(this).hide(); // Hide otherwise
+                item.style.display = 'none'; // Hide this item
             }
         });
 
-        $showMoreButton.toggle(currentNewsCount < $newsItems.length); // Toggle button visibility
+        // Show or hide the "Show More" button
+        if (currentNewsCount >= newsItems.length) {
+            showMoreButton.style.display = 'none'; // Hide button if all items are visible
+        } else {
+            showMoreButton.style.display = 'block'; // Show button if there are more items to reveal
+        }
     }
 
-    // Event handler for button click
-    $showMoreButton.click(function() {
+    // Event handler for "Show More" button
+    showMoreButton.addEventListener('click', function() {
         currentNewsCount += initialNewsCount; // Increase the count of visible items
         updateNewsVisibility(); // Update which items are shown/hidden
     });
 
-    updateNewsVisibility(); // Call initially to hide extra items on page load
+    updateNewsVisibility(); // Initial call to set up the visibility
 }
+
+// Initialize the setup on page load
+document.addEventListener('DOMContentLoaded', function() {
+    setupNews();
+});
+
+$(document).ready(function() {
+    renderPublications('all'); // Show all publications by default 
+    setupNews(); // Initialize news section
+});
 
 // script.js
 const citations = document.querySelectorAll('.citation');
