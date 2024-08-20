@@ -237,7 +237,12 @@ a:hover {
     text-decoration: none; /* Ensure no underline on hover as well */
 }
 
-
+.p3-style {
+    font-family: 'Courier New', Courier, monospace; /* Example font family */
+    font-weight: bold; /* Make it bold */
+    color: #767676; /* Example color */
+    font-size: 1.1em;
+}
 /* Responsive design */
 @media (max-width: 768px) {
     body::before {
@@ -313,5 +318,11 @@ a:hover {
         width: auto; /* Let the date take its natural width */
         text-align: left; /* Align the date text to the left */
         margin-bottom: 5px; /* Add space between date and content */
+    }
+    .p3-style {
+        font-family: 'Courier New', Courier, monospace; /* Example font family */
+        font-weight: bold; /* Make it bold */
+        color: #ff5733; /* Example color */
+        font-size: 1.2em; /* make the font larger */
     }
 }
