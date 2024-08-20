@@ -318,9 +318,7 @@ a:hover {
         margin-bottom: 5px; /* Add space between date and content */
     }
     .p3-style {
-        font-family: 'Courier New', Courier, monospace; /* Example font family */
+        color: #767676; /* Example color */
         font-weight: bold; /* Make it bold */
-        color: #ff5733; /* Example color */
-        font-size: 1.2em; /* make the font larger */
     }
 }
