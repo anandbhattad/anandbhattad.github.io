@@ -238,10 +238,8 @@ a:hover {
 }
 
 .p3-style {
-    font-family: 'Courier New', Courier, monospace; /* Example font family */
     font-weight: bold; /* Make it bold */
     color: #767676; /* Example color */
-    font-size: 1.1em;
 }
 /* Responsive design */
 @media (max-width: 768px) {
