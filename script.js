@@ -57,19 +57,19 @@ function setupNews() {
         // Hide all news items initially
         newsItems.forEach((item, index) => {
             if (index < currentNewsCount) {
-                item.style.display = 'block'; // Show this item
+                item.style.display = 'flex'; // Ensure the items keep flexbox layout
             } else {
                 item.style.display = 'none'; // Hide this item
             }
         });
-
+    
         // Show or hide the "Show More" button
         if (currentNewsCount >= newsItems.length) {
             showMoreButton.style.display = 'none'; // Hide button if all items are visible
         } else {
             showMoreButton.style.display = 'block'; // Show button if there are more items to reveal
         }
-    }
+    }    
 
     // Event handler for "Show More" button
     showMoreButton.addEventListener('click', function() {

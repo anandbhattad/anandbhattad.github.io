@@ -19,12 +19,12 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #767676; /* Set the background to solid black */
+    background-color: #000000; /* Set the background to solid black */
     background-image: 
-        linear-gradient(45deg, #000000 25%, transparent 25%, transparent 75%, #000000 75%, #eee 100%),
-        linear-gradient(45deg, #000000 25%, transparent 25%, transparent 75%, #000000 75%, #eee 100%);
-    background-size: 2px 2px; 
-    background-position: 0 0, 5px 5px;
+        linear-gradient(45deg, #2a2a2a 25%, transparent 25%, transparent 75%, #ffffff 100%, #2a2a2a 100%),
+        linear-gradient(45deg, #2a2a2a 25%, transparent 25%, transparent 75%, #ffffff 100%, #2a2a2a 100%);
+    background-size: 1px 1px; 
+    background-position: 0 0, 1px 1px;
     background-attachment: fixed; /* Fix the background */
     z-index: -1; /* Position the background behind the content */
     /* filter: blur(1px); Apply blur effect */
@@ -34,7 +34,7 @@ body::before {
 header, 
 main, 
 footer {
-    background-color: #ffffff;
+    background-color: #f7f7f7;
     color: #333;
     max-width: 1000px;  
     width: 100%;    
@@ -57,37 +57,40 @@ footer {
 }
 
 .header-text {
+    color: #4a4a4a;
     flex: 2;
     text-align: left;
     margin-left: 10px; /* Add space between the image and the text */
-    margin-top: -35px; /* Add space between the image and the text */
+    margin-top: -15px; /* Add space between the image and the text */
 
 }
 
 .header-image {
     flex: 0 0 325px;
     margin-right: 20px; /* Add space between the image and the text */
+    margin-top: 40px; /* Add space between the image and the text */
+
 }
 
 .header-image img {
     width: 280px;
     height: auto;
-    border: 2px solid #767676;
+    border: 2px solid #000000;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 nav {
-    background-color: #767676;
-    max-width: 1000px;
+    background-color: #1a73e8;
+    max-width: 1040px;
     width: 100%;
-    margin: 0 auto 20px auto;
-    border-radius: 8px;
+    /* margin: 0 auto 20px auto; */
+    /* border-radius: 8px; */
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
     /* padding: 10px 0; */
-    /* position: sticky; Stick the nav bar when scrolling */
-    /* top: 0px; */
+    position: fixed; /* Stick the nav bar when scrolling */
+    top: 0px;
     z-index: 1000;
     transition: top 0.3s ease; /* Smooth transition */
     overflow-x: auto; /* Allow horizontal scrolling */
@@ -97,15 +100,15 @@ nav {
 nav a {
     color: #ffffff;
     text-decoration: none;
-    padding: 5px 40px;
+    padding: 0px 50px;
     font-size: 1.2em;
     transition: color 0.3s ease, background-color 0.3s ease;
     display: inline-block;
 }
 
 nav a:hover {
-    color: #fff;
-    background-color: #555;
+    color: #ffffff;
+    background-color: #003d8e;
     border-radius: 0px;
 }
 
@@ -117,7 +120,7 @@ main {
 }
 
 .section {
-    background-color: #ffffff;
+    background-color: #f7f7f7;
     padding: 20px;
     border-radius: 8px;
 }
@@ -135,7 +138,7 @@ h2::after {
     content: "";
     flex-grow: 1;
     height: 5px;
-    background-color: #e0e3e5;
+    background-color: #c7c7c7;
 }
 
 .publication-item {
@@ -207,23 +210,27 @@ h2::after {
     display: flex;
     align-items: flex-start;
     width: 100%;
+    margin-bottom: 2px; /* Add some space between items */
 }
 
 .news-item .date, .awards-item .date {
     font-weight: bold;
     color: #666;
     margin-right: 10px;
-    flex: 0 0 100px;
+    flex: 0 0 100px; /* Fixed width for the date */
 }
 
 .news-item .content, .awards-item .content {
-    flex: 1;
+    flex: 1; /* Make the content fill the remaining space */
+    word-wrap: break-word; /* Ensure long words break properly */
+    line-height: 1.25; /* Improve readability */
 }
 
 #show-more {
+    display: block; /* Ensure the button takes its own space */
     margin-top: 15px;
     padding: 8px 16px;
-    background-color: #767676;
+    background-color: #1a73e8;
     color: white;
     border: none;
     cursor: pointer;
