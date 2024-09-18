@@ -124,7 +124,7 @@ addPublication(
     "https://latent-intrinsics.github.io/",
     "",
     "https://arxiv.org/abs/2405.21074",
-    "Latent Intrinsics",
+    "",
     "Free albedo extraction from latent features in a relighting-trained model, without seeing albedo like images",
     2024,
     "pre-print",
