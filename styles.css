@@ -100,7 +100,7 @@ nav {
 nav a {
     color: #ffffff;
     text-decoration: none;
-    padding: 0px 50px;
+    padding: 3px 50px;
     font-size: 1.2em;
     transition: color 0.3s ease, background-color 0.3s ease;
     display: inline-block;
