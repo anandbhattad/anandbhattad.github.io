@@ -119,7 +119,7 @@ addPublication(
     "images/latent_intrinsics.png",
     "Latent Intrinsics Emerge from Training to Relight",
     "Xiao Zhang, William Gao, Seemandhar Jain, Michael Maire, David.A.Forsyth, Anand Bhattad",
-    "arXiv 2024",
+    "NeurIPS 2024",
     "https://arxiv.org/abs/2405.21074",
     "https://latent-intrinsics.github.io/",
     "",
@@ -127,9 +127,26 @@ addPublication(
     "",
     "Free albedo extraction from latent features in a relighting-trained model, without seeing albedo like images",
     2024,
-    "pre-print",
+    "",
     true,
     ""
+);
+
+addPublication(
+    "./images/odin.mp4",
+    "From an Image to a Scene: Learning to Imagine the World from a Million 360° Videos",
+    "Matthew Wallingford, Anand Bhattad, Aditya Kusupati, Vivek Ramanujan, Matt Deitke, Sham Kakade, Aniruddha Kembhavi, Roozbeh Mottaghi, Wei-Chiu Ma, Ali Farhadi",
+    "NeurIPS 2024 (coming soon)",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "A new 360° video dataset used to train a diffusion-based model, ODIN, for freely generating novel views of real-world scenes.",
+    2024,
+    "published",
+    true,
+    true
 );
 
 addPublication(
@@ -143,6 +160,39 @@ addPublication(
     "https://arxiv.org/abs/2403.14617",
     "sfanxiang/videoshop",
     "Videoshop is a training-free algorithm that allows users to edit videos by modifying only the first frame using familiar image editing tools. It automatically propagates these edits throughout the video, maintaining consistency and allowing for precise, localized semantic changes.",
+    2024,
+    "published",
+    true
+);
+
+addPublication(
+    "./images/urbanir_night_sim.mp4",
+    "UrbanIR: Large-Scale Urban Scene Inverse Rendering from a Single Video",
+    "Zhi-Hao Lin, Bohan Liu, Yi-Ting Chen, David Forsyth, Jia-Bin Huang, Anand Bhattad, Shenlong Wang",
+    "CVPR-W 2024",
+    "https://arxiv.org/abs/2306.09349",
+    "https://urbaninverserendering.github.io/",
+    "https://github.com/zhihao-lin/urbanir/",
+    "https://arxiv.org/abs/2306.09349",
+    "zhihao-lin/urbanir",
+    "UrbanIR creates realistic 3D renderings of urban scenes from single videos, allowing for novel lighting conditions and controllable editing.",
+    2024,
+    "published",
+    "",
+    true
+);
+
+addPublication(
+    "./images/I-lora.gif",
+    "Generative Models: What do they know? Do they know things? Let's find out!",
+    "Xiaodan Du, Nicholas Kolkin, Greg Shakhnarovich, Anand Bhattad",
+    "CVPR-W 2024",
+    "https://arxiv.org/abs/2311.17137",
+    "https://intrinsic-lora.github.io/",
+    "https://github.com/duxiaodan/intrinsic-lora",
+    "https://arxiv.org/abs/2311.17137",
+    "duxiaodan/intrinsic-lora",
+    "Intrinsic LoRA: A method to extract intrinsic images from ANY generative model, be it Autoregressive, GAN, Diffusion!",
     2024,
     "published",
     true
@@ -165,21 +215,7 @@ addPublication(
     true
 );
 
-addPublication(
-    "./images/I-lora.gif",
-    "Generative Models: What do they know? Do they know things? Let's find out!",
-    "Xiaodan Du, Nicholas Kolkin, Greg Shakhnarovich, Anand Bhattad",
-    "CVPR-W 2024",
-    "https://arxiv.org/abs/2311.17137",
-    "https://intrinsic-lora.github.io/",
-    "https://github.com/duxiaodan/intrinsic-lora",
-    "https://arxiv.org/abs/2311.17137",
-    "duxiaodan/intrinsic-lora",
-    "Intrinsic LoRA: A method to extract intrinsic images from ANY generative model, be it Autoregressive, GAN, Diffusion!",
-    2024,
-    "published",
-    true
-);
+
 
 addPublication(
     "./stylitgan/bed1.mp4",
@@ -198,22 +234,7 @@ addPublication(
     true
 );
 
-addPublication(
-    "./images/urbanir_night_sim.mp4",
-    "UrbanIR: Large-Scale Urban Scene Inverse Rendering from a Single Video",
-    "Zhi-Hao Lin, Bohan Liu, Yi-Ting Chen, David Forsyth, Jia-Bin Huang, Anand Bhattad, Shenlong Wang",
-    "CVPR-W 2024",
-    "https://arxiv.org/abs/2306.09349",
-    "https://urbaninverserendering.github.io/",
-    "https://github.com/zhihao-lin/urbanir/",
-    "https://arxiv.org/abs/2306.09349",
-    "zhihao-lin/urbanir",
-    "UrbanIR creates realistic 3D renderings of urban scenes from single videos, allowing for novel lighting conditions and controllable editing.",
-    2024,
-    "published",
-    "",
-    true
-);
+
 
 addPublication(
     "./images/stylegan_knows.gif",
@@ -261,6 +282,21 @@ addPublication(
     "published",
     "",
     true
+);
+
+addPublication(
+    "./makeitso/static/images/makeitso_out_of_domain.png",
+    "Make It So: Steering StyleGAN for Any Image Inversion and Editing",
+    "Anand Bhattad, Viraj Shah, Derek Hoiem, D.A. Forsyth",
+    "arXiv 2023",
+    "https://arxiv.org/abs/2304.14403",
+    "https://anandbhattad.github.io/makeitso/",
+    "",
+    "https://arxiv.org/abs/2304.14403",
+    "",
+    "A near-perfect GAN inversion method for any image that also preserves edits.",
+    2023,
+    ""
 );
 
 addPublication(
