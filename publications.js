@@ -121,10 +121,10 @@ addPublication(
     "images/zerocomp.png",
     "ZeroComp: Zero-shot Object Compositing from Image Intrinsics via Diffusion",
     "Zitian Zhang, Frédéric Fortier-Chouinard, Mathieu Garon, Anand Bhattad, Jean-François Lalonde",
-    "arXiv",
+    "arXiv 2024",
     "https://arxiv.org/abs/2410.08168",
     "https://lvsn.github.io/ZeroComp/",
-    " ", // code link
+    "", // code link
     "https://arxiv.org/abs/2410.08168",
     "",
     "Zero-shot 3D object compositing approach that does not require paired composite-scene images during training and can be easily extended to 2D object compositing and material editing.",
