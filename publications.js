@@ -152,7 +152,7 @@ addPublication(
 );
 
 addPublication(
-    "./images/odin.mov",
+    "./images/odin_demo.mp4",
     "From an Image to a Scene: Learning to Imagine the World from a Million 360° Videos",
     "Matthew Wallingford, Anand Bhattad, Aditya Kusupati, Vivek Ramanujan, Matt Deitke, Sham Kakade, Aniruddha Kembhavi, Roozbeh Mottaghi, Wei-Chiu Ma, Ali Farhadi",
     "NeurIPS 2024 (coming soon)",
