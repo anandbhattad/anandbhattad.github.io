@@ -139,7 +139,7 @@ addPublication(
     "Latent Intrinsics Emerge from Training to Relight",
     "Xiao Zhang, William Gao, Seemandhar Jain, Michael Maire, David.A.Forsyth, Anand Bhattad",
     "NeurIPS 2024 (Spotlight)",
-    "https://arxiv.org/abs/2405.21074",
+    "./files/2024_NeurIPS_latent_intrinsics.pdf",
     "https://latent-intrinsics.github.io/",
     "",
     "https://arxiv.org/abs/2405.21074",
