@@ -181,21 +181,21 @@ addPublication(
     "Videoshop is a training-free algorithm that allows users to edit videos by modifying only the first frame using familiar image editing tools. It automatically propagates these edits throughout the video, maintaining consistency and allowing for precise, localized semantic changes.",
     2024,
     "published",
-    true
+    
 );
 
 addPublication(
     "./images/urbanir_night_sim.mp4",
     "UrbanIR: Large-Scale Urban Scene Inverse Rendering from a Single Video",
     "Zhi-Hao Lin, Bohan Liu, Yi-Ting Chen, David Forsyth, Jia-Bin Huang, Anand Bhattad, Shenlong Wang",
-    "CVPR-W 2024",
+    "3DV 2025 \& CVPR-W 2024",
     "https://arxiv.org/abs/2306.09349",
     "https://urbaninverserendering.github.io/",
     "https://github.com/zhihao-lin/urbanir/",
     "https://arxiv.org/abs/2306.09349",
     "zhihao-lin/urbanir",
     "UrbanIR creates realistic 3D renderings of urban scenes from single videos, allowing for novel lighting conditions and controllable editing.",
-    2024,
+    2025,
     "published",
     "",
     true
