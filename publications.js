@@ -127,7 +127,7 @@ addPublication(
     "https://github.com/duxiaodan/intrinsic-lora",
     "https://arxiv.org/abs/2311.17137",
     "duxiaodan/intrinsic-lora",
-    "Intrinsic LoRA: A method to extract intrinsic images from ANY generative model, be it Autoregressive, GAN, Diffusion!",
+    "Intrinsic LoRA: A method to extract intrinsic images from ANY generative model, be it Autoregressive, GAN, or Diffusion.",
     2025,
     "published",
     true
