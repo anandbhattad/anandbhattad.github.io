@@ -121,14 +121,14 @@ addPublication(
     "./images/I-lora.gif",
     "Generative Models: What do they know? Do they know things? Let's find out!",
     "Xiaodan Du, Nicholas Kolkin, Greg Shakhnarovich, Anand Bhattad",
-    "arXiv 2025 & CVPR-W 2024",
+    "arXiv 2024 & CVPR-W 2024",
     "https://intrinsic-lora.github.io/static/files/paperv3.pdf",
     "https://intrinsic-lora.github.io/",
     "https://github.com/duxiaodan/intrinsic-lora",
     "https://arxiv.org/abs/2311.17137",
     "duxiaodan/intrinsic-lora",
     "Intrinsic LoRA: A method to extract intrinsic images from ANY generative model, be it Autoregressive, GAN, or Diffusion.",
-    2025,
+    2024,
     "published",
     true
 );
