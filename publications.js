@@ -137,7 +137,7 @@ addPublication(
     "./images/urbanir_night_sim.mp4",
     "UrbanIR: Large-Scale Urban Scene Inverse Rendering from a Single Video",
     "Zhi-Hao Lin, Bohan Liu, Yi-Ting Chen, David Forsyth, Jia-Bin Huang, Anand Bhattad, Shenlong Wang",
-    "3DV 2025 \& CVPR-W 2024",
+    "3DV 2025",
     "https://arxiv.org/abs/2306.09349",
     "https://urbaninverserendering.github.io/",
     "https://github.com/zhihao-lin/urbanir/",
