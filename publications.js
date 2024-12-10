@@ -38,12 +38,20 @@ async function renderPublications(filter = "highlights") {
     });
 
     let groupedByYear = filteredPublications.reduce((acc, pub) => {
-        (acc[pub.year] = acc[pub.year] || []).push(pub);
+        let year = pub.year === "In Submission" ? "In Submission" : pub.year;
+        (acc[year] = acc[year] || []).push(pub);
         return acc;
     }, {});
 
+    // Sort years: "In Submission" first, then descending years
+    const sortedYears = Object.keys(groupedByYear).sort((a, b) => {
+        if (a === "In Submission") return -1;
+        if (b === "In Submission") return 1;
+        return b - a;
+    });
+
     // Render Publications
-    for (const year of Object.keys(groupedByYear).sort((a, b) => b - a)) {
+    for (const year of sortedYears) {
         $publicationsList.append(`<h3 class="publication-year">${year}</h3>`);
         for (const pub of groupedByYear[year]) {
             let stars = pub.githubRepo ? await fetchGitHubStars(pub.githubRepo) : 0;
@@ -61,10 +69,11 @@ async function renderPublications(filter = "highlights") {
         $quickList.append(`<p><a href="${pub.paperLink}" target="_blank">${pub.title}</a></p>`);
     });
 
-    // Update button active state (This should be outside the loop and the nested function)
+    // Update button active state
     $('.publication-filter').removeClass('active');
     $(`.publication-filter[data-filter="${filter}"]`).addClass('active');
 }
+
 
 function generatePublicationHtml(pub, stars, isExpanded) {
     // Add a CSS class to control visibility
@@ -118,6 +127,58 @@ function generatePublicationHtml(pub, stars, isExpanded) {
 // Adding Publications
 
 addPublication(
+    "./images/luminet.gif",
+    "LumiNet: Latent Intrinsics Meets Diffusion Models for Indoor Scene Relighting",
+    "Xiaoyan Xing, Konrad Groh, Sezer Karaoglu, Theo Gevers, Anand Bhattad",
+    "arXiv 2024",
+    "https://arxiv.org/abs/2412.00177",
+    "https://luminet-relight.github.io/",
+    "", // code link
+    "https://arxiv.org/abs/2412.00177",
+    "", //github-repo-name
+    "LumiNet is a novel framework that combines latent intrinsic decomposition with knowledge of lighting in pretrained diffusion models to achieve photorealistic indoor scene relighting.",
+    "In Submission",
+    "pre-print",
+    true,
+    false
+);
+
+addPublication(
+    "./images/ScribbleLight.mp4",
+    "ScribbleLight: Single Image Indoor Relighting with Scribbles",
+    "Jun Myeong Choi, Annie Wang, Pieter Peers, Anand Bhattad, Roni Sengupta",
+    "arXiv 2024",
+    "https://arxiv.org/abs/2411.17696",
+    "https://chedgekorea.github.io/ScribbleLight/",
+    "", // code link
+    "https://arxiv.org/abs/2411.17696",
+    "", // github-repo-name
+    "Draw scribbles to specify which areas should be lit and which should not, and ScribbleLight will relight the image accordingly.",
+    "In Submission",
+    "pre-print",
+    false,
+    true
+);
+
+
+addPublication(
+    "./images/spotlight.gif",
+    "SpotLight: Shadow-Guided Object Relighting via Diffusion",
+    "Frédéric Fortier-Chouinard, Zitian Zhang, Louis-Etienne Messier, Mathieu Garon, Anand Bhattad, Jean-François Lalonde",
+    "arXiv 2024",
+    "https://arxiv.org/abs/2411.18665",
+    "https://lvsn.github.io/spotlight/",
+    "", // code link
+    "https://arxiv.org/abs/2411.18665",
+    "", // github-repo-name
+    "SpotLight enables object relighting by using shadow guidance to control lighting conditions without requiring additional training.",
+    "In Submission",
+    "pre-print",
+    false,
+    false
+);
+
+addPublication(
     "./images/I-lora.gif",
     "Generative Models: What do they know? Do they know things? Let's find out!",
     "Xiaodan Du, Nicholas Kolkin, Greg Shakhnarovich, Anand Bhattad",
@@ -128,7 +189,7 @@ addPublication(
     "https://arxiv.org/abs/2311.17137",
     "duxiaodan/intrinsic-lora",
     "Intrinsic LoRA: A method to extract intrinsic images from ANY generative model, be it Autoregressive, GAN, or Diffusion.",
-    2024,
+    "In Submission",
     "published",
     true
 );
