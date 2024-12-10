@@ -162,7 +162,7 @@ addPublication(
 
 
 addPublication(
-    "./images/spotlight.gif",
+    "./images/spotlight2.gif",
     "SpotLight: Shadow-Guided Object Relighting via Diffusion",
     "Frédéric Fortier-Chouinard, Zitian Zhang, Louis-Etienne Messier, Mathieu Garon, Anand Bhattad, Jean-François Lalonde",
     "arXiv 2024",
