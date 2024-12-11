@@ -253,7 +253,7 @@ addPublication(
     "./files/learning_from_video_neurips.pdf",
     "",
     "",
-    "",
+    "https://arxiv.org/abs/2412.07770",
     "",
     "A new 360° video dataset used to train a diffusion-based model, ODIN, for freely generating novel views of real-world scenes.",
     2024,
