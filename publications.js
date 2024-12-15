@@ -334,7 +334,7 @@ addPublication(
 );
 
 addPublication(
-    "./images/object_edit.png",
+    "./images/object_edit.gif",
     "OBJect 3DIT: Language-guided 3D-aware Image Editing",
     "Oscar Michel, Anand Bhattad, Eli VanderBilt, Ranjay Krishna, Ani Kembhavi, Tanmay Gupta",
     "NeurIPS 2023",
