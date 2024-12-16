@@ -255,7 +255,7 @@ addPublication(
     "",
     "https://arxiv.org/abs/2412.07770",
     "",
-    "A new 360° video dataset used to train a diffusion-based model, ODIN, for freely generating novel views of real-world scenes. Data is available on the project ppage.",
+    "A new 360° video dataset used to train a diffusion-based model, ODIN, for freely generating novel views of real-world scenes. Data is available on the project page.",
     2024,
     "published",
     true,
