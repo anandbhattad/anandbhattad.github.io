@@ -315,15 +315,28 @@ a:hover {
         margin-bottom: 10px;
     }
     .news-item {
-        flex-direction: column; /* Stack date and content on top of each other */
-        align-items: flex-start; /* Align items to the start */
+        display: flex; /* Use Flexbox for alignment */
+        flex-direction: row; /* Align date and content in a row */
+        align-items: flex-start; /* Vertically align items */
+        gap: 8px; /* Small white space between the date and content */
+        margin-bottom: 12px; /* Add vertical space between news items */
     }
 
-    .news-item .date{
-        width: auto; /* Let the date take its natural width */
-        text-align: left; /* Align the date text to the left */
-        margin-bottom: 5px; /* Add space between date and content */
+    .news-item:last-child {
+        margin-bottom: 0; /* Remove extra space after the last news item */
     }
+
+    .news-item .date {
+        font-weight: bold; /* Highlight the date */
+        white-space: nowrap; /* Prevent wrapping */
+        margin: 0; /* Remove extra spacing */
+    }
+
+    .news-item .content {
+        margin: 0; /* Remove extra spacing */
+        flex: 1; /* Allow content to occupy remaining space */
+    }
+
     .p3-style {
         color: #767676; /* Example color */
         font-weight: bold; /* Make it bold */
