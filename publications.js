@@ -178,21 +178,6 @@ addPublication(
     false
 );
 
-addPublication(
-    "./images/I-lora.gif",
-    "Generative Models: What do they know? Do they know things? Let's find out!",
-    "Xiaodan Du, Nicholas Kolkin, Greg Shakhnarovich, Anand Bhattad",
-    "CVPR-W 2024",
-    "https://intrinsic-lora.github.io/static/files/paperv3.pdf",
-    "https://intrinsic-lora.github.io/",
-    "https://github.com/duxiaodan/intrinsic-lora",
-    "https://arxiv.org/abs/2311.17137",
-    "duxiaodan/intrinsic-lora",
-    "Intrinsic LoRA: A method to extract intrinsic images from ANY generative model, be it Autoregressive, GAN, or Diffusion.",
-    "2024",
-    "published",
-    true
-);
 
 addPublication(
     "./images/urbanir_night_sim.mp4",
@@ -293,6 +278,22 @@ addPublication(
     2024,
     "published",
     true,
+    true
+);
+
+addPublication(
+    "./images/I-lora.gif",
+    "Generative Models: What do they know? Do they know things? Let's find out!",
+    "Xiaodan Du, Nicholas Kolkin, Greg Shakhnarovich, Anand Bhattad",
+    "CVPR-W 2024",
+    "https://intrinsic-lora.github.io/static/files/paperv3.pdf",
+    "https://intrinsic-lora.github.io/",
+    "https://github.com/duxiaodan/intrinsic-lora",
+    "https://arxiv.org/abs/2311.17137",
+    "duxiaodan/intrinsic-lora",
+    "Intrinsic LoRA: A method to extract intrinsic images from ANY generative model, be it Autoregressive, GAN, or Diffusion.",
+    "2024",
+    "published",
     true
 );
 
