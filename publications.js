@@ -130,15 +130,15 @@ addPublication(
     "./images/luminet.gif",
     "LumiNet: Latent Intrinsics Meets Diffusion Models for Indoor Scene Relighting",
     "Xiaoyan Xing, Konrad Groh, Sezer Karaoglu, Theo Gevers, Anand Bhattad",
-    "arXiv 2024",
+    "CVPR 2025",
     "https://arxiv.org/abs/2412.00177",
     "https://luminet-relight.github.io/",
     "", // code link
     "https://arxiv.org/abs/2412.00177",
     "", //github-repo-name
     "LumiNet is a novel framework that combines latent intrinsic decomposition with knowledge of lighting in pretrained diffusion models to achieve photorealistic indoor scene relighting.",
-    "In Submission",
-    "pre-print",
+    "2025",
+    "published",
     true,
     false
 );
@@ -147,15 +147,15 @@ addPublication(
     "./images/ScribbleLight.mp4",
     "ScribbleLight: Single Image Indoor Relighting with Scribbles",
     "Jun Myeong Choi, Annie Wang, Pieter Peers, Anand Bhattad, Roni Sengupta",
-    "arXiv 2024",
+    "CVPR 2025",
     "https://arxiv.org/abs/2411.17696",
     "https://chedgekorea.github.io/ScribbleLight/",
     "", // code link
     "https://arxiv.org/abs/2411.17696",
     "", // github-repo-name
     "Draw scribbles to specify which areas should be lit and which should not, and ScribbleLight will relight the image accordingly.",
-    "In Submission",
-    "pre-print",
+    "2025",
+    "published",
     false,
     true
 );
