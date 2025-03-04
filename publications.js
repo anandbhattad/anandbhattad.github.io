@@ -205,7 +205,7 @@ addPublication(
     "https://lvsn.github.io/ZeroComp/",
     "https://github.com/lvsn/ZeroComp", // code link
     "https://arxiv.org/abs/2410.08168",
-    "lvsn/ZeroComp/",
+    "lvsn/ZeroComp",
     "Zero-shot 3D object compositing approach that does not require paired composite-scene images during training and can be easily extended to 2D object compositing and material editing.",
     2025,
     "published",
