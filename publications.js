@@ -133,9 +133,9 @@ addPublication(
     "CVPR 2025",
     "https://arxiv.org/abs/2412.00177",
     "https://luminet-relight.github.io/",
-    "", // code link
+    "https://github.com/xyxingx/LumiNet/", // code link
     "https://arxiv.org/abs/2412.00177",
-    "", //github-repo-name
+    "xyxingx/LumiNet", //github-repo-name
     "LumiNet is a novel framework that combines latent intrinsic decomposition with knowledge of lighting in pretrained diffusion models to achieve photorealistic indoor scene relighting.",
     "2025",
     "published",
