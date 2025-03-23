@@ -150,9 +150,9 @@ addPublication(
     "CVPR 2025",
     "https://arxiv.org/abs/2411.17696",
     "https://chedgekorea.github.io/ScribbleLight/",
-    "", // code link
+    "https://github.com/chedgekorea/scriblit/", // code link
     "https://arxiv.org/abs/2411.17696",
-    "", // github-repo-name
+    "chedgekorea/scriblit", // github-repo-name
     "Draw scribbles to specify which areas should be lit and which should not, and ScribbleLight will relight the image accordingly.",
     "2025",
     "published",
