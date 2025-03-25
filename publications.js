@@ -434,7 +434,7 @@ addPublication(
     "ICLR 2020 and CVPR-W 2019",
     "https://arxiv.org/abs/1904.06347",
     "",
-    "https://github.com/AI-secure/Big-but-Invisible-Adversarial-Attack",
+    "https://github.com/AI-secure/Big-but-Invisible-Adversarial-Attack/",
     "https://arxiv.org/abs/1904.06347",
     "AI-secure/Big-but-Invisible-Adversarial-Attack",
     "Generating realistic adversarial examples by image re-colorization and texture transfer.",
