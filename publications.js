@@ -125,6 +125,39 @@ function generatePublicationHtml(pub, stars, isExpanded) {
 // );
 
 // Adding Publications
+addPublication(
+    "./images/visual_jenga.gif",
+    "Visual Jenga: Discovering Object Dependencies via Counterfactual Inpainting",
+    "Anand Bhattad, Konpat Preechakul, Alexei A. Efros",
+    "arXiv 2025",
+    "https://visualjenga.github.io/static/Visual_Jenga.pdf",
+    "https://visualjenga.github.io/",
+    "", // code link
+    "https://arxiv.org/abs/2503.21770",
+    "", // github-repo-name
+    "Visual Jenga is a new scene understanding task where the goal is to remove objects one by one from a single image while keeping the rest of the scene stable. We introduce a simple baseline that uses a large inpainting model to decide the removal order.",
+    "In Submission",
+    "pre-print",
+    false,
+    false,
+);
+
+addPublication(
+    "./images/spotlight.gif",
+    "SpotLight: Shadow-Guided Object Relighting via Diffusion",
+    "Frédéric Fortier-Chouinard, Zitian Zhang, Louis-Etienne Messier, Mathieu Garon, Anand Bhattad, Jean-François Lalonde",
+    "arXiv 2024",
+    "https://arxiv.org/abs/2411.18665",
+    "https://lvsn.github.io/spotlight/",
+    "", // code link
+    "https://arxiv.org/abs/2411.18665",
+    "", // github-repo-name
+    "SpotLight enables object relighting by using shadow guidance to control lighting conditions without requiring additional training.",
+    "In Submission",
+    "pre-print",
+    false,
+    false
+);
 
 addPublication(
     "./images/luminet.gif",
@@ -158,24 +191,6 @@ addPublication(
     "published",
     false,
     true
-);
-
-
-addPublication(
-    "./images/spotlight.gif",
-    "SpotLight: Shadow-Guided Object Relighting via Diffusion",
-    "Frédéric Fortier-Chouinard, Zitian Zhang, Louis-Etienne Messier, Mathieu Garon, Anand Bhattad, Jean-François Lalonde",
-    "arXiv 2024",
-    "https://arxiv.org/abs/2411.18665",
-    "https://lvsn.github.io/spotlight/",
-    "", // code link
-    "https://arxiv.org/abs/2411.18665",
-    "", // github-repo-name
-    "SpotLight enables object relighting by using shadow guidance to control lighting conditions without requiring additional training.",
-    "In Submission",
-    "pre-print",
-    false,
-    false
 );
 
 
