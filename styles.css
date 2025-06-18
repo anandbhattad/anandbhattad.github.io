@@ -1,16 +1,18 @@
 body {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    color: #333;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.4;
+    color: #222;
+    font-weight: 400;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center content horizontally */
+    align-items: center;
     min-height: 100vh;
-    position: relative; /* Ensure relative positioning for pseudo-element */
-    z-index: 1; /* Ensure content is above the background */
+    background: radial-gradient(circle, #121212, #000000);
+    background-attachment: fixed;
 }
+
 
 body::before {
     content: '';
@@ -31,24 +33,23 @@ body::before {
     transform: scale(1.1); /* Slightly scale to cover any edges due to blur */
 }
 
-header, 
-main, 
-footer {
-    background-color: #f7f7f7;
-    color: #333;
-    max-width: 1000px;  
-    width: 100%;    
-    padding: 20px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1); 
-    margin: 0 auto; /* Ensure it's centered */
+main, footer {
+    max-width: 1000px;
+    width: 100%;
+    padding: 15px 20px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    /* border-radius: 4px; */
 }
 
 footer {
     text-align: center;
+    height: 20px;
 }
 
 .header-content {
-    display: flex;
+    display:  flex;
     justify-content: flex-start; /* Align items starting from the left */
     align-items: center;
     max-width: 1000px; /* Ensure the same width as the main content */
@@ -58,7 +59,7 @@ footer {
 
 .header-text {
     color: #4a4a4a;
-    flex: 2;
+    flex: 1;
     text-align: left;
     margin-left: 10px; /* Add space between the image and the text */
     margin-top: -15px; /* Add space between the image and the text */
@@ -101,7 +102,7 @@ nav a {
     color: #ffffff;
     text-decoration: none;
     padding: 3px 50px;
-    font-size: 1.2em;
+    font-size: 1em;
     transition: color 0.3s ease, background-color 0.3s ease;
     display: inline-block;
 }
@@ -128,7 +129,7 @@ main {
 h2 {
     margin-top: -8px;
     color: #333;
-    font-size: 1.5em;
+    font-size: 1.2em;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -196,7 +197,7 @@ h2::after {
 }
 
 .publication-year {
-    font-size: 1.2em;
+    font-size: 1em;
     margin-top: 20px;
 }
 
@@ -284,7 +285,7 @@ a:hover {
         box-sizing: border-box;
     }
 
-    main, footer {
+    main {
         width: 100%;
         padding: 0 15px; /* Add padding for alignment */
         box-sizing: border-box;
