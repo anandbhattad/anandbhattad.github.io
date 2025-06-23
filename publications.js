@@ -149,9 +149,9 @@ addPublication(
     "arXiv 2025",
     "https://arxiv.org/abs/2411.18665",
     "https://lvsn.github.io/spotlight/",
-    "", // code link
+    "https://github.com/lvsn/SpotLight", // code link
     "https://arxiv.org/abs/2411.18665",
-    "", // github-repo-name
+    "lvsn/SpotLight", // github-repo-name
     "SpotLight enables object relighting by using shadow guidance to control lighting conditions without requiring additional training.",
     "In Submission",
     "pre-print",
