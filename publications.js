@@ -234,7 +234,7 @@ addPublication(
     "Xiao Zhang, William Gao, Seemandhar Jain, Michael Maire, David.A.Forsyth, Anand Bhattad",
     "NeurIPS 2024 (Spotlight)",
     "./files/2024_NeurIPS_latent_intrinsics.pdf",
-    "https://latent-intrinsics.github.io/",
+    "https://sites.google.com/uchicago.edu/latent-intrinsic/home",
     "https://github.com/xiao7199/Latent_Intrinsics",
     "https://arxiv.org/abs/2405.21074",
     "xiao7199/Latent_Intrinsics",
