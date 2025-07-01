@@ -241,7 +241,7 @@ h2::after {
 
 .pub-links {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.35rem;
     flex-wrap: wrap;
     margin-bottom: 5px;
 }
@@ -276,7 +276,7 @@ h2::after {
     padding: 1rem;
     background: var(--secondary-color);
     border-radius: 0.5rem;
-    /* border-left: 1px solid var(--primary-color); */
+    border-left: 2px solid var(--primary-color);
 }
 
 .pub-stars {
