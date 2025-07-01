@@ -1,3 +1,4 @@
+
 let publications = [];
 
 function addPublication(imagePath, title, authors, venue, paperLink, projectLink, codeLink, arxivLink, githubRepo, tldr, year, published, isHighlight = false, isVideo = false) {
@@ -122,7 +123,7 @@ function toggleTheme() {
 
 // Adding Publications
 addPublication(
-    "./images/visual_jenga.gif",
+    "./images/visual_jenga.gif", 
     "Visual Jenga: Discovering Object Dependencies via Counterfactual Inpainting",
     "Anand Bhattad, Konpat Preechakul, Alexei A. Efros",
     "arXiv 2025",
