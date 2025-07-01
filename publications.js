@@ -149,7 +149,7 @@ addPublication(
     "https://github.com/lvsn/SpotLight", // code link
     "https://arxiv.org/abs/2411.18665",
     "lvsn/SpotLight", // github-repo-name
-    "SpotLight enables object relighting by using shadow guidance to control lighting conditions without requiring additional training.",
+    "SpotLight enables object relighting by using shadow guidance to control lighting conditions without requiring additional training. Builds upon ZeroComp (WACV 2025).",
     "In Submission",
     "pre-print",
     false,
@@ -163,11 +163,11 @@ addPublication(
     "CVPR 2025",
     "https://arxiv.org/abs/2412.00177",
     "https://luminet-relight.github.io/",
-    "https://github.com/xyxingx/LumiNet/", // code link
+    "https://github.com/xyxingx/LumiNet",
     "https://arxiv.org/abs/2412.00177",
-    "xyxingx/LumiNet", //github-repo-name
-    "LumiNet is a novel framework that combines latent intrinsic decomposition with knowledge of lighting in pretrained diffusion models to achieve photorealistic indoor scene relighting.",
-    "2025",
+    "xyxingx/LumiNet",
+    "LumiNet leverages latent intrinsic decomposition (NeurIPS 2024) and integrates it with pretrained diffusion models to achieve photorealistic indoor scene relighting. Additionally, we introduce a variational StyLitGAN (CVPR 2024) for generating high-quality training data.",
+    2025,
     "published",
     true,
     false
@@ -218,7 +218,7 @@ addPublication(
     "https://github.com/lvsn/ZeroComp", // code link
     "https://arxiv.org/abs/2410.08168",
     "lvsn/ZeroComp",
-    "Zero-shot 3D object compositing approach that does not require paired composite-scene images during training and can be easily extended to 2D object compositing and material editing.",
+    "Zero-shot 3D object compositing without paired training data. Easily extendable to 2D compositing and material editing.",
     2025,
     "published",
     // true for highlight,
@@ -269,10 +269,9 @@ addPublication(
     "https://github.com/sfanxiang/videoshop",
     "https://arxiv.org/abs/2403.14617",
     "sfanxiang/videoshop",
-    "Videoshop is a training-free algorithm that allows users to edit videos by modifying only the first frame using familiar image editing tools. It automatically propagates these edits throughout the video, maintaining consistency and allowing for precise, localized semantic changes.",
+    "Training-free video editing by modifying the first frame, propagating edits consistently across the video.",
     2024,
-    "published",
-    
+    "published"
 );
 
 
@@ -286,7 +285,7 @@ addPublication(
     "https://github.com/hanlinm2/projective-geometry/",
     "https://arxiv.org/abs/2311.17138",
     "hanlinm2/projective-geometry",
-    "Generative models are not aware of projective geometry. We show that generated images can be easily distinguished by looking at derived projective geometry cues.",
+    "Generated images can be easily distinguished from real by looking at derived projective geometry cues --- perspectives (lines) and shadows.",
     2024,
     "published",
     true,
