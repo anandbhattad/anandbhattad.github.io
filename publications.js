@@ -1,7 +1,6 @@
 let publications = [];
 
 function addPublication(imagePath, title, authors, venue, paperLink, projectLink, codeLink, arxivLink, githubRepo, tldr, year, published, isHighlight = false, isVideo = false) {
-    // Make "Anand Bhattad" bold
     authors = authors.split(', ').map(author => {
         if (author === 'Anand Bhattad' || (author === 'Anand Bhattad*')) {
             return `<strong>${author}</strong>`;
@@ -15,10 +14,11 @@ function addPublication(imagePath, title, authors, venue, paperLink, projectLink
 }
 
 async function fetchGitHubStars(repo) {
+    if (!repo) return 0;
     try {
         let response = await fetch(`https://api.github.com/repos/${repo}`);
         let data = await response.json();
-        return data.stargazers_count;
+        return data.stargazers_count || 0;
     } catch (error) {
         console.error('Error fetching GitHub stars:', error);
         return 0;
@@ -27,14 +27,12 @@ async function fetchGitHubStars(repo) {
 
 async function renderPublications(filter = "highlights") {
     let $publicationsList = $('#publications-list');
-    let $quickList = $('#quick-list');
     $publicationsList.empty();
-    $quickList.empty();
 
     let filteredPublications = publications.filter(pub => {
         if (filter === 'highlights') return pub.isHighlight === true;
         if (filter === 'published') return pub.published === 'published';
-        return true; // 'all' filter
+        return true;
     });
 
     let groupedByYear = filteredPublications.reduce((acc, pub) => {
@@ -43,65 +41,63 @@ async function renderPublications(filter = "highlights") {
         return acc;
     }, {});
 
-    // Sort years: "In Submission" first, then descending years
     const sortedYears = Object.keys(groupedByYear).sort((a, b) => {
         if (a === "In Submission") return -1;
         if (b === "In Submission") return 1;
         return b - a;
     });
 
-    // Render Publications
     for (const year of sortedYears) {
         $publicationsList.append(`<h3 class="publication-year">${year}</h3>`);
         for (const pub of groupedByYear[year]) {
             let stars = pub.githubRepo ? await fetchGitHubStars(pub.githubRepo) : 0;
-
-            // Check if the publication should be expanded by default
-            let isExpanded = filter === 'highlights' || filter === 'published';
-
-            let publicationHtml = generatePublicationHtml(pub, stars, isExpanded);
+            let publicationHtml = generatePublicationHtml(pub, stars);
             $publicationsList.append(publicationHtml);
         }
     }
 
-    // Render Quick List
-    publications.forEach(pub => {
-        $quickList.append(`<p><a href="${pub.paperLink}" target="_blank">${pub.title}</a></p>`);
-    });
-
-    // Update button active state
     $('.publication-filter').removeClass('active');
     $(`.publication-filter[data-filter="${filter}"]`).addClass('active');
 }
 
-
-function generatePublicationHtml(pub, stars, isExpanded) {
-    // Add a CSS class to control visibility
-    let detailsClass = isExpanded ? 'pub-details expanded' : 'pub-details';
-
-    // Determine the appropriate link for the title
-    let titleLink = pub.projectLink ? pub.projectLink : pub.arxivLink;
+function generatePublicationHtml(pub, stars) {
+    let titleLink = pub.projectLink || pub.arxivLink || pub.paperLink;
     
     return `
         <div class="publication-item">
             <div class="pub-image">
-                ${pub.isVideo ? `<video src="${pub.imagePath}" width="200" controls autoplay loop muted></video>` : `<img src="${pub.imagePath}" alt="${pub.title}" width="200">`}
+                ${pub.isVideo ? 
+                    `<video src="${pub.imagePath}" controls autoplay loop muted></video>` : 
+                    `<img src="${pub.imagePath}" alt="${pub.title}">`
+                }
             </div>
-            <div class="${detailsClass}">
-                <div class="pub-title"><a href="${titleLink}" target="_blank">${pub.title}</a></div>
+            <div class="pub-details">
+                <div class="pub-title">
+                    <a href="${titleLink}" target="_blank">${pub.title}</a>
+                </div>
                 <div class="pub-authors">${pub.authors}</div>
                 <div class="pub-venue">${pub.venue}</div>
                 <div class="pub-links">
-                    ${pub.paperLink ? `<a href="${pub.paperLink}" target="_blank">Paper</a>` : ''}
-                    ${pub.projectLink ? `<a href="${pub.projectLink}" target="_blank">Project</a>` : ''}
-                    ${pub.codeLink ? `<a href="${pub.codeLink}" target="_blank">Code</a>` : ''}
-                    ${pub.arxivLink ? `<a href="${pub.arxivLink}" target="_blank">arXiv</a>` : ''}
+                    ${pub.paperLink ? `<a href="${pub.paperLink}" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>` : ''}
+                    ${pub.projectLink ? `<a href="${pub.projectLink}" target="_blank"><i class="fas fa-globe"></i> Project</a>` : ''}
+                    ${pub.codeLink ? `<a href="${pub.codeLink}" target="_blank"><i class="fas fa-code"></i> Code</a>` : ''}
+                    ${pub.arxivLink ? `<a href="${pub.arxivLink}" target="_blank"><i class="fas fa-archive"></i> arXiv</a>` : ''}
                 </div>
                 <div class="pub-tldr"><strong>TL;DR:</strong> ${pub.tldr}</div>
-                ${pub.githubRepo ? `<div class="pub-stars">${stars} ★ on GitHub</div>` : ''}
+                ${pub.githubRepo && stars > 0 ? `<div class="pub-stars"><i class="fas fa-star"></i> ${stars} stars on GitHub</div>` : ''}
             </div>
         </div>
     `;
+}
+
+function filterPublications(filter) {
+    renderPublications(filter);
+}
+
+function toggleTheme() {
+    document.body.classList.toggle('dark-theme');
+    const icon = document.querySelector('.theme-toggle i');
+    icon.className = document.body.classList.contains('dark-theme') ? 'fas fa-sun' : 'fas fa-moon';
 }
 
 
@@ -138,7 +134,7 @@ addPublication(
     "Visual Jenga is a new scene understanding task where the goal is to remove objects one by one from a single image while keeping the rest of the scene stable. We introduce a simple baseline that uses a large inpainting model to decide the removal order.",
     "In Submission",
     "pre-print",
-    false,
+    true,
     false,
 );
 
