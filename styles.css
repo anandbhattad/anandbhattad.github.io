@@ -202,12 +202,11 @@ nav a:hover {
   }
   .publication-item:hover .pub-tldr{max-height:100rem}
   
-  /* stars line */
-  .pub-stars{
-    display:flex;align-items:center;gap:.25rem;
-    font-size:.75rem;color:var(--text-muted);margin-top:.3rem;
-  }
-  
+  .pub-stars{display:flex;align-items:center;gap:.65rem;font-size:.78rem;color:var(--text-muted)}
+  .star-count{display:flex;align-items:center;gap:.25rem}
+  .cite-link{color:var(--text-secondary);text-decoration:none}
+  .cite-link:hover{color:var(--primary-color);transform:translateY(-1px)}
+
   /* =======================================================
      NEWS & AWARDS LISTS
      ----------------------------------------------------- */

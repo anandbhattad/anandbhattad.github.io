@@ -1,106 +1,159 @@
 
+const SERP_API_KEY = "761b7ce58d1c58f522bfda8050765fd4a9f2c5c92f25cf4fdf54dc98053fd4b0";   // ← set once
+const CACHE_TTL    = 72 * 60 * 60 * 1000;          // 24 h in ms // once in 3 days
+
 let publications = [];
 
-function addPublication(imagePath, title, authors, venue, paperLink, projectLink, codeLink, arxivLink, githubRepo, tldr, year, published, isHighlight = false, isVideo = false) {
-    authors = authors.split(', ').map(author => {
-        if (author === 'Anand Bhattad' || (author === 'Anand Bhattad*')) {
-            return `<strong>${author}</strong>`;
-        }
-        return author;
-    }).join(', ');
+/* ---------- simple cache helpers ---------------------------- */
+function getCache(k){
+    const raw = localStorage.getItem(k);
+    if(!raw) return null;
+    try{ const {ts,val}=JSON.parse(raw); if(Date.now()-ts<CACHE_TTL) return val; }catch{}
+    localStorage.removeItem(k); return null;
+  }
+  function setCache(k,v){ try{localStorage.setItem(k,JSON.stringify({ts:Date.now(),val:v}));}catch{} }
+  
+  /* ---------- addPublication (clusterIds may be array or CSV) - */
+  function addPublication(
+    imagePath,title,authors,venue,paperLink,projectLink,codeLink,
+    arxivLink,githubRepo,tldr,year,published,
+    isHighlight=false,isVideo=false,
+    gsClusterIds=[],              // ← array OR comma‑string
+    gsSearch=null                 // fallback search query
+  ){
+    authors = authors.split(', ').map(a=>
+      a==='Anand Bhattad'||a==='Anand Bhattad*'?`<strong>${a}</strong>`:a).join(', ');
+    if(typeof gsClusterIds==='string') gsClusterIds = gsClusterIds.split(',').map(s=>s.trim()).filter(Boolean);
+    publications.push({imagePath,title,authors,venue,paperLink,projectLink,codeLink,
+      arxivLink,githubRepo,tldr,year,published,isHighlight,isVideo,gsClusterIds,gsSearch});
+  }
+  
 
-    publications.push({
-        imagePath, title, authors, venue, paperLink, projectLink, codeLink, arxivLink, githubRepo, tldr, year, published, isHighlight, isVideo
-    });
+/* ----------------------- GitHub -------------------------- */
+async function fetchGitHubStars(repo){
+  if(!repo) return 0;
+  try{
+    const r = await fetch(`https://api.github.com/repos/${repo}`);
+    const d = await r.json();
+    return d.stargazers_count || 0;
+  }catch(e){console.error('GitHub API',e);return 0;}
 }
 
-async function fetchGitHubStars(repo) {
-    if (!repo) return 0;
-    try {
-        let response = await fetch(`https://api.github.com/repos/${repo}`);
-        let data = await response.json();
-        return data.stargazers_count || 0;
-    } catch (error) {
-        console.error('Error fetching GitHub stars:', error);
-        return 0;
+/* ---------- Google‑Scholar via SerpAPI (sum multiple IDs) --- */
+async function fetchGSCitations(pub){
+    if(!SERP_API_KEY) return null;
+    if(pub.gsClusterIds.length){
+      // parallel fetch each ID, cache individually, then sum
+      const counts = await Promise.all(pub.gsClusterIds.map(async id=>{
+        const ck=`gs_${id}`; const c=getCache(ck); if(c!==null) return c;
+        const url=`https://serpapi.com/search?engine=google_scholar&cluster_id=${id}&api_key=${SERP_API_KEY}`;
+        try{const r=await fetch(url);const j=await r.json();const v=j.cited_by?.value??null; if(v!==null) setCache(ck,v); return v??0;}catch{return 0;}
+      }));
+      const total = counts.reduce((a,b)=>a+b,0);
+      return total>0?total:null;
     }
-}
-
-async function renderPublications(filter = "highlights") {
-    let $publicationsList = $('#publications-list');
-    $publicationsList.empty();
-
-    let filteredPublications = publications.filter(pub => {
-        if (filter === 'highlights') return pub.isHighlight === true;
-        if (filter === 'published') return pub.published === 'published';
-        return true;
-    });
-
-    let groupedByYear = filteredPublications.reduce((acc, pub) => {
-        let year = pub.year === "In Submission" ? "In Submission" : pub.year;
-        (acc[year] = acc[year] || []).push(pub);
-        return acc;
-    }, {});
-
-    const sortedYears = Object.keys(groupedByYear).sort((a, b) => {
-        if (a === "In Submission") return -1;
-        if (b === "In Submission") return 1;
-        return b - a;
-    });
-
-    for (const year of sortedYears) {
-        $publicationsList.append(`<h3 class="publication-year">${year}</h3>`);
-        for (const pub of groupedByYear[year]) {
-            let stars = pub.githubRepo ? await fetchGitHubStars(pub.githubRepo) : 0;
-            let publicationHtml = generatePublicationHtml(pub, stars);
-            $publicationsList.append(publicationHtml);
-        }
+    // fallback title search once
+    const key=`gs_${pub.title}`; const cached=getCache(key); if(cached!==null) return cached;
+    const url=`https://serpapi.com/search?engine=google_scholar&q=${encodeURIComponent(pub.gsSearch||pub.title)}&api_key=${SERP_API_KEY}`;
+    try{const r=await fetch(url);const j=await r.json();const first=j.organic_results?.[0];const total=first?.inline_links?.cited_by?.total??null; if(total!==null) setCache(key,total);return total;}catch{return null;}
+  }
+  
+  
+  /* -----------------------------------------------------------------
+     Render (parallel fetch + placeholder update)                      */
+  async function renderPublications(filter='highlights'){
+    const $list = $('#publications-list').empty();
+  
+    const subset = publications.filter(p=>{
+      if(filter==='highlights') return p.isHighlight;
+      if(filter==='published')  return p.published==='published';
+      return true;});
+  
+    const byYear = subset.reduce((m,p)=>{
+      const y = p.year==='In Submission' ? 'In Submission': p.year;
+      (m[y] ||= []).push(p);return m;},{});
+    const years = Object.keys(byYear).sort((a,b)=>{
+      if(a==='In Submission')return -1;if(b==='In Submission')return 1;return b-a;});
+  
+    // 1. build cards with placeholders (—)
+    for(const y of years){
+      $list.append(`<h3 class="publication-year">${y}</h3>`);
+      byYear[y].forEach(p=>{
+        $list.append(genPubHTML(p,'—','—')); // placeholder
+      });
     }
-
+  
+    // 2. fetch all meta in parallel
+    const tasks = subset.map(async p=>{
+      const [stars,cites] = await Promise.all([
+        fetchGitHubStars(p.githubRepo),
+        fetchGSCitations(p)
+      ]);
+      updateMetaLine(p,stars,cites);
+    });
+    await Promise.allSettled(tasks);
+  
     $('.publication-filter').removeClass('active');
     $(`.publication-filter[data-filter="${filter}"]`).addClass('active');
-}
-
-function generatePublicationHtml(pub, stars) {
-    let titleLink = pub.projectLink || pub.arxivLink || pub.paperLink;
-    
-    return `
-        <div class="publication-item">
-            <div class="pub-image">
-                ${pub.isVideo ? 
-                    `<video src="${pub.imagePath}" controls autoplay loop muted></video>` : 
-                    `<img src="${pub.imagePath}" alt="${pub.title}">`
-                }
-            </div>
-            <div class="pub-details">
-                <div class="pub-title">
-                    <a href="${titleLink}" target="_blank">${pub.title}</a>
-                </div>
-                <div class="pub-authors">${pub.authors}</div>
-                <div class="pub-venue">${pub.venue}</div>
-                <div class="pub-links">
-                    ${pub.paperLink ? `<a href="${pub.paperLink}" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>` : ''}
-                    ${pub.projectLink ? `<a href="${pub.projectLink}" target="_blank"><i class="fas fa-globe"></i> Project</a>` : ''}
-                    ${pub.codeLink ? `<a href="${pub.codeLink}" target="_blank"><i class="fas fa-code"></i> Code</a>` : ''}
-                    ${pub.arxivLink ? `<a href="${pub.arxivLink}" target="_blank"><i class="fas fa-archive"></i> arXiv</a>` : ''}
-                </div>
-                <div class="pub-tldr"><strong>TL;DR:</strong> ${pub.tldr}</div>
-                ${pub.githubRepo && stars > 0 ? `<div class="pub-stars"><i class="fas fa-star"></i> ${stars} stars on GitHub</div>` : ''}
-            </div>
+  }
+  
+  /* -------- update a single card’s stars/cites after fetch ------ */
+  function updateMetaLine(pub,stars,cites){
+    const id = cssSafe(pub.title);
+    const $el = $(`#meta-${id}`);
+    if(!$el.length) return;
+    const parts = [];
+    if(pub.githubRepo && stars>0)
+      parts.push(`<span class="star-count"><i class="fas fa-star"></i> ${stars}</span>`);
+  
+    if(cites!==null && cites>0){
+      const link = pub.gsClusterId?
+        `https://scholar.googleusercontent.com/scholar.bib?q=info:${pub.gsClusterId}:scholar.google.com`:
+        `https://scholar.google.com/scholar?q=${encodeURIComponent(pub.gsSearch||pub.title)}`;
+      parts.push(`<a href="${link}" target="_blank" class="cite-link" title="Google Scholar BibTeX">&quot; ${cites}</a>`);
+    }
+    $el.html(parts.join(''));
+  }
+  
+  /* ---------------- HTML template (placeholders) ------------- */
+  function genPubHTML(pub,stars,cites){
+    const href = pub.projectLink||pub.arxivLink||pub.paperLink;
+    const img  = pub.isVideo?
+      `<video src="${pub.imagePath}" controls autoplay loop muted></video>`:
+      `<img src="${pub.imagePath}" alt="${pub.title}">`;
+    const id   = cssSafe(pub.title);
+  
+    return `<div class="publication-item">
+      <div class="pub-image">${img}</div>
+      <div class="pub-details">
+        <div class="pub-title"><a href="${href}" target="_blank">${pub.title}</a></div>
+        <div class="pub-authors">${pub.authors}</div>
+        <div class="pub-venue">${pub.venue}</div>
+        <div class="pub-links">
+          ${pub.paperLink  ? `<a href="${pub.paperLink}"  target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>`  : ''}
+          ${pub.projectLink? `<a href="${pub.projectLink}" target="_blank"><i class="fas fa-globe"></i> Project</a>`: ''}
+          ${pub.codeLink   ? `<a href="${pub.codeLink}"   target="_blank"><i class="fas fa-code"></i> Code</a>`   : ''}
+          ${pub.arxivLink  ? `<a href="${pub.arxivLink}"  target="_blank"><i class="fas fa-archive"></i> arXiv</a>`  : ''}
         </div>
-    `;
-}
-
-function filterPublications(filter) {
-    renderPublications(filter);
-}
-
-function toggleTheme() {
+        <div class="pub-tldr"><strong>TL;DR:</strong> ${pub.tldr}</div>
+        <div class="pub-stars" id="meta-${id}">
+          ${pub.githubRepo? `<span class="star-count"><i class="fas fa-star"></i> ${stars}</span>` : ''}
+          ${cites!=='—'? `<a class="cite-link">&quot; ${cites}</a>` : ''}
+        </div>
+      </div>
+    </div>`;
+  }
+  
+  function cssSafe(str){return str.replace(/[^a-z0-9]/gi,'_');}
+  
+  /* ----------- helpers -------------------------------------- */
+  function filterPublications(f){ renderPublications(f); }
+  function toggleTheme(){
     document.body.classList.toggle('dark-theme');
-    const icon = document.querySelector('.theme-toggle i');
-    icon.className = document.body.classList.contains('dark-theme') ? 'fas fa-sun' : 'fas fa-moon';
-}
-
+    const ic=document.querySelector('.theme-toggle i');
+    ic.className=document.body.classList.contains('dark-theme')?'fas fa-sun':'fas fa-moon';
+  }
+  
 
 // Adding Publications
 
@@ -137,6 +190,7 @@ addPublication(
     "pre-print",
     true,
     false,
+    "5880491882271109753" // gsClusterId
 );
 
 addPublication(
@@ -153,7 +207,8 @@ addPublication(
     "In Submission",
     "pre-print",
     false,
-    false
+    false,
+    "6593607985494569546" // gsClusterId
 );
 
 addPublication(
@@ -170,7 +225,8 @@ addPublication(
     2025,
     "published",
     true,
-    false
+    false,
+    "15331000940612795058" // gsClusterId
 );
 
 addPublication(
@@ -187,7 +243,8 @@ addPublication(
     "2025",
     "published",
     false,
-    true
+    true,
+    "6123926049869266591"// gsClusterId
 );
 
 
@@ -205,7 +262,8 @@ addPublication(
     2025,
     "published",
     "",
-    true
+    true,
+    "10807180582613066648" // gsClusterId
 );
 
 addPublication(
@@ -221,8 +279,9 @@ addPublication(
     "Zero-shot 3D object compositing without paired training data. Easily extendable to 2D compositing and material editing.",
     2025,
     "published",
-    // true for highlight,
-    // true if teaser is video
+    "",
+    "",
+    "2267893941274651305" // gsClusterId
 );
 
 addPublication(
@@ -239,7 +298,8 @@ addPublication(
     2024,
     "published",
     true,
-    ""
+    "",
+    "3025748679517000102" // gsClusterId
 );
 
 addPublication(
@@ -256,7 +316,8 @@ addPublication(
     2024,
     "published",
     true,
-    true
+    true,
+    "3551500819320531335" // gsClusterId
 );
 
 addPublication(
@@ -271,7 +332,10 @@ addPublication(
     "sfanxiang/videoshop",
     "Training-free video editing by modifying the first frame, propagating edits consistently across the video.",
     2024,
-    "published"
+    "published",
+    "",
+    "",
+    "4446678399309230968" // gsClusterId
 );
 
 
@@ -289,7 +353,8 @@ addPublication(
     2024,
     "published",
     true,
-    true
+    true,
+    "2349223455520013505" // gsClusterId
 );
 
 
@@ -310,7 +375,8 @@ addPublication(
     2024,
     "published",
     true,
-    true
+    true,
+    "342563626160142575,5309076001772414991,1073595206104370782,9581283269707904921" // gsClusterId
 );
 
 addPublication(
@@ -326,7 +392,9 @@ addPublication(
     "Intrinsic LoRA: A method to extract intrinsic images from ANY generative model, be it Autoregressive, GAN, or Diffusion.",
     "2024",
     "published",
-    true
+    true,
+    "",
+    "6192891741559610524,5561207490965026900,18082404577502186826"
 );
 
 addPublication(
@@ -342,7 +410,9 @@ addPublication(
     "StyleGAN has easy accessible internal encoding of intrinsic images as originally defined by Barrow and Tenenbaum in their influential paper of 1978.",
     2023,
     "published",
-    true
+    true,
+    "",
+    "14406650649925599173"
 );
 
 addPublication(
@@ -357,7 +427,10 @@ addPublication(
     "allenai/object-edit",
     "A synthetic dataset and a model that learns to rotate, translate, insert, and remove objects identified by language in a scene. It can transfer to real-world images.",
     2023,
-    "published"
+    "published",
+    "",
+    "",
+    "6023857969790326197"
 );
 
 addPublication(
