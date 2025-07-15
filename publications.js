@@ -1,158 +1,232 @@
+/* ==================================================================
+   Publications list with GitHub stars **and** citation counts — uses
+   the open Semantic Scholar Graph API. Supports multiple CorpusIds, 
+   sums citations, and shows BibTeX for the FIRST id in a modal.      
+==================================================================*/
 
-const SERP_API_KEY = "761b7ce58d1c58f522bfda8050765fd4a9f2c5c92f25cf4fdf54dc98053fd4b0";   // ← set once
-const CACHE_TTL    = 72 * 60 * 60 * 1000;          // 24 h in ms // once in 3 days
+const CACHE_TTL = 24 * 60 * 60 * 1000;  // 1 day
+const citationSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M7.17 3.59c-1.25.39-2.44 1.09-3.31 2.12C2.66 7.01 2 8.39 2 10.09c0 1.87 1.52 3.41 3.41 3.41 1.89 0 3.41-1.54 3.41-3.41 0-1.1-.5-2.13-1.3-2.8.32-.76.82-1.43 1.45-1.94a6.68 6.68 0 0 0-1.8-.76zm10 0c-1.25.39-2.44 1.09-3.31 2.12-.9 1.3-1.56 2.68-1.56 4.38 0 1.87 1.52 3.41 3.41 3.41 1.89 0 3.41-1.54 3.41-3.41 0-1.1-.5-2.13-1.3-2.8.32-.76.82-1.43 1.45-1.94a6.68 6.68 0 0 0-1.8-.76z"/></svg>`;
 
 let publications = [];
 
-/* ---------- simple cache helpers ---------------------------- */
-function getCache(k){
-    const raw = localStorage.getItem(k);
-    if(!raw) return null;
-    try{ const {ts,val}=JSON.parse(raw); if(Date.now()-ts<CACHE_TTL) return val; }catch{}
-    localStorage.removeItem(k); return null;
-  }
-  function setCache(k,v){ try{localStorage.setItem(k,JSON.stringify({ts:Date.now(),val:v}));}catch{} }
-  
-  /* ---------- addPublication (clusterIds may be array or CSV) - */
-  function addPublication(
-    imagePath,title,authors,venue,paperLink,projectLink,codeLink,
-    arxivLink,githubRepo,tldr,year,published,
-    isHighlight=false,isVideo=false,
-    gsClusterIds=[],              // ← array OR comma‑string
-    gsSearch=null                 // fallback search query
-  ){
-    authors = authors.split(', ').map(a=>
-      a==='Anand Bhattad'||a==='Anand Bhattad*'?`<strong>${a}</strong>`:a).join(', ');
-    if(typeof gsClusterIds==='string') gsClusterIds = gsClusterIds.split(',').map(s=>s.trim()).filter(Boolean);
-    publications.push({imagePath,title,authors,venue,paperLink,projectLink,codeLink,
-      arxivLink,githubRepo,tldr,year,published,isHighlight,isVideo,gsClusterIds,gsSearch});
-  }
-  
+/* -------------------------------------------------- cache */
+function getCache(k){const r=localStorage.getItem(k);if(!r)return null;try{const {ts,val}=JSON.parse(r);if(Date.now()-ts<CACHE_TTL)return val;}catch{}localStorage.removeItem(k);return null;}
+function setCache(k,v){try{localStorage.setItem(k,JSON.stringify({ts:Date.now(),val:v}));}catch{}}
 
-/* ----------------------- GitHub -------------------------- */
-async function fetchGitHubStars(repo){
-  if(!repo) return 0;
-  try{
-    const r = await fetch(`https://api.github.com/repos/${repo}`);
-    const d = await r.json();
-    return d.stargazers_count || 0;
-  }catch(e){console.error('GitHub API',e);return 0;}
+/* --------------------------------------- addPublication */
+function addPublication(img,title,authors,venue,paperLink,projLink,codeLink,arxivLink,git,tldr,year,published,isHi=false,isVid=false,ssIds=[]){
+  authors = authors.split(', ').map(a=>/Anand Bhattad\*?/.test(a)?`<strong>${a}</strong>`:a).join(', ');
+  if(typeof ssIds==='string') ssIds=ssIds.split(',').map(s=>s.trim()).filter(Boolean);
+  publications.push({img,title,authors,venue,paperLink,projLink,codeLink,arxivLink,git,tldr,year,published,isHi,isVid,ssIds});
 }
 
-/* ---------- Google‑Scholar via SerpAPI (sum multiple IDs) --- */
-async function fetchGSCitations(pub){
-    if(!SERP_API_KEY) return null;
-    if(pub.gsClusterIds.length){
-      // parallel fetch each ID, cache individually, then sum
-      const counts = await Promise.all(pub.gsClusterIds.map(async id=>{
-        const ck=`gs_${id}`; const c=getCache(ck); if(c!==null) return c;
-        const url=`https://serpapi.com/search?engine=google_scholar&cluster_id=${id}&api_key=${SERP_API_KEY}`;
-        try{const r=await fetch(url);const j=await r.json();const v=j.cited_by?.value??null; if(v!==null) setCache(ck,v); return v??0;}catch{return 0;}
-      }));
-      const total = counts.reduce((a,b)=>a+b,0);
-      return total>0?total:null;
-    }
-    // fallback title search once
-    const key=`gs_${pub.title}`; const cached=getCache(key); if(cached!==null) return cached;
-    const url=`https://serpapi.com/search?engine=google_scholar&q=${encodeURIComponent(pub.gsSearch||pub.title)}&api_key=${SERP_API_KEY}`;
-    try{const r=await fetch(url);const j=await r.json();const first=j.organic_results?.[0];const total=first?.inline_links?.cited_by?.total??null; if(total!==null) setCache(key,total);return total;}catch{return null;}
+/* ----------------------------------- GitHub stars */
+async function fetchGitHubStars(repo){if(!repo)return 0;const ck=`gh_${repo}`;const c=getCache(ck);if(c!==null)return c;try{const d=await(await fetch(`https://api.github.com/repos/${repo}`)).json();const s=d.stargazers_count||0;setCache(ck,s);return s;}catch{return 0;}}
+
+/* -------------------- Semantic‑Scholar citations */
+async function fetchSSCitations(pub){const raw=pub.ssIds??[];const ids=Array.isArray(raw)?raw:String(raw).split(',').map(s=>s.trim()).filter(Boolean);
+  if(ids.length){const totals=await Promise.all(ids.map(async id=>{const ck=`ss_${id}`;const c=getCache(ck);if(c!==null)return c;try{const j=await(await fetch(`https://api.semanticscholar.org/graph/v1/paper/CorpusId:${id}?fields=citationCount`)).json();const v=j.citationCount||0;setCache(ck,v);return v;}catch{return 0;}}));return{count:totals.reduce((a,b)=>a+b,0),ids};}
+  const k=`ss_${pub.title}`;const c=getCache(k);if(c!==null)return{count:c,ids:[]};try {
+    // ask for the first 10 hits and include the title so we can verify
+    const url = `https://api.semanticscholar.org/graph/v1/paper/search` +
+                `?query=${encodeURIComponent(pub.title)}` +
+                `&limit=10&fields=title,citationCount,corpusId`;
+    const { data = [] } = await (await fetch(url)).json();
+  
+    // simple normalisation: lowercase, strip non‑alphanumerics
+    const norm  = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const want  = norm(pub.title);
+  
+    // pick the first hit whose normalised title matches exactly
+    const hit = data.find(d => norm(d.title) === want);
+  
+    if (!hit) return null;           // no reliable match → skip badge
+  
+    const count = hit.citationCount ?? 0;
+    const id    = hit.corpusId;
+    setCache(k, count);
+  
+    return { count, ids: id ? [id] : [] };
+  
+  } catch {
+    return null;
+  }}
+
+/* --------------------------------------- render */
+async function renderPublications(filter='highlights'){
+  const $list=$('#publications-list').empty();
+  const subset=publications.filter(p=>filter==='highlights'?p.isHi:filter==='published'?p.published==='published':true);
+  const byYear=subset.reduce((m,p)=>{const y=p.year==='In Submission'?'In Submission':p.year;(m[y]=m[y]||[]).push(p);return m;},{});
+  Object.keys(byYear).sort((a,b)=>a==='In Submission'?-1:b==='In Submission'?1:b-a).forEach(y=>{ $list.append(`<h3 class="publication-year">${y}</h3>`);byYear[y].forEach(p=>$list.append(genPubHTML(p)));});
+  await Promise.allSettled(subset.map(async p=>{const stars=await fetchGitHubStars(p.git);const cites=await fetchSSCitations(p);updateMeta(p,stars,cites);}));
+  $('.publication-filter').removeClass('active');$(`.publication-filter[data-filter="${filter}"]`).addClass('active');
+}
+
+/* ------------------- update meta line */
+function updateMeta(p, stars, cites) {
+  const $el = $(`#meta-${cssSafe(p.title)}`);
+  if (!$el.length) return;
+
+  const parts = [];
+
+  // citation badge (only if we have a positive count)
+  if (cites && cites.count > 0) {
+    const first = cites.ids[0] || ""; // may be empty if came from title search
+    parts.push(
+      `<a href="#" onclick="showBibtex(event,this)" class="cite-link" data-corpusid="${first}" data-title="${p.title}" title="Show BibTeX">` +
+        `${citationSVG} <span class="cite-number">${cites.count}</span>` +
+      `</a>`
+    );
   }
-  
-  
-  /* -----------------------------------------------------------------
-     Render (parallel fetch + placeholder update)                      */
-  async function renderPublications(filter='highlights'){
-    const $list = $('#publications-list').empty();
-  
-    const subset = publications.filter(p=>{
-      if(filter==='highlights') return p.isHighlight;
-      if(filter==='published')  return p.published==='published';
-      return true;});
-  
-    const byYear = subset.reduce((m,p)=>{
-      const y = p.year==='In Submission' ? 'In Submission': p.year;
-      (m[y] ||= []).push(p);return m;},{});
-    const years = Object.keys(byYear).sort((a,b)=>{
-      if(a==='In Submission')return -1;if(b==='In Submission')return 1;return b-a;});
-  
-    // 1. build cards with placeholders (—)
-    for(const y of years){
-      $list.append(`<h3 class="publication-year">${y}</h3>`);
-      byYear[y].forEach(p=>{
-        $list.append(genPubHTML(p,'—','—')); // placeholder
+
+  // github stars
+  if (p.git && stars > 0) {
+    parts.push(
+      `<a href="https://github.com/${p.git}" target="_blank" class="star-count" title="GitHub Stars">` +
+        `<i class="fas fa-star"></i> ${stars}` +
+      `</a>`
+    );
+  }
+
+  $el.html(parts.join(" "));
+}
+
+/* --------------- HTML skeleton for one card */
+function genPubHTML(p){const id=cssSafe(p.title);const link=p.projLink||p.arxivLink||p.paperLink;const img=p.isVid?`<video src="${p.img}" controls autoplay loop muted></video>`:`<img src="${p.img}" alt="${p.title}">`;
+  return `<div class="publication-item"><div class="pub-image">${img}</div><div class="pub-details"><div class="pub-title"><a href="${link}" target="_blank">${p.title}</a></div><div class="pub-authors">${p.authors}</div><div class="pub-venue">${p.venue}</div><div class="pub-links">${p.paperLink?`<a href="${p.paperLink}" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>`:''}${p.projLink?` <a href="${p.projLink}" target="_blank"><i class="fas fa-globe"></i> Project</a>`:''}${p.codeLink?` <a href="${p.codeLink}" target="_blank"><i class="fas fa-code"></i> Code</a>`:''}${p.arxivLink?` <a href="${p.arxivLink}" target="_blank"><i class="fas fa-archive"></i> arXiv</a>`:''}</div><div class="pub-tldr"><strong>TL;DR:</strong> ${p.tldr}</div><div class="pub-stars" id="meta-${id}"></div></div></div>`;}
+
+/* ------------------------- helpers */
+function cssSafe(s){return s.replace(/[^a-z0-9]/gi,'_');}
+function filterPublications(f){renderPublications(f);}  
+function toggleTheme(){document.body.classList.toggle('dark-theme');document.querySelector('.theme-toggle i').className=document.body.classList.contains('dark-theme')?'fas fa-sun':'fas fa-moon';}
+
+/* --------------------- BibTeX modal handler (runs once) */
+(function initBibtexModal(){
+  const start = () => {
+    const modal   = document.getElementById('bibtex-modal');
+    const pre     = document.getElementById('bibtex-text');
+    const closeBt = document.getElementById('bibtex-close');
+    const copyBt  = document.getElementById('bibtex-copy');
+    if (!modal || !pre || !closeBt || !copyBt) {
+      console.warn('BibTeX modal elements missing — did you add the HTML snippet?');
+      return;
+    }
+
+    async function fetchBibtex(cid) {
+      try {
+        const url = `https://api.semanticscholar.org/graph/v1/paper/CorpusId:${cid}?fields=citationStyles`;
+        const { citationStyles = {} } = await (await fetch(url)).json();
+        return citationStyles.bibtex || await (await fetch(`https://www.semanticscholar.org/CorpusId:${cid}.bib`)).text();
+      } catch { return null; }
+    }
+
+    // Inline click handler now attached to each badge via updateMeta
+function getBibCache(k){ return getCache(`bib_${k}`); }
+function setBibCache(k,v){ setCache(`bib_${k}`, v); }
+    
+  window.showBibtex = async (evt, el) => {
+    evt.preventDefault();
+
+    pre.textContent = 'Loading BibTeX …';
+    modal.hidden = false;
+
+    let bib = 'BibTeX unavailable';
+    let cid = el.dataset.corpusid;
+
+    async function fetchBib(cid) {
+      try {
+        const url = `https://api.semanticscholar.org/graph/v1/paper/CorpusId:${cid}?fields=citationStyles`;
+        const { citationStyles = {} } = await (await fetch(url)).json();
+        return citationStyles.bibtex || await (await fetch(`https://www.semanticscholar.org/CorpusId:${cid}.bib`)).text();
+      } catch { return null; }
+    }
+
+    if (cid) {
+      bib = await fetchBib(cid) || bib;
+    } else {
+      const title = el.dataset.title;
+      if (title) {
+        try {
+          const search = `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(title)}&limit=1&fields=corpusId`;
+          const { data = [] } = await (await fetch(search)).json();
+          cid = data[0]?.corpusId;
+          if (cid) bib = await fetchBib(cid) || bib;
+        } catch {}
+      }
+    }
+
+    pre.textContent = bib;
+    copyBt.textContent = 'Copy to clipboard';
+  };
+
+  closeBt.onclick = () => { modal.hidden = true; };
+
+    copyBt.onclick = () => {
+    const text = pre.textContent;
+    if (!text) return;
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        copyBt.textContent = 'Copied!';
+        setTimeout(() => (copyBt.textContent = 'Copy to clipboard'), 1500);
       });
+    } else {
+      const range = document.createRange();
+      range.selectNodeContents(pre);
+      const sel = window.getSelection();
+      sel.removeAllRanges(); sel.addRange(range);
+    }
+  };
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else {
+    start();
+  }
+})();
+
+/* ---------- inline BibTeX expander ---------------- */
+(function () {
+
+    async function bibById(id){
+      try{
+        const api=`https://api.semanticscholar.org/graph/v1/paper/CorpusId:${id}?fields=citationStyles`;
+        const { citationStyles = {} } = await (await fetch(api)).json();
+        return citationStyles.bibtex ||
+               await (await fetch(`https://www.semanticscholar.org/CorpusId:${id}.bib`)).text();
+      }catch{ return null; }
     }
   
-    // 2. fetch all meta in parallel
-    const tasks = subset.map(async p=>{
-      const [stars,cites] = await Promise.all([
-        fetchGitHubStars(p.githubRepo),
-        fetchGSCitations(p)
-      ]);
-      updateMetaLine(p,stars,cites);
-    });
-    await Promise.allSettled(tasks);
-  
-    $('.publication-filter').removeClass('active');
-    $(`.publication-filter[data-filter="${filter}"]`).addClass('active');
-  }
-  
-  /* -------- update a single card’s stars/cites after fetch ------ */
-  function updateMetaLine(pub,stars,cites){
-    const id = cssSafe(pub.title);
-    const $el = $(`#meta-${id}`);
-    if(!$el.length) return;
-    const parts = [];
-    if(pub.githubRepo && stars>0)
-      parts.push(`<span class="star-count"><i class="fas fa-star"></i> ${stars}</span>`);
-  
-    if(cites!==null && cites>0){
-      const link = pub.gsClusterId?
-        `https://scholar.googleusercontent.com/scholar.bib?q=info:${pub.gsClusterId}:scholar.google.com`:
-        `https://scholar.google.com/scholar?q=${encodeURIComponent(pub.gsSearch||pub.title)}`;
-      parts.push(`<a href="${link}" target="_blank" class="cite-link" title="Google Scholar BibTeX">&quot; ${cites}</a>`);
+    async function bibByTitle(title){
+      try{
+        const s=`https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(title)}&limit=1&fields=corpusId`;
+        const { data = [] } = await (await fetch(s)).json();
+        const cid = data[0]?.corpusId;
+        return cid ? bibById(cid) : null;
+      }catch{ return null; }
     }
-    $el.html(parts.join(''));
-  }
   
-  /* ---------------- HTML template (placeholders) ------------- */
-  function genPubHTML(pub,stars,cites){
-    const href = pub.projectLink||pub.arxivLink||pub.paperLink;
-    const img  = pub.isVideo?
-      `<video src="${pub.imagePath}" controls autoplay loop muted></video>`:
-      `<img src="${pub.imagePath}" alt="${pub.title}">`;
-    const id   = cssSafe(pub.title);
+    /* called by the onclick set in updateMeta */
+    window.showBibtex = async (e, link) => {
+      e.preventDefault();
+      const card = link.closest('.publication-item');
+      if (!card) return;
   
-    return `<div class="publication-item">
-      <div class="pub-image">${img}</div>
-      <div class="pub-details">
-        <div class="pub-title"><a href="${href}" target="_blank">${pub.title}</a></div>
-        <div class="pub-authors">${pub.authors}</div>
-        <div class="pub-venue">${pub.venue}</div>
-        <div class="pub-links">
-          ${pub.paperLink  ? `<a href="${pub.paperLink}"  target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>`  : ''}
-          ${pub.projectLink? `<a href="${pub.projectLink}" target="_blank"><i class="fas fa-globe"></i> Project</a>`: ''}
-          ${pub.codeLink   ? `<a href="${pub.codeLink}"   target="_blank"><i class="fas fa-code"></i> Code</a>`   : ''}
-          ${pub.arxivLink  ? `<a href="${pub.arxivLink}"  target="_blank"><i class="fas fa-archive"></i> arXiv</a>`  : ''}
-        </div>
-        <div class="pub-tldr"><strong>TL;DR:</strong> ${pub.tldr}</div>
-        <div class="pub-stars" id="meta-${id}">
-          ${pub.githubRepo? `<span class="star-count"><i class="fas fa-star"></i> ${stars}</span>` : ''}
-          ${cites!=='—'? `<a class="cite-link">&quot; ${cites}</a>` : ''}
-        </div>
-      </div>
-    </div>`;
-  }
+      // toggle if we already inserted one
+      let pre = card.querySelector('.bibtex-inline');
+      if (pre){ pre.hidden = !pre.hidden; return; }
   
-  function cssSafe(str){return str.replace(/[^a-z0-9]/gi,'_');}
+      pre = document.createElement('pre');
+      pre.className = 'bibtex-inline';
+      pre.textContent = 'Fetching BibTeX …';
+      card.querySelector('.pub-details').appendChild(pre);
   
-  /* ----------- helpers -------------------------------------- */
-  function filterPublications(f){ renderPublications(f); }
-  function toggleTheme(){
-    document.body.classList.toggle('dark-theme');
-    const ic=document.querySelector('.theme-toggle i');
-    ic.className=document.body.classList.contains('dark-theme')?'fas fa-sun':'fas fa-moon';
-  }
+      const id  = link.dataset.corpusid;
+      const bib = id ? await bibById(id) : await bibByTitle(link.dataset.title);
+      pre.textContent = bib || 'BibTeX unavailable';
+    };
+  
+  })();
   
 
 // Adding Publications
@@ -186,12 +260,11 @@ addPublication(
     "https://arxiv.org/abs/2503.21770",
     "", // github-repo-name
     "Visual Jenga is a new scene understanding task where the goal is to remove objects one by one from a single image while keeping the rest of the scene stable. We introduce a simple baseline that uses a large inpainting model to decide the removal order.",
-    "In Submission",
+    "2025",
     "pre-print",
     true,
     false,
-    "5880491882271109753" // gsClusterId
-);
+    ["277349597"]);
 
 addPublication(
     "./images/spotlight.gif",
@@ -204,11 +277,10 @@ addPublication(
     "https://arxiv.org/abs/2411.18665",
     "lvsn/SpotLight", // github-repo-name
     "SpotLight enables object relighting by using shadow guidance to control lighting conditions without requiring additional training. Builds upon ZeroComp (WACV 2025).",
-    "In Submission",
+    "2025",
     "pre-print",
     false,
-    false,
-    "6593607985494569546" // gsClusterId
+    false
 );
 
 addPublication(
@@ -226,7 +298,6 @@ addPublication(
     "published",
     true,
     false,
-    "15331000940612795058" // gsClusterId
 );
 
 addPublication(
@@ -244,7 +315,6 @@ addPublication(
     "published",
     false,
     true,
-    "6123926049869266591"// gsClusterId
 );
 
 
@@ -263,7 +333,6 @@ addPublication(
     "published",
     "",
     true,
-    "10807180582613066648" // gsClusterId
 );
 
 addPublication(
@@ -281,7 +350,6 @@ addPublication(
     "published",
     "",
     "",
-    "2267893941274651305" // gsClusterId
 );
 
 addPublication(
@@ -299,12 +367,11 @@ addPublication(
     "published",
     true,
     "",
-    "3025748679517000102" // gsClusterId
 );
 
 addPublication(
     "./images/odin_demo.mp4",
-    "From an Image to a Scene: Learning to Imagine the World from a Million 360° Videos",
+    "From an Image to a Scene: Learning to Imagine the World from a Million 360 Videos",
     "Matthew Wallingford, Anand Bhattad, Aditya Kusupati, Vivek Ramanujan, Matt Deitke, Sham Kakade, Aniruddha Kembhavi, Roozbeh Mottaghi, Wei-Chiu Ma, Ali Farhadi",
     "NeurIPS 2024",
     "./files/learning_from_video_neurips.pdf",
@@ -317,7 +384,6 @@ addPublication(
     "published",
     true,
     true,
-    "3551500819320531335" // gsClusterId
 );
 
 addPublication(
@@ -334,9 +400,7 @@ addPublication(
     2024,
     "published",
     "",
-    "",
-    "4446678399309230968" // gsClusterId
-);
+    "",);
 
 
 addPublication(
@@ -354,7 +418,6 @@ addPublication(
     "published",
     true,
     true,
-    "2349223455520013505" // gsClusterId
 );
 
 
@@ -376,7 +439,7 @@ addPublication(
     "published",
     true,
     true,
-    "342563626160142575,5309076001772414991,1073595206104370782,9581283269707904921" // gsClusterId
+    ["268255604","258427166","248965398"]
 );
 
 addPublication(
@@ -394,7 +457,6 @@ addPublication(
     "published",
     true,
     "",
-    "6192891741559610524,5561207490965026900,18082404577502186826"
 );
 
 addPublication(
@@ -412,7 +474,6 @@ addPublication(
     "published",
     true,
     "",
-    "14406650649925599173"
 );
 
 addPublication(
@@ -430,7 +491,6 @@ addPublication(
     "published",
     "",
     "",
-    "6023857969790326197"
 );
 
 addPublication(
@@ -477,7 +537,10 @@ addPublication(
     "anandbhattad/reshading",
     "Convincing cut-and-paste reshading with consistent image decomposition inferences.",
     2022,
-    "published"
+    "published",
+    "",
+    "",
+    ["252212202","222291281"]
 );
 
 addPublication(
@@ -524,12 +587,14 @@ addPublication(
     "Generating realistic adversarial examples by image re-colorization and texture transfer.",
     2020,
     "published",
-    true
+    true,
+    "",
+    [ "213304602","119186256"] // Semantic Scholar Corpus IDs
 );
 
 addPublication(
     "./images/EvalStyleTransfer.png",
-    "Improved Style Transfer with Calibrated Metrics",
+    "Improving Style Transfer with Calibrated Metrics",
     "Mao Chuang Yeh*, Shuai Tang*, Anand Bhattad, Chuhang Zou, David A. Forsyth",
     "WACV 2020",
     "https://arxiv.org/abs/1910.09447",
@@ -539,7 +604,11 @@ addPublication(
     "",
     "A novel quantitative evaluation procedure for style transfer methods.",
     2020,
-    "published"
+    "published",
+    "",
+    "",
+    ["204800851", "4560478"]
+
 );
 
 addPublication(

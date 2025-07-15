@@ -203,10 +203,65 @@ nav a:hover {
   .publication-item:hover .pub-tldr{max-height:100rem}
   
   .pub-stars{display:flex;align-items:center;gap:.65rem;font-size:.78rem;color:var(--text-muted)}
-  .star-count{display:flex;align-items:center;gap:.25rem}
-  .cite-link{color:var(--text-secondary);text-decoration:none}
-  .cite-link:hover{color:var(--primary-color);transform:translateY(-1px)}
-
+  .star-count{display:flex;align-items:center;gap:.25rem;color:var(--text-muted)}
+  .cite-link {
+    display: inline-flex;
+    align-items: center;
+    /* font-size: 0.95em; */
+    gap: 0.25em;
+    color:var(--text-muted);
+    text-decoration: none;
+  }
+  
+  /* .cite-link:hover {
+    text-decoration: underline;
+  }
+   */
+  .citation-icon {
+    width: 0.9em;
+    height: 0.9em;
+    opacity: 0.9;
+    font-size: 1.5em;
+  }
+  
+  /* .cite-number {
+    font-weight: 700;
+  } */
+  #bibtex-modal{
+    position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+    background:rgba(0,0,0,.4);z-index:2000;
+  }
+  #bibtex-modal[hidden]{display:none}
+  .bibtex-box{
+    background:#fff;padding:1rem 1.25rem;border-radius:6px;
+    max-width:90vw;max-height:80vh;overflow:auto;font-size:.8rem;
+    box-shadow:0 6px 20px rgba(0,0,0,.2);position:relative;
+  }
+  #bibtex-text{white-space:pre-wrap;margin:0}
+  #bibtex-close{
+    position:absolute;top:.4rem;right:.4rem;border:none;background:none;
+    font-size:1.2rem;cursor:pointer;
+  }
+  #bibtex-copy{margin-top:.6rem;padding:.3rem .7rem;cursor:pointer}
+  
+  .bibtex-inline{
+    background:var(--secondary-color,#f8fafc);
+    padding:.65rem .9rem;
+    margin-top:.7rem;
+    white-space:pre-wrap;
+    border-left:3px solid var(--primary-color);
+    font-family:monospace;
+    font-size:.85em;
+    border-radius:4px;
+  }
+  .bibtex-copy{
+    margin:0.4rem 0 0;
+    padding:0.25rem 0.65rem;
+    font-size:0.8em;
+    cursor:pointer;
+  }
+  
+  
   /* =======================================================
      NEWS & AWARDS LISTS
      ----------------------------------------------------- */
