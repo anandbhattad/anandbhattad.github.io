@@ -1,88 +1,297 @@
 /* ==================================================================
    Publications list with GitHub stars **and** citation counts — uses
-   the open Semantic Scholar Graph API. Supports multiple CorpusIds, 
-   sums citations, and shows BibTeX for the FIRST id in a modal.      
+   the open Semantic Scholar Graph API. Supports multiple CorpusIds,
+   sums citations, and shows BibTeX inline under each publication.
+   
+   UPDATED: Now supports local BibTeX file for faster loading!
+   Copy button copies BibTeX **and auto‑hides the block after 0.5 s**.
 ==================================================================*/
 
-const CACHE_TTL = 24 * 60 * 60 * 1000;  // 1 day
-const citationSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M7.17 3.59c-1.25.39-2.44 1.09-3.31 2.12C2.66 7.01 2 8.39 2 10.09c0 1.87 1.52 3.41 3.41 3.41 1.89 0 3.41-1.54 3.41-3.41 0-1.1-.5-2.13-1.3-2.8.32-.76.82-1.43 1.45-1.94a6.68 6.68 0 0 0-1.8-.76zm10 0c-1.25.39-2.44 1.09-3.31 2.12-.9 1.3-1.56 2.68-1.56 4.38 0 1.87 1.52 3.41 3.41 3.41 1.89 0 3.41-1.54 3.41-3.41 0-1.1-.5-2.13-1.3-2.8.32-.76.82-1.43 1.45-1.94a6.68 6.68 0 0 0-1.8-.76z"/></svg>`;
+const CACHE_TTL = 24 * 60 * 60 * 1000; // 1 day
+const LOCAL_BIBTEX_PATH = './publications.bib'; // Path to local BibTeX file
 
-let publications = [];
+const citationSVG = `
+<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+  <path d="M7.17 3.59c-1.25.39-2.44 1.09-3.31 2.12C2.66 7.01 2 8.39 2 10.09c0 1.87 1.52 3.41 3.41 3.41
+           1.89 0 3.41-1.54 3.41-3.41 0-1.1-.5-2.13-1.3-2.8.32-.76.82-1.43 1.45-1.94a6.68 6.68 0 0 0-1.8-.76zm10 0
+           c-1.25.39-2.44 1.09-3.31 2.12-.9 1.3-1.56 2.68-1.56 4.38 0 1.87 1.52 3.41 3.41 3.41 1.89 0 3.41-1.54 3.41-3.41
+           0-1.1-.5-2.13-1.3-2.8.32-.76.82-1.43 1.45-1.94a6.68 6.68 0 0 0-1.8-.76z"/>
+</svg>`;
 
-/* -------------------------------------------------- cache */
-function getCache(k){const r=localStorage.getItem(k);if(!r)return null;try{const {ts,val}=JSON.parse(r);if(Date.now()-ts<CACHE_TTL)return val;}catch{}localStorage.removeItem(k);return null;}
-function setCache(k,v){try{localStorage.setItem(k,JSON.stringify({ts:Date.now(),val:v}));}catch{}}
+// Global variable to store loaded BibTeX data
+let localBibTeXData = null;
 
-/* --------------------------------------- addPublication */
-function addPublication(img,title,authors,venue,paperLink,projLink,codeLink,arxivLink,git,tldr,year,published,isHi=false,isVid=false,ssIds=[]){
-  authors = authors.split(', ').map(a=>/Anand Bhattad\*?/.test(a)?`<strong>${a}</strong>`:a).join(', ');
-  if(typeof ssIds==='string') ssIds=ssIds.split(',').map(s=>s.trim()).filter(Boolean);
-  publications.push({img,title,authors,venue,paperLink,projLink,codeLink,arxivLink,git,tldr,year,published,isHi,isVid,ssIds});
+/* ------------------------------------------------------------------
+   0. Helpers / Cache
+------------------------------------------------------------------*/
+function getCache(key) {
+  const raw = localStorage.getItem(key);
+  if (!raw) return null;
+  try {
+    const { ts, val } = JSON.parse(raw);
+    if (Date.now() - ts < CACHE_TTL) return val;
+  } catch {}
+  localStorage.removeItem(key);
+  return null;
 }
 
-/* ----------------------------------- GitHub stars */
-async function fetchGitHubStars(repo){if(!repo)return 0;const ck=`gh_${repo}`;const c=getCache(ck);if(c!==null)return c;try{const d=await(await fetch(`https://api.github.com/repos/${repo}`)).json();const s=d.stargazers_count||0;setCache(ck,s);return s;}catch{return 0;}}
+function setCache(key, val) {
+  try {
+    localStorage.setItem(key, JSON.stringify({ ts: Date.now(), val }));
+  } catch {}
+}
 
-/* -------------------- Semantic‑Scholar citations */
-async function fetchSSCitations(pub){const raw=pub.ssIds??[];const ids=Array.isArray(raw)?raw:String(raw).split(',').map(s=>s.trim()).filter(Boolean);
-  if(ids.length){const totals=await Promise.all(ids.map(async id=>{const ck=`ss_${id}`;const c=getCache(ck);if(c!==null)return c;try{const j=await(await fetch(`https://api.semanticscholar.org/graph/v1/paper/CorpusId:${id}?fields=citationCount`)).json();const v=j.citationCount||0;setCache(ck,v);return v;}catch{return 0;}}));return{count:totals.reduce((a,b)=>a+b,0),ids};}
-  const k=`ss_${pub.title}`;const c=getCache(k);if(c!==null)return{count:c,ids:[]};try {
-    // ask for the first 10 hits and include the title so we can verify
-    const url = `https://api.semanticscholar.org/graph/v1/paper/search` +
-                `?query=${encodeURIComponent(pub.title)}` +
-                `&limit=10&fields=title,citationCount,corpusId`;
+function cssSafe(str) {
+  return str.replace(/[^a-z0-9]/gi, "_");
+}
+
+/* ------------------------------------------------------------------
+   0.1. Local BibTeX Loading
+------------------------------------------------------------------*/
+async function loadLocalBibTeX() {
+  if (localBibTeXData !== null) return localBibTeXData;
+  
+  try {
+    const response = await fetch(LOCAL_BIBTEX_PATH);
+    if (!response.ok) {
+      console.warn('Local BibTeX file not found, falling back to API');
+      return null;
+    }
+    
+    const content = await response.text();
+    localBibTeXData = parseBibTeX(content);
+    console.log(`Loaded ${Object.keys(localBibTeXData).length} BibTeX entries from local file`);
+    return localBibTeXData;
+  } catch (error) {
+    console.warn('Failed to load local BibTeX file:', error);
+    return null;
+  }
+}
+
+function parseBibTeX(content) {
+  const entries = {};
+  
+  // Split by @ to get individual entries
+  const rawEntries = content.split(/^@/gm).filter(entry => entry.trim());
+  
+  rawEntries.forEach(entry => {
+    if (!entry.trim()) return;
+    
+    // Add back the @ symbol
+    const fullEntry = '@' + entry;
+    
+    // Extract the citation key
+    const keyMatch = fullEntry.match(/@\w+\{([^,]+),/);
+    if (keyMatch) {
+      const key = keyMatch[1];
+      entries[key] = fullEntry.trim();
+    }
+  });
+  
+  return entries;
+}
+
+function generateCitationKey(title, year) {
+  const cleanTitle = title
+    .replace(/[^\w\s]/g, '')
+    .split(' ')
+    .filter(word => word.length > 2)
+    .slice(0, 3)
+    .join('');
+  
+  return `${cleanTitle}${year}`.toLowerCase();
+}
+
+function findBibTeXByTitle(title, year) {
+  if (!localBibTeXData) return null;
+  
+  // Try exact key match first
+  const key = generateCitationKey(title, year);
+  if (localBibTeXData[key]) {
+    return localBibTeXData[key];
+  }
+  
+  // Try fuzzy matching by title
+  const normalizeTitle = (t) => t.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, ' ').trim();
+  const normalizedTitle = normalizeTitle(title);
+  
+  for (const [citationKey, bibtex] of Object.entries(localBibTeXData)) {
+    // Extract title from BibTeX
+    const titleMatch = bibtex.match(/title\s*=\s*[{"]([^"}]+)["}]/i);
+    if (titleMatch) {
+      const bibTitle = normalizeTitle(titleMatch[1]);
+      if (bibTitle === normalizedTitle) {
+        return bibtex;
+      }
+    }
+  }
+  
+  return null;
+}
+
+function findBibTeXByCorpusId(corpusId) {
+  if (!localBibTeXData) return null;
+  
+  // Look for corpus ID in BibTeX entries
+  for (const [citationKey, bibtex] of Object.entries(localBibTeXData)) {
+    if (bibtex.includes(corpusId)) {
+      return bibtex;
+    }
+  }
+  
+  return null;
+}
+
+/* ------------------------------------------------------------------
+   1. Data + addPublication
+------------------------------------------------------------------*/
+const publications = [];
+
+function addPublication(
+  img, title, authors, venue, paper, project, code, arxiv,
+  githubRepo, tldr, year, published,
+  isHighlight = false, isVideo = false,
+  ssIds = [],  bibKey = null
+) {
+  authors = authors
+    .split(", ")
+    .map((a) => (/Anand Bhattad\*?/.test(a) ? `<strong>${a}</strong>` : a))
+    .join(", ");
+
+  if (typeof ssIds === "string")
+    ssIds = ssIds.split(",").map((s) => s.trim()).filter(Boolean);
+
+  publications.push({
+    img, title, authors, venue, paper, project, code, arxiv,
+    githubRepo, tldr, year, published, isHighlight, isVideo, ssIds
+  });
+}
+
+/* ------------------------------------------------------------------
+   2. GitHub stars
+------------------------------------------------------------------*/
+async function fetchGitHubStars(repo) {
+  if (!repo) return 0;
+  const ck = `gh_${repo}`;
+  const cached = getCache(ck);
+  if (cached !== null) return cached;
+
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}`);
+    const { stargazers_count = 0 } = await res.json();
+    setCache(ck, stargazers_count);
+    return stargazers_count;
+  } catch {
+    return 0;
+  }
+}
+
+/* ------------------------------------------------------------------
+   3. Semantic‑Scholar citation counts (title‑filtered)
+------------------------------------------------------------------*/
+async function fetchSSCitations(pub) {
+  const ids = Array.isArray(pub.ssIds) ? pub.ssIds : pub.ssIds ? [pub.ssIds] : [];
+
+  /* direct CorpusId path */
+  if (ids.length) {
+    const totals = await Promise.all(ids.map(async (id) => {
+      const ck = `ss_${id}`;
+      const cached = getCache(ck);
+      if (cached !== null) return cached;
+      try {
+        const j = await (await fetch(`https://api.semanticscholar.org/graph/v1/paper/CorpusId:${id}?fields=citationCount`)).json();
+        const v = j.citationCount || 0;
+        setCache(ck, v);
+        return v;
+      } catch {
+        return 0;
+      }
+    }));
+    return { count: totals.reduce((a, b) => a + b, 0), ids };
+  }
+
+  /* title search fallback */
+  const k = `ss_${pub.title}`;
+  const cached = getCache(k);
+  if (cached !== null) return { count: cached, ids: [] };
+
+  try {
+    const url = `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(pub.title)}&limit=10&fields=title,citationCount,corpusId`;
     const { data = [] } = await (await fetch(url)).json();
-  
-    // simple normalisation: lowercase, strip non‑alphanumerics
-    const norm  = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
-    const want  = norm(pub.title);
-  
-    // pick the first hit whose normalised title matches exactly
-    const hit = data.find(d => norm(d.title) === want);
-  
-    if (!hit) return null;           // no reliable match → skip badge
-  
-    const count = hit.citationCount ?? 0;
-    const id    = hit.corpusId;
-    setCache(k, count);
-  
-    return { count, ids: id ? [id] : [] };
-  
+    const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const want = norm(pub.title);
+    const hit  = data.find((d) => norm(d.title) === want);
+    if (!hit) return null;
+
+    setCache(k, hit.citationCount);
+    return { count: hit.citationCount, ids: hit.corpusId ? [hit.corpusId] : [] };
   } catch {
     return null;
-  }}
-
-/* --------------------------------------- render */
-async function renderPublications(filter='highlights'){
-  const $list=$('#publications-list').empty();
-  const subset=publications.filter(p=>filter==='highlights'?p.isHi:filter==='published'?p.published==='published':true);
-  const byYear=subset.reduce((m,p)=>{const y=p.year==='In Submission'?'In Submission':p.year;(m[y]=m[y]||[]).push(p);return m;},{});
-  Object.keys(byYear).sort((a,b)=>a==='In Submission'?-1:b==='In Submission'?1:b-a).forEach(y=>{ $list.append(`<h3 class="publication-year">${y}</h3>`);byYear[y].forEach(p=>$list.append(genPubHTML(p)));});
-  await Promise.allSettled(subset.map(async p=>{const stars=await fetchGitHubStars(p.git);const cites=await fetchSSCitations(p);updateMeta(p,stars,cites);}));
-  $('.publication-filter').removeClass('active');$(`.publication-filter[data-filter="${filter}"]`).addClass('active');
+  }
 }
 
-/* ------------------- update meta line */
+/* ------------------------------------------------------------------
+   4. Rendering
+------------------------------------------------------------------*/
+async function renderPublications(filter = "highlights") {
+  const $list = $("#publications-list").empty();
+
+  const subset = publications.filter((p) =>
+    filter === "highlights" ? p.isHighlight
+    : filter === "published" ? p.published === "published"
+    : true);
+
+  /* group by year */
+  const byYear = subset.reduce((m, p) => {
+    const y = p.year === "In Submission" ? "In Submission" : p.year;
+    (m[y] ||= []).push(p);
+    return m;
+  }, {});
+
+  Object.keys(byYear)
+    .sort((a, b) => a === "In Submission" ? -1 : b === "In Submission" ? 1 : b - a)
+    .forEach((y) => {
+      $list.append(`<h3 class="publication-year">${y}</h3>`);
+      byYear[y].forEach((p) => $list.append(genPubHTML(p)));
+    });
+
+  // Load local BibTeX data
+  await loadLocalBibTeX();
+
+  await Promise.allSettled(subset.map(async (p) => {
+    const stars = await fetchGitHubStars(p.githubRepo);
+    const cites = await fetchSSCitations(p);
+    updateMeta(p, stars, cites);
+  }));
+
+  $(".publication-filter").removeClass("active");
+  $(`.publication-filter[data-filter="${filter}"]`).addClass("active");
+}
+
+/* ------------------------------------------------------------------
+   5. Meta line (stars + citations)
+------------------------------------------------------------------*/
 function updateMeta(p, stars, cites) {
   const $el = $(`#meta-${cssSafe(p.title)}`);
   if (!$el.length) return;
 
   const parts = [];
 
-  // citation badge (only if we have a positive count)
+  // citation badge
   if (cites && cites.count > 0) {
-    const first = cites.ids[0] || ""; // may be empty if came from title search
+    const first = cites.ids[0] || "";
     parts.push(
-      `<a href="#" onclick="showBibtex(event,this)" class="cite-link" data-corpusid="${first}" data-title="${p.title}" title="Show BibTeX">` +
+      `<a href="#" onclick="showBibtex(event,this)" class="cite-link" ` +
+      `data-corpusid="${first}" data-title="${p.title}" data-year="${p.year}" title="Show BibTeX">` +
         `${citationSVG} <span class="cite-number">${cites.count}</span>` +
       `</a>`
     );
   }
 
-  // github stars
-  if (p.git && stars > 0) {
+  // GitHub stars
+  if (p.githubRepo && stars > 0) {
     parts.push(
-      `<a href="https://github.com/${p.git}" target="_blank" class="star-count" title="GitHub Stars">` +
+      `<a href="https://github.com/${p.githubRepo}" target="_blank" class="star-count" title="GitHub Stars">` +
         `<i class="fas fa-star"></i> ${stars}` +
       `</a>`
     );
@@ -91,143 +300,168 @@ function updateMeta(p, stars, cites) {
   $el.html(parts.join(" "));
 }
 
-/* --------------- HTML skeleton for one card */
-function genPubHTML(p){const id=cssSafe(p.title);const link=p.projLink||p.arxivLink||p.paperLink;const img=p.isVid?`<video src="${p.img}" controls autoplay loop muted></video>`:`<img src="${p.img}" alt="${p.title}">`;
-  return `<div class="publication-item"><div class="pub-image">${img}</div><div class="pub-details"><div class="pub-title"><a href="${link}" target="_blank">${p.title}</a></div><div class="pub-authors">${p.authors}</div><div class="pub-venue">${p.venue}</div><div class="pub-links">${p.paperLink?`<a href="${p.paperLink}" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>`:''}${p.projLink?` <a href="${p.projLink}" target="_blank"><i class="fas fa-globe"></i> Project</a>`:''}${p.codeLink?` <a href="${p.codeLink}" target="_blank"><i class="fas fa-code"></i> Code</a>`:''}${p.arxivLink?` <a href="${p.arxivLink}" target="_blank"><i class="fas fa-archive"></i> arXiv</a>`:''}</div><div class="pub-tldr"><strong>TL;DR:</strong> ${p.tldr}</div><div class="pub-stars" id="meta-${id}"></div></div></div>`;}
+/* ------------------------------------------------------------------
+   6. Card template
+------------------------------------------------------------------*/
+function genPubHTML(p) {
+  const id = cssSafe(p.title);
+  const link = p.project || p.arxiv || p.paper;
+  const img  = p.isVideo
+    ? `<video src="${p.img}" controls autoplay loop muted></video>`
+    : `<img src="${p.img}" alt="${p.title}">`;
 
-/* ------------------------- helpers */
-function cssSafe(s){return s.replace(/[^a-z0-9]/gi,'_');}
-function filterPublications(f){renderPublications(f);}  
-function toggleTheme(){document.body.classList.toggle('dark-theme');document.querySelector('.theme-toggle i').className=document.body.classList.contains('dark-theme')?'fas fa-sun':'fas fa-moon';}
+  return `
+  <div class="publication-item">
+    <div class="pub-image">${img}</div>
+    <div class="pub-details">
+      <div class="pub-title"><a href="${link}" target="_blank">${p.title}</a></div>
+      <div class="pub-authors">${p.authors}</div>
+      <div class="pub-venue">${p.venue}</div>
+      <div class="pub-links">
+        ${p.paper   ? `<a href="${p.paper}"   target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>`   : ""}
+        ${p.project ? ` <a href="${p.project}" target="_blank"><i class="fas fa-globe"></i> Project</a>` : ""}
+        ${p.code    ? ` <a href="${p.code}"    target="_blank"><i class="fas fa-code"></i> Code</a>`    : ""}
+        ${p.arxiv   ? ` <a href="${p.arxiv}"   target="_blank"><i class="fas fa-archive"></i> arXiv</a>`  : ""}
+      </div>
+      <div class="pub-tldr"><strong>TL;DR:</strong> ${p.tldr}</div>
+      <div class="pub-stars" id="meta-${id}"></div>
+    </div>
+  </div>`;
+}
 
-/* --------------------- BibTeX modal handler (runs once) */
-(function initBibtexModal(){
-  const start = () => {
-    const modal   = document.getElementById('bibtex-modal');
-    const pre     = document.getElementById('bibtex-text');
-    const closeBt = document.getElementById('bibtex-close');
-    const copyBt  = document.getElementById('bibtex-copy');
-    if (!modal || !pre || !closeBt || !copyBt) {
-      console.warn('BibTeX modal elements missing — did you add the HTML snippet?');
-      return;
-    }
-
-    async function fetchBibtex(cid) {
+/* ------------------------------------------------------------------
+   7. Inline BibTeX expander (enhanced with local support)
+------------------------------------------------------------------*/
+if (typeof window !== 'undefined') {
+  (function () {
+    async function bibById(id) {
       try {
-        const url = `https://api.semanticscholar.org/graph/v1/paper/CorpusId:${cid}?fields=citationStyles`;
-        const { citationStyles = {} } = await (await fetch(url)).json();
-        return citationStyles.bibtex || await (await fetch(`https://www.semanticscholar.org/CorpusId:${cid}.bib`)).text();
-      } catch { return null; }
-    }
-
-    // Inline click handler now attached to each badge via updateMeta
-function getBibCache(k){ return getCache(`bib_${k}`); }
-function setBibCache(k,v){ setCache(`bib_${k}`, v); }
-    
-  window.showBibtex = async (evt, el) => {
-    evt.preventDefault();
-
-    pre.textContent = 'Loading BibTeX …';
-    modal.hidden = false;
-
-    let bib = 'BibTeX unavailable';
-    let cid = el.dataset.corpusid;
-
-    async function fetchBib(cid) {
-      try {
-        const url = `https://api.semanticscholar.org/graph/v1/paper/CorpusId:${cid}?fields=citationStyles`;
-        const { citationStyles = {} } = await (await fetch(url)).json();
-        return citationStyles.bibtex || await (await fetch(`https://www.semanticscholar.org/CorpusId:${cid}.bib`)).text();
-      } catch { return null; }
-    }
-
-    if (cid) {
-      bib = await fetchBib(cid) || bib;
-    } else {
-      const title = el.dataset.title;
-      if (title) {
-        try {
-          const search = `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(title)}&limit=1&fields=corpusId`;
-          const { data = [] } = await (await fetch(search)).json();
-          cid = data[0]?.corpusId;
-          if (cid) bib = await fetchBib(cid) || bib;
-        } catch {}
-      }
-    }
-
-    pre.textContent = bib;
-    copyBt.textContent = 'Copy to clipboard';
-  };
-
-  closeBt.onclick = () => { modal.hidden = true; };
-
-    copyBt.onclick = () => {
-    const text = pre.textContent;
-    if (!text) return;
-    if (navigator.clipboard?.writeText) {
-      navigator.clipboard.writeText(text).then(() => {
-        copyBt.textContent = 'Copied!';
-        setTimeout(() => (copyBt.textContent = 'Copy to clipboard'), 1500);
-      });
-    } else {
-      const range = document.createRange();
-      range.selectNodeContents(pre);
-      const sel = window.getSelection();
-      sel.removeAllRanges(); sel.addRange(range);
-    }
-  };
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', start, { once: true });
-  } else {
-    start();
-  }
-})();
-
-/* ---------- inline BibTeX expander ---------------- */
-(function () {
-
-    async function bibById(id){
-      try{
-        const api=`https://api.semanticscholar.org/graph/v1/paper/CorpusId:${id}?fields=citationStyles`;
+        const api = `https://api.semanticscholar.org/graph/v1/paper/CorpusId:${id}?fields=citationStyles`;
         const { citationStyles = {} } = await (await fetch(api)).json();
         return citationStyles.bibtex ||
                await (await fetch(`https://www.semanticscholar.org/CorpusId:${id}.bib`)).text();
-      }catch{ return null; }
+      } catch { return null; }
     }
-  
-    async function bibByTitle(title){
-      try{
-        const s=`https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(title)}&limit=1&fields=corpusId`;
+
+    async function bibByTitle(title) {
+      try {
+        const s = `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(title)}&limit=1&fields=corpusId`;
         const { data = [] } = await (await fetch(s)).json();
         const cid = data[0]?.corpusId;
         return cid ? bibById(cid) : null;
-      }catch{ return null; }
+      } catch { return null; }
     }
-  
-    /* called by the onclick set in updateMeta */
+
+    async function getBibTeX(title, year, corpusId) {
+      // First try local BibTeX
+      await loadLocalBibTeX();
+      
+      if (localBibTeXData) {
+        // Try by corpus ID first
+        if (corpusId) {
+          const localBib = findBibTeXByCorpusId(corpusId);
+          if (localBib) {
+            console.log('Found BibTeX in local file by corpus ID');
+            return localBib;
+          }
+        }
+        
+        // Try by title
+        const localBib = findBibTeXByTitle(title, year);
+        if (localBib) {
+          console.log('Found BibTeX in local file by title');
+          return localBib;
+        }
+      }
+      
+      // Do not fallback to API
+      console.log('No BibTeX found in local file');
+      return 'BibTeX unavailable (not found in local file)';
+    }
+
+    // global handler attached via onclick
     window.showBibtex = async (e, link) => {
       e.preventDefault();
       const card = link.closest('.publication-item');
       if (!card) return;
-  
-      // toggle if we already inserted one
+
       let pre = card.querySelector('.bibtex-inline');
-      if (pre){ pre.hidden = !pre.hidden; return; }
-  
+      let btn = card.querySelector('.bibtex-copy');
+      if (pre) { pre.hidden = btn.hidden = !pre.hidden; return; }
+
       pre = document.createElement('pre');
       pre.className = 'bibtex-inline';
-      pre.textContent = 'Fetching BibTeX …';
+      pre.textContent = 'Loading BibTeX …';
       card.querySelector('.pub-details').appendChild(pre);
-  
-      const id  = link.dataset.corpusid;
-      const bib = id ? await bibById(id) : await bibByTitle(link.dataset.title);
-      pre.textContent = bib || 'BibTeX unavailable';
+
+      btn = document.createElement('button');
+      btn.className = 'bibtex-copy';
+      btn.textContent = 'Copy';
+      card.querySelector('.pub-details').appendChild(btn);
+
+      btn.onclick = () => {
+        navigator.clipboard.writeText(pre.textContent).then(() => {
+          setTimeout(() => { pre.hidden = btn.hidden = true; }, 500);
+        });
+      };
+
+      const title = link.dataset.title;
+      const year = link.dataset.year;
+      const corpusId = link.dataset.corpusid;
+      
+      const cacheKey = corpusId
+        ? `bib_${corpusId}`
+        : `bib_t_${title.toLowerCase()}`;
+      const cached = getCache(cacheKey);
+      if (cached) { pre.textContent = cached; return; }
+
+      const bib = await getBibTeX(title, year, corpusId);
+      // Remove BibTeX comments (lines starting with %)
+      const bibNoComments = bib
+        .split('\n')
+        .filter(line => !/^\s*%/.test(line))
+        .join('\n');
+      setCache(cacheKey, bibNoComments);
+      pre.textContent = bibNoComments;
     };
-  
   })();
-  
+}
+
+/* ------------------------------------------------------------------
+   8. CSS hooks  (add once to your stylesheet)
+------------------------------------------------------------------*/
+/*
+.bibtex-inline{
+  background:var(--secondary-color,#f8fafc);
+  padding:.6rem .8rem;
+  margin-top:.6rem;
+  white-space:pre-wrap;
+  border-left:3px solid var(--primary-color);
+  font-size:.85em;
+  border-radius:4px;
+}
+.bibtex-copy{
+  margin:.4rem 0 0;
+  padding:.25rem .7rem;
+  font-size:.75em;
+  cursor:pointer;
+}
+*/
+
+/* ------------------------------------------------------------------
+   9. Utilities + Node export
+------------------------------------------------------------------*/
+function filterPublications(f) { renderPublications(f); }
+
+function toggleTheme() {
+  document.body.classList.toggle('dark-theme');
+  document.querySelector('.theme-toggle i').className =
+    document.body.classList.contains('dark-theme') ? 'fas fa-sun' : 'fas fa-moon';
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = { publications };
+}
 
 // Adding Publications
 
@@ -261,7 +495,7 @@ addPublication(
     "", // github-repo-name
     "Visual Jenga is a new scene understanding task where the goal is to remove objects one by one from a single image while keeping the rest of the scene stable. We introduce a simple baseline that uses a large inpainting model to decide the removal order.",
     "2025",
-    "pre-print",
+    "NeurIPS 2025",
     true,
     false,
     ["277349597"]);
@@ -280,7 +514,9 @@ addPublication(
     "2025",
     "pre-print",
     false,
-    false
+    false,
+    [],
+    "Spotlight"
 );
 
 addPublication(
@@ -419,10 +655,6 @@ addPublication(
     true,
     true,
 );
-
-
-
-
 
 addPublication(
     "./stylitgan/bed1.mp4",
