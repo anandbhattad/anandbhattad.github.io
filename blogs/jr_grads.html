@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>So You Want to Be an Academic? What I Wish I Knew Early in Graduate School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-text: #1a1a1a;
+            --secondary-text: #4a5568;
+            --accent-blue: #2563eb;
+            --light-gray: #f7fafc;
+            --border-light: #e2e8f0;
+            --highlight-bg: #eff6ff;
+            --code-bg: #1e293b;
+        }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 21px;
+            line-height: 1.58;
+            color: var(--primary-text);
+            background: #fff;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .article-header {
+            padding: 80px 0 60px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-text);
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: var(--secondary-text);
+            font-weight: 400;
+            margin-bottom: 32px;
+            line-height: 1.4;
+        }
+
+        .meta {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 15px;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .meta-divider {
+            width: 1px;
+            height: 16px;
+            background: #d1d5db;
+        }
+
+        .article-content {
+            padding: 60px 0;
+        }
+
+        .lead {
+            font-size: 26px;
+            line-height: 1.48;
+            color: var(--secondary-text);
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--primary-text);
+            line-height: 1.25;
+            margin: 56px 0 24px 0;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary-text);
+            line-height: 1.3;
+            margin: 40px 0 16px 0;
+        }
+
+        p {
+            margin-bottom: 24px;
+            line-height: 1.58;
+        }
+
+        .section-intro {
+            font-size: 23px;
+            line-height: 1.52;
+            color: var(--secondary-text);
+            margin-bottom: 32px;
+        }
+
+        .figure {
+            margin: 48px 0;
+            background: var(--light-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .figure-content {
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: var(--secondary-text);
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .figure-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-blue);
+            border-radius: 8px;
+            opacity: 0.1;
+        }
+
+        .figure-caption {
+            padding: 20px 24px;
+            background: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--secondary-text);
+        }
+
+        .figure-caption strong {
+            color: var(--primary-text);
+            font-weight: 600;
+        }
+
+        .callout {
+            background: var(--highlight-bg);
+            border-left: 4px solid var(--accent-blue);
+            padding: 24px 28px;
+            margin: 32px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 19px;
+            line-height: 1.6;
+        }
+
+        .quote-block {
+            font-size: 28px;
+            font-style: italic;
+            text-align: center;
+            color: var(--primary-text);
+            margin: 48px 0;
+            padding: 0 40px;
+            line-height: 1.4;
+            position: relative;
+        }
+
+        .quote-block::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -16px;
+            font-size: 64px;
+            color: var(--accent-blue);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        .highlight-section {
+            background: var(--code-bg);
+            color: #f1f5f9;
+            padding: 40px 32px;
+            margin: 56px -24px;
+            border-radius: 16px;
+            font-size: 19px;
+            line-height: 1.6;
+        }
+
+        .highlight-section h2 {
+            color: #f1f5f9;
+            margin-top: 0;
+            margin-bottom: 24px;
+            font-size: 28px;
+        }
+
+        .highlight-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlight-section li {
+            margin-bottom: 20px;
+            padding-left: 28px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .highlight-section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 24px 28px;
+            margin: 32px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box h2 {
+            color: #92400e;
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        .warning-box p {
+            color: #92400e;
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+
+        .newsletter-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 48px 40px;
+            margin: 56px -24px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .newsletter-cta h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .newsletter-cta p {
+            margin-bottom: 24px;
+            opacity: 0.9;
+            font-size: 18px;
+        }
+
+        .cta-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .tags {
+            margin-top: 56px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: var(--light-gray);
+            color: var(--secondary-text);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .tag:hover {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        .footer {
+            margin-top: 80px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+        }
+
+        .footer p {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--secondary-text);
+            margin-bottom: 0;
+        }
+
+        .toc {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 32px;
+            margin: 40px 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .toc h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-text);
+            margin-bottom: 20px;
+            margin-top: 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            columns: 2;
+            column-gap: 32px;
+        }
+
+        .toc li {
+            break-inside: avoid;
+            margin-bottom: 12px;
+        }
+
+        .toc a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--primary-text);
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-blue);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.1s ease;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .title {
+                font-size: 36px;
+                line-height: 1.2;
+            }
+
+            .subtitle {
+                font-size: 20px;
+            }
+
+            body {
+                font-size: 19px;
+            }
+
+            .lead {
+                font-size: 22px;
+            }
+
+            h2 {
+                font-size: 28px;
+                margin: 40px 0 20px 0;
+            }
+
+            .quote-block {
+                font-size: 24px;
+                padding: 0 20px;
+            }
+
+            .highlight-section {
+                margin: 40px -20px;
+                padding: 32px 24px;
+            }
+
+            .newsletter-cta {
+                margin: 40px -20px;
+                padding: 32px 24px;
+            }
+
+            .toc ul {
+                columns: 1;
+            }
+
+            .figure-content {
+                height: 260px;
+            }
+
+            .meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .meta-divider {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .article-header {
+                padding: 60px 0 40px;
+            }
+
+            .article-content {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress"></div>
+    
+    <div class="container">
+        <header class="article-header">
+            <h1 class="title">So You Want to Be an Academic?</h1>
+            <p class="subtitle">What I Wish I Knew Early in Graduate School</p>            <div class="byline">
+                <div style="font-family: 'Inter', sans-serif; font-size: 16px; color: #4a5568; font-weight: 500; margin-bottom: 12px;">
+                    by <strong style="color: #1a1a1a;"><a href="https://anandbhattad.github.io/">Anand Bhattad</a></strong>
+                </div>
+                <div style="font-family: 'Inter', sans-serif; font-size: 14px; margin-bottom: 20px; color: #6b7280;">
+                    Assistant Professor, Computer Science • Johns Hopkins University
+                </div>
+            </div>
+            <div class="meta">
+                <div class="meta-item">
+                    <span>📅 September 18, 2025</span>
+                </div>
+                <div class="meta-divider"></div>
+                <div class="meta-item">
+                    <span>⏱️ 15 min read</span>
+                </div>
+                <div class="meta-divider"></div>
+                <div class="meta-item">
+                    <span>🎓 Academic Career</span>
+                </div>
+            </div>
+        </header>
+
+        <article class="article-content">
+            <p class="lead">You are two years into your PhD, and the big question starts to creep in: <strong>Am I doing this right?</strong>  Most of the advice out there is for people at the finish line—graduating students—on job packets, interview scripts, and negotiation tactics. But there's far less for junior folks who are still deciding if the academic path is for them. This is for you. It’s what I learned (often the hard way) about work, visibility, community, and sanity—long before the job market was on the horizon.</p>
+
+            <!-- <div class="toc">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="#branding">The Reality of Institutional Branding</a></li>
+                    <li><a href="#metrics">Understanding Academic Metrics</a></li>
+                    <li><a href="#slam-dunk">The Power of Breakthrough Work</a></li>
+                    <li><a href="#advisor">Navigating Advisor Relationships</a></li>
+                    <li><a href="#territory">Finding Your Research Territory</a></li>
+                    <li><a href="#visibility">Building Academic Visibility</a></li>
+                    <li><a href="#mentorship">The Art of Seeking Advice</a></li>
+                    <li><a href="#community">Community Building as Strategy</a></li>
+                    <li><a href="#wellbeing">Mental Health & Academic Life</a></li>
+                </ul>
+            </div> -->
+
+            <h2 id="branding">The Reality of Institutional Branding</h2>
+            
+            <p class="section-intro">Let's start with the hard truth: your institution's brand and your advisor's reputation matter.</p>
+            
+            <p>I was fortunate to be at a top CS school (UIUC) and work with a famous advisor, and that combination absolutely opened doors for me. The "old boys' club" effect is real. The network is sticky: elite schools hire from each other more, which reinforces their dominance. This isn't just a feeling; the data backs it up. A disproportionate share of faculty jobs go to graduates of a small handful of universities (the proverbial "Big 4": MIT, Stanford, Berkeley, CMU).</p>
+
+            <div class="figure">
+                <img src="./images/faculty_hiring_networks.jpeg" alt="Faculty Hiring Networks in Computer Science" style="width: 100%; height: auto;">
+                <div class="figure-caption">
+                    <strong>Figure 1:</strong> Faculty hiring networks in computer science. The thickness of the arrows indicates the volume of faculty hired between institutions, showing a dense, hierarchical system where a few universities produce the most faculty. <em>(Figure from Clauset, A., Arbesman, S., & Larremore, D. B. (2015). Systematic inequality and hierarchy in faculty hiring networks. Science Advances)</em>
+                </div>
+            </div>
+
+            <!-- <div class="quote-block">
+                You don't compete on their terms; you change the game.
+            </div> -->
+
+            <p>It's easy to look at this and feel like the game is rigged before it even starts. So, what do you do if you're not in that system? <strong>You don't compete on their terms; you change the game.</strong> The counter-strategy to prestige is to become the indispensable expert in your own niche. Find a new problem, a novel method, or a unique dataset and become the person people associate with it. If you can create an intellectual space where you hold the definitive edge, your prestige will follow your work, not the other way around.</p>
+
+            <h2 id="metrics">Understanding Academic Metrics: They Matter</h2>
+            
+            <p class="section-intro">Now, another hard truth: Citations and your h-index matter. You will hear different views, but in my experience, they do. Just not the way you think.</p>
+
+            <p>When I asked mentors about going on the market, several of them immediately opened my Google Scholar page. They weren't looking at the raw numbers; they were looking for my productivity and a trend—the informal "hockey stick" (a slow start followed by a steep upward curve). The trajectory of that curve matters far more than any single number. Is it flat, or is it starting to climb?</p>
+
+            <div class="figure">
+                <img src="./images/hockey_stick.png" alt="Ideal Citation Growth" style="width: 100%; height: auto;">
+                <div class="figure-caption">
+                    <strong>Figure 2:</strong> Example citation trajectories for three hypothetical researchers. The "hockey stick" pattern (blue line) shows slow initial growth followed by steep acceleration, which hiring committees prefer over flat trends (red line) or even consistently high output without growth (gray line).
+                </div>
+            </div>
+
+                <p><strong>The most powerful thing to understand is that you don't directly control the numbers; you control the work that earns attention.</strong> This is where many go wrong. Being a "paper machine" can backfire if your work is consistently incremental. Incremental steps are a necessary part of research, but you cannot build a career on them alone.</p>
+
+            <p>Aim to produce work that opens a new door for others to walk through. I've heard from several senior colleagues who've reviewed candidates with stellar numbers (paper counts and metrics) but passed because the work itself lacked substance.</p>
+
+            <p>So, as you plan your next project, ask a different question: not just "Will this get published?" but <strong>"What new question will this allow someone else to ask?"</strong></p>
+
+            <h2 id="slam-dunk">Aim for a "Slam Dunk," Paper Not Just Singles
+            </h2>
+
+            <p class="section-intro">In graduate school, it can feel like the goal is to accumulate as many publications as possible. But impact isn't always cumulative. Sometimes, it's exponential.</p>
+
+            <p>One significant, "slam dunk" paper can change your entire trajectory. I saw this firsthand. Late in my PhD, one paper suddenly put me on the radar for competitive post-PhD roles. At TTIC, a couple of subsequent papers added coherence and momentum, creating a clear story around my research. People remembered those three "anchor" projects far more than they would have a longer list of smaller, incremental wins.</p>
+
+            <div class="figure">
+                <img src="./images/freeman_paper_impact.png" alt="Ideal Citation Growth" style="width: 100%; height: auto;">
+                <div class="figure-caption">
+                    <strong>Figure 3:</strong> Bill Freeman's paper impact on your career showing how a few high-impact papers ("slam dunks") can create exponential career growth compared to incremental or ok publications.
+                </div>
+            </div>
+
+            <p>This often means resisting the urge to publish quickly by "slicing a project thin." It requires patience and sometimes, a tough call. My PhD advisor, looking at my timeline, was ready for me to graduate. But I had a gut feeling that one project needed more time to reach its full potential. I pushed to stay for one more year, and that decision led to what is arguably my most significant work.       </p>
+                
+            <p>Of course, timing matters. Some people find their defining project early, and for others, it takes longer. Both paths are perfectly fine. The key is to maintain an ambitious mindset. I've always loved my PhD advisor's provocative slogan, which he used to push his students: “What problem do I need to solve to become famous?” </p>
+         
+
+            <div class="quote-block">
+                What problem do I need to solve to become famous? ~ David Forsyth
+            </div>
+
+            <p>While "famous" might sound grandiose, the underlying question is a powerful strategic tool, What problem, if you solved it, would make an undeniable impact and open up a new field of inquiry? That's your slam dunk.</p>
+
+            <h2 id="territory">Fear Getting Scooped? Good! It’s a Signal.</h2>
+            
+            <p class="section-intro">"What if my idea gets scooped?" The fear is natural. We all feel it. But I've learned to stop treating that fear as a source of anxiety and start using it as a strategic signal.</p>
+
+            <p>If an idea feels easily scoopable, it's because you're in a crowded field where everyone is playing the same game. The signal is telling you to make a choice: either become the fastest executor in a head-to-head race, or change the game completely.</p>
+
+            <p>I had to make this choice. I knew I wasn't the fastest coder. I knew I wouldn't win a race to publish. So I decided to stop competing on those terms and instead play on my own turf.</p>
+
+            <p>For me, that meant focusing on niche but important problems where I could build specific, compounding advantages over time. Your turf is the hill where you hold a unique edge: it could be a dataset you've collected, a mathematical framing from your unique background, a higher standard for evaluation, or simply your taste in problems.</p>
+
+            <div class="figure">
+                <img src="./images/fear_getting_scooped.png" alt="Fear Getting Scooped" style="width: 100%; height: auto;">
+                <div class="figure-caption">
+                    <strong>Figure 4:</strong> Fear of getting scooped? Good! It's an invitation to stop competing on crowded terms and start creating your own unique playing field where your advantages truly compound. (Image generated from Google's Nano Banana)
+                </div>
+            </div>
+
+            
+                <p><strong>Once you've found your turf, own it.</strong> Harden your idea. Raise the bar on your experiments so high that casual competitors won't bother. Make your work definitive. Don't let the fear of being scooped push you into frantic, shallow work. Let it guide you to the deep, defensible problems where you can build something that lasts.</p>
+                
+            <h2 id="advisor">Talk To Your Advisor—Directly and Often
+            </h2>
+            
+            <p class="section-intro">Your PhD advisor is the single most important guide on your academic journey, but they aren't a mind reader.</p>
+
+            <p>If you want their help, you need to be direct, specific, and strategic. Have honest conversations about your goals. Don't wait for them to ask. I found it useful to be explicit: <strong>"My goal is a top academic job after I graduate. Looking at my current trajectory, what are the one or two things I should focus on in the next six months to improve my chances?"</strong></p>
+
+            <p>Often, the answer I got from my advisor, David, was simply: "Good Research, Good Research, Good Research." While it sounds obvious, there's a powerful signal in that repetition. I learned to "read between the lines" and translate that advice into concrete actions: ask good research questions, raise the bar on my evaluations, write with more clarity, and be prepared to defend every choice.</p>
+
+            <div class="figure">
+                <img src="./images/advisor.png" alt="Fear Getting Scooped" style="width: 100%; height: auto;">
+                <div class="figure-caption">
+                    <strong>Figure 5:</strong> Think of your advisor as a lighthouse: essential for guidance. But you're in the boat, and it's up to you to send clear signals to get the specific direction you need. Communicate directly and often for a successful PhD journey! (Image generated from Google's Nano Banana)
+                </div>
+            </div>
+
+            <p>Here’s a tactic that worked for me: I scheduled dedicated feedback meetings after specific milestones, like a paper submission. The context was fresh, the work was a complete package, and we could have a focused conversation about its strengths and weaknesses. This is far more effective than trying to get vague feedback during a random weekly meeting. <strong>Create events that force constructive feedback.</strong>
+            </p>
+
+            <!-- <div class="callout">
+                <p><strong>Pro strategy:</strong> Schedule dedicated feedback meetings after specific milestones, like a paper submission. The context is fresh, the work is a complete package, and you can have a focused conversation about its strengths and weaknesses. This is far more effective than trying to get vague feedback during a random weekly meeting.</p>
+            </div> -->
+
+
+                
+                <h2 id="mentorship">Ask for Advice (Even When You Think You Know)
+                </h2>
+            
+                <p class="section-intro">One of the biggest mistakes you can make in grad school is to stop seeking advice once you feel confident.</p>
+    
+                <p>People are generous with their time and enjoy helping. Asking for their input is a powerful strategy, but it requires the right approach. This isn't about asking, "What should I do?" Instead, go to mentors, committee members, or senior colleagues with a fully formed plan and ask for a critique.</p>
+    
+                <p>Try this framing: <strong>"Here's my plan for my next project. I'd love to get your read on it. Do you see any blind spots or potential pitfalls I might be missing?"</strong></p>
+
+    
+                <p>Often, you'll get a new angle or a crucial sanity check that strengthens your work. But the real benefit is relational. When you ask for advice, you're not just getting information; you're inviting someone to be a part of your journey. People become invested in the success of those they have helped guide.</p>
+
+                <div class="figure">
+                    <img src="./images/ask_for_advice.png" alt="Ask for Advice" style="width: 100%; height: auto;">
+                    <div class="figure-caption">
+                        <strong>Figure 6:</strong> Why ask for advice even when you think you know? Because others see the blind spots you can't, and offer new angles you haven't considered. You're not just getting input; you're inviting others to invest in your journey, turning colleagues into advocates and mentors into champions. (Image generated from Google's Nano Banana)
+                    </div>
+                </div>
+    
+                <p>Over time, these mentors don't just give you advice; they become your champions, connecting you to opportunities and advocating for you when you're not in the room.</p>
+
+            <h2 id="visibility">Building Academic Visibility</h2>
+            
+            <p class="section-intro">Good work is necessary, but it is not sufficient. In academia, you have to ensure your work gets seen, and that requires deliberate, continuous action.</p>
+
+            <p>Don't wait for an invitation or external validation; create your own opportunities. Attend talks. Be the person who asks thoughtful questions. Be the person who follows up with speakers. Be the person whose work is distinct, not just a yet another follow up of what's currently trending. Connections don't just happen; you build them. They are what carry your ideas—and your reputation—across groups.</p>
+
+            <h3>Master the Art of the Question</h3>
+            
+            <p>Every talk you attend is an opportunity. Treat the Q&A session as your training ground. The goal isn't to show off or ask a long, rambling question that's really a comment. The goal is to listen carefully and ask a crisp, honest question that shows you're engaged.</p>
+
+            <p>Doing this consistently achieves two things. First, it builds your visibility and reputation as a sharp, constructive thinker. Second, it sharpens your own ability to see the structure in problems—a skill that will pay dividends in your own research.</p>
+
+            <div class="figure">
+                <img src="./images/visibility.png" alt="Academic Visibility" style="width: 100%; height: auto;">
+                <div class="figure-caption">
+                    <strong>Figure 7:</strong> Don't wait for the spotlight – build your own! Every thoughtful question, every connection made, every unique idea, and every practiced talk is a step up this staircase to your academic visibility. Keep climbing! (Image generated from Google's Nano Banana)
+                </div>
+            </div>
+
+            <h3>Giving Talks is an Art</h3>
+            
+            <p>I still remember giving what was probably my worst-ever talk during my CMU MISC seminar in 2021. It was rushed, confusing, and I felt terrible afterward. But I'm incredibly glad that failure happened then, and not later during a high-stakes job talk.</p>
+
+            <p>Giving talks is an art, and like any craft, it improves only with practice. Invite yourself to present at university reading groups or lab meetings. Those early, lower-stakes talks will give you perspective, force you to simplify your message without dumbing it down, and expose your weak points when there's still time to fix them. You do not want your job talk to be your first time in front of a serious, external audience.</p>
+
+
+
+            <h2 id="community">Build the Community You Want to Be a Part Of </h2>
+
+            Service is often seen as a chore, a box to check. But it can be one of the most rewarding parts of your academic life—if you do it right. I often see people taking on service roles just because they feel they "should." or because it looks good on a CV. This is a mistake. Service should be about building the community you want to be a part of.
+            
+            <div class="quote-block">
+                If the community doesn't exist, build it. ~ Sara Beery
+            </div>
+
+            <p>That line from Sara Beery deeply resonates with me. During the isolation of COVID, I was frustrated that the same handful of big names were invited to every virtual seminar, while junior researchers struggled for visibility. So, I started an early-career speaker series at UIUC. Our first lineup included a dozen of the field's rising stars, many of whom are now leading their own labs.</p>
+
+            <p>That series continued for years and eventually became a for-credit seminar. It helped others, and it taught me how to create a surface area for new ideas. Later, the "Scholars and Big Models" workshop grew from a genuine question I had after reading a DeepMind paper that flexed its enormous GPU budget: How can academics possibly do impactful research without that scale?</p>
+
+
+            <p>I started by emailing a few senior faculty. That single question turned into a multi-year workshop series. Today, I often meet people who know me from those events. While I still want to be known for my science, I've learned that community building is part of the work—especially when it's driven by genuine curiosity, not by CV optics.</p>
+
+            <div class="figure">
+                <img src="./images/community.png" alt="Building Community" style="width: 100%; height: auto;">
+                <div class="figure-caption">
+                    <strong>Figure 8:</strong> True service isn't about checking a box; it's about cultivation. When you invest your genuine curiosity and ideas, you don't just participate in a community—you grow the very community you wish existed, creating a flourishing space for new connections, visibility, and collaboration. Make your service an investment!(Image generated from Google's Nano Banana)
+                </div>
+            </div>
+        
+            <As>As my father says: <strong>"True service isn't a tax on your time; it's an investment in the world you want to live and work in."</strong> When you align service with communities you wish existed or questions you genuinely want to explore, it becomes the most rewarding work you do.</p>
+
+            <h2 id="wellbeing">Mental Health and Imposter Feelings</h2>
+            
+            <p class="section-intro">A PhD is a marathon that can test your mental health. It's easy to feel small, especially when you see flashy results from other labs.</p>
+
+            <p>The feeling that you don't belong—that you're an impostor—is nearly universal. Recognize those feelings for what they are: not evidence that you're an impostor, but a natural byproduct of working on ambitious problems surrounded by talented people. Don't let that feeling derail you. Instead, reframe the game.</p>
+
+            <p>Pick problems where scale isn’t the only lever; focus on areas where your unique taste, careful design, or rigorous measurement can become your edge. When you find those problems, your confidence will grow because you're playing to your strengths, not trying to out-muscle others.</p>
+
+            <p>Most importantly, protect your well-being. Block out time for rest. Learn to say "no" when you must. And on the hard days, read a running list of your small wins so you don't forget you're making progress. </p>
+
+            <h2 id="caveat">A Necessary Caveat: Survivorship Bias  </h2>
+
+            <p>This was my path, not a universal formula. Timing, luck, and privilege played a significant role. I had specific collaborators, contexts, and constraints that you won't. Please treat these ideas as heuristics, not as rigid rules. <strong>Your path will and should look different.</strong></p>
+
+            <h2 id="conclusion">Final Thoughts</h2>
+            <p>After all this advice, the most important thing is to believe in yourself and focus on what you find genuinely exciting. You control the inputs: the clarity of your ideas, the care in your execution, the generosity you show your community, and your persistence through the hard parts.                </p>
+            <p>
+                If you get those inputs right, the metrics and recognition tend to follow. But more importantly, you’ll build a body of work, a network of colleagues, and a story that you are proud to stand by. And that, ultimately, is what matters most in an academic career. </p>
