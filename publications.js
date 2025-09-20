@@ -487,7 +487,7 @@ addPublication(
     "./images/visual_jenga.gif", 
     "Visual Jenga: Discovering Object Dependencies via Counterfactual Inpainting",
     "Anand Bhattad, Konpat Preechakul, Alexei A. Efros",
-    "arXiv 2025",
+    "NeurIPS 2025",
     "https://visualjenga.github.io/static/Visual_Jenga.pdf",
     "https://visualjenga.github.io/",
     "", // code link
@@ -495,7 +495,7 @@ addPublication(
     "", // github-repo-name
     "Visual Jenga is a new scene understanding task where the goal is to remove objects one by one from a single image while keeping the rest of the scene stable. We introduce a simple baseline that uses a large inpainting model to decide the removal order.",
     "2025",
-    "NeurIPS 2025",
+    "published",
     true,
     false,
     ["277349597"]);
