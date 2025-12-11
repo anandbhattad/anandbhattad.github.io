@@ -483,6 +483,102 @@ if (typeof module !== 'undefined') {
 // );
 
 // Adding Publications
+
+addPublication(
+  "./images/gravity_eval.png",
+  "Objects in Generated Videos Are Slower Than They Appear: Models Suffer Sub-Earth Gravity and Don’t Know Galileo’s Principle...for now",
+  "Varun Varma Thozhiyoor, Shivam Tripathi, Venkatesh Babu Radhakrishnan, Anand Bhattad",
+  "pre-print",
+  "https://arxiv.org/abs/2512.02016",
+  "https://gravity-eval.github.io/",
+  "", // code link
+  "https://arxiv.org/abs/2512.02016",
+  "", // github-repo-name
+  "Explicitly conditioning imitation learning policies on camera extrinsics prevents reliance on background visual shortcuts, ensuring robustness against shifts in camera placement and workspace geometry.",
+  "2026",
+  "pre-print",
+  false,
+  false,
+  [],
+  ""
+);
+
+addPublication(
+  "./images/kyc.gif",
+  "Do You Know Where Your Camera Is? View-Invariant Policy Learning with Camera Conditioning",
+  "Tianchong Jiang, Jingtian Ji, Xiangshan Tan, Jiading Fang, Anand Bhattad, Vitor Guizilini, Matthew R. Walter",
+  "pre-print",
+  "https://arxiv.org/abs/2510.02268",
+  "https://ripl.github.io/know_your_camera/",
+  "https://github.com/ripl/CamPoseOpensource", // code link
+  "https://arxiv.org/abs/2510.02268",
+  "CamPoseOpensource", // github-repo-name
+  "Explicitly conditioning imitation learning policies on camera extrinsics prevents reliance on background visual shortcuts, ensuring robustness against shifts in camera placement and workspace geometry.",
+  "2026",
+  "pre-print",
+  false,
+  false,
+  [],
+  ""
+);
+
+addPublication(
+  "./images/gbw_2.gif",
+  "Generative Blocks World: Moving Things Around in Pictures",
+  "Vaibhav Vavilala, Seemandhar Jain, Rahul Vasanth, D.A. Forsyth, Anand Bhattad",
+  "pre-print",
+  "https://arxiv.org/abs/2506.20703",
+  "",
+  "", // code link
+  "https://arxiv.org/abs/2506.20703",
+  "", // github-repo-name
+  "This paper introduces Generative Blocks World, a method that enables high-fidelity editing of generated images by manipulating multi-scale 3D convex primitives, using a flow-based generator conditioned on depth and novel texture hints to preserve object identity and consistency.",
+  "2026",
+  "pre-print",
+  false,
+  false,
+  [],
+  ""
+);
+
+addPublication(
+  "./images/convex_decomp_2.png",
+  "Improved Convex Decomposition with Ensembling and Boolean Primitives",
+  "Vaibhav Vavilala, Florian Kluger, Seemandhar Jain, Bodo Rosenhahn, Anand Bhattad, David Forsyth",
+  "3DV 2026",
+  "https://arxiv.org/abs/2405.19569",
+  "",
+  "", // code link
+  "https://arxiv.org/abs/2405.19569",
+  "", // github-repo-name
+  "This paper introduces a novel method for representing geometry from a single RGB-D frame using an adaptive ensemble of positive and negative convex polytopes, which enables expressive carving operations through a combination of unsupervised initialization and test-time fine-tuning.",
+  "2026",
+  "published",
+  false,
+  false,
+  [],
+  ""
+);
+
+addPublication(
+  "./images/spotlight.gif",
+  "SpotLight: Shadow-Guided Object Relighting via Diffusion",
+  "Frédéric Fortier-Chouinard, Zitian Zhang, Louis-Etienne Messier, Mathieu Garon, Anand Bhattad, Jean-François Lalonde",
+  "3DV 2026",
+  "https://arxiv.org/abs/2411.18665",
+  "https://lvsn.github.io/spotlight/",
+  "https://github.com/lvsn/SpotLight", // code link
+  "https://arxiv.org/abs/2411.18665",
+  "lvsn/SpotLight", // github-repo-name
+  "SpotLight enables object relighting by using shadow guidance to control lighting conditions without requiring additional training. Builds upon our previous work ZeroComp.",
+  "2026",
+  "published",
+  false,
+  false,
+  [],
+  "Spotlight"
+);
+
 addPublication(
     "./images/visual_jenga.gif", 
     "Visual Jenga: Discovering Object Dependencies via Counterfactual Inpainting",
@@ -500,24 +596,7 @@ addPublication(
     false,
     ["277349597"]);
 
-addPublication(
-    "./images/spotlight.gif",
-    "SpotLight: Shadow-Guided Object Relighting via Diffusion",
-    "Frédéric Fortier-Chouinard, Zitian Zhang, Louis-Etienne Messier, Mathieu Garon, Anand Bhattad, Jean-François Lalonde",
-    "arXiv 2025",
-    "https://arxiv.org/abs/2411.18665",
-    "https://lvsn.github.io/spotlight/",
-    "https://github.com/lvsn/SpotLight", // code link
-    "https://arxiv.org/abs/2411.18665",
-    "lvsn/SpotLight", // github-repo-name
-    "SpotLight enables object relighting by using shadow guidance to control lighting conditions without requiring additional training. Builds upon ZeroComp (WACV 2025).",
-    "2025",
-    "pre-print",
-    false,
-    false,
-    [],
-    "Spotlight"
-);
+
 
 addPublication(
     "./images/luminet.gif",
