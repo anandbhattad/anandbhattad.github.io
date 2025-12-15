@@ -494,7 +494,7 @@ addPublication(
   "", // code link
   "https://arxiv.org/abs/2512.02016",
   "", // github-repo-name
-  "Explicitly conditioning imitation learning policies on camera extrinsics prevents reliance on background visual shortcuts, ensuring robustness against shifts in camera placement and workspace geometry.",
+  "We show a fundamental physical limitation in generative video models by designing a unit-free measurement protocol by studying relative motion to demonstrate that objects violate Galileo's principle through inconsistent, predominantly sub-earth accelerations.",
   "2026",
   "pre-print",
   false,
