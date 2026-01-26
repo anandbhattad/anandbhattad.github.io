@@ -526,7 +526,7 @@ addPublication(
   "./images/gbw_2.gif",
   "Generative Blocks World: Moving Things Around in Pictures",
   "Vaibhav Vavilala, Seemandhar Jain, Rahul Vasanth, D.A. Forsyth, Anand Bhattad",
-  "pre-print",
+  "ICLR 2026",
   "https://arxiv.org/abs/2506.20703",
   "",
   "", // code link
@@ -534,7 +534,7 @@ addPublication(
   "", // github-repo-name
   "This paper introduces Generative Blocks World, a method that enables high-fidelity editing of generated images by manipulating multi-scale 3D convex primitives, using a flow-based generator conditioned on depth and novel texture hints to preserve object identity and consistency.",
   "2026",
-  "pre-print",
+  "published",
   false,
   false,
   [],
