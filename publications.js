@@ -535,7 +535,7 @@ addPublication(
   "This paper introduces Generative Blocks World, a method that enables high-fidelity editing of generated images by manipulating multi-scale 3D convex primitives, using a flow-based generator conditioned on depth and novel texture hints to preserve object identity and consistency.",
   "2026",
   "published",
-  false,
+  true,
   false,
   [],
   ""
