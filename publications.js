@@ -507,7 +507,7 @@ addPublication(
   "./images/kyc.gif",
   "Do You Know Where Your Camera Is? View-Invariant Policy Learning with Camera Conditioning",
   "Tianchong Jiang, Jingtian Ji, Xiangshan Tan, Jiading Fang, Anand Bhattad, Vitor Guizilini, Matthew R. Walter",
-  "pre-print",
+  "ICRA 2026",
   "https://arxiv.org/abs/2510.02268",
   "https://ripl.github.io/know_your_camera/",
   "https://github.com/ripl/CamPoseOpensource", // code link
@@ -515,7 +515,7 @@ addPublication(
   "CamPoseOpensource", // github-repo-name
   "Explicitly conditioning imitation learning policies on camera extrinsics prevents reliance on background visual shortcuts, ensuring robustness against shifts in camera placement and workspace geometry.",
   "2026",
-  "pre-print",
+  "published",
   false,
   false,
   [],
