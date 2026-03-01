@@ -485,10 +485,46 @@ if (typeof module !== 'undefined') {
 // Adding Publications
 
 addPublication(
+    "path to teaser image",
+    "Generalizable Sparse-View 3D Reconstruction from Unconstrained Images",
+    "Vinayak Gupta, Chih-Hao Lin, Shenlong Wang, Anand Bhattad, Jia-Bin Huang",
+    "CVPR 2026",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Our method, GenWildSplat, reconstructs 3D scenes from sparse, unposed images with varying illumination and transient objects in a single 3-second feed-forward pass, and no per-scene optimization is required",
+    2026,
+    "published",
+   false,
+   false,
+);
+
+addPublication(
+  "./images/part_segmentation.mp4",
+  "Name That Part: 3D Part Segmentation and Naming",
+  "Soumava Paul*, Prakhar Kaushik*, Ankit Vaidya, Anand Bhattad, Alan Yuille",
+  "CVPR 2026 (Findings)",
+  "https://arxiv.org/abs/2512.18003",
+  "https://name-that-part.github.io/",
+  "", // code link,
+  "https://arxiv.org/abs/2512.18003",
+  "", // github-repo-name
+  "Our model predicts a complete set of named 3D parts by aligning part-level representations (“Partlets”) to affordance-aware natural-language descriptions.",
+  "2026",
+  "published",
+  true,
+  true,
+  [],
+  ""
+);
+
+addPublication(
   "./images/gravity_eval.png",
   "Objects in Generated Videos Are Slower Than They Appear: Models Suffer Sub-Earth Gravity and Don’t Know Galileo’s Principle...for now",
   "Varun Varma Thozhiyoor, Shivam Tripathi, Venkatesh Babu Radhakrishnan, Anand Bhattad",
-  "pre-print",
+  "CVPR 2026 (Findings)",
   "https://arxiv.org/abs/2512.02016",
   "https://gravity-eval.github.io/",
   "", // code link
@@ -496,8 +532,8 @@ addPublication(
   "", // github-repo-name
   "We show a fundamental physical limitation in generative video models by designing a unit-free measurement protocol by studying relative motion to demonstrate that objects violate Galileo's principle through inconsistent, predominantly sub-earth accelerations.",
   "2026",
-  "pre-print",
-  false,
+  "published",
+  true,
   false,
   [],
   ""
