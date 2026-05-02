@@ -1,5 +1,28 @@
 <h2>News</h2>
+<script>
+    document.addEventListener('click', e => {
+        document.querySelectorAll('details.paper-dropdown[open]').forEach(d => {
+            if (!d.contains(e.target)) d.removeAttribute('open');
+        });
+    });
+    </script>
 <div class="news-container">
+    <div class="news-item">
+        <span class="date">May 2026:</span>
+        <span class="content">
+            Recent accepted papers in 2026! Click to expand:
+            <details class="paper-dropdown">
+                <summary></summary>
+                <div class="paper-list">
+                    <div><span class="conf">ICML 2026:</span> <a href="https://arxiv.org/abs/2602.01391v1" target="_blank">Generative Relighting as a Probe</a></div>
+                    <div><span class="conf">CVPR 2026:</span> <a href="https://gravity-eval.github.io/" target="_blank">Gravity Eval</a>, <a href="https://name-that-part.github.io/" target="_blank">Name That Part</a>, <a href="https://genwildsplat.github.io/" target="_blank">GenWildSplat</a></div>
+                    <div><span class="conf">ICLR 2026:</span> <a href="https://generativeblocksworld.github.io/" target="_blank">Generative Blocks World</a></div>
+                    <div><span class="conf">ICRA 2026:</span> <a href="https://ripl.github.io/know_your_camera/" target="_blank">Know Your Camera</a></div>
+                    <div><span class="conf">3DV 2026:</span> <a href="https://lvsn.github.io/spotlight/" target="_blank">SpotLight</a>, <a href="https://arxiv.org/abs/2405.19569" target="_blank">Improved Convex Decomposition</a></div>
+                </div>
+            </details>
+        </span>
+    </div>
     <div class="news-item">
         <span class="date">Sept 2025:</span>
         <span class="content">I wrote a new blog for junior grad students aiming to become faculty: <a href="https://anandbhattad.github.io/blogs/jr_grads.html" target="_blank">"So You Want to Be an Academic? What I Wish I Knew Early in Graduate School"</a></span>

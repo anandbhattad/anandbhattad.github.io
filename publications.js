@@ -485,21 +485,25 @@ if (typeof module !== 'undefined') {
 // Adding Publications
 
 addPublication(
-    "path to teaser image",
-    "Generalizable Sparse-View 3D Reconstruction from Unconstrained Images",
-    "Vinayak Gupta, Chih-Hao Lin, Shenlong Wang, Anand Bhattad, Jia-Bin Huang",
-    "CVPR 2026",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "Our method, GenWildSplat, reconstructs 3D scenes from sparse, unposed images with varying illumination and transient objects in a single 3-second feed-forward pass, and no per-scene optimization is required",
-    2026,
-    "published",
-   false,
-   false,
+  "./images/gravity_eval.mp4",
+  "Objects in Generated Videos Are Slower Than They Appear: Models Suffer Sub-Earth Gravity and Don’t Know Galileo’s Principle...for now",
+  "Varun Varma Thozhiyoor, Shivam Tripathi, Venkatesh Babu Radhakrishnan, Anand Bhattad",
+  "CVPR 2026 (Findings)",
+  "https://arxiv.org/abs/2512.02016",
+  "https://gravity-eval.github.io/",
+  "", // code link
+  "https://arxiv.org/abs/2512.02016",
+  "", // github-repo-name
+  "We show a fundamental physical limitation in generative video models by designing a unit-free measurement protocol by studying relative motion to demonstrate that objects violate Galileo's principle through inconsistent, predominantly sub-earth accelerations.",
+  "2026",
+  "published",
+  true,
+  true,
+  [],
+  ""
 );
+
+
 
 addPublication(
   "./images/part_segmentation.mp4",
@@ -521,23 +525,22 @@ addPublication(
 );
 
 addPublication(
-  "./images/gravity_eval.png",
-  "Objects in Generated Videos Are Slower Than They Appear: Models Suffer Sub-Earth Gravity and Don’t Know Galileo’s Principle...for now",
-  "Varun Varma Thozhiyoor, Shivam Tripathi, Venkatesh Babu Radhakrishnan, Anand Bhattad",
-  "CVPR 2026 (Findings)",
-  "https://arxiv.org/abs/2512.02016",
-  "https://gravity-eval.github.io/",
-  "", // code link
-  "https://arxiv.org/abs/2512.02016",
-  "", // github-repo-name
-  "We show a fundamental physical limitation in generative video models by designing a unit-free measurement protocol by studying relative motion to demonstrate that objects violate Galileo's principle through inconsistent, predominantly sub-earth accelerations.",
-  "2026",
+  "images/genwildsplat.mp4",
+  "Generalizable Sparse-View 3D Reconstruction from Unconstrained Images",
+  "Vinayak Gupta, Chih-Hao Lin, Shenlong Wang, Anand Bhattad, Jia-Bin Huang",
+  "CVPR 2026",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "Our method, GenWildSplat, reconstructs 3D scenes from sparse, unposed images with varying illumination and transient objects in a single 3-second feed-forward pass, and no per-scene optimization is required",
+  2026,
   "published",
-  true,
-  false,
-  [],
-  ""
+ false,
+ true,
 );
+
 
 addPublication(
   "./images/kyc.gif",

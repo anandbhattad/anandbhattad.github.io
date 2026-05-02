@@ -295,3 +295,59 @@ nav a:hover {
     .pub-image img,.pub-image video{width:100%;max-width:320px;margin-inline:auto}
   }
   
+  .paper-dropdown {
+    display: inline-block;
+    margin-left: 0.4em;
+    position: relative;          /* anchor for the floating list */
+}
+
+.paper-dropdown summary {
+    list-style: none;
+    cursor: pointer;
+    display: inline-block;
+    padding: 2px 10px;
+    color: #1a73e8;
+    border: 1px solid #1a73e8;
+    border-radius: 4px;
+    background: transparent;
+    user-select: none;
+}
+.paper-dropdown summary::-webkit-details-marker { display: none; }
+
+.paper-dropdown summary::after { content: "Show papers ↓"; }
+.paper-dropdown[open] summary::after { content: "Close papers ↑"; }
+
+.paper-dropdown summary:hover {
+    background: #f0f6ff;
+}
+
+/* float the list as an overlay instead of pushing content */
+.paper-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 6px;
+    padding: 10px 14px;
+    min-width: 320px;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    line-height: 1.8;
+    white-space: nowrap;         /* keep each conference on one line */
+    z-index: 100;
+}
+
+.paper-list .conf {
+    color: #555;
+    font-weight: 500;
+    margin-right: 4px;
+}
+
+.paper-list a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+.paper-list a:hover {
+    text-decoration: underline;
+}
