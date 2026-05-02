@@ -37,8 +37,12 @@ function loadSection(sectionName) {
                 renderPublications($(this).data('filter'));
             });
 
-            // Call renderPublications with the desired filter AFTER the section loads
-            renderPublications('all'); // Show all publications by default 
+            const defaultFilter = window.innerWidth <= 768 ? 'highlights' : 'all';
+            renderPublications(defaultFilter);
+
+            // Sync the active class on the matching filter button
+            $('.publication-filter').removeClass('active');
+            $(`.publication-filter[data-filter="${defaultFilter}"]`).addClass('active');
         } else if (sectionName.toLowerCase() === 'news') {
             setupNews();
         }
@@ -48,32 +52,55 @@ function loadSection(sectionName) {
 function setupScrollableNews() {
     const container = document.querySelector('.news-container');
     const items = container.querySelectorAll('.news-item');
-    if (items.length <= 5) return;  // nothing to scroll
+    if (items.length <= 5) return;
 
-    // Measure the bottom of the 5th item relative to the container
-    const fifthItem = items[5];
-    const containerTop = container.getBoundingClientRect().top;
-    const fifthBottom = fifthItem.getBoundingClientRect().bottom;
-    const height = fifthBottom - containerTop;
+    // On mobile, let CSS handle it — don't set inline styles
+    if (window.innerWidth <= 768) {
+        container.style.maxHeight = '';
+        container.style.overflowY = '';
+        return;
+    }
 
-    container.style.maxHeight = height + 'px';
+    // Desktop measurement logic
+    container.style.maxHeight = '';
+    container.style.overflowY = '';
+
+    let totalHeight = 0;
+    for (let i = 0; i < 5; i++) {
+        const item = items[i];
+        const style = window.getComputedStyle(item);
+        totalHeight += item.offsetHeight + parseFloat(style.marginTop) + parseFloat(style.marginBottom);
+    }
+    const containerStyle = window.getComputedStyle(container);
+    totalHeight += parseFloat(containerStyle.paddingTop);
+
+    container.style.maxHeight = totalHeight + 'px';
     container.style.overflowY = 'auto';
 }
 
-window.addEventListener('load', setupScrollableNews);
-window.addEventListener('resize', setupScrollableNews);
-
-
-
-// Initialize the setup on page load
-document.addEventListener('DOMContentLoaded', function() {
-    setupNews();
+// Single initialization on full page load (after fonts/images settle)
+// Single page-load initialization
+window.addEventListener('load', function() {
+    setupScrollableNews();
 });
 
-$(document).ready(function() {
-    renderPublications('all'); // Show all publications by default 
-    setupNews(); // Initialize news section
+window.addEventListener('resize', function() {
+    setupScrollableNews();
 });
+
+// DELETE these — they're duplicates causing the override:
+// $(document).ready(function() {
+//     renderPublications('all');
+// });
+// // Initialize the setup on page load
+// document.addEventListener('DOMContentLoaded', function() {
+//     setupNews();
+// });
+
+// $(document).ready(function() {
+//     renderPublications('all'); // Show all publications by default 
+//     // setupNews(); // Initialize news section
+// });
 
 // script.js
 const citations = document.querySelectorAll('.citation');

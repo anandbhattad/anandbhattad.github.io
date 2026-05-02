@@ -200,6 +200,26 @@ nav a:hover {
     background:linear-gradient(to bottom,transparent 60%,var(--secondary-color) 95%);
     pointer-events:none;
   }
+  .publication-filter {
+    padding: 6px 14px;
+    margin-right: 8px;
+    border: 1px solid #1a73e8;
+    border-radius: 4px;
+    background: white;
+    color: #1a73e8;
+    cursor: pointer;
+    font-size: 0.95em;
+}
+
+  .publication-filter:hover {
+    background: #f0f6ff;
+}
+
+  .publication-filter.active {
+    background: #1a73e8;
+    color: white;
+    font-weight: 500;
+}
   .publication-item:hover .pub-tldr{max-height:100rem}
   
   .pub-stars{display:flex;align-items:center;gap:.65rem;font-size:.78rem;color:var(--text-muted)}
@@ -294,6 +314,7 @@ nav a:hover {
   .news-container {
       scrollbar-width: thin;
       scrollbar-color: #ccc transparent;
+      max-height: 280px;       /* tweak this number */
   }
 
   .news-item {
@@ -323,17 +344,32 @@ nav a:hover {
   /* =======================================================
      RESPONSIVE (≤ 768 px)
      ----------------------------------------------------- */
-  @media (max-width:768px){
-    body::before{display:none}            /* remove grid for perf */
-    .header-content{flex-direction:column;text-align:center}
-    .header-image img{width:160px;margin-bottom:var(--gap-m)}
-    nav a{padding:var(--gap-s) var(--gap-m)}
-    #publications{display:block}          /* always single column */
-    .publication-item{flex-direction:column}
-    .pub-image{width:100%;margin-bottom:var(--gap-m)}
-    .pub-image img,.pub-image video{width:100%;max-width:320px;margin-inline:auto}
-  }
+     @media (max-width: 768px) {
+      body::before { display: none; }
+      .header-content { flex-direction: column; text-align: center; }
+      .header-image img { width: 160px; margin-bottom: var(--gap-m); }
+      nav a { padding: var(--gap-s) var(--gap-m); }
+      #publications { display: block; }
+      .publication-item { flex-direction: column; }
+      .pub-image { width: 100%; margin-bottom: var(--gap-m); }
+      .pub-image img, .pub-image video { width: 100%; max-width: 320px; margin-inline: auto; }
   
+      /* Scrollable news on mobile */
+      .news-container {
+          max-height: 350px;          /* taller because text wraps more */
+          overflow-y: auto;
+      }
+  
+      /* Stack date above content on narrow screens */
+      .news-item {
+          flex-direction: column;
+          gap: 2px;
+      }
+  
+      .news-item .date {
+          width: auto;                /* drop the fixed-width column */
+      }
+  }
   .paper-dropdown {
     display: inline-block;
     margin-left: 0.4em;
@@ -373,7 +409,7 @@ nav a:hover {
     border-radius: 6px;
     background: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-    font-size: 0.95em;          /* match or slightly larger than the button */
+    font-size: 1em;          /* match or slightly larger than the button */
     line-height: 1.65;          /* slightly tighter since text is smaller */
     white-space: nowrap;         /* keep each conference on one line */
     z-index: 100;
