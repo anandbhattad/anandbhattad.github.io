@@ -265,22 +265,61 @@ nav a:hover {
   /* =======================================================
      NEWS & AWARDS LISTS
      ----------------------------------------------------- */
-  .news-container,.awards-container{display:flex;flex-direction:column}
-  .news-item,.awards-item{
-    display:flex;gap:var(--gap-s);margin-bottom:var(--gap-s);
-  }
-  .news-item .date,.awards-item .date{
-    flex:0 0 5rem;font-weight:600;font-size:.85rem;color:#666;white-space:nowrap;
-  }
-  .news-item .content,.awards-item .content{flex:1;word-wrap:break-word}
+     .news-container {
+      max-height: 400px;        /* roughly 5 items tall — adjust to taste */
+      overflow-y: auto;
+      padding-right: 10px;      /* breathing room so scrollbar doesn't crowd text */
   
-  /* “Show more” button */
-  #show-more{
-    display:block;margin-top:var(--gap-m);
-    padding:.5rem 1rem;
-    background:var(--primary-color);color:#fff;border:none;cursor:pointer;
+      /* optional: subtle fade at the bottom hinting "more below" */
+      mask-image: linear-gradient(to bottom, black calc(100% - 30px), transparent);
+      -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 30px), transparent);
   }
   
+  /* nicer-looking scrollbar (WebKit / Chrome / Safari / Edge) */
+  .news-container::-webkit-scrollbar {
+      width: 8px;
+  }
+  .news-container::-webkit-scrollbar-track {
+      background: transparent;
+  }
+  .news-container::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+  }
+  .news-container::-webkit-scrollbar-thumb:hover {
+      background: #999;
+  }
+  
+  /* Firefox */
+  .news-container {
+      scrollbar-width: thin;
+      scrollbar-color: #ccc transparent;
+  }
+
+  .news-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 8px;
+    line-height: 1.5;          /* shared line-height */
+}
+
+.news-item .date,
+.news-item .content {
+    line-height: 1.5;          /* enforce on both */
+}
+
+.news-item .date {
+    flex-shrink: 0;
+    width: 90px;
+    color: #555;
+    font-weight: 500;
+}
+
+.news-item .content {
+    flex: 1;
+    min-width: 0;
+}
   /* =======================================================
      RESPONSIVE (≤ 768 px)
      ----------------------------------------------------- */
@@ -305,7 +344,8 @@ nav a:hover {
     list-style: none;
     cursor: pointer;
     display: inline-block;
-    padding: 2px 10px;
+    padding: 0 10px;
+    font-size: 0.9em;          /* ← new: 90% of surrounding text */
     color: #1a73e8;
     border: 1px solid #1a73e8;
     border-radius: 4px;
@@ -333,20 +373,33 @@ nav a:hover {
     border-radius: 6px;
     background: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-    line-height: 1.8;
+    font-size: 0.95em;          /* match or slightly larger than the button */
+    line-height: 1.65;          /* slightly tighter since text is smaller */
     white-space: nowrap;         /* keep each conference on one line */
     z-index: 100;
 }
 
-.paper-list .conf {
-    color: #555;
-    font-weight: 500;
-    margin-right: 4px;
+.paper-list > div {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  line-height: 1.5;
 }
 
+.paper-list .conf {
+  flex-shrink: 0;
+  width: 75px;
+  color: #555;
+  font-weight: 600;
+}
+
+.paper-list .papers {
+  flex: 1;
+}
 .paper-list a {
-    color: #1a73e8;
-    text-decoration: none;
+  color: #1a73e8;
+  text-decoration: none;
+  margin: 0 2px 0 0;       /* tiny right margin only, replaces whitespace */
 }
 .paper-list a:hover {
     text-decoration: underline;
