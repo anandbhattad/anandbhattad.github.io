@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    const sections = ['bio', 'research', 'news', 'students', 'teaching', 'services', 'publications'];
+    const sections = ['bio', 'research', 'news', '3PVision', 'teaching', 'services', 'publications'];
     sections.forEach(section => {
         $(`<section id="${section}" class="section"></section>`).appendTo('#content');
         loadSection(section);
