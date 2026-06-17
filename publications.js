@@ -546,7 +546,7 @@ addPublication(
   "./images/kyc.gif",
   "Do You Know Where Your Camera Is? View-Invariant Policy Learning with Camera Conditioning",
   "Tianchong Jiang, Jingtian Ji, Xiangshan Tan, Jiading Fang, Anand Bhattad, Vitor Guizilini, Matthew R. Walter",
-  "ICRA 2026",
+  "ICRA 2026 (Oral, <span style='color:red;'>Best Paper Award in Robot Learning</span>)",
   "https://arxiv.org/abs/2510.02268",
   "https://ripl.github.io/know_your_camera/",
   "https://github.com/ripl/CamPoseOpensource", // code link
@@ -555,7 +555,7 @@ addPublication(
   "Explicitly conditioning imitation learning policies on camera extrinsics prevents reliance on background visual shortcuts, ensuring robustness against shifts in camera placement and workspace geometry.",
   "2026",
   "published",
-  false,
+  true,
   false,
   [],
   ""
@@ -897,7 +897,7 @@ addPublication(
     "./images/nerf_fail_ours.png",
     "DIVeR: Real-time and Accurate Neural Radiance Fields with Deterministic Integration for Volume Rendering",
     "Liwen Wu, Jae Yong Lee, Anand Bhattad, Yuxiong Wang, David A. Forsyth",
-    "CVPR 2022 (Oral; Best Paper Finalist)",
+    "CVPR 2022 (Oral; <span style='color:red;'>Best Paper Finalist</span>))",
     "https://arxiv.org/abs/2111.10427",
     "https://lwwu2.github.io/diver/",
     "https://github.com/lwwu2/diver",
