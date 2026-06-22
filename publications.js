@@ -485,6 +485,43 @@ if (typeof module !== 'undefined') {
 // Adding Publications
 
 addPublication(
+  "./images/syncfix.mp4",
+  "SyncFix: Fixing 3D Reconstructions via Multi-View Synchronization",
+  "Deming Li, Abhay Yadav, Cheng Peng, Rama Chellappa, Anand Bhattad",
+  "ECCV 2026",
+  "https://arxiv.org/abs/2604.11797",
+  "https://syncfix.github.io/",
+  "https://github.com/Deming77/SyncFix", // code link
+  "https://arxiv.org/abs/2604.11797",
+  "SyncFix", // github-repo-name
+  "SyncFix refines 3D reconstructions by enforcing cross-view consistency, casting diffusion-based refinement as a joint latent bridge-matching problem that synchronizes distorted and clean views. Trained only on image pairs, it generalizes to an arbitrary number of views and surpasses state-of-the-art baselines, even without clean references.",
+  "2026",
+  "published",
+  false,
+  true,
+  [],
+  ""
+);
+
+addPublication(
+    "./images/ALI.png",
+    "Relighting as a Probe of Visual Priors via Augmented Latent Intrinsics",
+    "Xiaoyan Xing, Xiao Zhang, Sezer Karaoglu, Theo Gevers, Anand Bhattad",
+    "ICML 2026",
+    "https://arxiv.org/abs/2602.01391",
+    "https://augmented-latent-intrinsics.github.io/",
+    "", // code link",
+    "https://arxiv.org/abs/2602.01391",
+    "short project name",
+    "Stronger semantic encoders can harm relighting performance. We study this trade-off and introduce Augmented Latent Intrinsics (ALI), which balances semantic context and dense photometric structure for improved relighting.",
+    2026,
+    "published",
+    false,
+    false
+);
+
+
+addPublication(
   "./images/gravity_eval.mp4",
   "Objects in Generated Videos Are Slower Than They Appear: Models Suffer Sub-Earth Gravity and Don’t Know Galileo’s Principle...for now",
   "Varun Varma Thozhiyoor, Shivam Tripathi, Venkatesh Babu Radhakrishnan, Anand Bhattad",
