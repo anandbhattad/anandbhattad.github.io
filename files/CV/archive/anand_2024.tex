@@ -1,0 +1,656 @@
+\documentclass[margin,line]{modern}
+\geometry{top=1in, bottom=0.25in, left=0.75in, right=0.75in}
+
+% if using pdflatex:
+%\setlength{\pdfpagewidth}{\paperwidth}
+%\setlength{\pdfpageheight}{\paperheight} 
+\newenvironment{list1}{
+  \begin{list}{\ding{113}}{%
+      \setlength{\itemsep}{0in}
+      \setlength{\parsep}{0in} \setlength{\parskip}{0in}
+      \setlength{\topsep}{0in} \setlength{\partopsep}{0in} 
+      \setlength{\leftmargin}{0.17in}}}{\end{list}}
+\newenvironment{list2}{
+  \begin{list}{$\bullet$}{%
+      \setlength{\itemsep}{0in}
+      \setlength{\parsep}{0in} \setlength{\parskip}{0in}
+      \setlength{\topsep}{0in} \setlength{\partopsep}{0in} 
+      \setlength{\leftmargin}{0.2in}}}{\end{list}}
+\addtolength{\topmargin}{-.5in}
+% \addtolength{\bottommargin}{0.5in}
+
+\usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{soul}
+\definecolor{cream}{rgb}{1.0, 0.99, 0.9} %made it light.  
+\definecolor{gold}{rgb}{1.0, 0.87, 0.0}
+\usepackage{fontawesome}
+%\newcommand{\myhl}{\textcolor{gold}{\faStar}}
+\newcommand{\myhl}[1]{{\sethlcolor{cream}\hl{#1}}}
+
+% \usepackage{xcolor}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=magenta,      
+    urlcolor=darkblue,
+}
+\newcommand{\myhref}[3][blue]{\href{#2}{\color{#1}{#3}}}%
+\newcommand{%\reviewnote}[1]{\textcolor{gray}{[#1]}}
+
+\usepackage{nopageno}
+\usepackage{lmodern}
+\usepackage{libertine}
+% \usepackage{palatino}
+\usepackage{enumitem}
+\usepackage{marginnote} 
+\usepackage{etaremune}
+\usepackage{booktabs}
+\newcommand\KeyWord[1]{%
+  \marginnote{\parbox[t]{\marginparwidth}{\hspace*{-1.02in}\raggedright \em{#1}}}}
+\reversemarginpar
+
+\newcommand\reverselabel[1]{%
+  \def\theenumi{}%
+  \renewcommand\makelabel{\makebox[\dimexpr\labelwidth-3pt\relax][r]{%
+    \the\numexpr#1-\value{enumi}+1\relax}}}%
+\begin{document}
+\header{\hspace{-1.25ex}Anand Bhattad}{
+\begin{tabular}{@{}p{2.84in}}
+% 509 TTIC \\
+% 6045 S Kenwood Ave \\
+% Chicago, Illinois 60637, USA \\
+% {\bf Voice:} (217) 904-5911 \\
+{\bf E-mail:} bhattad@jhu.edu  \\
+{\bf Web:} \href{https://anandbhattad.github.io/}{https://anandbhattad.github.io/}
+\end{tabular}
+}
+% \section{\sc \large Research Goals}
+% The primary aim of my research is easy and fast image editing. I create algorithms that can convincingly insert objects cut from one or more images and pasted into another. The goal is to go beyond this. One should be able to render inserted objects with different views, lighting and shapes with ease. In the long-term, I see a neural rendering engine taking over \href{https://en.wikipedia.org/wiki/Physically_based_rendering}{physically based rendering} engines. If not, it will share the load to speed up the rendering process.
+
+% {\bf Computer Vision}: 3D Scene Understanding from a Monocular Image\\
+% {\bf Computational Photography}: \\
+% {\bf Machine Learning}: Self-Supervised Learning, Adversarial Machine Learning
+% \vspace*{-.05in}
+\vspace{-3ex}
+\bottomrule
+\vspace{-1ex}
+\section{Research Interests}
+Visual Generative Models; 3D Vision; Vision-based Robotics; Neural Rendering; Inverse Graphics; Intrinsic Images; Image-based Lighting; Perceptual Organization and Physics Awareness in Large Vision Models
+\vspace{-1ex}
+\section{Education}
+{\bf University of Illinois Urbana-Champaign (UIUC)}, USA 
+%\hfill 3.70/4.0
+\\ \vspace*{-.12in}
+\begin{list1}
+\item[] Ph.D., Computer Science \hfill{2019 -- 2024}
+\item[] {Thesis:} \textbf{\textcolor{darkgray}{\href{https://www.ideals.illinois.edu/items/131447}{Exploring Knowledge in Generative Models}}}
+% \item[]{\em PhD Defense}: May'23; {\em Degree awarded}: May'24
+% \item[] {\em Advisor:} David Forsyth \hfill {}
+\item[] {Thesis committee:} \textcolor{darkgray}{\textbf{David Forsyth (Advisor)}, Alexei A. Efros, William T. Freeman,
+ Derek Hoiem, Svetlana Lazebnik, Shenlong Wang}   \hfill {}\\\vspace*{-.1in}
+\item[] M.S., Computer Science \hfill{2017 -- 2018}
+%\item[] {Thesis}: Novel Feature Construction Technique for Detecting Anomalous Faces \& Evaluating Style Transfer Methods. {\em Advised by Prof. D.A. Forsyth}\\\vspace*{-.1in}
+%{\em Thesis:}  ``{\tt Novel Feature Construction Technique for Detecting Anomalous Faces \& \\ Evaluating Style Transfer Methods}'' $|$ Advisor:  Prof. D.A. Forsyth
+%\item Dissertation Topic:  ``Hierarchical Models for Multiple Ratings
+%  in Performance-Based\\ \hspace*{1.23in} Student Assessments.'' 
+%\item Advisor:  Prof. D.A. Forsyth
+% \vspace*{.0in}
+\item[] M.S., Civil Engineering \hfill{2015 -- 2017}
+\end{list1}
+\vspace{1ex}
+{\bf National Institute of Technology Karnataka (NITK) Surathkal}, India
+%\hfill{\em GPA: 8.81/10.0}
+\\\vspace*{-.12in}
+\begin{list1}
+\item[] B.Tech., Civil Engineering \hfill{2011 -- 2015}
+\end{list1}
+\vspace{-0.5ex}
+\section{Work Experience}
+\workexpcompact{Johns Hopkins University}{Assistant Professor in Computer Science \& DSAI}{2025 -- present}
+\workexpcompact{Toyota Technological Institute at Chicago}{Research Assistant Professor}{2023 -- 2025}
+\workexpcompact{University of California Berkeley}{Visiting Scholar; Host: Alexei A. Efros}{2024}
+\workexpcompact{Allen Institute for Artificial Intelligence (Ai2)}{Research Intern with Aniruddha Kembhavi}{2023}
+\workexpcompact{Intel}{Research Intern with Stephan R. Richter in Vladlen Koltun's team}{2021}
+\workexpcompact{NVIDIA}{Research Intern with Andrew Tao and Bryan Catanzaro}{2020}
+\workexpcompact{Fyusion Inc}{Research Intern with Abhishek Kar and Rodrigo Ortiz Cayon}{2019}
+% \workexpcompact{University of Illinois Urbana Champaign}{Graduate Research Assistant with D.A. Forsyth}{2018-2023}
+\workexpcompact{Siemens Corporate Technology}{Computer Vision \& DL Intern with Jan Ernst}{2017}
+% \workexpcompact{University of Illinois Urbana Champaign}{Graduate Teaching Assistant in Computer Science}{2016-2018}
+\workexpcompact{Michigan State University}{Research Intern with Nizar Lajnef}{2014}
+\workexpcompact{IIIT Hyderabad}{Research Intern with Ramacharla Pradeep Kumar}{2013}
+\vspace{-3.75ex}
+\section{Selected Honors and Awards} 
+\workexpcompact{Outstanding Reviewer}{ICCV}{2023}
+\workexpcompact{Best Paper Nomination}{CVPR}{2022}
+\workexpcompact{Outstanding Emergency Reviewer}{CVPR}{2021}
+\workexpcompact{Excellent Teaching Assistant}{Intro Computing: Engrg \& Sci}{2016}
+\vspace{-4ex}
+
+% \section{\sc \large Selected Awards}
+% Best Thesis 
+% ADD UCSD Postdoc fellowship (decline)
+% Best Reviewer 
+% Best TA
+% Best Paper Finalist 
+
+% \section{\sc \large References} 
+% \begin{list1}
+% \item[] David Forsyth, Professor, Computer Science, UIUC -- daf@illinois.edu
+% \item[] Derek Hoiem, Professor, Computer Science, UIUC  -- dhoiem@illinois.edu
+% \item[] Shenlong Wang, Assistant Professor, Computer Science, UIUC -- shenlong@illinois.edu
+% \item[] Yuxiong Wang, Assistant Professor, Computer Science, UIUC -- yxw@illinois.edu
+% \end{list1}
+% David Forsyth (daf@illinois.edu) \\ Derek Hoiem (hoiem@illinois.edu \\ Shenlong Wang (shenlong@illinois.edu) \\ Yuxiong Wang (yxw@illinois.edu)
+\section{Papers Under Review
+% (\texorpdfstring{\myhl{Self-selected Key Papers are Highlighted}}{key publications})
+}
+\texorpdfstring{\myhl{Self-selected Key Papers are Highlighted}}{key publications}; $^\star$ denotes equal contribution, and $^\dagger$ indicates equal advising 
+\renewcommand*{\labelenumi}{\theenumi.}
+
+\begin{etaremune}[start=2, leftmargin=20pt]
+
+\setlength{\itemsep}{0in}
+\item {\bf \href{}
+{{SyncLight: Controllable and Consistent Multi-View Relighting}}} \\ {David Serrano-Lozano, {\bf Anand Bhattad}, Luis Herranz, Jean-François Lalonde, Javier Vazquez-Corral} \\
+\emph{on arXiv} 
+\item{\bf \href{}{ViT5: Vision Transformers for The Mid-2020s}}\\
+Feng Wang, Sucheng Ren, Tiezheng Zhang, Predrag Neskovic, {\bf Anand Bhattad}, Cihang Xie, Alan Yuille\\
+\emph{on arXiv}
+\end{etaremune}
+\section{Refereed Conference Papers 
+%(\texorpdfstring{\myhl{Self-selected Key Papers}}{key publications})
+}
+% \texorpdfstring{\myhl{Self-selected Key Papers are Highlighted}}{key publications}
+\renewcommand*{\labelenumi}{\theenumi.}
+\begin{etaremune}[start=27, leftmargin=20pt]
+\setlength{\itemsep}{0in}
+
+\item {\bf \href{}{{Relighting as a Probe of Visual Priors via Augmented Latent Intrinsics}}} \\
+{Xiaoyan Xing, Xiao Zhang, Sezer Karaoglu, Theo Gevers}, {\bf Anand Bhattad}\\
+\emph{ICML 2026}
+\item {\bf \href{}{\myhl{Objects in Generated Videos Are Slower Than They Appear: Models Suffer Sub-Earth Gravity and Don't Know Galileo's Principle...for now}}} \\ {Varun Varma Thozhiyoor, Shivam Tripathi, Venkatesh Babu Radhakrishnan}, {\bf Anand Bhattad}\\
+\emph{CVPR 2026 (Findings)}
+
+\item{\bf \myhl{Name That Part: 3D Part Segmentation and Naming}} \\
+{Soumava Paul, Prakhar Kaushik, Ankit Vaidya, {\bf Anand Bhattad}, Alan Yuille}\\
+\emph{CVPR 2026 (Findings)}
+
+\item{\bf Generalizable Sparse-View 3D Reconstruction from Unconstrained Images} \\
+{Vinayak Gupta, Chih-Hao Lin, Shenlong Wang, {\bf Anand Bhattad}, Jia-Bin Huang}\\
+\emph{CVPR 2026}
+\item{\bf \href{https://arxiv.org/abs/2510.02268}{Do You Know Where Your Camera Is? View-Invariant Policy Learning with Camera Conditioning
+}}\\
+{Tianchong Jiang, Jingtian Ji, Xiangshan Tan, Jiading Fang, {\bf Anand Bhattad}, Vitor Guizilini, Matthew R. Walter}\\
+\emph{ICRA 2026}
+\item {\bf \href{}{\myhl{Generative Blocks World: Moving Things Around in Pictures}}} \\ {Vaibhav Vavilala, Seemandhar Jain, Rahul Vasanth, D.A. Forsyth}, {\bf Anand Bhattad}\\
+\emph{ICLR 2026}
+\item {\bf \href{https://arxiv.org/abs/2411.18665}{{\textsc{SpotLight}: Shadow-Guided Object Relighting via Diffusion}}} \\ {Frédéric Fortier-Chouinard, Zitian Zhang, Louis-Etienne Messier, Mathieu Garon}, {\bf Anand Bhattad}, Jean-François Lalonde\\
+\emph{3DV 2026}
+\item {\bf \href{}{{Improved Convex Decomposition with Ensembling and Boolean Primitives
+}}} \\ Vaibhav Vavilala, Florian Kluger, Seemandhar Jain, Bodo Rosenhahn, {\bf Anand Bhattad}, {D.A. Forsyth} \\
+\emph{3DV 2026}
+\item {\bf \href{}{\myhl{\textsc{Visual Jenga}: Discovering Object Dependencies via Counterfactual Inpainting}}} \\{\bf Anand Bhattad}, {Konpat Preechakul, Alexei A. Efros} \\
+\emph{NeurIPS 2025}
+\item {\bf \href{https://arxiv.org/abs/2412.00177}{\myhl{\textsc{LumiNet}: Latent Intrinsics Meets Diffusion Models for Indoor Scene Relighting}}} \\ {Xiaoyan Xing, Konrad Groh, Sezer Karaoglu, Theo Gevers}, {\bf Anand Bhattad}\\
+\emph{CVPR 2025}
+\item {\bf \href{https://arxiv.org/abs/2411.17696}{{{ScribbleLight}: Single Image Indoor Relighting with Scribbles}}} \\ {Jun Myeong Choi, Annie N. Wang, Pieter Peers}, {\bf Anand Bhattad}, Roni Sengupta\\
+\emph{CVPR 2025}
+\item {\bf \href{https://arxiv.org/abs/2306.09349}{{UrbanIR: Large-Scale Urban Scene Inverse Rendering from a Single Video}}}\\
+{Zhi-Hao Lin, Bohan Liu, Yi-Ting Chen, Kuan-Sheng Chen, D.A. Forsyth, Jia-Bin Huang, {\bf Anand Bhattad}, Shenlong Wang}\\
+\emph{3DV 2025}
+\item {\bf \href{https://arxiv.org/abs/2410.08168}{{\textsc{ZeroComp}}: Zero-shot Object Compositing from Image Intrinsics via Diffusion
+}} \\{Zitian Zhang, Frédéric Fortier-Chouinard, Mathieu Garon, {\bf Anand Bhattad}, Jean-François Lalonde} \\
+\emph{WACV 2025} (Oral presentation)
+\item {\bf \href{https://arxiv.org/abs/2405.21074}{\myhl{Latent Intrinsics Emerge from Training to Relight
+}}} \\{Xiao Zhang, William Gao, Seemandhar Jain, Michael Maire, D.A. Forsyth, {\bf Anand Bhattad}} \\
+\emph{NeurIPS 2024} {(Spotlight presentation)}
+\item {\bf \myhl{From an Image to a Scene: Learning to Imagine the World from a Million 360$^\circ$ Videos
+}} \\{Matthew Wallingford, {\bf Anand Bhattad}, Aditya Kusupati, Vivek Ramanujan, Matt Deitke, Sham Kakade, Aniruddha Kembhavi, Roozbeh Mottaghi, Wei-Chiu Ma, Ali Farhadi}\\
+\emph{NeurIPS 2024}
+\item {\bf \href{https://arxiv.org/abs/2403.14617}
+{{Videoshop: Localized Semantic Video Editing with Noise-Extrapolated Diffusion Inversion}
+}} \\{Xiang Fan, {\bf Anand Bhattad}$^\dagger$, Ranjay Krishna$^\dagger$} \\
+\emph{ECCV 2024}
+\item {\bf \href{https://arxiv.org/abs/2311.17138}{\myhl{\textit{Shadows Don't Lie and Lines Can't Bend!} Generative Models Don't Know Projective Geometry...For Now}}} \\{Ayush Sarkar$^\star$, Hanlin Mai$^\star$, Amitabh Mahapatra$^\star$, Svetlana Lazebnik, D.A. Forsyth, {\bf Anand Bhattad}} \\
+\emph{CVPR 2024}
+\item {\bf \href{https://openaccess.thecvf.com/content/CVPR2024/papers/Bhattad_StyLitGAN_Image-Based_Relighting_via_Latent_Control_CVPR_2024_paper.pdf}{\myhl{StyLitGAN: Image-based Relighting via Latent Control}}} \\
+{{\bf Anand Bhattad}, James Soole, D.A. Forsyth} \\
+\emph{CVPR 2024} %\reviewnote{rejected 3$\times$ before accepted}
+\item {\bf \href{https://arxiv.org/abs/2306.00987}{\myhl{StyleGAN Knows Normals, Depth, Albedo, and More}}} \\{{\bf Anand Bhattad}, {Daniel McKee}, Derek Hoiem, D.A. Forsyth}\\
+\emph{NeurIPS 2023}
+\item {\bf \href{https://arxiv.org/abs/2307.11073}{OBJect 3DIT: Language-guided 3D-aware Image Editing
+}} \\{Oscar Michel, {\bf Anand Bhattad}, Eli Vanderbilt, Ranjay Krishna, Aniruddha Kembhavi, Tanmay Gupta
+}\\
+\emph{NeurIPS 2023}
+\item {\bf \href{https://arxiv.org/abs/2309.16646v2}{Improving Equivariance in State-of-the-Art Supervised Depth and Normal Predictors}} \\{Yuanyi Zhong, {\bf Anand Bhattad}, Yuxiong Wang, D.A. Forsyth}\\
+\emph{ICCV 2023} %\reviewnote{rejected 1$\times$ before accepted}
+\item {\bf \href{https://anandbhattad.github.io/projects/dipr.pdf}{Cut-and-Paste Object Insertion by Enabling Deep Image Prior for Reshading }} \\{{\bf Anand Bhattad}, D.A. Forsyth}
+ \\\emph{3DV 2022} {(Spotlight presentation)} %\reviewnote{rejected 2$\times$ before accepted}
+\item {\href{https://arxiv.org/abs/2111.10427}{\myhl{\bf DIVeR: Real-time and Accurate Neural Radiance Fields with Deterministic Integration for Volume Rendering}}  \\{ Liwen Wu,   Jae Yong Lee,   {\bf Anand Bhattad},    Yuxiong Wang,    D.A. Forsyth}
+     \\\emph{CVPR 2022} {(\color{sectioncolor}{Best Paper Nomination}; \color{black}Oral presentation)} } 
+\item {\bf \href{https://arxiv.org/abs/2106.06533}{View Generalization for Single Image Textured 3D Models}} \\{{\bf Anand Bhattad}, Aysegul Dundar, Guilin Liu, Andrew Tao, Bryan Catanzaro \\{\em CVPR 2021}}
+\item {\bf \href{https://openreview.net/forum?id=Sye_OgHFwH}{\myhl{Unrestricted Adversarial Perturbations via Semantic Manipulation}}} \\{{\bf Anand Bhattad}$^\star$, Min-Jin Chong$^\star$, Kaizhao Liang, Bo Li, D.A. Forsyth}\\\emph{ICLR 2020} %%\reviewnote{rejected 2$\times$ before accepted}
+\item {\bf \href{https://arxiv.org/abs/1910.09447}{Improved Style Transfer with Calibrated Metrics}}\\
+{Mao-Chuang Yeh$^\star$, Shuai Tang$^\star$, {\bf Anand Bhattad}, Chuhang Zou, D.A. Forsyth} \\
+\emph{WACV 2020} %\reviewnote{rejected 2$\times$ before accepted}
+\end{etaremune}
+\section{Refereed Workshop Papers}
+\renewcommand*{\labelenumi}{\theenumi.}
+\begin{etaremune}[start=5, leftmargin=20pt]
+\setlength{\itemsep}{0in}
+\item {\bf {Intrinsic LoRA: A Generalist Approach for Discovering Knowledge in Generative Models}} \\{Xiaodan Du, Nicholas Kolkin, Greg Shakhnarovich, {\bf Anand Bhattad}} \\
+\emph{CVPR-W 2024} {(Oral presentation)}\\ 
+workshops: {\myhref[darkgray]{https://generative-vision.github.io/workshop-CVPR-24/papers/18.pdf}{Generative Models for CV}, \myhref[darkgray]{https://ai3dg.github.io/accepted_papers.html}{AI for 3D Gen}, \myhref[darkgray]{https://syntagen.github.io/}{SyntaGen}, \myhref[darkgray]{https://openreview.net/forum?id=xHKWN3Yi6U}{SynthData4CV}, \myhref[darkgray]{https://sites.google.com/view/dd-cvpr2024/home}{Dataset Distillation}}  
+\item {\bf {UrbanIR: Large-Scale Urban Scene Inverse Rendering from a Single Video}}\\
+{Zhi-Hao Lin, Bohan Liu, Yi-Ting. Chen, D.A. Forsyth, Jia-Bin Huang, {\bf Anand Bhattad}, Shenlong. Wang}\\
+\emph{CVPR-W 2024}\\
+workshop: \myhref[darkgray]{https://openreview.net/forum?id=0sMJfHCyk2}{SynthData4CV}
+\item {\bf MIMIC: Masked Image Modeling with Image Correspondences
+}\\
+{{Kalyani Marathe, Mahtab Bigverdi, Nishat Khan, Tuhin Kundu, Patrick Howe, Sharan Ranjit S, {\bf Anand Bhattad}, Aniruddha Kembhavi, Linda G. Shapiro, Ranjay Krishna}}\\
+\emph{CVPR-W} 2024 \\
+workshop: \myhref[darkgray]{https://abdullahamdi.com/3dmv2024/}{3D with Multi-View Supervision} (Archival long paper)
+\item {\bf Big but Imperceptible Adversarial Perturbations via Semantic Manipulation}\\
+{{\bf Anand Bhattad}$^\star$, Min-Jin Chong$^\star$, Kaizhao Liang, Bo Li, D.A. Forsyth}\\
+\emph{CVPR-W 2019} {{(Oral presentation})} \\
+%{\hfill [\href{https://arxiv.org/abs/1904.06347v1}{arXiv}]
+workshop: \myhref[darkgray]{https://amlcvpr2019.github.io/}{Adversarial Machine Learning in Real-World Computer Vision Systems}
+\item {\bf Detecting Anomalous Faces with ``No Peeking'' Autoencoders}\\
+{{\bf Anand Bhattad}, Jason Rock, D.A. Forsyth}\\ 
+{\emph{CVPR-W 2018} {({Oral presentation)}}}\\
+workshop: \myhref[darkgray]{https://vbsd2018.github.io/}{Vision with Biased and Scarce Data}
+\end{etaremune}
+\section{Technical Reports}
+\renewcommand*{\labelenumi}{\theenumi.}
+\begin{etaremune}[start=4, leftmargin=20pt]
+\item {\bf \href{https://arxiv.org/abs/2311.17137}{\myhl{Generative Models: What Do They Know? Do They Know Things? Let's Find Out!}}} \\{Xiaodan Du, Nicholas Kolkin, Greg Shakhnarovich, {\bf Anand Bhattad}} \\
+Technical Report, arXiv 2024
+\setlength{\itemsep}{0in}
+\item {\bf {Blocks2World: Controlling Realistic Scenes with Editable Primitives}}\\
+{Vaibhav Vavilala, Seemandhar Jain, Rahul Vasanth, {\bf Anand Bhattad}, D.A. Forsyth}\\
+Technical Report, arXiv 2023
+
+% \item {\bf \href{}{Illuminator: Learning to Correct Lighting Without Ground Truth Data}} \\{{\bf A. Bhattad}, B.Chen, S. Wang, S. Richter, D. A. Forsyth}\\
+% In Submission
+\item {\bf \href{}{Make It So: Steering StyleGAN for Any Image Inversion and Editing}} \\{{\bf Anand Bhattad}, Viraj Shah, Derek Hoiem, D.A. Forsyth}\\
+Technical Report, arXiv 2023
+% \item {\bf Denoising Upsampling Residual Autoencoders: Easy MAP Estimate for Image Enhancement} \\
+% {A. Bansal, {\bf A. Bhattad}, D. A. Forsyth}\\
+% In Submission
+\item {\bf \href{https://arxiv.org/abs/2112.04497}{SIRfyN: Single Image Relighting from your Neighbors }} \\{D.A. Forsyth, {\bf Anand Bhattad}, Pranav Asthana, Yuanyi Zhong, Yuxiong Wang}\\
+Technical Report, arXiv 2021
+%\\{Conference on Neural Information Processing Systems (NeurIPS), 2021}}
+%\\{Conference on Neural Information Processing Systems (NeurIPS), 2021}}
+%\\{International Conference on Computer Vision (ICCV), 2021}}
+\end{etaremune}
+\section{Patents}
+\renewcommand*{\labelenumi}{\theenumi.}
+\begin{etaremune}[start=1, leftmargin=20pt]
+\item  {\bf Intrinsic-ControlNet: Zero-shot Object Compositing from Image Intrinsics}\\
+{Zitian Zhang, Frédéric Fortier-Chouinard, Mathieu Garon, {\bf Anand Bhattad}, Jean-François Lalonde} \\
+Pending
+\end{etaremune}
+\input{sections/mentoring}
+\section{Courses Designed}
+\textbf{\large \href{https://anandbhattad.github.io/teaching/past_meets_present/}{Learning-based Vision}}, Johns Hoplins University; \textit{Course Instructor} {\hfill Spring 2026}\vspace*{-0.15in}\\
+\begin{list2}
+\item Developed a new course on modern approaches in computer vision
+\item Taught a class of 40+ students from Johns Hopkins University
+\end{list2}
+\vspace{1ex}
+\textbf{\large \href{https://anandbhattad.github.io/teaching/past_meets_present/}{Past Meets Present: A Tale of Two Visions}}, TTIC; \textit{Course Instructor} {\hfill Spring 2024}\vspace*{-0.15in}\\
+\begin{list2}
+\item Developed a new course from scratch on Computer Vision, combining historical and modern approaches
+\item Taught a class of 20+ students from TTIC and UChicago
+\end{list2}
+\section{Teaching Assistant}
+\textbf{Computer Science}, UIUC; \textit{Graduate Teaching Assistant}{\hfill{2016 -- 2018}}\vspace*{-0.15in}\\
+\begin{list2}
+\item Applied Machine Learning (CS498 AML), Fall 2018
+% \begin{itemize}[leftmargin=20pt]
+% \item Designed and implemented Kaggle competitions to enhance student learning and engagement
+% \end{itemize}
+\item Data Structures (CS 225), Spring 2017
+% \begin{itemize}[leftmargin=20pt]
+% \item Developed assignments, exams, and labs to assess and reinforce student understanding
+% \end{itemize}
+\item Intro Computing: Engrg \& Sci (CS 101), Spring 2016 \& Fall 2016
+% \begin{itemize}[leftmargin=20pt]
+% \item Recognized as an \textbf{Excellent TA} for effective teaching and student support
+% \end{itemize}
+\end{list2}
+
+
+
+% \begin{list2}
+
+% \item Xiao Zhang (University of Chicago; 2023 --) $|$ Project on Latent Intrinsics (see UR\#4)
+% \item Matt Wallingford (University of Washington; 2023 --) $|$ Project on 360$^\circ$ videos (see UR\#3)
+% \item Xiaodan Du (TTIC; 2023 --) $|$  Paper at CVPR-W (see WP\#1) $|$ Paper in Review (see UR\#2)
+% \item Zitian Zhang ( Universit\'e Laval; 2023 --) $|$ Paper in Review (see UR\#1)
+% \item Xiang Fan (University of Washington; 2023 --) $|$ Paper at ECCV 2024 (see CP\#11)
+% \item Vaibhav Vavilala (UIUC; 2023 --) $|$ Project on Blocks World (see TR\#3)
+% \item Ayush Sarkar (UIUC; 2023 --) $|$ Paper at CVPR (see CP\#10)
+% \item Kalyani Marathe (University of Washington; 2023 --) $|$ Paper at CVPR-W (see WP\#1)
+% \item Zhi-Hao Lin (UIUC; 2023 --) $|$ Paper at CVPR-W (see WP\#4)
+% \end{list2}
+% \vspace{1ex}
+% {\noindent\bf Masters Students}\\\vspace*{-0.15in}
+% \begin{list2}
+% \item Hanlin (Asher) Mai (UIUC; 2023 --) $|$ Paper at CVPR (see CP\#10)
+% \item Seemandhar Jain (UIUC; 2023 -- 2024) $|$ (see UR\#4) $|$ Next: PhD Student at UCSD
+% \item Fr\'ed\'eric Fortier-Chouinard
+%  (Universit\'e Laval; 2023 --) $|$ Paper in Review (see UR\#1)
+% \item James Soole (UIUC; 2023) $|$ Paper at CVPR (see CP\#9)
+
+% \item Feiran Wang (UIUC; 2023) $|$ Project on NeRF + Illumination Physics
+% \item Kexuan (Klaus) Zou (UIUC; 2019-2020) $|$ Next: Software Engineer at NVIDIA
+% \end{list2}
+% \vspace{1ex}
+% {\bf Bachelors Students}\\\vspace*{-0.15in}
+% \begin{list2}
+% \item Joshua Ahn (University of Chicago; 2024-) $|$ Project on NeRF w/o Positional Encoding
+% \item Amitabh Mahapatra (UIUC; 2023 --)  $|$ Paper at CVPR (see CP\#10)
+% \item Kuan-Sheng Chen (UIUC; 2023) $|$ Project on Generative Models with Intrinsic Images
+% \item Oscar Michel (AI2; 2023) $|$ Paper at NeurIPS (see CP\#7) $|$ Next: PhD Student at NYU
+% \item Liwen Wu (UIUC; 2022) $|$ Paper at CVPR (see CP\#4) $|$ Next: PhD Student at UCSD
+% \item Brian Chen (UIUC; 2020-2022)  $|$ REU at CMU's Robotics Institute
+% \item Anchu Zhu (UIUC; 2018-2019) $|$ Next: MS in CS at USC 
+% \end{list2}
+% % \end{list2}
+% \vspace*{-0.12in}\\
+% \begin{list2}
+% \item Designed sensor array schematic for damage detection of roads using self-powered sensors
+% \item Improved accuracy by 18\% using signal processing and multi-layer perceptron 
+% \item Poster ation at Mid-Michigan Symposium for Undergraduate Research Experiences, 2014
+% \end{list2}
+%\vspace*{-0.065in} 
+% {\bf Research Intern}, {\em Earthquake Engineering Research Center}, {IIIT Hyderabad}  \hfill {\em Jun'13 -- July'13}\vspace*{-0.15in}\\
+% \begin{list2}
+% \item Designed solutions for multi-storied earthquake resistant buildings
+% \end{list2}
+% {\bf Research Assistant}, {\em Structural Engineering Lab}, {NITK Surathkal}  \hfill {\em Apr'13 -- May'15}\vspace*{-0.15in}\\
+% \begin{list2}
+% \item {\bf A. Bhattad}, G. Kumar, A. Master, A. Salkar, K. Prabhu, K. Venkataramana;  {\em ``Role of GGBS in Enhancing the Durability of Concrete in Coastal Environment''}, International Conference on Sustainable Energy and Built Environment (2015)
+% \item G. Kumar, A. Salkar, A. Master, {\bf A. Bhattad}, K. Venkataramana, K. Prabhu;  {\em ``Durability of Concrete in Coastal Areas (Severe Zone)''}, 4th International Engineering Symposium (2015)
+% \end{list2}
+\vspace{-1ex}
+% \vspace*{-0.065in} 
+% {\bf Senior UG Mentor}, NITK Surathkal \hfill {\em July'14 -- May'15}\vspace*{-0.15in}\\
+% \begin{list2}
+% \item Mentored $8$ sophomore and junior students from NITK Surathkal for their research projects
+% \item Tutorial instructor in Civil Engineering \& Math courses for students needing academic help
+% \end{list2}\vspace*{-0.065in} 
+% {\bf Executive Mentor}, NITK ACM Student Chapter, NITK Surathkal {\hfill \em  July'12 -- May'15}\vspace*{-0.15in}\\
+% \begin{list2}
+% \item Initiated tutorials for basic computer literacy -- {\tt Shiksha}, educating underprivileged students
+% \item Organized sessions on Python, Android App development and radio controlled cars
+% \end{list2}
+
+% \section{\sc \large Recent \\ Projects}
+% {\bf Big but Invisible Adversarial Attacks}{\hfill \em Sept'18 -- Nov'18}\\
+% {\em Project Mentor: Prof. D.A. Forsyth \& Prof. Bo Li}\vspace*{.03in}\\
+%  Current adversarial image constructions to fool classifiers are restricted. They search for small, noise-like changes to avoid detection by humans; typically, restricting the norm of the change.
+%  \begin{list2}
+%  \vspace{1mm}
+%  \item Demonstrated $3$ {\em unrestricted} semantic attacks using texture transfer, colorization \& super-resolution
+%  \item Created {\em gigantic} and {\em imperceptible} perturbations ($\mathcal{L}_2$ -norm)  in images from all our attacks
+%  \item $48.5\%$ of times images attacked by our strategy are chosen as natural in human perceptual study
+%  \item $95\%+$ misclassification rate from all our attacks 
+%  \end{list2}\vspace*{-0.05in} 
+% {\bf Detecting Anomalous Faces without Labeled Examples}{\hfill \em Sept'17 -- Nov'18}\\
+% {\em Project Mentor: Prof. D.A. Forsyth}\vspace*{.03in}\\
+% Detecting facial anomalies requires accurate identification of rare and small effects in test-time. Traditional methods identifies them from background without detecting true sources of face anomalies.
+% \begin{list2}
+% \vspace{1mm}
+% \item Designed a feature construction strategy for unsupervised face anomaly detection
+% \item Built a face anomaly dataset of $1693$ images; easy-set ($501$ images) \& hard-set ($1192$ images)
+% \item Improved accuracy by $10\%$ (for easy-set) \& $22\%$ (for hard-set; baselines performs at chance)
+% \item Showed a witness function for evaluating GANs generated faces from our anomaly detector
+% \vspace{1mm}
+% \item[{\bf-}]Preliminary work as an {\em oral ation} at Vision with Biased or Scarce Data {\hfill \tt [CVPR-W 2018]}
+% \item[{\bf-}] Poster ation at the University of Michigan, Ann Arbor {\hfill \tt [Mid-West CV Workshop 2018]}
+% \end{list2}\vspace*{-0.05in} 
+%  %vspace*{-0.075in}
+% {\bf Improved Style Transfer with Calibrated Metrics} {\hfill \em Aug'17 -- Nov'18}\\
+% {\em Project Mentor: Prof. D.A. Forsyth}\vspace*{.03in}\\
+% All previous style transfer (ST) evaluations are qualitative and entails quantitative evaluations. 
+% %\KeyWord{Contributions}\vspace*{-0.17in}
+% \begin{list2}
+% \vspace{1mm}
+% \item Described a quantitative evaluation procedure for ST that identifies user preferences
+% \item Proposed $2$ novel evaluation metrics: {\em Effectiveness} and {\em Coherence} for quantitative evaluations
+% \item Investigated $5$ ST methods quantitatively and found controlling cross-layer losses with covariance matrix is helpful than gram matrix  
+% \item Constructed affine-symmetric groups explaining instabilities in within-layer gram matrix
+% \vspace{1mm}
+% \item[{\bf-}]Poster ation at the University of Michigan, Ann Arbor {\hfill \tt [Mid-West CV Workshop 2018]}
+% \end{list2}
+% \section{\sc \large Other \\Projects} 
+% % {\bf Impact of Graph Convolutional Network (GCN) for Active Learning} \hfill{\em Mar'18 -- May'18}\\
+% % {\em Project Mentor: Prof. ChengXiang Zhai} \hfill {\tt [\href{https://www.youtube.com/watch?v=V_XLsYSgiHk}{Video} $|$ \href{https://github.com/unnat/active_gcn_ner/blob/master/active-learning-gcn-report.pdf}{Report} $|$ \href{https://github.com/unnat/active_gcn_ner}{Code}]}\vspace{0.15in}\\
+% % \begin{list2}
+% % \item Investigated active learning for text information systems using GCN
+% % \item Enhanced Named Entity Recognition accuracy by 2\% using GCNs
+% % \item Showed Uncertainty based sampling approach more effective than Random sampling
+% % \end{list2}
+% {\bf Pedestrian Detection and Automated Braking for Self-Driving Cars}{\hfill \em Jan'17 -- May'17}\\
+% {\em Project Mentor: Prof. D.A. Forsyth}{\hfill \tt [\href{https://www.youtube.com/watch?v=GqzZzr85BcQ}{Video} %$|$ \href{https://www.youtube.com/watch?v=mw7m-TUcnqw}{Pedestrian Detection} 
+% $|$ \href{https://github.com/tensorpro/MAAV}{Code}]}\vspace{-0.15in}\\
+% \begin{list2}
+% \item Built a smooth autonomous braking system for pedestrian detection using YOLO \& SSD
+% \item Estimated pedestrian distance from perspective geometry using only a monocular camera
+% \item Integrated the software built using Robotics Operating System and tested on a self-driving car 
+% \end{list2}
+% \section{\sc Computer \\Skills} 
+% \begin{list2}
+% \item DL Packages: PyTorch, TensorFlow, Keras, Caffe2
+% \item Statistical Packages:  R, MATLAB
+% \item Languages:  Python, C++, C
+% \end{list2}
+% \vspace*{-0.04in}
+
+% \section{\sc \large AI Courses}
+% Computer Vision, Optimization in Computer Vision, Autonomous Vehicles, Cutting Edge Trends in DL \& Recognition, Graphical Models, Machine Learning, Pattern Recognition, Adversarial Machine Learning, Convex Optimization$^+$ ($^+$ = ongoing)
+
+\section{Invited Talks}
+
+% {\bf Intrinsic Images Meets Latent Representations}\vspace*{-0.15in}\\
+% \begin{list2}
+
+% \end{list2}
+\vspace{1ex}
+{\bf The Three P's of Modern Computer Vision: Pixels, Perception, and Physics}\vspace*{-0.15in}\\
+\begin{list2}
+\item Indian Institute of Science, Bangalore, Kotak-IISC AI/ML Seminar \hfill Jan 2026
+\item Johns Hopkins University, Guest Lecture in Rama Chellappa's Machine Perception Course \hfill Nov 2026
+\item Johns Hopkins University, Physics of Learning Seminar, invited by Brice Ménard \hfill Oct 2026
+\item Johns Hopkins University, ECE Department Seminar \hfill Sept 2025
+\end{list2}
+\vspace{1ex}
+{\bf Emergent Latent Intrinsic Representations for Scene Relighting}\vspace*{-0.15in}\\
+\begin{list2}
+\item UChicago, Great Lakes Graphics Workshop
+ \hfill Apr 2025
+\end{list2}
+\vspace{1ex}
+{\bf What Generative Image Models Understand (and Don't) about the Physical World}\vspace*{-0.15in}\\
+\begin{list2}
+\item Univ of Wisconsin at Madison \hfill Apr 2025
+\item Johns Hopkins University, CS/LCSR Seminar \hfill Mar 2025
+\item UC Irvine, CS Seminar \hfill Mar 2025
+\item Stony Brook University, CS Seminar \hfill Mar 2025
+\item UIUC: External Speaker Series \hfill Feb 2025
+\item ULaval: Vision Seminar \hfill Feb 2025
+\item UCSD: Pixel Cafe Seminar \hfill Jan 2025
+
+\end{list2}
+\vspace{1ex}
+{\bf Are Generative Image Models Physically Grounded?}\vspace*{-0.15in}\\
+\begin{list2}
+\item UPenn: GRASP Seminar \hfill Dec 2024
+\item NYU: Guest Lecture in Saining Xie's Computer Vision Course \hfill Dec 2024
+\end{list2}
+\vspace{1ex}
+{\bf Generative Models Inside Out}\vspace*{-0.15in}\\
+\begin{list2}
+\item Midwest Computer Vision Workshop, Indiana University \hfill Sep 2024
+\end{list2}
+\vspace{1ex}
+{\bf What Do Generative Image Models Know?}\vspace*{-0.15in}\\
+\begin{list2}
+\item IIIT Hyderabad, India; Vision Seminar \hfill Jan 2024
+% \item TTIC; Research@TTIC \hfill Oct 2023
+\item Exactech, Inc.; Tech Talk \hfill Oct 2023
+\end{list2}
+\vspace{1ex}
+{\bf Exploring Knowledge in Generative Models}\vspace*{-0.15in}\\
+\begin{list2}
+\item Stanford University in Jiajun Wu's group \hfill Jun 2023
+\item University of Tubingen, Autonomous Vision Group \hfill May 2023
+\end{list2}
+\vspace{1ex}
+{\bf What Do Generative Models Know about Geometry and Illumination?}\vspace*{-0.15in}\\
+\begin{list2}
+\item UC Berkeley: Vision Seminar \hfill Apr 2023
+\item NVIDIA Research \hfill Apr 2023
+\item MIT: Vision and Graphics Seminar \hfill Apr 2023
+\item CMU: VASC Seminar \hfill Mar 2023
+\item UW: RAIVN Vision Seminar \hfill Mar 2023
+\end{list2}
+\vspace{1ex}
+{\bf Towards a Productive and Fun PhD Experience}\vspace*{-0.15in}\\
+\begin{list2}
+\item UIUC: Computer Vision Workshop \hfill Apr 2023
+\end{list2}
+\vspace{1ex}
+{\bf Learning about Light Without Labeled Data}\vspace*{-0.15in}\\
+\begin{list2}
+\item UMD: Vision Seminar \hfill Mar 2023
+\item UCSD: Pixel Cafe Seminar \hfill Feb 2023
+\item TTIC: Research Talk \hfill Feb 2023
+\end{list2}
+\vspace{1ex}
+{\bf Drag-and-Drop Rendering: Towards In the Wild Image Editing}\vspace*{-0.15in}\\
+\begin{list2}
+\item CMU: Misc-Read Vision Reading Group \hfill Aug 2021
+% \item UCSD: Pixel Cafe Seminar \hfill Feb 2023
+% \item TTIC: Research Talk \hfill Feb 2023
+\end{list2}
+
+% \vspace*{-0.12in}\\
+% \begin{list2}
+% \item Designed sensor array schematic for damage detection of roads using self-powered sensors
+% \item Improved accuracy by 18\% using signal processing and multi-layer perceptron 
+% \item Poster ation at Mid-Michigan Symposium for Undergraduate Research Experiences, 2014
+% \end{list2}
+%\vspace*{-0.065in} 
+% {\bf Research Intern}, {\em Earthquake Engineering Research Center}, {IIIT Hyderabad}  \hfill {\em Jun'13 -- July'13}\vspace*{-0.15in}\\
+% \begin{list2}
+% \item Designed solutions for multi-storied earthquake resistant buildings
+% \end{list2}
+% {\bf Research Assistant}, {\em Structural Engineering Lab}, {NITK Surathkal}  \hfill {\em Apr'13 -- May'15}\vspace*{-0.15in}\\
+% \begin{list2}
+% \item {\bf A. Bhattad}, G. Kumar, A. Master, A. Salkar, K. Prabhu, K. Venkataramana;  {\em ``Role of GGBS in Enhancing the Durability of Concrete in Coastal Environment''}, International Conference on Sustainable Energy and Built Environment (2015)
+% \item G. Kumar, A. Salkar, A. Master, {\bf A. Bhattad}, K. Venkataramana, K. Prabhu;  {\em ``Durability of Concrete in Coastal Areas (Severe Zone)''}, 4th International Engineering Symposium (2015)
+% \end{list2}
+\section{Services \& Leadership}
+{\noindent \bf \large Reviewing}\\\vspace*{-0.15in}
+\begin{list2}
+\item {\bf Area Chair}, CVPR 2026, 3DV 2026, NeurIPS 2025, ICCV 2025,  CVPR 2025, WACV 2025 {\hfill 2024 -- now}
+\item {\bf Reviewer}, CVPR, NeurIPS, ECCV, ICCV, ICLR, SIGGRAPH, SIGGRAPH Asia and PAMI {\hfill 2018 -- now}
+\end{list2}
+\vspace{2ex}
+{\noindent \bf \large Community Building Workshops}\\\vspace*{-0.15in}
+\begin{list2}
+\item {\bf Lead Organizer}, ``\href{https://sites.google.com/view/bitterlessonscv/}{\color{sectioncolor}Bitter Lessons}'' workshop at CVPR  {\hfill Jun 2026}
+\item {\bf Lead Organizer}, ``\href{https://sites.google.com/view/standoutcv}{\color{sectioncolor}How to Stand Out in the Crowd?}'' workshop at CVPR  {\hfill Jun 2025}
+\item {\bf Lead Organizer}, ``\href{https://sites.google.com/view/retrocv/}{\color{sectioncolor}CV 20/20: A Retrospective Vision}'' workshop at CVPR {\hfill Jun 2024}
+\item {\bf Lead Organizer}, ``\href{https://sites.google.com/view/academic-cv/}{\color{sectioncolor}Scholars \& Big Models: How Can Academics Adapt?}'' workshop at CVPR {\hfill Jun 2023}
+\end{list2}
+\vspace{2ex}
+{\noindent \bf \large Technical Workshops}\\\vspace*{-0.15in}
+\begin{list2}
+\item {\bf Organizer}, ``\href{}{\color{sectioncolor}Findings Workshop}''  at CVPR  {\hfill Jun 2026}
+\item {\bf Organizer}, ``\href{}{\color{sectioncolor}Humans of Generative Models (HuGs)}''  at CVPR  {\hfill Jun 2026}
+\item {\bf Lead Organizer}, ``\href{https://unilight-workshop.github.io/unilight2025/}{\color{sectioncolor}UniLight Workshop}''  at ICCV  {\hfill Oct 2025}
+\item {\bf Co-Organizer}, ``\href{https://ind3dworkshop.github.io/cvpr2025/}{\color{sectioncolor}Ind3D: Enforcing geometric, physical, topological, and functional inductive bias \\in 3D generation}'' workshop at CVPR {\hfill Jun 2025}
+\item {\bf Lead Organizer}, ``\href{https://sites.google.com/ttic.edu/knowledge-in-generative-models/home}{\color{sectioncolor}Knowledge in Generative Models}'' workshop at ECCV {\hfill Sep 2024}
+\item {\bf Co-lead Organizer}, ``\href{https://sites.google.com/view/multimodal-ai-ttic-2024/home}{Multimodal Artificial Intelligence
+}'' workshop at TTIC {\hfill Aug 2024}
+\item {\bf Lead Organizer}, Computer Vision workshop at Allerton, UIUC {\hfill Apr 2023}
+\item {\bf Committee}, ``Adversarial ML in Real-World Computer Vision Systems", workshop at CVPR {\hfill Jun 2019}
+\item {\bf Committee}, ``Security and Privacy in Machine Learning" workshop at ICML  {\hfill Jun 2019} 
+\end{list2}
+\vspace{2ex}
+{\noindent \bf \large Seminars and Reading Groups}\\\vspace*{-0.15in}
+\begin{list2}
+\item {\bf Organizer}, UIUC Vision Seminar, a new weekly seminars inviting speakers outside UIUC {\hfill 2021 -- 2023}
+\item {\bf Organizer}, Vision Lunch (computer vision reading group) {\hfill 2021 -- 2023}
+\item {\bf Organizer}, UIUC Summer Vision Coffee{\hfill 2018}
+\end{list2}
+\vspace{1ex}
+
+% \begin{list2}
+% \item Organized a full-day workshop for 50+ graduate students and faculties 
+% \item Responsible for ideation to organize full program  
+% \end{list2}\vspace*{-0.05in} 
+
+
+% \begin{list2}
+% \item  Hosted and initiated the external speaker series, inviting researchers outside of UIUC for technical talks, now run regularly by current students. 
+% \item  Organized  computer vision reading and ation group in the CS department of UIUC
+% \end{list2}\vspace*{-0.05in}
+
+% {\bf Reviewer}, Computer Vision Conferences {\hfill 2018 -- }\vspace*{-0.15in}\\
+% \begin{list2}
+% \item  Reviewer for CVPR, NeurIPS, ECCV and ICCV conferences and workshops, and PAMI journal
+
+% \end{list2} 
+% \vspace{1.5ex}
+% {\bf Program Committee} {\hfill 2019}\vspace*{-0.15in}\\
+% \begin{list2}
+% \item Adversarial Machine Learning in Real-World Computer Vision Systems, CVPR 2019 Workshop
+% \item Security and Privacy in Machine Learning, ICML 2019 Workshop
+% \end{list2}\vspace*{-0.05in} 
+% \vspace{1.5ex}
+% \begin{list2}
+% \item Vision and Deep Learning paper/topic weekly discussion group
+% \item Finalized agenda/topic, location and initiated discussions 
+% \end{list2}\vspace*{-0.05in}
+% \vspace{1.5ex}
+\vspace{1ex}
+
+\noindent{{\bf Co-Founder}, SchoolEngg}{\hfill 2013 -- 2015}\vspace*{-0.15in}\\
+\begin{list2}
+\item Forum for high-school students; providing firsthand knowledge of all engineering disciplines
+\item Renamed as {\em PrepLift}, an education counselling start-up in India
+\end{list2}\vspace*{-0.05in}
+\vspace{1.5ex}
+{{\bf Co-Founder}, American Society of Civil Engineers (ASCE) NITK Chapter} {\hfill 2013 -- 2015}\vspace*{-0.15in}\\
+\begin{list2}
+\item Co-Founded the \emph{first} ASCE student chapter of India 
+\item Served as treasurer for one year and as a senior advisor for the second year
+\item Coordinated with board members, faculty, and outside organizations to facilitate 10+ events 
+\end{list2}\vspace*{-0.05in} 
+%------------------------------------------------
+% {\bf General Elections of India, Volunteer}{\hfill \em Aug'13 -- Apr'14}
+% \vspace*{-0.15in}\\
+% \begin{list2}
+% \item Helped register Voter Ids of 200+ people, from filling forms to getting their Voter IDs printed 
+% \item Spread awareness about the importance of voting through street-plays 
+% \end{list2}
+% \section{\sc \large References}
+% {\bf \href{http://luthuli.cs.uiuc.edu/~daf/}{Prof. D.A. Forsyth}}, UIUC -- daf@illinois.edu \hfill {[\tt Thesis Advisor]}\\
+% {\bf \href{http://www.crystal-boli.com/}{Prof. Bo Li}}, UIUC -- lbo@illinois.edu \hfill {\tt [Research Project Advisor]}\\
+% {\bf \href{https://abhishekkar.info/}{Dr. Abhishek Kar}}, Fyusion Inc -- akar@fyusion.com \hfill {\tt [Research Intern Mentor]}\\
+% \section{\sc Technical Skills}
+% \begin{tabular}{ @{} >{\bfseries}l @{\hspace{2ex}} l }
+% Languages &  Proficient: Python, MATLAB $|$ Moderate: C, C++ $|$ Familiar: R, Java \\
+% ML Tools & Proficient: PyTorch, Keras, Scikit-learn $|$ Moderate: Tensorflow, MatConvNet
+% \end{tabular}
+\end{document}
+
+
+
+

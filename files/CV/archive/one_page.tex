@@ -1,0 +1,181 @@
+\documentclass[margin,line]{modern}
+\geometry{top=1in, bottom=0.25in, left=0.75in, right=0.75in}
+
+% if using pdflatex:
+%\setlength{\pdfpagewidth}{\paperwidth}
+%\setlength{\pdfpageheight}{\paperheight} 
+\newenvironment{list1}{
+  \begin{list}{\ding{113}}{%
+      \setlength{\itemsep}{0in}
+      \setlength{\parsep}{0in} \setlength{\parskip}{0in}
+      \setlength{\topsep}{0in} \setlength{\partopsep}{0in} 
+      \setlength{\leftmargin}{0.17in}}}{\end{list}}
+\newenvironment{list2}{
+  \begin{list}{$\bullet$}{%
+      \setlength{\itemsep}{0in}
+      \setlength{\parsep}{0in} \setlength{\parskip}{0in}
+      \setlength{\topsep}{0in} \setlength{\partopsep}{0in} 
+      \setlength{\leftmargin}{0.2in}}}{\end{list}}
+\addtolength{\topmargin}{-.5in}
+% \addtolength{\bottommargin}{0.5in}
+
+\usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{soul}
+\definecolor{cream}{rgb}{1.0, 0.99, 0.9} %made it light.  
+\definecolor{gold}{rgb}{1.0, 0.87, 0.0}
+\usepackage{fontawesome}
+%\newcommand{\myhl}{\textcolor{gold}{\faStar}}
+\newcommand{\myhl}[1]{{\sethlcolor{white}\hl{#1}}}
+
+% \usepackage{xcolor}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=magenta,      
+    urlcolor=darkblue,
+}
+\newcommand{\myhref}[3][blue]{\href{#2}{\color{#1}{#3}}}%
+\newcommand{%\reviewnote}[1]{\textcolor{gray}{[#1]}}
+
+\usepackage{nopageno}
+\usepackage{lmodern}
+\usepackage{libertine}
+% \usepackage{palatino}
+\usepackage{enumitem}
+\usepackage{marginnote} 
+\usepackage{etaremune}
+\usepackage{booktabs}
+\newcommand\KeyWord[1]{%
+  \marginnote{\parbox[t]{\marginparwidth}{\hspace*{-1.02in}\raggedright \em{#1}}}}
+\reversemarginpar
+
+\newcommand\reverselabel[1]{%
+  \def\theenumi{}%
+  \renewcommand\makelabel{\makebox[\dimexpr\labelwidth-3pt\relax][r]{%
+    \the\numexpr#1-\value{enumi}+1\relax}}}%
+\begin{document}
+\header{\hspace{-1.25ex}Anand Bhattad}{
+\begin{tabular}{@{}p{2.84in}}
+% 509 TTIC \\
+% 6045 S Kenwood Ave \\
+% Chicago, Illinois 60637, USA \\
+% {\bf Voice:} (217) 904-5911 \\
+{\bf E-mail:} bhattad@jhu.edu  \\
+{\bf Web:} \href{https://anandbhattad.github.io/}{https://anandbhattad.github.io/}
+\end{tabular}
+}
+% \section{\sc \large Research Goals}
+% The primary aim of my research is easy and fast image editing. I create algorithms that can convincingly insert objects cut from one or more images and pasted into another. The goal is to go beyond this. One should be able to render inserted objects with different views, lighting and shapes with ease. In the long-term, I see a neural rendering engine taking over \href{https://en.wikipedia.org/wiki/Physically_based_rendering}{physically based rendering} engines. If not, it will share the load to speed up the rendering process.
+
+% {\bf Computer Vision}: 3D Scene Understanding from a Monocular Image\\
+% {\bf Computational Photography}: \\
+% {\bf Machine Learning}: Self-Supervised Learning, Adversarial Machine Learning
+% \vspace*{-.05in}
+\vspace{-3ex}
+\bottomrule
+\section{Recent Work Experience}
+\workexpcompact{Johns Hopkins University}{Assistant Professor in Computer Science \& DSAI}{2025 -- present}
+\workexpcompact{Toyota Technological Institute at Chicago}{Research Assistant Professor}{2023 -- 2025}
+\workexpcompact{University of California Berkeley}{Visiting Scholar; Host: Alexei A. Efros}{2024}
+\workexpcompact{Allen Institute of Artificial Intelligence}{Research Intern with Aniruddha Kembhavi}{2023}
+\workexpcompact{Intel}{Research Intern with Stephan R. Richter in Vladlen Koltun's team}{2021}
+\workexpcompact{NVIDIA}{Research Intern with Andrew Tao and Bryan Catanzaro}{2020}
+% \workexpcompact{Fyusion Inc}{Research Intern with Abhishek Kar and Rodrigo Ortiz Cayon}{2019}
+% % \workexpcompact{University of Illinois Urbana Champaign}{Graduate Research Assistant with D.A. Forsyth}{2018-2023}
+% \workexpcompact{Siemens Corporate Technology}{Computer Vision \& DL Intern with Jan Ernst}{2017}
+% % \workexpcompact{University of Illinois Urbana Champaign}{Graduate Teaching Assistant in Computer Science}{2016-2018}
+% \workexpcompact{Michigan State University}{Research Intern with Nizar Lajnef}{2014}
+% \workexpcompact{IIIT Hyderabad}{Research Intern with Ramacharla Pradeep Kumar}{2013}
+\vspace{-3.75ex}
+% \section{Selected Honors and Awards} 
+% \workexpcompact{Outstanding Reviewer}{ICCV}{2023}
+% \workexpcompact{Best Paper Nomination}{CVPR}{2022}
+% \workexpcompact{Outstanding Emergency Reviewer}{CVPR}{2021}
+% \workexpcompact{Excellent Teaching Assistant}{Intro Computing: Engrg \& Sci}{2016}
+% \vspace{-4ex}
+
+% \section{\sc \large Selected Awards}
+% Best Thesis 
+% ADD UCSD Postdoc fellowship (decline)
+% Best Reviewer 
+% Best TA
+% Best Paper Finalist 
+
+% \section{\sc \large References} 
+% \begin{list1}
+% \item[] David Forsyth, Professor, Computer Science, UIUC -- daf@illinois.edu
+% \item[] Derek Hoiem, Professor, Computer Science, UIUC  -- dhoiem@illinois.edu
+% \item[] Shenlong Wang, Assistant Professor, Computer Science, UIUC -- shenlong@illinois.edu
+% \item[] Yuxiong Wang, Assistant Professor, Computer Science, UIUC -- yxw@illinois.edu
+% \end{list1}
+% David Forsyth (daf@illinois.edu) \\ Derek Hoiem (hoiem@illinois.edu \\ Shenlong Wang (shenlong@illinois.edu) \\ Yuxiong Wang (yxw@illinois.edu)
+
+
+
+
+% \item {\bf \href{}{{Improving Projective Geometry in Generated Images}}} \\ {Amitabh Mahapatra$^\star$, Tracy Yixin Zhu$^\star$, Zhiyan Wang$^\star$,  Svetlana Lazebnik, D.A. Forsyth}, {\bf Anand Bhattad}
+% \\
+% \emph{In Submission}
+
+
+
+%\\{Conference on Neural Information Processing Systems (NeurIPS), 2021}}
+%\\{Conference on Neural Information Processing Systems (NeurIPS), 2021}}
+%\\{International Conference on Computer Vision (ICCV), 2021}}
+\section{Education}
+{\bf University of Illinois Urbana-Champaign (UIUC)}, USA 
+%\hfill 3.70/4.0
+\\ \vspace*{-.12in}
+\begin{list1}
+\item[] Ph.D., Computer Science \hfill{2019 -- 2024}
+\item[] {Thesis:} \textbf{\textcolor{darkgray}{\href{https://www.ideals.illinois.edu/items/131447}{Exploring Knowledge in Generative Models}}}
+% \item[]{\em PhD Defense}: May'23; {\em Degree awarded}: May'24
+% \item[] {\em Advisor:} David Forsyth \hfill {}
+\item[] {Thesis committee:} \textcolor{darkgray}{\textbf{David Forsyth (Advisor)}, Alexei A. Efros, William T. Freeman,
+ Derek Hoiem, Svetlana Lazebnik, Shenlong Wang}   \hfill {}\\\vspace*{-.1in}
+\item[] M.S., Computer Science \hfill{2017 -- 2018}
+%\item[] {Thesis}: Novel Feature Construction Technique for Detecting Anomalous Faces \& Evaluating Style Transfer Methods. {\em Advised by Prof. D.A. Forsyth}\\\vspace*{-.1in}
+%{\em Thesis:}  ``{\tt Novel Feature Construction Technique for Detecting Anomalous Faces \& \\ Evaluating Style Transfer Methods}'' $|$ Advisor:  Prof. D.A. Forsyth
+%\item Dissertation Topic:  ``Hierarchical Models for Multiple Ratings
+%  in Performance-Based\\ \hspace*{1.23in} Student Assessments.'' 
+%\item Advisor:  Prof. D.A. Forsyth
+% \vspace*{.0in}
+\item[] M.S., Civil Engineering \hfill{2015 -- 2017}
+\end{list1}
+\vspace{1ex}
+{\bf National Institute of Technology Karnataka (NITK) Surathkal}, India
+%\hfill{\em GPA: 8.81/10.0}
+\\\vspace*{-.12in}
+\begin{list1}
+\item[] B.Tech., Civil Engineering \hfill{2011 -- 2015}
+\end{list1}
+\vspace{-0.5ex}
+\section{Selected Refereed Conference Papers 
+%(\texorpdfstring{\myhl{Self-selected Key Papers}}{key publications})
+}
+% \texorpdfstring{\myhl{Self-selected Key Papers are Highlighted}}{key publications}
+\renewcommand*{\labelenumi}{\theenumi.}
+\begin{etaremune}[start=6, leftmargin=20pt]
+\setlength{\itemsep}{0in}
+\item {\bf \href{}{\myhl{\textsc{Visual Jenga}: Discovering Object Dependencies via Counterfactual Inpainting}}} \\{\bf Anand Bhattad}, {Konpat Preechakul, Alexei A. Efros} \\
+\emph{NeurIPS 2025}
+\item {\bf \href{https://arxiv.org/abs/2412.00177}{\myhl{\textsc{LumiNet}: Latent Intrinsics Meets Diffusion Models for Indoor Scene Relighting}}} \\ {Xiaoyan Xing, Konrad Groh, Sezer Karaoglu, Theo Gevers}, {\bf Anand Bhattad}\\
+\emph{CVPR 2025}
+\item {\bf \href{https://arxiv.org/abs/2306.09349}{{UrbanIR: Large-Scale Urban Scene Inverse Rendering from a Single Video}}}\\
+{Zhi-Hao Lin, Bohan Liu, Yi-Ting Chen, Kuan-Sheng Chen, D.A. Forsyth, Jia-Bin Huang, {\bf Anand Bhattad}, Shenlong Wang}\\
+\emph{3DV 2025}
+\item {\bf \myhl{From an Image to a Scene: Learning to Imagine the World from a Million 360$^\circ$ Videos
+}} \\{Matthew Wallingford, {\bf Anand Bhattad}, Aditya Kusupati, Vivek Ramanujan, Matt Deitke, Sham Kakade, Aniruddha Kembhavi, Roozbeh Mottaghi, Wei-Chiu Ma, Ali Farhadi}\\
+\emph{NeurIPS 2024}
+\item {\bf \href{https://arxiv.org/abs/2311.17138}{\myhl{\textit{Shadows Don't Lie and Lines Can't Bend!} Generative Models Don't Know Projective Geometry...For Now}}} \\{Ayush Sarkar$^\star$, Hanlin Mai$^\star$, Amitabh Mahapatra$^\star$, Svetlana Lazebnik, D.A. Forsyth, {\bf Anand Bhattad}} \\
+\emph{CVPR 2024}
+\item {\bf \href{https://arxiv.org/abs/2306.00987}{\myhl{StyleGAN Knows Normals, Depth, Albedo, and More}}} \\{{\bf Anand Bhattad}, {Daniel McKee}, Derek Hoiem, D.A. Forsyth}\\
+\emph{NeurIPS 2023}
+\end{etaremune}
+
+\end{document}
+
+
+
+

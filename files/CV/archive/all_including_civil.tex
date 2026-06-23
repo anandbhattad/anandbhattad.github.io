@@ -1,0 +1,289 @@
+\documentclass[margin,line]{res}
+\oddsidemargin -.5in
+\evensidemargin -.5in
+\textwidth=6.05in %increase from 6in
+\itemsep=0in
+\parsep=0in
+% if using pdflatex:
+%\setlength{\pdfpagewidth}{\paperwidth}
+%\setlength{\pdfpageheight}{\paperheight} 
+\newenvironment{list1}{
+  \begin{list}{\ding{113}}{%
+      \setlength{\itemsep}{0in}
+      \setlength{\parsep}{0in} \setlength{\parskip}{0in}
+      \setlength{\topsep}{0in} \setlength{\partopsep}{0in} 
+      \setlength{\leftmargin}{0.17in}}}{\end{list}}
+\newenvironment{list2}{
+  \begin{list}{$\bullet$}{%
+      \setlength{\itemsep}{0in}
+      \setlength{\parsep}{0in} \setlength{\parskip}{0in}
+      \setlength{\topsep}{0in} \setlength{\partopsep}{0in} 
+      \setlength{\leftmargin}{0.2in}}}{\end{list}}
+\addtolength{\topmargin}{-.5in}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+\usepackage{nopageno}
+\usepackage{lmodern}
+\usepackage{enumitem}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{marginnote} 
+\usepackage{etaremune}
+\newcommand\KeyWord[1]{%
+  \marginnote{\parbox[t]{\marginparwidth}{\hspace*{-1.02in}\raggedright \em{#1}}}}
+\reversemarginpar
+
+\begin{document}
+\name{\Huge Anand Bhattad \vspace*{.05in}}
+\begin{resume}
+\section{\large \sc{Address}}
+\begin{tabular}{@{}p{3in}p{2.84in}}
+$3307$ A Thomas M. Siebel Center             & \hfill {\bf Voice:}  {\tt (217) 904-5911}\\            
+$201$ N. Goodwin Avenue   & \hfill {\bf E-mail:} {\tt anandbhattad92@gmail.com}\\         
+Urbana, Illinois $61801$, USA  &\hfill  {\bf web:} \href{https://anandbhattad.github.io/}{\tt https://anandbhattad.github.io/}\\     
+\end{tabular}
+
+\section{\sc \large Research Interests}
+I am interested in Computer Vision and Computational Photography. My current research focus is on Photorealistic Image Manipulation and Synthesis.
+
+% {\bf Computer Vision}: 3D Scene Understanding from a Monocular Image\\
+% {\bf Computational Photography}: \\
+% {\bf Machine Learning}: Self-Supervised Learning, Adversarial Machine Learning
+% \vspace*{-.05in}
+\section{\sc \large Education}
+{\bf University of Illinois, Urbana-Champaign (UIUC)}, USA 
+\hfill{\em GPA: 3.82/4.0}
+\\ \vspace*{-.12in}
+\begin{list1}
+\item[] Ph.D., Computer Science \hfill{\em Jan'19 - }
+\item[] {\em Advised by Prof. David Forsyth} \hfill {\scriptsize  (Transferred in Fall 2019 from UIUC's ECE Ph.D., program)}\\\vspace*{-.1in}
+\item[] M.S., Computer Science \hfill{\em Aug'17 - Dec'18}
+%\item[] {Thesis}: Novel Feature Construction Technique for Detecting Anomalous Faces \& Evaluating Style Transfer Methods. {\em Advised by Prof. David A. Forsyth}\\\vspace*{-.1in}
+%{\em Thesis:}  ``{\tt Novel Feature Construction Technique for Detecting Anomalous Faces \& \\ Evaluating Style Transfer Methods}'' $|$ Advisor:  Prof. David A. Forsyth
+%\item Dissertation Topic:  ``Hierarchical Models for Multiple Ratings
+%  in Performance-Based\\ \hspace*{1.23in} Student Assessments.'' 
+%\item Advisor:  Prof. David A. Forsyth
+% \vspace*{.0in}
+\item[] M.S., Civil Engineering \hfill{\em Aug'15 - Aug'17}
+\end{list1}
+{\bf National Institute of Technology Karnataka (NITK) Surathkal}, India
+%\hfill{\em GPA: 8.81/10.0}
+\\\vspace*{-.12in}
+\begin{list1}
+\item[] B.Tech., Civil Engineering \hfill{\em July'11 - May'15}
+\end{list1}
+\section{\sc \large Research \\ Experience}
+{\bf Vision Lab},  UIUC; {\em Graduate Research Assistant}  \hfill  {\em Aug'17 - Present}\\
+{\em With Prof. David Forsyth}
+
+%\vspace*{-0.12in}\\
+% \begin{list2}
+% \item Completed $3$ projects: Adversarial Attacks (\hyperref[paper1]{paper\#1}); Anomaly Detection (\hyperref[paper2]{paper\#2}); \\Evaluating style Transfer (\hypertarget{paper3}{paper\#3})
+% \item Ongoing $3$ projects: Weakly-Supervised Semantic Segmentation;  Semantic Adversarial Defenses; Image Manipulation by Decomposition
+% \end{list2}\vspace*{-0.065in} 
+{\bf Fyusion Inc},  San Francisco; {\em Research Intern}  \hfill  {\em May'19 - Aug'19}\\
+{\em With Abhishek Kar}\\
+Project on image-based relighting.
+
+{\bf Siemens Corporate Technology}, Princeton; {\em Computer Vision \& DL Intern}  \hfill  {\em May'17 - Aug'17}\\
+{\em With Jan Ernst and Ziyan Wu}\\
+Developed a semi-automated segmentation tool based on Polygon-RNN from CVPR 2017. 
+
+% \begin{list2}
+% \item Developed a semi-automated segmentation tool using Polygon-RNN from CVPR 2017
+% \item Adapted a pretrained super-resolution deep network for enhancing the resolution of depth images
+% \item Tool developed is currently being deployed internally for multiple vision applications
+% \end{list2}\vspace*{-0.065in} 
+{\bf Computational Sensor Lab}, {Michigan State University}; {\em Research Intern} \hfill {\em May'14 - July'14} \\
+{\em With Prof. Nizar Lajnef and Prof. Amir H. Alavi}\\
+Built a framework for Damage Detection Using Self-Powered Wireless Sensors
+
+{\bf Earthquake Engineering Research Center}, {IIIT Hyderabad}; {\em Research Intern} \hfill {\em Jun'13 - July'13} \\
+{\em With Prof. Ramacharla Pradeep Kumar}\\
+Designed Earthquake Resistant Multi-Storied Building
+\section{\sc \large Conference Papers}
+\begin{etaremune}[start=7, leftmargin=12pt]
+\item {\bf \href{}{Convincing Cut and Paste Reshading by Fooling Inferences}} \\{{\bf A. Bhattad}, D. A. Forsyth \\{Under review at European Conference on Computer Vision}
+\item {\bf \href{https://openreview.net/forum?id=Sye_OgHFwH}{Unrestricted Adversarial Perturbations via Semantic Manipulation}} \\{{\bf A. Bhattad}*, M. J. Chong*, K. Liang, B. Li, D. A. Forsyth \hfill{(* for equal contribution)}}\\{International Conference on Learning Representations (ICLR) 2020} 
+\item {\bf \href{https://arxiv.org/abs/1910.09447}{Improved Style Transfer with Calibrated Metrics}}\\
+{M. Yeh, S. Tang, {\bf A. Bhattad}, C. Zou, D. A. Forsyth}\\ 
+{Winter Conference on Applications of Computer Vision ({WACV}) 2020}
+\item {\bf Role of GGBS in Enhancing the Durability of Concrete in Coastal Environment}\\
+{\bf A. Bhattad*}, A. Master*, A. Salkar*, G. Kumar*, K. Prabhu, K. Venkataramana\\
+International Conference on Sustainable Energy and Built Environment 2015, {\bf \emph {Oral Presentation}}
+\end{etaremune}
+\section{\sc \large Workshop Papers}
+\begin{etaremune}[start=3, leftmargin=12pt]
+\item {\bf Big but Imperceptible Adversarial Perturbations via Semantic Manipulation}\\
+{{\bf A. Bhattad}*, M. J. Chong*, K. Liang, B. Li, D. A. Forsyth} \hfill{(* for equal contribution)} \\
+Computer Vision and Pattern Recognition (CVPR) Workshop 2019, {\bf \emph{Oral Presentation}} 
+\item {\bf Detecting Anomalous Faces with ``No Peeking'' Autoencoders}\\
+{{\bf A. Bhattad}, J. Rock, D. A. Forsyth}\\ 
+{Computer Vision and Pattern Recognition (CVPR) Workshop, 2018, {\bf \emph {Oral Presentation}}}
+\item {\bf Durability of Concrete in Coastal Areas (Severe Zone)}\\
+G. Kumar, A. Salkar, A. Master, {\bf A. Bhattad}, K. Venkataramana, K. Prabhu \\
+International Engineering Symposium, Kumamoto University, Japan 2015, {\bf \emph {Oral Presentation}}
+\end{etaremune}
+% \section{\sc \large Civil Engg. Papers}
+% \begin{etaremune}[start=2, leftmargin=12pt]
+% \item {\bf Role of GGBS in Enhancing the Durability of Concrete in Coastal Environment}\\
+% {\bf A. Bhattad}, A. Master, A. Salkar, G. Kumar, K. Prabhu, K. Venkataramana\\
+% International Conference on Sustainable Energy and Built Environment 2015, {\bf \emph {Oral Presentation}}
+% \item {\bf Durability of Concrete in Coastal Areas (Severe Zone)}\\
+% G. Kumar, A. Salkar, A. Master, {\bf A. Bhattad}, K. Venkataramana, K. Prabhu \\
+% International Engineering Symposium, Kumamoto University, Japan 2015, {\bf \emph {Oral Presentation}}
+% \end{etaremune}
+
+
+
+
+% \vspace*{-0.12in}\\
+% \begin{list2}
+% \item Designed sensor array schematic for damage detection of roads using self-powered sensors
+% \item Improved accuracy by 18\% using signal processing and multi-layer perceptron 
+% \item Poster presentation at Mid-Michigan Symposium for Undergraduate Research Experiences, 2014
+% \end{list2}
+%\vspace*{-0.065in} 
+% {\bf Research Intern}, {\em Earthquake Engineering Research Center}, {IIIT Hyderabad}  \hfill {\em Jun'13 - July'13}\vspace*{-0.15in}\\
+% \begin{list2}
+% \item Designed solutions for multi-storied earthquake resistant buildings
+% \end{list2}
+% {\bf Research Assistant}, {\em Structural Engineering Lab}, {NITK Surathkal}  \hfill {\em Apr'13 - May'15}\vspace*{-0.15in}\\
+% \begin{list2}
+% \item {\bf A. Bhattad}, G. Kumar, A. Master, A. Salkar, K. Prabhu, K. Venkataramana;  {\em ``Role of GGBS in Enhancing the Durability of Concrete in Coastal Environment''}, International Conference on Sustainable Energy and Built Environment (2015)
+% \item G. Kumar, A. Salkar, A. Master, {\bf A. Bhattad}, K. Venkataramana, K. Prabhu;  {\em ``Durability of Concrete in Coastal Areas (Severe Zone)''}, 4th International Engineering Symposium (2015)
+% \end{list2}
+\section{\sc \large Teaching \\ Experience}
+{\bf Computer Science}, UIUC; {\em Graduate Teaching Assistant}\hfill {\em Jan'16 - Present}\vspace*{-0.12in}\\
+\begin{list2}
+\item Applied Machine Learning (CS498 AML) in Fall'18 $|$ Designed Kaggle competitions 
+\item Data Structures (CS 225) in Spring'17 $|$ Developed Assignments, Exams \& Labs
+\item Introduction to Computing (CS 101) in Spring'16 \& Fall'16 $|$ \bf{Rated as Excellent TA}
+\end{list2}
+
+% \vspace*{-0.065in} 
+% {\bf Senior UG Mentor}, NITK Surathkal \hfill {\em July'14 - May'15}\vspace*{-0.15in}\\
+% \begin{list2}
+% \item Mentored $8$ sophomore and junior students from NITK Surathkal for their research projects
+% \item Tutorial instructor in Civil Engineering \& Math courses for students needing academic help
+% \end{list2}\vspace*{-0.065in} 
+% {\bf Executive Mentor}, NITK ACM Student Chapter, NITK Surathkal {\hfill \em  July'12 - May'15}\vspace*{-0.15in}\\
+% \begin{list2}
+% \item Initiated tutorials for basic computer literacy -- {\tt Shiksha}, educating underprivileged students
+% \item Organized sessions on Python, Android App development and radio controlled cars
+% \end{list2}
+
+% \section{\sc \large Recent \\ Projects}
+% {\bf Big but Invisible Adversarial Attacks}{\hfill \em Sept'18 - Nov'18}\\
+% {\em Project Mentor: Prof. David A. Forsyth \& Prof. Bo Li}\vspace*{.03in}\\
+%  Current adversarial image constructions to fool classifiers are restricted. They search for small, noise-like changes to avoid detection by humans; typically, restricting the norm of the change.
+%  \begin{list2}
+%  \vspace{1mm}
+%  \item Demonstrated $3$ {\em unrestricted} semantic attacks using texture transfer, colorization \& super-resolution
+%  \item Created {\em gigantic} and {\em imperceptible} perturbations ($\mathcal{L}_2$ -norm)  in images from all our attacks
+%  \item $48.5\%$ of times images attacked by our strategy are chosen as natural in human perceptual study
+%  \item $95\%+$ misclassification rate from all our attacks 
+%  \end{list2}\vspace*{-0.05in} 
+% {\bf Detecting Anomalous Faces without Labeled Examples}{\hfill \em Sept'17 - Nov'18}\\
+% {\em Project Mentor: Prof. David A. Forsyth}\vspace*{.03in}\\
+% Detecting facial anomalies requires accurate identification of rare and small effects in test-time. Traditional methods identifies them from background without detecting true sources of face anomalies.
+% \begin{list2}
+% \vspace{1mm}
+% \item Designed a feature construction strategy for unsupervised face anomaly detection
+% \item Built a face anomaly dataset of $1693$ images; easy-set ($501$ images) \& hard-set ($1192$ images)
+% \item Improved accuracy by $10\%$ (for easy-set) \& $22\%$ (for hard-set; baselines performs at chance)
+% \item Showed a witness function for evaluating GANs generated faces from our anomaly detector
+% \vspace{1mm}
+% \item[{\bf-}]Preliminary work as an {\em oral presentation} at Vision with Biased or Scarce Data {\hfill \tt [CVPR-W 2018]}
+% \item[{\bf-}] Poster presentation at the University of Michigan, Ann Arbor {\hfill \tt [Mid-West CV Workshop 2018]}
+% \end{list2}\vspace*{-0.05in} 
+%  %vspace*{-0.075in}
+% {\bf Improved Style Transfer with Calibrated Metrics} {\hfill \em Aug'17 - Nov'18}\\
+% {\em Project Mentor: Prof. David A. Forsyth}\vspace*{.03in}\\
+% All previous style transfer (ST) evaluations are qualitative and entails quantitative evaluations. 
+% %\KeyWord{Contributions}\vspace*{-0.17in}
+% \begin{list2}
+% \vspace{1mm}
+% \item Described a quantitative evaluation procedure for ST that identifies user preferences
+% \item Proposed $2$ novel evaluation metrics: {\em Effectiveness} and {\em Coherence} for quantitative evaluations
+% \item Investigated $5$ ST methods quantitatively and found controlling cross-layer losses with covariance matrix is helpful than gram matrix  
+% \item Constructed affine-symmetric groups explaining instabilities in within-layer gram matrix
+% \vspace{1mm}
+% \item[{\bf-}]Poster presentation at the University of Michigan, Ann Arbor {\hfill \tt [Mid-West CV Workshop 2018]}
+% \end{list2}
+\section{\sc \large Other \\Projects} 
+{\bf Impact of Graph Convolutional Network (GCN) for Active Learning} \hfill{\em Mar'18 - May'18}\\
+{\em Project Mentor: Prof. ChengXiang Zhai} \hfill {\tt [\href{https://www.youtube.com/watch?v=V_XLsYSgiHk}{Video} $|$ \href{https://github.com/unnat/active_gcn_ner/blob/master/active-learning-gcn-report.pdf}{Report} $|$ \href{https://github.com/unnat/active_gcn_ner}{Code}]}\vspace{0.15in}\\
+% \begin{list2}
+% \item Investigated active learning for text information systems using GCN
+% \item Enhanced Named Entity Recognition accuracy by 2\% using GCNs
+% \item Showed Uncertainty based sampling approach more effective than Random sampling
+% \end{list2}
+{\bf Pedestrian Detection and Automated Braking for Self-Driving Cars}{\hfill \em Jan'17 - May'17}\\
+{\em Project Mentor: Prof. David Forsyth}{\hfill \tt [\href{https://www.youtube.com/watch?v=GqzZzr85BcQ}{Video} %$|$ \href{https://www.youtube.com/watch?v=mw7m-TUcnqw}{Pedestrian Detection} 
+$|$ \href{https://github.com/tensorpro/MAAV}{Code}]}\vspace{-0.15in}\\
+% \begin{list2}
+% \item Built a smooth autonomous braking system for pedestrian detection using YOLO \& SSD
+% \item Estimated pedestrian distance from perspective geometry using only a monocular camera
+% \item Integrated the software built using Robotics Operating System and tested on a self-driving car 
+% \end{list2}
+% \section{\sc Computer \\Skills} 
+% \begin{list2}
+% \item DL Packages: PyTorch, TensorFlow, Keras, Caffe2
+% \item Statistical Packages:  R, MATLAB
+% \item Languages:  Python, C++, C
+% \end{list2}
+% \vspace*{-0.04in}
+
+% \section{\sc \large AI Courses}
+% Computer Vision, Optimization in Computer Vision, Autonomous Vehicles, Cutting Edge Trends in DL \& Recognition, Graphical Models, Machine Learning, Pattern Recognition, Adversarial Machine Learning, Convex Optimization$^+$ ($^+$ = ongoing)
+
+\section{\sc \large Services \& \\ Leadership}
+{\bf Program Committee} {\hfill Jun 2019}\vspace*{-0.15in}\\
+\begin{list2}
+\item Adversarial Machine Learning in Real-World Computer Vision Systems, CVPR 2019 Workshop
+\item Security and Privacy in Machine Learning, ICML 2019 Workshop
+\end{list2}\vspace*{-0.05in} 
+{\bf Organizer}, Vision Coffee, Urbana-Champaign{\hfill \em May'18 - Aug'18}\vspace*{-0.15in}\\
+\begin{list2}
+\item Vision and Deep Learning paper/topic weekly discussion group
+\item Finalized agenda/topic, location and initiated discussions 
+\end{list2}\vspace*{-0.05in} 
+{\bf Co-Founder}, SchoolEngg{\hfill \em Apr'13 - May'15}\vspace*{-0.15in}\\
+\begin{list2}
+\item Forum for high-school students; providing the firsthand knowledge of all engineering disciplines
+\item Currently, renamed as {\em PrepLift}, an education counselling start-up in India
+\end{list2}\vspace*{-0.05in} 
+% {\bf Co-Founder}, American Society of Civil Engineers (ASCE) NITK Chapter {\hfill \em Apr'13 - May'15}\vspace*{-0.15in}\\
+% \begin{list2}
+% \item Co-Founded the first ASCE student chapter of India 
+% \item Raised membership from 11 to 96 in a span of 6 months
+% \item Coordinated with board members, faculty, and outside organizations to facilitate 10+ events 
+% \end{list2}\vspace*{-0.05in} 
+%------------------------------------------------
+{\bf General Elections of India, Volunteer}{\hfill \em Aug'13 - Apr'14}
+\vspace*{-0.15in}\\
+\begin{list2}
+\item Helped register Voter Ids of 200+ people, from filling forms to getting their Voter IDs printed 
+\item Spread awareness about the importance of voting through street-plays 
+\end{list2}
+% \section{\sc \large References}
+% {\bf \href{http://luthuli.cs.uiuc.edu/~daf/}{Prof. David A. Forsyth}}, UIUC -- daf@illinois.edu \hfill {[\tt Thesis Advisor]}\\
+% {\bf \href{http://www.crystal-boli.com/}{Prof. Bo Li}}, UIUC -- lbo@illinois.edu \hfill {\tt [Research Project Advisor]}\\
+% {\bf \href{https://abhishekkar.info/}{Dr. Abhishek Kar}}, Fyusion Inc -- akar@fyusion.com \hfill {\tt [Research Intern Mentor]}\\
+% \section{\sc Technical Skills}
+% \begin{tabular}{ @{} >{\bfseries}l @{\hspace{2ex}} l }
+% Languages &  Proficient: Python, MATLAB $|$ Moderate: C, C++ $|$ Familiar: R, Java \\
+% ML Tools & Proficient: PyTorch, Keras, Scikit-learn $|$ Moderate: Tensorflow, MatConvNet
+% \end{tabular}
+\end{resume}
+\end{document}
+
+
+
+
