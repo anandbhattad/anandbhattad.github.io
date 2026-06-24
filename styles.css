@@ -22,7 +22,7 @@
     --gap-m:1rem;
     --gap-l:1.5rem;
     --radius:8px;
-    --content-width:1000px;
+    --content-width:1240px;
   }
   
   /* =======================================================
@@ -79,7 +79,7 @@
   
   nav {
     background-color: #002D72;
-    max-width: 1000px;
+    max-width: var(--content-width);
     width: 100%;
     /* margin: 0 auto 20px auto; */
     /* border-radius: 8px; */
@@ -136,14 +136,7 @@ nav a:hover {
   /* =======================================================
      PUBLICATIONS
      ----------------------------------------------------- */
-  #publications{ /* single column by default */ }
-  @media (min-width:1200px){
-    #publications{
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(520px,1fr));
-      gap:var(--gap-m);
-    }
-  }
+  #publications{ display:block } /* single column: full-width rows with large teasers */
   .publication-year{
     margin:var(--gap-l) 0 var(--gap-s);
     padding-bottom:.5rem;border-bottom:2px solid var(--border-color);
@@ -163,9 +156,10 @@ nav a:hover {
   }
   
   /* thumbnail */
-  .pub-image{flex:0 0 170px}
+  .pub-image{flex:0 0 280px}
   .pub-image img,.pub-image video{
-    width:170px;height:auto;border-radius:calc(var(--radius)*.8);
+    width:280px;height:auto;max-height:220px;object-fit:contain;object-position:left;
+    border-radius:calc(var(--radius)*.8);
     transition:transform .3s ease;
   }
   .publication-item:hover .pub-image img,

@@ -100,8 +100,8 @@
     \setlength{\leftmargin}{0.2in}\setlength{\itemsep}{2pt}%
     \setlength{\parsep}{0pt}\setlength{\topsep}{2pt}\setlength{\partopsep}{0pt}}}{\end{list}}
 
-%---------- Key-paper marker : star + accent title ----------
-\newcommand{\myhl}[1]{\textcolor{accent}{\footnotesize\faStar}\,\textcolor{accent}{#1}}
+%---------- Key-paper marker : plain (selected papers now live in their own section) ----------
+\newcommand{\myhl}[1]{#1}
 
 %---------- Margin notes (kept for compatibility) ----------
 \newcommand\KeyWord[1]{%
@@ -109,7 +109,9 @@
 \reversemarginpar
 
 %---------- Anti-orphan section headers ----------
-\pretocmd{\section}{\needspace{4\baselineskip}}{}{}
+% Keep a header with ~2 following lines; titlesec already glues the header to its
+% first line, so a small value here avoids eager page breaks that strand sections.
+\pretocmd{\section}{\needspace{2\baselineskip}}{}{}
 
 %---------- Entry command : organisation, role  ......  dates ----------
 \newcommand{\workexpcompact}[3]{%

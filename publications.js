@@ -485,6 +485,25 @@ if (typeof module !== 'undefined') {
 // Adding Publications
 
 addPublication(
+  "./images/thinking_in_boxes_v2.mp4",
+  "Thinking in Boxes: 3D Editing in Real Images Made Easy",
+  "Pradhaan S Bhat*, Naveen Chandra*, Rishubh Parihar, Vaibhav Vavilala, Venkatesh Babu, D.A. Forsyth, Anand Bhattad",
+  "Preprint, arXiv 2026",
+  "https://arxiv.org/abs/2606.20556",
+  "https://thinking-in-boxes.github.io/", // project page
+  "", // code link
+  "https://arxiv.org/abs/2606.20556",
+  "", // github-repo-name
+  "Thinking in Boxes makes 3D editing of real images easy: objects are represented with coarse 3D boxes that can be moved, rotated, and rescaled, enabling in-the-wild 3D-aware edits while preserving object identity and scene consistency.",
+  "In Submission",
+  "pre-print",
+  true,
+  true,
+  [],
+  ""
+);
+
+addPublication(
   "./images/syncfix.mp4",
   "SyncFix: Fixing 3D Reconstructions via Multi-View Synchronization",
   "Deming Li, Abhay Yadav, Cheng Peng, Rama Chellappa, Anand Bhattad",
