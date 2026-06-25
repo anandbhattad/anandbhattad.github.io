@@ -10,14 +10,6 @@
 const CACHE_TTL = 24 * 60 * 60 * 1000; // 1 day
 const LOCAL_BIBTEX_PATH = './publications.bib'; // Path to local BibTeX file
 
-const citationSVG = `
-<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-  <path d="M7.17 3.59c-1.25.39-2.44 1.09-3.31 2.12C2.66 7.01 2 8.39 2 10.09c0 1.87 1.52 3.41 3.41 3.41
-           1.89 0 3.41-1.54 3.41-3.41 0-1.1-.5-2.13-1.3-2.8.32-.76.82-1.43 1.45-1.94a6.68 6.68 0 0 0-1.8-.76zm10 0
-           c-1.25.39-2.44 1.09-3.31 2.12-.9 1.3-1.56 2.68-1.56 4.38 0 1.87 1.52 3.41 3.41 3.41 1.89 0 3.41-1.54 3.41-3.41
-           0-1.1-.5-2.13-1.3-2.8.32-.76.82-1.43 1.45-1.94a6.68 6.68 0 0 0-1.8-.76z"/>
-</svg>`;
-
 // Global variable to store loaded BibTeX data
 let localBibTeXData = null;
 
@@ -39,10 +31,6 @@ function setCache(key, val) {
   try {
     localStorage.setItem(key, JSON.stringify({ ts: Date.now(), val }));
   } catch {}
-}
-
-function cssSafe(str) {
-  return str.replace(/[^a-z0-9]/gi, "_");
 }
 
 /* ------------------------------------------------------------------
@@ -168,69 +156,6 @@ function addPublication(
 }
 
 /* ------------------------------------------------------------------
-   2. GitHub stars
-------------------------------------------------------------------*/
-async function fetchGitHubStars(repo) {
-  if (!repo) return 0;
-  const ck = `gh_${repo}`;
-  const cached = getCache(ck);
-  if (cached !== null) return cached;
-
-  try {
-    const res = await fetch(`https://api.github.com/repos/${repo}`);
-    const { stargazers_count = 0 } = await res.json();
-    setCache(ck, stargazers_count);
-    return stargazers_count;
-  } catch {
-    return 0;
-  }
-}
-
-/* ------------------------------------------------------------------
-   3. Semantic‑Scholar citation counts (title‑filtered)
-------------------------------------------------------------------*/
-async function fetchSSCitations(pub) {
-  const ids = Array.isArray(pub.ssIds) ? pub.ssIds : pub.ssIds ? [pub.ssIds] : [];
-
-  /* direct CorpusId path */
-  if (ids.length) {
-    const totals = await Promise.all(ids.map(async (id) => {
-      const ck = `ss_${id}`;
-      const cached = getCache(ck);
-      if (cached !== null) return cached;
-      try {
-        const j = await (await fetch(`https://api.semanticscholar.org/graph/v1/paper/CorpusId:${id}?fields=citationCount`)).json();
-        const v = j.citationCount || 0;
-        setCache(ck, v);
-        return v;
-      } catch {
-        return 0;
-      }
-    }));
-    return { count: totals.reduce((a, b) => a + b, 0), ids };
-  }
-
-  /* title search fallback */
-  const k = `ss_${pub.title}`;
-  const cached = getCache(k);
-  if (cached !== null) return { count: cached, ids: [] };
-
-  try {
-    const url = `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(pub.title)}&limit=10&fields=title,citationCount,corpusId`;
-    const { data = [] } = await (await fetch(url)).json();
-    const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
-    const want = norm(pub.title);
-    const hit  = data.find((d) => norm(d.title) === want);
-    if (!hit) return null;
-
-    setCache(k, hit.citationCount);
-    return { count: hit.citationCount, ids: hit.corpusId ? [hit.corpusId] : [] };
-  } catch {
-    return null;
-  }
-}
-
-/* ------------------------------------------------------------------
    4. Rendering
 ------------------------------------------------------------------*/
 async function renderPublications(filter = "highlights") {
@@ -255,56 +180,14 @@ async function renderPublications(filter = "highlights") {
       byYear[y].forEach((p) => $list.append(genPubHTML(p)));
     });
 
-  // Load local BibTeX data
-  await loadLocalBibTeX();
-
-  await Promise.allSettled(subset.map(async (p) => {
-    const stars = await fetchGitHubStars(p.githubRepo);
-    const cites = await fetchSSCitations(p);
-    updateMeta(p, stars, cites);
-  }));
-
   $(".publication-filter").removeClass("active");
   $(`.publication-filter[data-filter="${filter}"]`).addClass("active");
-}
-
-/* ------------------------------------------------------------------
-   5. Meta line (stars + citations)
-------------------------------------------------------------------*/
-function updateMeta(p, stars, cites) {
-  const $el = $(`#meta-${cssSafe(p.title)}`);
-  if (!$el.length) return;
-
-  const parts = [];
-
-  // citation badge
-  if (cites && cites.count > 0) {
-    const first = cites.ids[0] || "";
-    parts.push(
-      `<a href="#" onclick="showBibtex(event,this)" class="cite-link" ` +
-      `data-corpusid="${first}" data-title="${p.title}" data-year="${p.year}" title="Show BibTeX">` +
-        `${citationSVG} <span class="cite-number">${cites.count}</span>` +
-      `</a>`
-    );
-  }
-
-  // GitHub stars
-  if (p.githubRepo && stars > 0) {
-    parts.push(
-      `<a href="https://github.com/${p.githubRepo}" target="_blank" class="star-count" title="GitHub Stars">` +
-        `<i class="fas fa-star"></i> ${stars}` +
-      `</a>`
-    );
-  }
-
-  $el.html(parts.join(" "));
 }
 
 /* ------------------------------------------------------------------
    6. Card template
 ------------------------------------------------------------------*/
 function genPubHTML(p) {
-  const id = cssSafe(p.title);
   const link = p.project || p.arxiv || p.paper;
   const img  = p.isVideo
     ? `<video src="${p.img}" controls autoplay loop muted></video>`
@@ -324,7 +207,6 @@ function genPubHTML(p) {
         ${p.arxiv   ? ` <a href="${p.arxiv}"   target="_blank"><i class="fas fa-archive"></i> arXiv</a>`  : ""}
       </div>
       <div class="pub-tldr"><strong>TL;DR:</strong> ${p.tldr}</div>
-      <div class="pub-stars" id="meta-${id}"></div>
     </div>
   </div>`;
 }
