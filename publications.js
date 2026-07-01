@@ -395,8 +395,8 @@ addPublication(
   "https://github.com/CVC-Color/synclight", // code link
   "https://arxiv.org/abs/2601.16981",
   "CVC-Color/synclight", // github-repo-name
-  "SyncLight generates consistent multi-view relighting by only specifing the lighting in one view and SyncLight propagates it consistently to all views in a single inference step..",
-  "2026",
+  "SyncLight generates consistent multi-view relighting by only specifing the lighting in one view and it consistently propagates to all views in a single inference step.",
+  "In Submission",
   "pre-print",
   false,
   true,
