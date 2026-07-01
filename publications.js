@@ -700,7 +700,7 @@ addPublication(
 addPublication(
     "./images/videoshop.gif",
     "VideoShop: Localized Semantic Video Editing with Noise-Extrapolated Diffusion Inversion",
-    "Xiang Fan, Anand Bhattad*, Ranjay Krishna*",
+    "Xiang Fan, Anand Bhattad<sup>†</sup>, Ranjay Krishna<sup>†</sup>",
     "ECCV 2024",
     "./files/Videoshop_ECCV2024.pdf",
     "https://videoshop-editing.github.io/",
