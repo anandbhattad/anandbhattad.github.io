@@ -386,6 +386,25 @@ addPublication(
 );
 
 addPublication(
+  "./images/synclight_teaser_3.mp4",
+  "SyncLight: Single-Edit Multi-View Relighting",
+  "David Serrano-Lozano, Anand Bhattad<sup>†</sup>, Luis Herranz, Jean-François Lalonde<sup>†</sup>, Javier Vazquez-Corral<sup>†</sup>",
+  "Preprint, arXiv 2026",
+  "https://arxiv.org/abs/2601.16981",
+  "https://synclight.github.io/",
+  "https://github.com/CVC-Color/synclight", // code link
+  "https://arxiv.org/abs/2601.16981",
+  "CVC-Color/synclight", // github-repo-name
+  "SyncLight generates consistent multi-view relighting by only specifing the lighting in one view and SyncLight propagates it consistently to all views in a single inference step..",
+  "2026",
+  "pre-print",
+  false,
+  true,
+  [],
+  ""
+);
+
+addPublication(
   "./images/syncfix.mp4",
   "SyncFix: Fixing 3D Reconstructions via Multi-View Synchronization",
   "Deming Li, Abhay Yadav, Cheng Peng, Rama Chellappa, Anand Bhattad",
