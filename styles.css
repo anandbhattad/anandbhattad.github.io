@@ -429,7 +429,8 @@ nav a:hover {
 
 .paper-list .conf {
   flex-shrink: 0;
-  width: 75px;
+  width: 100px;   /* wide enough for "NeurIPS'26:" */
+  white-space: nowrap;
   color: #555;
   font-weight: 600;
 }

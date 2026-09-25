@@ -367,18 +367,37 @@ if (typeof module !== 'undefined') {
 // Adding Publications
 
 addPublication(
+  "./images/principia.mp4",
+  "Principia: Relational Physics Tests for Video Models",
+  "Varun Varma Thozhiyoor*, Shivam Tripathi*, Venkatesh Babu Radhakrishnan, Anand Bhattad",
+  "NeurIPS 2026",
+  "https://arxiv.org/abs/2609.04200",
+  "https://principiabench.github.io/", // project page
+  "", // code link
+  "https://arxiv.org/abs/2609.04200",
+  "", // github-repo-name
+  "Modern video generators produce visually realistic motion but fail surprisingly simple Newtonian physics tests. Principia evaluates physics with calibration-independent relational constraints, revealing inconsistent, predominantly sub-Earth gravity across state-of-the-art video models.",
+  "2026",
+  "published",
+  true,
+  true,
+  [],
+  ""
+);
+
+addPublication(
   "./images/thinking_in_boxes_v2.mp4",
   "Thinking in Boxes: 3D Editing in Real Images Made Easy",
   "Pradhaan S Bhat*, Naveen Chandra*, Rishubh Parihar, Vaibhav Vavilala, Venkatesh Babu, D.A. Forsyth, Anand Bhattad",
-  "Preprint, arXiv 2026",
+  "NeurIPS 2026",
   "https://arxiv.org/abs/2606.20556",
   "https://thinking-in-boxes.github.io/", // project page
   "", // code link
   "https://arxiv.org/abs/2606.20556",
   "", // github-repo-name
   "Thinking in Boxes makes 3D editing of real images easy: objects are represented with coarse 3D boxes that can be moved, rotated, and rescaled, enabling in-the-wild 3D-aware edits while preserving object identity and scene consistency.",
-  "In Submission",
-  "pre-print",
+  "2026",
+  "published",
   true,
   true,
   [],
@@ -389,17 +408,36 @@ addPublication(
   "./images/synclight_teaser_3.mp4",
   "SyncLight: Single-Edit Multi-View Relighting",
   "David Serrano-Lozano, Anand Bhattad<sup>†</sup>, Luis Herranz, Jean-François Lalonde<sup>†</sup>, Javier Vazquez-Corral<sup>†</sup>",
-  "Preprint, arXiv 2026",
+  "NeurIPS 2026",
   "https://arxiv.org/abs/2601.16981",
   "https://synclight.github.io/",
   "https://github.com/CVC-Color/synclight", // code link
   "https://arxiv.org/abs/2601.16981",
   "CVC-Color/synclight", // github-repo-name
   "SyncLight generates consistent multi-view relighting by only specifing the lighting in one view and it consistently propagates to all views in a single inference step.",
-  "In Submission",
-  "pre-print",
+  "2026",
+  "published",
   false,
   true,
+  [],
+  ""
+);
+
+addPublication(
+  "./images/rats_teaser.png",
+  "RATS! Patches Talk Through Registers: Emergent Parts in Register Attention Transformers",
+  "Timing Yang, Predrag Neskovic, Jansen Seheult, Wenchao Han, Anand Bhattad, Alan Yuille, Feng Wang",
+  "NeurIPS 2026",
+  "https://arxiv.org/abs/2606.14701",
+  "", // project page
+  "", // code link
+  "https://arxiv.org/abs/2606.14701",
+  "", // github-repo-name
+  "RATS decomposes the class token into N learnable register tokens that route patch information through a compress-communicate-broadcast attention bottleneck. Without part annotations or auxiliary losses, each register spontaneously specializes into an object-part-like region, giving +12 mIoU on average across five unsupervised part segmentation benchmarks and a register dictionary that stays consistent across related categories.",
+  "2026",
+  "published",
+  false,
+  false,
   [],
   ""
 );
