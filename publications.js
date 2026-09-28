@@ -370,7 +370,7 @@ addPublication(
   "./images/principia.mp4",
   "Principia: Relational Physics Tests for Video Models",
   "Varun Varma Thozhiyoor*, Shivam Tripathi*, Venkatesh Babu Radhakrishnan, Anand Bhattad",
-  "NeurIPS 2026",
+  "NeurIPS 2026 (Evaluations & Datasets Track)",
   "https://arxiv.org/abs/2609.04200",
   "https://principiabench.github.io/", // project page
   "", // code link
