@@ -13,7 +13,7 @@
 %---------- Encoding & fonts ----------
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{libertinus}      % Libertinus Serif (body) + Sans (headings)
+\usepackage{lmodern,charter} % Charter (body) + Latin Modern Sans (headings)
 \usepackage{microtype}       % refined spacing & character protrusion
 \usepackage{ragged2e}
 \makeatletter\let\CVnormalcr\@normalcr\makeatother
@@ -48,21 +48,21 @@
 %---------- Layout recipes ----------
 % Editorial: section labels in a wide left margin (spine); masthead pulled full-bleed
 \newcommand{\cveditorial}{%
-  \geometry{top=0.8in, bottom=0.7in, left=1.6in, right=0.7in, footskip=0.32in}%
+  \geometry{top=0.8in, bottom=0.9in, left=1.6in, right=0.7in, footskip=0.32in}%
   \setlength{\mhpull}{0.9in}%
   \titleformat{\section}[leftmargin]
     {\sffamily\bfseries\footnotesize\color{accent}\scshape\raggedright\hyphenpenalty=10000}{}{0em}{}%
   \titlespacing*{\section}{1.2in}{2.6ex}{1.0ex}}
 % Classic: full width, large small-caps serif headers + hairline rule
 \newcommand{\cvclassic}{%
-  \geometry{top=0.8in, bottom=0.7in, left=0.9in, right=0.9in, footskip=0.32in}%
+  \geometry{top=0.8in, bottom=0.9in, left=0.9in, right=0.9in, footskip=0.32in}%
   \setlength{\mhpull}{0pt}%
   \titleformat{\section}[block]
     {\normalfont\Large\scshape\color{accent}}{}{0em}{}[\vspace{1pt}{\color{rulecol}\titlerule[0.6pt]}]%
   \titlespacing*{\section}{0pt}{2.4ex}{0.9ex}}
 % Modern: full width, bold sans headers led by a short accent tab
 \newcommand{\cvmodern}{%
-  \geometry{top=0.8in, bottom=0.7in, left=0.9in, right=0.9in, footskip=0.32in}%
+  \geometry{top=0.75in, bottom=0.75in, left=0.8in, right=0.8in, footskip=0.30in}%
   \setlength{\mhpull}{0pt}%
   \titleformat{\section}[block]
     {\sffamily\large\bfseries\color{accent}}{}{0em}{{\color{accent}\rule[0.18ex]{1.5em}{3pt}}\hspace{0.5em}}%

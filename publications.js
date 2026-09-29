@@ -443,6 +443,25 @@ addPublication(
 );
 
 addPublication(
+  "./images/context_ar_placeholder.png",
+  "Context-Aware Autoregressive Image Generation for Emerging Reasoning Properties",
+  "Jixuan Ying, Haoyu Liu, Timing Yang, Tingyu Zhu, Predrag Neskovic, Anand Bhattad, Cihang Xie, Zeyu Zheng, Alan Yuille, Feng Wang",
+  "NeurIPS 2026",
+  "", // paper (not yet public)
+  "", // project page
+  "", // code link
+  "", // arXiv
+  "", // github-repo-name
+  "Context-aware autoregressive image generation from which reasoning properties emerge. Paper, project page, and teaser to follow once the camera-ready is public.",
+  "2026",
+  "published",
+  false,
+  false,
+  [],
+  ""
+);
+
+addPublication(
   "./images/syncfix.mp4",
   "SyncFix: Fixing 3D Reconstructions via Multi-View Synchronization",
   "Deming Li, Abhay Yadav, Cheng Peng, Rama Chellappa, Anand Bhattad",
