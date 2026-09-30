@@ -167,7 +167,9 @@ nav a:hover {
   
   /* meta */
   .pub-details{flex:1;display:flex;flex-direction:column}
-  .pub-title{font-size:1.05rem;font-weight:600;margin:0 0 .3rem}
+  .pub-title{font-size:1.05rem;font-weight:700;margin:0 0 .3rem}
+  .pub-title a{color:var(--text-primary)}                       /* titles: black bold, not link-blue */
+  .pub-title a:hover{color:var(--text-primary);text-decoration:underline}
   .pub-authors,.pub-venue{font-size:.85rem;margin:0 0 .25rem;color:var(--text-secondary)}
   .pub-venue{color:var(--primary-color);font-weight:600}
   
