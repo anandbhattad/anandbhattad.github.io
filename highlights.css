@@ -15,6 +15,8 @@
 .hl-card:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}
 .hl-thumb{position:relative;z-index:0;height:150px;overflow:hidden;background:#fff;border-bottom:1px solid var(--border-color);isolation:isolate}
 .hl-thumb img,.hl-thumb video{display:block;width:100%;height:100%;object-fit:contain}   /* whole teaser visible, never cropped */
+.hl-thumb.pair{display:flex;gap:2px}
+.hl-thumb.pair video{width:50%;min-width:0}   /* two clips side by side (FracGen early vs delayed) */
 .hl-body{position:relative;z-index:1;background:#fff;padding:.45rem .7rem .65rem;display:grid;grid-template-rows:auto auto auto}   /* same three rows on every card */
 .hl-name{display:block;font-family:var(--font-heading,inherit);font-weight:700;font-size:.92rem;line-height:1.3;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hl-venue{display:block;margin:.1rem 0 .25rem;font-family:var(--font-heading,inherit);font-size:.74rem;font-weight:700;letter-spacing:.04em;line-height:1.3;color:var(--primary-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
