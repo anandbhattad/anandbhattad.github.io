@@ -1,4 +1,17 @@
 /* =======================================================
+   TYPE — same pairing as the CV: Charter body, Latin Modern Sans headings
+   (Charis SIL is the open-source Charter; LM Sans self-hosted from TeX Live)
+   ----------------------------------------------------- */
+@font-face{font-family:'Latin Modern Sans';src:url('fonts/lmsans10-regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Latin Modern Sans';src:url('fonts/lmsans10-bold.woff') format('woff');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Latin Modern Sans';src:url('fonts/lmsans10-oblique.woff') format('woff');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Latin Modern Sans';src:url('fonts/lmsans10-boldoblique.woff') format('woff');font-weight:700;font-style:italic;font-display:swap}
+:root{
+  --font-body:'Charis SIL','Charter','Bitstream Charter',Georgia,serif;
+  --font-heading:'Latin Modern Sans','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+
+/* =======================================================
    GLOBAL TOKENS
    ----------------------------------------------------- */
    :root{
@@ -30,7 +43,8 @@
      ----------------------------------------------------- */
   *,*::before,*::after{box-sizing:border-box}
   body{
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-family:var(--font-body);
+    font-size:18px;      /* Charter's x-height is ~12% lower than Inter's */
     font-weight:400;
     line-height:1.5;
     color:#222;
@@ -131,7 +145,7 @@ nav a:hover {
   /* headings with rule line */
   h2{
     display:flex;align-items:center;gap:.75rem;
-    font-size:1.25rem;margin:var(--gap-l) 0 var(--gap-m);
+    font-size:1.4rem;margin:var(--gap-m) 0 .7rem;
   }
   h2::after{content:"";flex:1;height:4px;background:var(--border-color)}
   
@@ -450,3 +464,27 @@ nav a:hover {
 .paper-list a:hover {
     text-decoration: underline;
 }
+
+/* sans (Latin Modern) for the same roles the CV sets in \sffamily: name, section heads, venues, chrome */
+h1,h2,h3,h4,nav a,.publication-year,.pub-venue,.pub-links a,.paper-list .conf,footer{font-family:var(--font-heading)}
+
+/* publication-card text tracks the body size (the base rules use rem, which is pinned to the 16px root) */
+.pub-title{font-size:1.1em}
+.pub-authors,.pub-venue{font-size:.92em}
+.pub-tldr{font-size:.92em}
+.pub-links a{font-size:.82em}
+.publication-year{font-size:1.05em}
+
+/* tighter paragraph rhythm inside the text sections (the header sets a page-wide 10px p margin) */
+.section p{margin:.3rem 0 .55rem}
+.section ul,.section ol{margin:.3rem 0 .6rem}
+.section li{margin:0}
+
+/* a publication card can show two teasers side by side (e.g. FracGen early vs delayed fracture) */
+.pub-media-row{display:flex;gap:6px;width:280px}
+.pub-media-item{flex:1 1 0;min-width:0;margin:0}
+.pub-media-row img,.pub-media-row video{width:100%;height:auto;max-height:none}
+.pub-media-item figcaption{margin-top:3px;font-family:var(--font-heading,inherit);font-size:.72em;font-weight:600;text-align:center;color:var(--text-secondary)}
+
+/* top nav: larger, bold */
+nav a{font-size:1.05em;font-weight:700;padding:4px 50px}

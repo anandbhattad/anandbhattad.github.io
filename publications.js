@@ -189,9 +189,14 @@ async function renderPublications(filter = "highlights") {
 ------------------------------------------------------------------*/
 function genPubHTML(p) {
   const link = p.project || p.arxiv || p.paper;
-  const img  = p.isVideo
-    ? `<video src="${p.img}" controls autoplay loop muted></video>`
-    : `<img src="${p.img}" alt="${p.title}">`;
+  const media = (src) => p.isVideo
+    ? `<video src="${src}" autoplay loop muted playsinline></video>`
+    : `<img src="${src}" alt="${p.title}">`;
+  const img = Array.isArray(p.img)                       // a list renders side by side; entries may be "file" or {src, label}
+    ? `<div class="pub-media-row">${p.img.map(m => typeof m === "string"
+        ? media(m)
+        : `<figure class="pub-media-item">${media(m.src)}<figcaption>${m.label}</figcaption></figure>`).join("")}</div>`
+    : (p.isVideo ? `<video src="${p.img}" controls autoplay loop muted playsinline></video>` : media(p.img));
 
   return `
   <div class="publication-item">
@@ -365,6 +370,63 @@ if (typeof module !== 'undefined') {
 // );
 
 // Adding Publications
+
+addPublication(
+  "./images/powersim_mirror.mp4",
+  "PowerSim: Differentiable Physics Simulation and Rendering with Power Diagrams",
+  "Trong-Tung Nguyen, Anand Bhattad",
+  "Preprint, arXiv 2026",
+  "https://arxiv.org/abs/2609.38153",
+  "https://power-sim.github.io/", // project page
+  "", // code link
+  "https://arxiv.org/abs/2609.38153",
+  "", // github-repo-name
+  "PowerSim couples a pre-trained PowerFoam power-diagram scene directly to Material Point Method dynamics, so simulated motion drives geometry and appearance with no auxiliary representation in between. It simulates real scenes under user interaction, recovers spatially varying material fields, composes independently captured objects into one simulation-ready scene, and ray-traces reflections that stay consistent as objects deform.",
+  "In Submission",
+  "pre-print",
+  true,
+  true,
+  [],
+  ""
+);
+
+addPublication(
+  [{src: "./images/fracgen_early.mp4", label: "Early fracture"}, {src: "./images/fracgen_delay.mp4", label: "Delayed fracture"}],
+  "FracGen: Learning How Objects Stretch and Tear with Physics-Informed Video Generation",
+  "Trong-Tung Nguyen, Jiahan Zhang, Anand Bhattad",
+  "Preprint, arXiv 2026",
+  "https://arxiv.org/abs/2609.38152",
+  "https://fracgen.github.io/", // project page
+  "", // code link
+  "https://arxiv.org/abs/2609.38152",
+  "", // github-repo-name
+  "FracGen generates plausible, controllable fracture from a single image of an intact object, conditioned on physics signals. Trained on FracSim, an MPM simulator with a continuum damage model that yields paired videos and pixel-aligned physical fields, it jointly predicts those maps with RGB and is supervised with physics-informed consistency losses, giving fine control over where an object tears, how fast the crack propagates, and how much deformation precedes failure.",
+  "In Submission",
+  "pre-print",
+  false,
+  true,
+  [],
+  ""
+);
+
+addPublication(
+  "./images/vit5_model.png",
+  "ViT-5: Vision Transformers for The Mid-2020s",
+  "Feng Wang, Sucheng Ren, Tiezheng Zhang, Predrag Neskovic, Anand Bhattad, Cihang Xie, Alan Yuille",
+  "Preprint, arXiv 2026",
+  "https://arxiv.org/abs/2602.08071",
+  "", // project page
+  "https://github.com/wangf3014/ViT-5", // code link
+  "https://arxiv.org/abs/2602.08071",
+  "wangf3014/ViT-5", // github-repo-name
+  "A component-wise modernization of the plain Vision Transformer (normalization, activations, positional encoding, gating, learnable tokens) that keeps the canonical Attention-FFN structure. ViT-5-Base reaches 84.2% ImageNet-1k top-1 under comparable compute and, as an SiT diffusion backbone, 1.84 FID versus 2.06 for vanilla ViT.",
+  "In Submission",
+  "pre-print",
+  false,
+  false,
+  [],
+  ""
+);
 
 addPublication(
   "./images/principia.mp4",

@@ -1,0 +1,27 @@
+/* =======================================================
+   RESEARCH HIGHLIGHTS STRIP  (highlights.html)
+   Continuous scroll of the CV's self-selected papers, driven by the
+   script at the end of highlights.html (eases to a crawl on hover).
+   Two identical sets make the loop seamless.
+   ----------------------------------------------------- */
+.hl{position:relative}
+.hl h2 .hl-all{order:2;margin-left:.75rem;font-family:var(--font-heading,inherit);font-size:.85rem;font-weight:600;white-space:nowrap}
+#publications{scroll-margin-top:56px}   /* land below the sticky nav when jumping */
+.hl-viewport{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.hl-track{display:flex;width:max-content;will-change:transform}
+.hl-set{display:flex;gap:12px;padding-right:12px}
+.hl-card{width:250px;flex:0 0 auto;display:flex;flex-direction:column;background:#fff;border:1px solid var(--border-color);border-radius:var(--radius);overflow:hidden;color:inherit;text-decoration:none;transition:transform .25s,box-shadow .25s}
+.hl-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);color:inherit}
+.hl-card:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}
+.hl-thumb{position:relative;z-index:0;height:150px;overflow:hidden;background:#fff;border-bottom:1px solid var(--border-color);isolation:isolate}
+.hl-thumb img,.hl-thumb video{display:block;width:100%;height:100%;object-fit:contain}   /* whole teaser visible, never cropped */
+.hl-body{position:relative;z-index:1;background:#fff;padding:.45rem .7rem .65rem;display:grid;grid-template-rows:auto auto auto}   /* same three rows on every card */
+.hl-name{display:block;font-family:var(--font-heading,inherit);font-weight:700;font-size:.92rem;line-height:1.3;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hl-venue{display:block;margin:.1rem 0 .25rem;font-family:var(--font-heading,inherit);font-size:.74rem;font-weight:700;letter-spacing:.04em;line-height:1.3;color:var(--primary-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hl-venue.award{color:#b91c1c}
+.hl-desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:calc(2 * 1.35 * .78rem);font-size:.78rem;line-height:1.35;color:var(--text-secondary)}
+@media (prefers-reduced-motion:reduce){
+  .hl-viewport{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+  .hl-set[aria-hidden="true"]{display:none}
+}
+@media (max-width:768px){.hl-card{width:200px}.hl-thumb{height:120px}}
