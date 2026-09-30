@@ -75,7 +75,9 @@
     box-shadow:var(--shadow-md);
   }
   .header-text{flex:1;color:#4a4a4a}
-  .header-text h1{margin:0 0 .25rem;font-size:1.45rem}
+  .header-text h1{margin:0 0 .3rem;font-size:1.45rem}
+  .header-text p{margin:3px 0}              /* tighter stack: title, affiliations, logo, email (overrides the inline 10px p rule) */
+  .header-text .social-links{margin-top:6px}
   
   nav {
     background-color: #002D72;
