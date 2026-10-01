@@ -435,7 +435,8 @@ addPublication(
   false,
   false,
   [],
-  ""
+  "",
+  "2026-09-29"
 );
 
 addPublication(
@@ -474,7 +475,8 @@ addPublication(
   true,
   true,
   [],
-  ""
+  "",
+  "2026-09-24"
 );
 
 addPublication(
@@ -493,7 +495,8 @@ addPublication(
   false,
   true,
   [],
-  ""
+  "",
+  "2026-09-24"
 );
 
 addPublication(
@@ -512,7 +515,8 @@ addPublication(
   false,
   false,
   [],
-  ""
+  "",
+  "2026-09-24"
 );
 
 addPublication(
@@ -531,7 +535,8 @@ addPublication(
   false,
   false,
   [],
-  ""
+  "",
+  "2026-09-24"
 );
 
 addPublication(
@@ -550,7 +555,8 @@ addPublication(
   false,
   true,
   [],
-  ""
+  "",
+  "2026-10-01"
 );
 
 addPublication(
