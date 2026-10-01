@@ -28,3 +28,20 @@
 }
 @media (max-width:768px){.hl-card{width:200px}.hl-thumb{height:120px}}
 .hl-name.long{font-size:.8rem;letter-spacing:-.01em}   /* names that would otherwise be cut off */
+
+/* manual control: grab/drag the strip, arrow buttons at the edges, arrow keys when focused */
+.hl-viewport{cursor:grab;touch-action:pan-y;outline:none}
+.hl-viewport.is-dragging{cursor:grabbing}
+.hl-viewport.is-dragging .hl-card{pointer-events:none}
+.hl-viewport:focus-visible{box-shadow:0 0 0 2px var(--primary-color);border-radius:var(--radius)}
+.hl-arrow{position:absolute;top:50%;z-index:3;width:34px;height:34px;margin-top:4px;transform:translateY(-50%);border:1px solid var(--border-color);border-radius:50%;background:rgba(255,255,255,.95);color:var(--text-primary);font:700 22px/30px var(--font-heading,inherit);text-align:center;cursor:pointer;box-shadow:var(--shadow-sm);opacity:.55;transition:opacity .2s,transform .2s}
+.hl-prev{left:-6px}.hl-next{right:-6px}
+.hl:hover .hl-arrow,.hl-arrow:focus-visible{opacity:1}
+.hl-arrow:hover{transform:translateY(-50%) scale(1.06)}
+.hl-arrow:focus-visible{outline:2px solid var(--primary-color);outline-offset:2px}
+@media (hover:none){.hl-arrow{opacity:.9}}
+@media (max-width:768px){                                    /* phone: "All publications" drops under the heading instead of overflowing */
+  .hl h2{flex-wrap:wrap}
+  .hl h2 .hl-all{order:3;flex-basis:100%;margin:.15rem 0 0;font-size:.8rem}
+  .hl-prev{left:-10px}.hl-next{right:-10px}
+}

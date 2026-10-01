@@ -1,6 +1,8 @@
 <div class="hl" aria-label="Research highlights">
   <h2>Research Highlights<a class="hl-all" href="#publications">All publications &rarr;</a></h2>
-  <div class="hl-viewport">
+  <button class="hl-arrow hl-prev" type="button" aria-label="Scroll highlights left">&#8249;</button>
+  <button class="hl-arrow hl-next" type="button" aria-label="Scroll highlights right">&#8250;</button>
+  <div class="hl-viewport" tabindex="0" aria-label="Research highlights, scrollable">
     <div class="hl-track">
     <div class="hl-set">
 
@@ -162,6 +164,7 @@
 <script>
 (function () {
   var track = document.querySelector('.hl-track'); if (!track) return;
+  var hl = track.closest('.hl'), viewport = hl.querySelector('.hl-viewport');
   var sets = track.querySelectorAll('.hl-set'), set = sets[0];
   // Group by topic (data-topic), no visible labels: groups in random order, cards shuffled within each group.
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
@@ -179,20 +182,72 @@
   set.innerHTML = ''; order.forEach(function (el) { set.appendChild(el); });
   if (sets[1]) { sets[1].innerHTML = ''; order.forEach(function (el) { sets[1].appendChild(el.cloneNode(true)); }); }
   if (window.initI2V) window.initI2V(track);
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  // Continuous scroll driven by rAF so the speed can ease: 38 px/s normally, 8 px/s while hovered, 0 while a card has keyboard focus.
-  var hl = track.closest('.hl');
+
+  var STEP = 262;                                            // one card + gap
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) {                                              // native horizontal scrolling; arrows just scroll the viewport
+    hl.querySelector('.hl-prev').addEventListener('click', function () { viewport.scrollBy({ left: -STEP, behavior: 'smooth' }); });
+    hl.querySelector('.hl-next').addEventListener('click', function () { viewport.scrollBy({ left:  STEP, behavior: 'smooth' }); });
+    return;
+  }
+
+  // Auto-scroll driven by rAF: 38 px/s normally, 8 px/s while hovered, 0 while a card has keyboard focus
+  // or the user is dragging; manual moves (drag, swipe, arrows, keys, horizontal wheel) pause it and it resumes after a short idle.
   var NORMAL = 38, HOVER = 8, x = 0, speed = NORMAL, target = NORMAL, last = null;
-  hl.addEventListener('mouseenter', function () { target = HOVER; });
-  hl.addEventListener('mouseleave', function () { target = NORMAL; });
+  var hovering = false, dragging = false, idleTimer = null, pendingShift = 0, moved = 0;
+  function wantSpeed() { return dragging ? 0 : hovering ? HOVER : NORMAL; }
+  function userActive() {                                    // pause now, resume ~2.5 s after the last interaction
+    target = 0; clearTimeout(idleTimer);
+    idleTimer = setTimeout(function () { target = wantSpeed(); }, 2500);
+  }
+  hl.addEventListener('mouseenter', function () { hovering = true;  if (!idleTimer) target = wantSpeed(); });
+  hl.addEventListener('mouseleave', function () { hovering = false; if (!idleTimer) target = wantSpeed(); });
   hl.addEventListener('focusin',    function () { target = 0; });
-  hl.addEventListener('focusout',   function () { target = NORMAL; });
+  hl.addEventListener('focusout',   function () { if (!idleTimer) target = wantSpeed(); });
+
+  function wrap() { var w = set.offsetWidth; if (w > 0) { while (x <= -w) x += w; while (x > 0) x -= w; } }
+  function nudge(dir) { pendingShift += dir * STEP; userActive(); }
+  hl.querySelector('.hl-prev').addEventListener('click', function () { nudge(+1); });
+  hl.querySelector('.hl-next').addEventListener('click', function () { nudge(-1); });
+  viewport.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); nudge(+1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); nudge(-1); }
+  });
+  viewport.addEventListener('wheel', function (e) {          // trackpad / shift+wheel: horizontal intent only
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault(); x -= e.deltaX; wrap(); userActive();
+  }, { passive: false });
+
+  var startX = 0, startPos = 0;                              // drag / swipe
+  viewport.addEventListener('pointerdown', function (e) {
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
+    dragging = true; moved = 0; startX = e.clientX; startPos = x; target = 0;
+    viewport.classList.add('is-dragging'); viewport.setPointerCapture(e.pointerId);
+  });
+  viewport.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    var dx = e.clientX - startX; moved = Math.max(moved, Math.abs(dx));
+    x = startPos + dx; wrap();
+  });
+  function endDrag(e) {
+    if (!dragging) return;
+    dragging = false; viewport.classList.remove('is-dragging');
+    try { viewport.releasePointerCapture(e.pointerId); } catch (err) {}
+    userActive();
+  }
+  viewport.addEventListener('pointerup', endDrag);
+  viewport.addEventListener('pointercancel', endDrag);
+  viewport.addEventListener('click', function (e) {          // a drag must not open the card under the cursor
+    if (moved > 6) { e.preventDefault(); e.stopPropagation(); moved = 0; }
+  }, true);
+
   function step(t) {
     if (last !== null) {
       var dt = Math.min((t - last) / 1000, 0.05);
       speed += (target - speed) * Math.min(1, dt * 3);
       x -= speed * dt;
-      var w = set.offsetWidth; if (w > 0 && x <= -w) x += w;
+      if (pendingShift) { var m = pendingShift * Math.min(1, dt * 9); if (Math.abs(pendingShift) < 0.5) { m = pendingShift; } x += m; pendingShift -= m; }
+      wrap();
       track.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
     }
     last = t; requestAnimationFrame(step);
