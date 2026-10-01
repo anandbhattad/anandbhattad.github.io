@@ -27,3 +27,4 @@
   .hl-set[aria-hidden="true"]{display:none}
 }
 @media (max-width:768px){.hl-card{width:200px}.hl-thumb{height:120px}}
+.hl-name.long{font-size:.8rem;letter-spacing:-.01em}   /* names that would otherwise be cut off */

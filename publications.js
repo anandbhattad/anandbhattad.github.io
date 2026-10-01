@@ -135,6 +135,122 @@ function findBibTeXByCorpusId(corpusId) {
 ------------------------------------------------------------------*/
 const publications = [];
 
+/* Author homepages: any author whose exact name (markers stripped) appears here is linked, new tab.
+   Add a line to link someone; leave them out to keep the name plain. */
+const AUTHOR_LINKS = {
+  "Ankit Vaidya": "https://scholar.google.com/citations?user=IYizOPMAAAAJ&hl=en",
+  "Annie Wang": "https://scholar.google.com/citations?user=8Pg7CpwAAAAJ&hl=en",
+  "Ayush Sarkar": "https://siebelschool.illinois.edu/research/undergraduate-research/summer-research-experience-undergraduates/participants/ayush-sarkar",
+  "Bo Li": "https://codas.uchicago.edu/people/bo-li/",
+  "Bohan Liu": "https://bohanliu.com/",
+  "Cheng Peng": "https://sites.google.com/view/cheng-peng/home",
+  "Daniel McKee": "https://www.danielbmckee.com/",
+  "Fr\u00e9d\u00e9ric Fortier-Chouinard": "https://lefreud.github.io/",
+  "Hanlin Mai": "https://hanlinmai.web.illinois.edu/",
+  "Haoyu Liu": "https://huajianduzhuo-code.github.io/",
+  "Jae Yong Lee": "https://jyl.kr/",
+  "James Soole": "https://jamessoole.github.io/",
+  "Jansen Seheult": "https://scholar.google.com/citations?user=YcaZZ2wAAAAJ&hl=en",
+  "Jiading Fang": "https://www.fangjiading.com/",
+  "Jingtian Ji": "https://lucienji.github.io/",
+  "Jixuan Ying": "https://scholar.google.com/citations?user=wxPubfMAAAAJ&hl=en",
+  "Kaizhao Liang": "https://kyleliang919.github.io/",
+  "Konrad Groh": "https://is.mpg.de/person/kgroh",
+  "Mathieu Garon": "https://mathieugaron.ca/",
+  "Min Jin Chong": "https://mchong6.github.io/",
+  "Oscar Michel": "https://ojmichel.github.io/",
+  "Prakhar Kaushik": "https://toshi2k2.github.io/",
+  "Seemandhar Jain": "https://seemandhar.github.io/",
+  "Sezer Karaoglu": "https://karaoglusezer.github.io/",
+  "Shuai Tang": "https://scholar.google.com/citations?user=-BWQeOoAAAAJ&hl=en",
+  "Tianchong Jiang": "https://tianchong-jiang.github.io/",
+  "Tiezheng Zhang": "https://tiezheng11.github.io/",
+  "Tingyu Zhu": "https://scholar.google.com/citations?user=59rSrYUAAAAJ&hl=en",
+  "Vaibhav Vavilala": "https://siebelschool.illinois.edu/54482",
+  "Wenchao Han": "https://scholar.google.com/citations?user=E_labUUAAAAJ&hl=en",
+  "Xiangshan Tan": "https://vincent-tann.github.io/",
+  "Yi-Ting Chen": "https://jamie725.github.io/website/",
+  "Yuani Zhong": "https://scholar.google.com/citations?hl=en&user=PtmjwooAAAAJ",
+  "Namitha Guruprasad": "https://aiem.jhu.edu/people/namitha-guruprasad/",
+  "Zhi-Hao Lin": "https://chih-hao-lin.github.io/",
+  "Andrew Tao": "https://scholar.google.com/citations?user=Wel9l1wAAAAJ&hl=en",
+  "Aditya Kusupati": "https://adityakusupati.com/",
+  "Alan Yuille": "https://www.cs.jhu.edu/~ayuille/",
+  "Alexei A. Efros": "https://people.eecs.berkeley.edu/~efros/",
+  "Ali Farhadi": "https://homes.cs.washington.edu/~ali/",
+  "Ani Kembhavi": "https://anikem.github.io/",
+  "Aniruddha Kembhavi": "https://anikem.github.io/",
+  "Aysegul Dundar": "https://www.cs.bilkent.edu.tr/~adundar/",
+  "Bodo Rosenhahn": "https://www.tnt.uni-hannover.de/staff/rosenhahn/",
+  "Bryan Catanzaro": "https://ctnzr.io/",
+  "Chih-Hao Lin": "https://chih-hao-lin.github.io/",
+  "Chuhang Zou": "https://zouchuhang.github.io/",
+  "Cihang Xie": "https://cihangxie.github.io/",
+  "D.A. Forsyth": "http://luthuli.cs.uiuc.edu/~daf/",
+  "David A. Forsyth": "http://luthuli.cs.uiuc.edu/~daf/",
+  "David Forsyth": "http://luthuli.cs.uiuc.edu/~daf/",
+  "David Serrano-Lozano": "https://davidserra9.github.io/",
+  "David.A.Forsyth": "http://luthuli.cs.uiuc.edu/~daf/",
+  "Deming Li": "https://scholar.google.com/citations?user=s3fmKrMAAAAJ&hl=en",
+  "Derek Hoiem": "https://dhoiem.cs.illinois.edu/",
+  "Feng Wang": "https://wangf3014.github.io/home/",
+  "Florian Kluger": "https://www.tnt.uni-hannover.de/staff/kluger/",
+  "Greg Shakhnarovich": "https://home.ttic.edu/~gregory/",
+  "Guilin Liu": "https://liuguilin1225.github.io/",
+  "Javier Vazquez-Corral": "https://www.jvazquez-corral.net/",
+  "Jean-Fran\u00e7ois Lalonde": "https://vision.gel.ulaval.ca/~jflalonde/",
+  "Jia-Bin Huang": "https://jbhuang0604.github.io/",
+  "Jiahan Zhang": "https://me.jiahanzhang.top/",
+  "Jun Myeong Choi": "https://chedgekorea.github.io/",
+  "Konpat Preechakul": "https://konpat.me/",
+  "Liwen Wu": "https://lwwu2.github.io/",
+  "Luis Herranz": "https://www.lherranz.org/",
+  "Matt Deitke": "https://mattdeitke.com/",
+  "Matthew R. Walter": "https://home.ttic.edu/~mwalter/",
+  "Matthew Wallingford": "https://mattwallingford.github.io/",
+  "Michael Maire": "https://people.cs.uchicago.edu/~mmaire/",
+  "Nicholas Kolkin": "https://home.ttic.edu/~nickkolkin/",
+  "Pieter Peers": "https://www.cs.wm.edu/~ppeers/",
+  "Pradhaan S Bhat": "https://pradhaansbhat.github.io/",
+  "Rama Chellappa": "https://engineering.jhu.edu/faculty/rama-chellappa/",
+  "Ranjay Krishna": "https://ranjaykrishna.com/",
+  "Rishubh Parihar": "https://rishubhpar.github.io/",
+  "Roni Sengupta": "https://www.cs.unc.edu/~ronisen/",
+  "Roozbeh Mottaghi": "https://roozbehm.info/",
+  "Sham Kakade": "https://sham.seas.harvard.edu/",
+  "Shenlong Wang": "https://shenlong.web.illinois.edu/",
+  "Shivam Tripathi": "https://shivamt-tr.github.io/",
+  "Soumava Paul": "https://mvp18.github.io/",
+  "Sucheng Ren": "https://oliverrensu.github.io/",
+  "Svetlana Lazebnik": "https://slazebni.cs.illinois.edu/",
+  "Tanmay Gupta": "https://tanmaygupta.info/",
+  "Theo Gevers": "https://staff.fnwi.uva.nl/th.gevers/",
+  "Timing Yang": "https://yangtiming.github.io/",
+  "Trong-Tung Nguyen": "https://nttung1110.github.io/",
+  "Varun Varma Thozhiyoor": "https://varunvarmat.github.io/",
+  "Venkatesh Babu": "https://cds.iisc.ac.in/faculty/venky/",
+  "Venkatesh Babu Radhakrishnan": "https://cds.iisc.ac.in/faculty/venky/",
+  "Vinayak Gupta": "https://vinayak-vg.github.io/",
+  "Viraj Shah": "https://virajshah.com/",
+  "Vitor Guizilini": "https://vitorguizilini.weebly.com/",
+  "Vivek Ramanujan": "https://vkramanuj.github.io/",
+  "Wei-Chiu Ma": "https://www.cs.cornell.edu/~weichiu/",
+  "William Gao": "https://scholar.google.com/citations?user=SacEpXoAAAAJ&hl=en",
+  "Xiang Fan": "https://xiangfan.io/",
+  "Xiao Zhang": "https://xiao7199.github.io/",
+  "Xiaodan Du": "https://xiaodan.io/",
+  "Xiaoyan Xing": "https://xyxingx.github.io/",
+  "Yuxiong Wang": "https://yxw.cs.illinois.edu/",
+  "Zeyu Zheng": "https://ieor.berkeley.edu/people/zeyu-zheng/",
+  "Zitian Zhang": "https://github.com/zzt76"
+};
+function linkAuthor(tok) {
+  const name = tok.replace(/<sup>.*?<\/sup>|\*/g, "").trim();        // "Name*" / "Name<sup>†</sup>" -> "Name"
+  const url  = AUTHOR_LINKS[name];
+  const out  = url ? tok.replace(name, `<a href="${url}" target="_blank" rel="noopener">${name}</a>`) : tok;
+  return /Anand Bhattad/.test(name) ? `<strong>${out}</strong>` : out;
+}
+
 function addPublication(
   img, title, authors, venue, paper, project, code, arxiv,
   githubRepo, tldr, year, published,
@@ -142,10 +258,7 @@ function addPublication(
   ssIds = [],  bibKey = null,
   addedOn = null            // "YYYY-MM-DD": shows a "New" pill for 90 days after this date
 ) {
-  authors = authors
-    .split(", ")
-    .map((a) => (/Anand Bhattad\*?/.test(a) ? `<strong>${a}</strong>` : a))
-    .join(", ");
+  authors = authors.split(", ").map(linkAuthor).join(", ");
 
   if (typeof ssIds === "string")
     ssIds = ssIds.split(",").map((s) => s.trim()).filter(Boolean);
@@ -183,6 +296,7 @@ async function renderPublications(filter = "highlights") {
 
   $(".publication-filter").removeClass("active");
   $(`.publication-filter[data-filter="${filter}"]`).addClass("active");
+  if (typeof window !== "undefined" && window.initI2V) window.initI2V();
 }
 
 /* ------------------------------------------------------------------
@@ -200,11 +314,16 @@ function genPubHTML(p) {
   const media = (src) => p.isVideo
     ? `<video src="${src}" autoplay loop muted playsinline></video>`
     : `<img src="${src}" alt="${p.title}">`;
-  const img = Array.isArray(p.img)                       // a list renders side by side; entries may be "file" or {src, label}
+  const i2v = (m) =>                                      // staged teaser: single image -> (3D authoring clip) -> generated video (see initI2V in script.js)
+    `<div class="i2v is-still"><video src="${m.src}" muted playsinline preload="auto"></video>` +
+    (m.control ? `<video class="i2v-control" src="${m.control}" muted playsinline preload="auto"></video>` : "") +
+    `<span class="i2v-badge">Single input image</span></div>`;
+  const img = (p.img && p.img.kind === "i2v") ? i2v(p.img)
+    : Array.isArray(p.img)                                 // a list renders side by side; entries may be "file" or {src, label}
     ? `<div class="pub-media-row">${p.img.map(m => typeof m === "string"
         ? media(m)
         : `<figure class="pub-media-item">${media(m.src)}<figcaption>${m.label}</figcaption></figure>`).join("")}</div>`
-    : (p.isVideo ? `<video src="${p.img}" controls autoplay loop muted playsinline></video>` : media(p.img));
+    : media(p.img);
 
   return `
   <div class="publication-item">
@@ -222,6 +341,20 @@ function genPubHTML(p) {
       <div class="pub-tldr"><strong>TL;DR:</strong> ${p.tldr}</div>
     </div>
   </div>`;
+}
+
+/* ------------------------------------------------------------------
+   6b. Video controls appear only while a card is hovered (keeps teasers clean)
+------------------------------------------------------------------*/
+if (typeof document !== 'undefined') {
+  document.addEventListener('mouseover', (e) => {
+    const card = e.target.closest && e.target.closest('.publication-item');
+    if (card) card.querySelectorAll('video').forEach((v) => { if (!v.closest('.i2v')) v.controls = true; });
+  });
+  document.addEventListener('mouseout', (e) => {
+    const card = e.target.closest && e.target.closest('.publication-item');
+    if (card && !card.contains(e.relatedTarget)) card.querySelectorAll('video').forEach((v) => { v.controls = false; });
+  });
 }
 
 /* ------------------------------------------------------------------
@@ -380,6 +513,26 @@ if (typeof module !== 'undefined') {
 // Adding Publications
 
 addPublication(
+  {src: "./images/gencine_teaser.mp4", control: "./images/gencine_control.mp4", kind: "i2v"},
+  "Generative Cinematographer: Composing Camera and Object Motion in 3D",
+  "Jiahan Zhang, Chaohao Yang, Namitha Guruprasad, Vivekjyoti Banerjee, Trong-Tung Nguyen, Alan Yuille, Anand Bhattad",
+  "Preprint, arXiv 2026",
+  "", // paper (arXiv link to follow)
+  "https://generative-cinematographer.github.io/", // project page
+  "", // code link
+  "", // arXiv (to follow)
+  "", // github-repo-name
+  "Author the camera path and object motion together in a 3D scene lifted from a single image; a video diffusion model turns them into a coherent shot.",
+  "In Submission",
+  "pre-print",
+  false,
+  true,
+  [],
+  "",
+  "2026-10-01"
+);
+
+addPublication(
   "./images/powersim_mirror.mp4",
   "PowerSim: Differentiable Physics Simulation and Rendering with Power Diagrams",
   "Trong-Tung Nguyen, Anand Bhattad",
@@ -389,7 +542,7 @@ addPublication(
   "", // code link
   "https://arxiv.org/abs/2609.38153",
   "", // github-repo-name
-  "PowerSim couples a pre-trained PowerFoam power-diagram scene directly to Material Point Method dynamics, so simulated motion drives geometry and appearance with no auxiliary representation in between. It simulates real scenes under user interaction, recovers spatially varying material fields, composes independently captured objects into one simulation-ready scene, and ray-traces reflections that stay consistent as objects deform.",
+  "Differentiable MPM dynamics on a PowerFoam power-diagram scene: poke captured scenes, recover materials, compose objects, and ray-trace reflections that stay consistent as they deform.",
   "In Submission",
   "pre-print",
   true,
@@ -409,7 +562,7 @@ addPublication(
   "", // code link
   "https://arxiv.org/abs/2609.38152",
   "", // github-repo-name
-  "FracGen generates plausible, controllable fracture from a single image of an intact object, conditioned on physics signals. Trained on FracSim, an MPM simulator with a continuum damage model that yields paired videos and pixel-aligned physical fields, it jointly predicts those maps with RGB and is supervised with physics-informed consistency losses, giving fine control over where an object tears, how fast the crack propagates, and how much deformation precedes failure.",
+  "Fracture-aware video generation from one image of an intact object. Trained on MPM fracture simulations with pixel-aligned physics maps, it controls where, how fast, and how much an object tears.",
   "In Submission",
   "pre-print",
   false,
@@ -429,7 +582,7 @@ addPublication(
   "https://github.com/wangf3014/ViT-5", // code link
   "https://arxiv.org/abs/2602.08071",
   "wangf3014/ViT-5", // github-repo-name
-  "A component-wise modernization of the plain Vision Transformer (normalization, activations, positional encoding, gating, learnable tokens) that keeps the canonical Attention-FFN structure. ViT-5-Base reaches 84.2% ImageNet-1k top-1 under comparable compute and, as an SiT diffusion backbone, 1.84 FID versus 2.06 for vanilla ViT.",
+  "A component-wise modernization of the plain ViT: ViT-5-Base reaches 84.2% ImageNet-1k top-1 and is a stronger diffusion backbone (1.84 vs 2.06 FID), as a drop-in upgrade.",
   "In Submission",
   "pre-print",
   false,
@@ -449,7 +602,7 @@ addPublication(
   "", // code link
   "https://arxiv.org/abs/2609.04200",
   "", // github-repo-name
-  "Modern video generators produce visually realistic motion but fail surprisingly simple Newtonian physics tests. Principia evaluates physics with calibration-independent relational constraints, revealing inconsistent, predominantly sub-Earth gravity across state-of-the-art video models.",
+  "Calibration-free relational physics tests for video generators: state-of-the-art models show inconsistent, mostly sub-Earth gravity.",
   "2026",
   "published",
   true,
@@ -469,7 +622,7 @@ addPublication(
   "", // code link
   "https://arxiv.org/abs/2606.20556",
   "", // github-repo-name
-  "Thinking in Boxes makes 3D editing of real images easy: objects are represented with coarse 3D boxes that can be moved, rotated, and rescaled, enabling in-the-wild 3D-aware edits while preserving object identity and scene consistency.",
+  "Objects become coarse 3D boxes you can move, rotate, and rescale, giving in-the-wild 3D-aware edits of real images that keep identity and scene consistency.",
   "2026",
   "published",
   true,
@@ -509,7 +662,7 @@ addPublication(
   "", // code link
   "https://arxiv.org/abs/2606.14701",
   "", // github-repo-name
-  "RATS decomposes the class token into N learnable register tokens that route patch information through a compress-communicate-broadcast attention bottleneck. Without part annotations or auxiliary losses, each register spontaneously specializes into an object-part-like region, giving +12 mIoU on average across five unsupervised part segmentation benchmarks and a register dictionary that stays consistent across related categories.",
+  "Learnable register tokens route patch information through a compress-communicate-broadcast bottleneck and specialize into object parts with no supervision: +12 mIoU on part segmentation.",
   "2026",
   "published",
   false,
@@ -549,7 +702,7 @@ addPublication(
   "https://github.com/Deming77/SyncFix", // code link
   "https://arxiv.org/abs/2604.11797",
   "SyncFix", // github-repo-name
-  "SyncFix refines 3D reconstructions by enforcing cross-view consistency, casting diffusion-based refinement as a joint latent bridge-matching problem that synchronizes distorted and clean views. Trained only on image pairs, it generalizes to an arbitrary number of views and surpasses state-of-the-art baselines, even without clean references.",
+  "Refines 3D reconstructions by synchronizing distorted and clean views with a latent bridge-matching diffusion model; trained on image pairs, it generalizes to any number of views.",
   "2026",
   "published",
   false,
@@ -569,7 +722,7 @@ addPublication(
     "", // code link",
     "https://arxiv.org/abs/2602.01391",
     "short project name",
-    "Stronger semantic encoders can harm relighting performance. We study this trade-off and introduce Augmented Latent Intrinsics (ALI), which balances semantic context and dense photometric structure for improved relighting.",
+    "Stronger semantic encoders can hurt relighting. Augmented Latent Intrinsics (ALI) balances semantic context with dense photometric structure.",
     2026,
     "published",
     false,
@@ -587,7 +740,7 @@ addPublication(
   "", // code link
   "https://arxiv.org/abs/2512.02016",
   "", // github-repo-name
-  "We show a fundamental physical limitation in generative video models by designing a unit-free measurement protocol by studying relative motion to demonstrate that objects violate Galileo's principle through inconsistent, predominantly sub-earth accelerations.",
+  "A unit-free, relative-motion protocol shows generated videos violate Galileo's principle: objects fall with inconsistent, mostly sub-Earth accelerations.",
   "2026",
   "published",
   true,
@@ -627,7 +780,7 @@ addPublication(
   "",
   "",
   "",
-  "Our method, GenWildSplat, reconstructs 3D scenes from sparse, unposed images with varying illumination and transient objects in a single 3-second feed-forward pass, and no per-scene optimization is required",
+  "Reconstructs 3D scenes from sparse, unposed images with changing illumination and transient objects in one 3-second feed-forward pass, no per-scene optimization.",
   2026,
   "published",
  false,
@@ -645,7 +798,7 @@ addPublication(
   "https://github.com/ripl/CamPoseOpensource", // code link
   "https://arxiv.org/abs/2510.02268",
   "CamPoseOpensource", // github-repo-name
-  "Explicitly conditioning imitation learning policies on camera extrinsics prevents reliance on background visual shortcuts, ensuring robustness against shifts in camera placement and workspace geometry.",
+  "Conditioning imitation-learning policies on camera extrinsics removes background shortcuts and makes them robust to camera placement and workspace changes.",
   "2026",
   "published",
   true,
@@ -664,7 +817,7 @@ addPublication(
   "", // code link
   "https://arxiv.org/abs/2506.20703",
   "", // github-repo-name
-  "This paper introduces Generative Blocks World, a method that enables high-fidelity editing of generated images by manipulating multi-scale 3D convex primitives, using a flow-based generator conditioned on depth and novel texture hints to preserve object identity and consistency.",
+  "Edit generated images by moving multi-scale 3D convex primitives; a flow-based generator conditioned on depth and texture hints preserves object identity.",
   "2026",
   "published",
   true,
@@ -683,7 +836,7 @@ addPublication(
   "", // code link
   "https://arxiv.org/abs/2405.19569",
   "", // github-repo-name
-  "This paper introduces a novel method for representing geometry from a single RGB-D frame using an adaptive ensemble of positive and negative convex polytopes, which enables expressive carving operations through a combination of unsupervised initialization and test-time fine-tuning.",
+  "Represents geometry from a single RGB-D frame with an adaptive ensemble of positive and negative convex polytopes, combining unsupervised initialization with test-time fine-tuning.",
   "2026",
   "published",
   false,
@@ -721,7 +874,7 @@ addPublication(
     "", // code link
     "https://arxiv.org/abs/2503.21770",
     "", // github-repo-name
-    "Visual Jenga is a new scene understanding task where the goal is to remove objects one by one from a single image while keeping the rest of the scene stable. We introduce a simple baseline that uses a large inpainting model to decide the removal order.",
+    "A new task: remove objects from a single image one by one while the rest of the scene stays stable. A large inpainting model decides the removal order.",
     "2025",
     "published",
     true,
@@ -740,7 +893,7 @@ addPublication(
     "https://github.com/xyxingx/LumiNet",
     "https://arxiv.org/abs/2412.00177",
     "xyxingx/LumiNet",
-    "LumiNet leverages latent intrinsic decomposition (NeurIPS 2024) and integrates it with pretrained diffusion models to achieve photorealistic indoor scene relighting. Additionally, we introduce a variational StyLitGAN (CVPR 2024) for generating high-quality training data.",
+    "Latent intrinsics (NeurIPS 2024) meet pretrained diffusion models for photorealistic indoor relighting, with a variational StyLitGAN generating training data.",
     2025,
     "published",
     true,

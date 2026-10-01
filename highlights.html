@@ -34,6 +34,11 @@
         <div class="hl-body"><span class="hl-name">Principia</span><span class="hl-venue">NeurIPS 2026</span><span class="hl-desc">Relational physics tests for video models.</span></div>
       </a>
 
+      <a class="hl-card" data-topic="pixels" data-new="2026-10-01" href="https://generative-cinematographer.github.io/" target="_blank" rel="noopener">
+        <div class="hl-thumb i2v is-still"><video src="images/gencine_teaser.mp4" muted playsinline preload="auto"></video><video class="i2v-control" src="images/gencine_control.mp4" muted playsinline preload="auto"></video><span class="i2v-badge">Single input image</span></div>
+        <div class="hl-body"><span class="hl-name long">Generative Cinematographer</span><span class="hl-venue">arXiv 2026 · Preprint</span><span class="hl-desc">Compose camera and object motion in 3D from a single image.</span></div>
+      </a>
+
       <a class="hl-card" data-topic="pixels" data-new="2026-09-24" href="https://thinking-in-boxes.github.io/" target="_blank" rel="noopener">
         <div class="hl-thumb"><video src="images/thinking_in_boxes_v2.mp4" autoplay muted loop playsinline></video></div>
         <div class="hl-body"><span class="hl-name">Thinking in Boxes</span><span class="hl-venue">NeurIPS 2026</span><span class="hl-desc">3D editing in real images, made easy with coarse boxes.</span></div>
@@ -106,6 +111,11 @@
         <div class="hl-body"><span class="hl-name">Principia</span><span class="hl-venue">NeurIPS 2026</span><span class="hl-desc">Relational physics tests for video models.</span></div>
       </a>
 
+      <a class="hl-card" data-topic="pixels" data-new="2026-10-01" href="https://generative-cinematographer.github.io/" target="_blank" rel="noopener">
+        <div class="hl-thumb i2v is-still"><video src="images/gencine_teaser.mp4" muted playsinline preload="auto"></video><video class="i2v-control" src="images/gencine_control.mp4" muted playsinline preload="auto"></video><span class="i2v-badge">Single input image</span></div>
+        <div class="hl-body"><span class="hl-name long">Generative Cinematographer</span><span class="hl-venue">arXiv 2026 · Preprint</span><span class="hl-desc">Compose camera and object motion in 3D from a single image.</span></div>
+      </a>
+
       <a class="hl-card" data-topic="pixels" data-new="2026-09-24" href="https://thinking-in-boxes.github.io/" target="_blank" rel="noopener">
         <div class="hl-thumb"><video src="images/thinking_in_boxes_v2.mp4" autoplay muted loop playsinline></video></div>
         <div class="hl-body"><span class="hl-name">Thinking in Boxes</span><span class="hl-venue">NeurIPS 2026</span><span class="hl-desc">3D editing in real images, made easy with coarse boxes.</span></div>
@@ -168,6 +178,7 @@
   });
   set.innerHTML = ''; order.forEach(function (el) { set.appendChild(el); });
   if (sets[1]) { sets[1].innerHTML = ''; order.forEach(function (el) { sets[1].appendChild(el.cloneNode(true)); }); }
+  if (window.initI2V) window.initI2V(track);
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   // Continuous scroll driven by rAF so the speed can ease: 38 px/s normally, 8 px/s while hovered, 0 while a card has keyboard focus.
   var hl = track.closest('.hl');

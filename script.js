@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    const sections = ['bio', 'research', 'highlights', 'news', '3PVision', 'teaching', 'services', 'publications'];
+    const sections = ['bio', 'highlights', 'research', 'news', '3PVision', 'teaching', 'services', 'publications'];
     sections.forEach(section => {
         $(`<section id="${section}" class="section"></section>`).appendTo('#content');
         loadSection(section);
@@ -129,3 +129,32 @@ citations.forEach(citation => {
     });
   });
 });
+
+/* Staged teasers (.i2v): frame 0 held as a still ("Single input image"), then an optional control clip
+   ("Camera + object motion authored in 3D"), then the generated clip, then back to the still. Loops.
+   Reduced-motion users just get the still. */
+window.initI2V = function (root) {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    (root || document).querySelectorAll('.i2v:not([data-i2v])').forEach(function (box) {
+        box.dataset.i2v = '1';
+        const main = box.querySelector('video:not(.i2v-control)'), ctl = box.querySelector('video.i2v-control'), badge = box.querySelector('.i2v-badge');
+        if (!main) return;
+        [main, ctl].forEach(function (v) { if (v) { v.loop = false; v.muted = true; v.playsInline = true; } });
+        let timer = null;
+        const label = function (t) { if (badge) badge.textContent = t; };
+        const safePlay = function (v) { const pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); };
+        const hold = function () {
+            main.pause(); try { main.currentTime = 0; } catch (e) {}
+            if (ctl) { ctl.pause(); try { ctl.currentTime = 0; } catch (e) {} }
+            box.classList.add('is-still'); box.classList.remove('is-control'); label('Single input image');
+            if (reduce) return;
+            clearTimeout(timer);
+            timer = setTimeout(ctl ? control : result, 1800);
+        };
+        const control = function () { box.classList.remove('is-still'); box.classList.add('is-control'); label('Camera + object motion in 3D'); safePlay(ctl); };
+        const result  = function () { box.classList.remove('is-still'); box.classList.remove('is-control'); label('Generated video'); safePlay(main); };
+        if (ctl) ctl.addEventListener('ended', result);
+        main.addEventListener('ended', hold);
+        if (main.readyState >= 2) hold(); else main.addEventListener('loadeddata', hold, { once: true });
+    });
+};

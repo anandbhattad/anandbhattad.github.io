@@ -491,3 +491,56 @@ nav a{font-size:1.05em;font-weight:700;padding:4px 50px}
 
 /* "New" pill: shown for 90 days after an entry's addedOn date (publications.js) / data-new (highlights.html) */
 .new-pill{display:inline-block;vertical-align:middle;margin-left:.45em;padding:.08em .5em .1em;border-radius:999px;font-family:var(--font-heading,inherit);font-size:.6em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;line-height:1.4;color:#fff;background:var(--accent-color)}   /* violet, distinct from link blue and award red */
+
+/* =======================================================
+   READABILITY PASS (Oct 2026)
+   ----------------------------------------------------- */
+/* 1. TL;DR always visible: no hover reveal, no height animation, no card jump */
+.pub-tldr{max-height:none;overflow:visible;margin:.4rem 0 0;padding:0;background:none;border-left:0;border-radius:0;transition:none;max-width:78ch;color:var(--text-secondary);line-height:1.45}
+.publication-item:hover .pub-tldr{max-height:none;padding:0;margin-top:.4rem}
+/* 2. Calmer card hover: lift only; no blue wash, no teaser zoom (videos jitter when scaled) */
+.publication-item:hover{background:#fff;box-shadow:var(--shadow-md)}
+.publication-item:hover .pub-image img,.publication-item:hover .pub-image video{transform:none}
+/* 3. Reading measure: a narrower page (1040px) instead of capping paragraphs inside a wide card,
+      so prose fills its card at ~95 characters per line and nothing sits beside empty space */
+:root{--content-width:1040px}
+/* 4. A little more air inside the grey section cards at 18px type */
+.section{padding:1.25rem 1.5rem}
+/* 5. "Show papers" dropdown: a full-width panel under its news row instead of a no-wrap overlay anchored to the button */
+details.paper-dropdown{display:inline}                                   /* button stays inline after "Click to expand:" */
+.paper-list{position:static;display:block;margin:8px 0 4px;min-width:0;white-space:normal}   /* panel opens in flow below the row, full column width */
+.paper-list > div{flex-wrap:wrap}
+.news-container:has(details[open]){max-height:none}                      /* while a dropdown is open, show the whole list instead of scrolling */
+
+/* =======================================================
+   MOBILE (<= 768px) adjustments for the Oct 2026 changes
+   ----------------------------------------------------- */
+@media (max-width:768px){
+  body{font-size:17px}
+  nav a{padding:6px 14px;font-size:.95em}                     /* the desktop 50px side padding would force the bar to scroll */
+  .section{padding:1rem}
+  /* stacked publication card: the desktop flex-basis (280px) became a forced HEIGHT once the card turned into a column */
+  .publication-item{gap:.5rem}
+  .pub-image{flex:0 0 auto;width:100%;margin-bottom:.25rem}
+  .pub-image img,.pub-image video{width:100%;max-width:360px;max-height:260px;margin-inline:0;object-position:left}   /* cap keeps portrait clips compact */
+  .pub-media-row{width:100%;max-width:360px}
+  .pub-tldr{max-width:none}
+  .hl-card{width:200px}.hl-thumb{height:120px}
+}
+
+/* author links: quiet underline, colour only on hover */
+.pub-authors a{color:inherit;text-decoration:none;border-bottom:1px solid var(--border-color)}
+.pub-authors a:hover{color:var(--primary-color);border-bottom-color:currentColor}
+
+/* "single image -> generated video" teaser: the still phase looks like a photo, then unfolds into the clip */
+.i2v{position:relative;isolation:isolate;overflow:hidden;background:#fff}
+.pub-image .i2v{width:280px}
+.i2v video{display:block;position:relative;z-index:0;width:100%;height:100%;object-fit:contain;transition:transform .7s cubic-bezier(.2,.7,.2,1),box-shadow .7s ease,filter .7s ease}
+.i2v.is-still video{transform:scale(.86);box-shadow:0 0 0 4px #fff,0 6px 18px rgba(0,0,0,.28);filter:saturate(.9)}
+.i2v-badge{position:absolute;left:8px;bottom:8px;z-index:2;transform:translateZ(0);font-family:var(--font-heading,inherit);font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.3;padding:3px 7px;border-radius:4px;color:#fff;background:rgba(15,23,42,.72);transition:background .4s}
+.i2v.is-still .i2v-badge{background:var(--primary-color)}
+.i2v .i2v-control{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:contain;background:#fff;opacity:0;transform:none;box-shadow:none;transition:opacity .4s ease}
+.i2v.is-control .i2v-control{opacity:1}
+.i2v.is-control .i2v-badge{background:#7c3aed}
+.hl-thumb.i2v{padding:0}
+@media (prefers-reduced-motion:reduce){.i2v video{transition:none}}
