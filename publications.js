@@ -525,7 +525,7 @@ addPublication(
   "Author the camera path and object motion together in a 3D scene lifted from a single image; a video diffusion model turns them into a coherent shot.",
   "In Submission",
   "pre-print",
-  false,
+  true,
   true,
   [],
   "",
