@@ -4,12 +4,12 @@
     <div class="hl-track">
     <div class="hl-set">
 
-      <a class="hl-card" data-topic="physics" href="https://power-sim.github.io/" target="_blank" rel="noopener">
+      <a class="hl-card" data-topic="physics" data-new="2026-09-30" href="https://power-sim.github.io/" target="_blank" rel="noopener">
         <div class="hl-thumb"><video src="images/powersim_mirror.mp4" autoplay muted loop playsinline></video></div>
         <div class="hl-body"><span class="hl-name">PowerSim</span><span class="hl-venue">arXiv 2026 · Preprint</span><span class="hl-desc">Differentiable physics simulation and rendering with power diagrams.</span></div>
       </a>
 
-      <a class="hl-card" data-topic="physics" href="https://fracgen.github.io/" target="_blank" rel="noopener">
+      <a class="hl-card" data-topic="physics" data-new="2026-09-30" href="https://fracgen.github.io/" target="_blank" rel="noopener">
         <div class="hl-thumb pair"><video src="images/fracgen_early.mp4" autoplay muted loop playsinline></video><video src="images/fracgen_delay.mp4" autoplay muted loop playsinline></video></div>
         <div class="hl-body"><span class="hl-name">FracGen</span><span class="hl-venue">arXiv 2026 · Preprint</span><span class="hl-desc">How objects stretch and tear: physics-informed video generation.</span></div>
       </a>
@@ -29,7 +29,7 @@
         <div class="hl-body"><span class="hl-name">Intrinsic LoRA</span><span class="hl-venue">CVPR-W 2024</span><span class="hl-desc">What generative models know: intrinsic images with a tiny LoRA.</span></div>
       </a>
 
-      <a class="hl-card" data-topic="physics" href="https://principiabench.github.io/" target="_blank" rel="noopener">
+      <a class="hl-card" data-topic="physics" data-new="2026-09-15" href="https://principiabench.github.io/" target="_blank" rel="noopener">
         <div class="hl-thumb"><video src="images/principia.mp4" autoplay muted loop playsinline></video></div>
         <div class="hl-body"><span class="hl-name">Principia</span><span class="hl-venue">NeurIPS 2026</span><span class="hl-desc">Relational physics tests for video models.</span></div>
       </a>
@@ -76,12 +76,12 @@
     </div>
     <div class="hl-set" aria-hidden="true">
 
-      <a class="hl-card" data-topic="physics" href="https://power-sim.github.io/" target="_blank" rel="noopener">
+      <a class="hl-card" data-topic="physics" data-new="2026-09-30" href="https://power-sim.github.io/" target="_blank" rel="noopener">
         <div class="hl-thumb"><video src="images/powersim_mirror.mp4" autoplay muted loop playsinline></video></div>
         <div class="hl-body"><span class="hl-name">PowerSim</span><span class="hl-venue">arXiv 2026 · Preprint</span><span class="hl-desc">Differentiable physics simulation and rendering with power diagrams.</span></div>
       </a>
 
-      <a class="hl-card" data-topic="physics" href="https://fracgen.github.io/" target="_blank" rel="noopener">
+      <a class="hl-card" data-topic="physics" data-new="2026-09-30" href="https://fracgen.github.io/" target="_blank" rel="noopener">
         <div class="hl-thumb pair"><video src="images/fracgen_early.mp4" autoplay muted loop playsinline></video><video src="images/fracgen_delay.mp4" autoplay muted loop playsinline></video></div>
         <div class="hl-body"><span class="hl-name">FracGen</span><span class="hl-venue">arXiv 2026 · Preprint</span><span class="hl-desc">How objects stretch and tear: physics-informed video generation.</span></div>
       </a>
@@ -101,7 +101,7 @@
         <div class="hl-body"><span class="hl-name">Intrinsic LoRA</span><span class="hl-venue">CVPR-W 2024</span><span class="hl-desc">What generative models know: intrinsic images with a tiny LoRA.</span></div>
       </a>
 
-      <a class="hl-card" data-topic="physics" href="https://principiabench.github.io/" target="_blank" rel="noopener">
+      <a class="hl-card" data-topic="physics" data-new="2026-09-15" href="https://principiabench.github.io/" target="_blank" rel="noopener">
         <div class="hl-thumb"><video src="images/principia.mp4" autoplay muted loop playsinline></video></div>
         <div class="hl-body"><span class="hl-name">Principia</span><span class="hl-venue">NeurIPS 2026</span><span class="hl-desc">Relational physics tests for video models.</span></div>
       </a>
@@ -156,6 +156,11 @@
   // Group by topic (data-topic), no visible labels: groups in random order, cards shuffled within each group.
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   var cards  = Array.prototype.slice.call(set.querySelectorAll('.hl-card'));
+  cards.forEach(function (c) {               // "New" pill for 90 days after data-new
+    var d = c.getAttribute('data-new'); if (!d) return;
+    var age = (Date.now() - Date.parse(d)) / 864e5;
+    if (age >= 0 && age < 90) { var pill = document.createElement('span'); pill.className = 'new-pill'; pill.textContent = 'New'; c.querySelector('.hl-name').appendChild(pill); }
+  });
   var topics = shuffle(cards.map(function (c) { return c.getAttribute('data-topic'); }).filter(function (t, i, a) { return a.indexOf(t) === i; }));
   var order  = [];
   topics.forEach(function (topic) {

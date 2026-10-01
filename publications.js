@@ -139,7 +139,8 @@ function addPublication(
   img, title, authors, venue, paper, project, code, arxiv,
   githubRepo, tldr, year, published,
   isHighlight = false, isVideo = false,
-  ssIds = [],  bibKey = null
+  ssIds = [],  bibKey = null,
+  addedOn = null            // "YYYY-MM-DD": shows a "New" pill for 90 days after this date
 ) {
   authors = authors
     .split(", ")
@@ -151,7 +152,7 @@ function addPublication(
 
   publications.push({
     img, title, authors, venue, paper, project, code, arxiv,
-    githubRepo, tldr, year, published, isHighlight, isVideo, ssIds
+    githubRepo, tldr, year, published, isHighlight, isVideo, ssIds, addedOn
   });
 }
 
@@ -187,6 +188,13 @@ async function renderPublications(filter = "highlights") {
 /* ------------------------------------------------------------------
    6. Card template
 ------------------------------------------------------------------*/
+const NEW_FOR_DAYS = 90;
+function isNew(addedOn) {
+  if (!addedOn) return false;
+  const age = (Date.now() - Date.parse(addedOn)) / 864e5;
+  return age >= 0 && age < NEW_FOR_DAYS;
+}
+
 function genPubHTML(p) {
   const link = p.project || p.arxiv || p.paper;
   const media = (src) => p.isVideo
@@ -202,7 +210,7 @@ function genPubHTML(p) {
   <div class="publication-item">
     <div class="pub-image">${img}</div>
     <div class="pub-details">
-      <div class="pub-title"><a href="${link}" target="_blank">${p.title}</a></div>
+      <div class="pub-title"><a href="${link}" target="_blank">${p.title}</a>${isNew(p.addedOn) ? ' <span class="new-pill">New</span>' : ""}</div>
       <div class="pub-authors">${p.authors}</div>
       <div class="pub-venue">${p.venue}</div>
       <div class="pub-links">
@@ -387,7 +395,8 @@ addPublication(
   true,
   true,
   [],
-  ""
+  "",
+  "2026-09-30"
 );
 
 addPublication(
@@ -406,7 +415,8 @@ addPublication(
   false,
   true,
   [],
-  ""
+  "",
+  "2026-09-30"
 );
 
 addPublication(
@@ -444,7 +454,8 @@ addPublication(
   true,
   true,
   [],
-  ""
+  "",
+  "2026-09-15"
 );
 
 addPublication(

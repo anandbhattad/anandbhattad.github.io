@@ -488,3 +488,6 @@ h1,h2,h3,h4,nav a,.publication-year,.pub-venue,.pub-links a,.paper-list .conf,fo
 
 /* top nav: larger, bold */
 nav a{font-size:1.05em;font-weight:700;padding:4px 50px}
+
+/* "New" pill: shown for 90 days after an entry's addedOn date (publications.js) / data-new (highlights.html) */
+.new-pill{display:inline-block;vertical-align:middle;margin-left:.45em;padding:.08em .5em .1em;border-radius:999px;font-family:var(--font-heading,inherit);font-size:.6em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;line-height:1.4;color:#fff;background:var(--primary-color)}
