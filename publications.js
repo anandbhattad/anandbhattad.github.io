@@ -517,10 +517,10 @@ addPublication(
   "Generative Cinematographer: Composing Camera and Object Motion in 3D",
   "Jiahan Zhang, Chaohao Yang, Namitha Guruprasad, Vivekjyoti Banerjee, Trong-Tung Nguyen, Alan Yuille, Anand Bhattad",
   "Preprint, arXiv 2026",
-  "", // paper (arXiv link to follow)
+  "https://arxiv.org/abs/2610.02180",
   "https://generative-cinematographer.github.io/", // project page
   "", // code link
-  "", // arXiv (to follow)
+  "https://arxiv.org/abs/2610.02180",
   "", // github-repo-name
   "Author the camera path and object motion together in a 3D scene lifted from a single image; a video diffusion model turns them into a coherent shot.",
   "In Submission",
