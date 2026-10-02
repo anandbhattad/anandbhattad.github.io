@@ -638,14 +638,14 @@ addPublication(
   "David Serrano-Lozano, Anand Bhattad<sup>†</sup>, Luis Herranz, Jean-François Lalonde<sup>†</sup>, Javier Vazquez-Corral<sup>†</sup>",
   "NeurIPS 2026",
   "https://arxiv.org/abs/2601.16981",
-  "https://synclight.github.io/",
+  "https://sync-light.github.io/",
   "https://github.com/CVC-Color/synclight", // code link
   "https://arxiv.org/abs/2601.16981",
   "CVC-Color/synclight", // github-repo-name
   "SyncLight generates consistent multi-view relighting by only specifing the lighting in one view and it consistently propagates to all views in a single inference step.",
   "2026",
   "published",
-  false,
+  true,
   true,
   [],
   "",
