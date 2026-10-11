@@ -229,17 +229,27 @@
   }, { passive: false });
 
   var startX = 0, startPos = 0;                              // drag / swipe
+  // A press alone must stay a plain click on the card (its link opens); only once the pointer has moved
+  // a few pixels does it become a drag, and only then do we take pointer capture (capture retargets the
+  // click to the strip, which is what broke card links).
+  var pressed = false;
   viewport.addEventListener('pointerdown', function (e) {
     if (e.button !== 0 && e.pointerType === 'mouse') return;
-    dragging = true; moved = 0; startX = e.clientX; startPos = x; target = 0;
-    viewport.classList.add('is-dragging'); viewport.setPointerCapture(e.pointerId);
+    pressed = true; dragging = false; moved = 0; startX = e.clientX; startPos = x;
   });
   viewport.addEventListener('pointermove', function (e) {
-    if (!dragging) return;
+    if (!pressed) return;
     var dx = e.clientX - startX; moved = Math.max(moved, Math.abs(dx));
+    if (!dragging) {
+      if (moved <= 6) return;
+      dragging = true; target = 0; viewport.classList.add('is-dragging');
+      try { viewport.setPointerCapture(e.pointerId); } catch (err) {}
+    }
     x = startPos + dx; wrap();
   });
   function endDrag(e) {
+    if (!pressed) return;
+    pressed = false;
     if (!dragging) return;
     dragging = false; viewport.classList.remove('is-dragging');
     try { viewport.releasePointerCapture(e.pointerId); } catch (err) {}
