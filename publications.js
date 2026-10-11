@@ -674,7 +674,7 @@ addPublication(
 );
 
 addPublication(
-  "./images/context_ar_placeholder.png",
+  "./images/context_ar.mp4",
   "Context-Aware Autoregressive Image Generation for Emerging Reasoning Properties",
   "Jixuan Ying, Haoyu Liu, Timing Yang, Tingyu Zhu, Predrag Neskovic, Anand Bhattad, Cihang Xie, Zeyu Zheng, Alan Yuille, Feng Wang",
   "NeurIPS 2026",
@@ -683,11 +683,11 @@ addPublication(
   "", // code link
   "", // arXiv
   "", // github-repo-name
-  "Context-aware autoregressive image generation from which reasoning properties emerge. Paper, project page, and teaser to follow once the camera-ready is public.",
+  "Context-aware autoregressive image generation from which reasoning properties emerge. Paper and project page to follow once the camera-ready is public.",
   "2026",
   "published",
   false,
-  false,
+  true,
   [],
   "",
   "2026-09-24"
