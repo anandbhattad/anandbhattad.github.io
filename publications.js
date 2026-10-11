@@ -138,6 +138,7 @@ const publications = [];
 /* Author homepages: any author whose exact name (markers stripped) appears here is linked, new tab.
    Add a line to link someone; leave them out to keep the name plain. */
 const AUTHOR_LINKS = {
+  "Chaohao Yang": "https://louiscroix.github.io/",
   "Ankit Vaidya": "https://scholar.google.com/citations?user=IYizOPMAAAAJ&hl=en",
   "Annie Wang": "https://scholar.google.com/citations?user=8Pg7CpwAAAAJ&hl=en",
   "Ayush Sarkar": "https://siebelschool.illinois.edu/research/undergraduate-research/summer-research-experience-undergraduates/participants/ayush-sarkar",
@@ -565,7 +566,7 @@ addPublication(
   "Fracture-aware video generation from one image of an intact object. Trained on MPM fracture simulations with pixel-aligned physics maps, it controls where, how fast, and how much an object tears.",
   "In Submission",
   "pre-print",
-  false,
+  true,
   true,
   [],
   "",
