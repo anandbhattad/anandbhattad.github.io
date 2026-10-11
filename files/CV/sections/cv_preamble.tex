@@ -5,6 +5,7 @@
 
 %% ==================== CHOOSE THEME (single line) ====================
 \providecommand{\cvtheme}{modern}   %  navy  |  teal  |  burgundy  |  modern
+\ifcsname ifteasers\endcsname\else\expandafter\newif\csname ifteasers\endcsname\fi   % set by anand_2026_visual.tex: margin teasers + tl;dr per paper
 %% ====================================================================
 %   navy / teal      -> editorial layout (section labels in a left spine)
 %   burgundy         -> classic layout  (full-width small-caps serif headers + rule)
@@ -62,7 +63,7 @@
   \titlespacing*{\section}{0pt}{2.4ex}{0.9ex}}
 % Modern: full width, bold sans headers led by a short accent tab
 \newcommand{\cvmodern}{%
-  \geometry{top=0.75in, bottom=0.75in, left=0.8in, right=0.8in, footskip=0.30in}%
+  \geometry{top=0.55in, bottom=0.6in, left=0.65in, right=0.65in, footskip=0.28in}%
   \setlength{\mhpull}{0pt}%
   \titleformat{\section}[block]
     {\sffamily\large\bfseries\color{accent}}{}{0em}{{\color{accent}\rule[0.18ex]{1.5em}{3pt}}\hspace{0.5em}}%
@@ -87,13 +88,15 @@
   linkcolor=ink, urlcolor=ink, citecolor=ink, filecolor=ink,
   pdftitle={Anand Bhattad — Curriculum Vitae}, pdfauthor={Anand Bhattad}
 }
+\ifteasers\hypersetup{pdftitle={Anand Bhattad — Curriculum Vitae (Illustrated)}}\fi
 \newcommand{\myhref}[3][accent]{\href{#2}{\color{#1}{#3}}}
 
 %---------- Lists ----------
 \setlist{nosep}
+\newlength{\listoneindent}\setlength{\listoneindent}{0.17in}
 \newenvironment{list1}{%
   \begin{list}{}{%
-    \setlength{\leftmargin}{0.17in}\setlength{\itemsep}{4pt}%
+    \setlength{\leftmargin}{\listoneindent}\setlength{\itemsep}{4pt}%
     \setlength{\parsep}{0pt}\setlength{\topsep}{4pt}\setlength{\partopsep}{0pt}}}{\end{list}}
 \newenvironment{list2}{%
   \begin{list}{\textcolor{accent}{\footnotesize$\bullet$}}{%
@@ -115,9 +118,15 @@
 
 %---------- Entry command : organisation, role  ......  dates ----------
 \newcommand{\workexpcompact}[3]{%
-  \noindent\begin{tabular*}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.82\linewidth}@{\extracolsep{\fill}}r@{}}
+  \noindent\begin{tabular*}{\linewidth}{@{}>{\raggedright\arraybackslash}p{\dimexpr\linewidth-1.0in\relax}@{\extracolsep{\fill}}r@{}}
     \textbf{#1}, {#2} & {\color{muted}#3}
   \end{tabular*}\\[3pt]}
+
+%---------- Course entry : title, institution; role ...... term ----------
+\newcommand{\course}[4]{%
+  \noindent\begin{tabular*}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.84\linewidth}@{\extracolsep{\fill}}r@{}}
+    \textbf{\large #1}, #2; \textit{#3} & {\color{muted}#4}
+  \end{tabular*}\par}
 
 %---------- Fixed right-hand date gutter for mentoring / talks ----------
 \newlength{\cvdatew}\setlength{\cvdatew}{0.8in}
@@ -132,7 +141,8 @@
   \hfill\makebox[\cvdatew][r]{\color{muted}#4}}
 
 %---------- Venue token (sans, for publication metadata) ----------
-\newcommand{\venue}[1]{{\normalfont\sffamily\bfseries\small\color{darkgray}#1}}
+\definecolor{tagbg}{HTML}{EEEFF1}
+\newcommand{\venue}[1]{{\setlength{\fboxsep}{2.2pt}\colorbox{tagbg}{\normalfont\sffamily\bfseries\small\color{darkgray}#1}}}   % venue as a neutral tag (all CVs)
 
 %---------- Invited talk : venue  ......  date ----------
 \newcommand{\talk}[2]{%
@@ -151,3 +161,88 @@
 \fancyfoot[L]{\footnotesize\sffamily\color{muted}Anand Bhattad}
 \fancyfoot[C]{\footnotesize\sffamily\color{muted}\iffull Curriculum Vitae\else Curriculum Vitae~(Short)\fi}
 \fancyfoot[R]{\footnotesize\sffamily\color{muted}Page \thepage\ of \pageref{LastPage}}
+
+%---------- Publication entry (\pub{key}{entry}) ----------
+% Full / short CV: a plain numbered item.  Illustrated CV (\teaserstrue): a teaser column
+% (input -> output / before -> after, or the paper's own teaser figure) beside the entry; the
+% number sits next to the title.  Teasers are looked up by key from sections/teasers.tex.
+\usepackage{graphicx}
+\newlength{\teaserw}\setlength{\teaserw}{1.75in}      % teaser column width
+\newlength{\teaserh}\setlength{\teaserh}{1.0in}       % teaser height cap
+\newlength{\teasergap}\setlength{\teasergap}{0.14in}  % gap between teaser column and text
+\newlength{\pubnumw}\AtBeginDocument{\settowidth{\pubnumw}{32.}}   % number column: as wide as "32." in the body font, numbers right-aligned
+\newlength{\pubnumgap}\setlength{\pubnumgap}{4pt}
+\newcommand{\teaserdef}[3]{\expandafter\gdef\csname teaser@#1\endcsname{\def\teaserfile{#2}\def\teasertldr{#3}}}
+\newif\ifpubitem
+\ifteasers
+  \geometry{left=0.55in, right=0.55in}
+  \input{sections/teasers}
+  \AtBeginEnvironment{etaremune}{\renewcommand*{\labelenumi}{\ifpubitem\else\theenumi.\fi}}% \pub prints its own number
+  \newcommand{\pub}[2]{%
+    \pubitemtrue\item\pubitemfalse\def\teaserfile{}\def\teasertldr{}%
+    \ifcsname teaser@#1\endcsname\csname teaser@#1\endcsname\fi
+    \leavevmode\hspace*{-\leftmargin}%
+    \begin{minipage}[t]{\teaserw}\vspace{0pt}%
+      \ifx\teaserfile\empty\mbox{}\else\makebox[\teaserw][c]{\includegraphics[width=\teaserw,height=\teaserh,keepaspectratio]{\teaserfile}}\fi
+    \end{minipage}\hspace{\teasergap}%
+    \begin{minipage}[t]{\dimexpr\linewidth+\leftmargin-\teaserw-\teasergap\relax}\vspace{0pt}%
+      \makebox[\pubnumw][r]{\theenumi.}\hspace{\pubnumgap}%
+      \parbox[t]{\dimexpr\linewidth-\pubnumw-\pubnumgap\relax}{\raggedright #2\pubmaybelinks{#1}}%
+    \end{minipage}\par\vspace{5pt}}
+\else
+  \newcommand{\pub}[2]{\item #2\pubmaybelinks{#1}}
+\fi
+
+%---------- Affiliation logos (illustrated CV only) ----------
+% A fixed square box (same size for every institution) right before the institution name.
+% \school{key}{text} in Education; \workexpcompact looks its first argument up in the table.
+\newlength{\logobox}\setlength{\logobox}{0.24in}
+\newlength{\logogap}\setlength{\logogap}{0.07in}
+\newcommand{\logodef}[2]{\expandafter\gdef\csname orglogo@#1\endcsname{#2}}
+\logodef{Johns Hopkins University}{jhu}
+\logodef{Toyota Technological Institute at Chicago}{ttic}
+\logodef{University of California Berkeley}{berkeley}
+\logodef{Allen Institute for AI (Ai2)}{ai2}
+\logodef{Intel}{intel}
+\logodef{NVIDIA}{nvidia}
+\logodef{Siemens Corporate Technology}{siemens}
+\logodef{Michigan State University}{msu}
+\logodef{IIIT Hyderabad}{iiith}
+\logodef{Fyusion Inc}{fyusion}
+\newif\iflogocolumn
+\ifteasers
+  \newcommand{\logocolumnon}{\logocolumntrue}\newcommand{\logocolumnoff}{\logocolumnfalse}
+  \newcommand{\orglogo}[1]{\raisebox{-0.32\height}{\makebox[\logobox][c]{\includegraphics[width=\logobox,height=\logobox,keepaspectratio]{logos/#1}}}\hspace{\logogap}}
+  \newcommand{\logoslot}[1]{\ifcsname orglogo@#1\endcsname\orglogo{\csname orglogo@#1\endcsname}\else\makebox[\logobox]{}\hspace{\logogap}\fi}
+  \newcommand{\school}[2]{\orglogo{#1}#2}
+  \setlength{\listoneindent}{\dimexpr\logobox+\logogap\relax}   % Education sub-lines start where the institution name starts
+  \renewcommand{\workexpcompact}[3]{%
+    \noindent\begin{tabular*}{\linewidth}{@{}>{\raggedright\arraybackslash}p{\dimexpr\linewidth-1.0in\relax}@{\extracolsep{\fill}}r@{}}
+      \iflogocolumn\hangindent=\dimexpr\logobox+\logogap\relax\hangafter=1\logoslot{#1}\fi\textbf{#1}, {#2} & {\color{muted}#3}
+    \end{tabular*}\\[3pt]}
+\else
+  \newcommand{\logocolumnon}{}\newcommand{\logocolumnoff}{}\newcommand{\orglogo}[1]{}\newcommand{\school}[2]{#2}
+\fi
+
+%---------- Paper / project / code links (illustrated CV only) ----------
+% \linkdef{key}{paper}{project}{code} in sections/links.tex; \pub prints an icon row for whatever is set.
+\newcommand{\linkdef}[4]{\expandafter\gdef\csname links@#1\endcsname{\def\lpaper{#2}\def\lproject{#3}\def\lcode{#4}}}
+\newcommand{\publinks}{%
+  {\footnotesize\sffamily
+   \ifx\lpaper\empty\else\myhref[darkgray]{\lpaper}{\faFilePdf~Paper}\hspace{1em}\fi
+   \ifx\lproject\empty\else\myhref[darkgray]{\lproject}{\faGlobe~Project}\hspace{1em}\fi
+   \ifx\lcode\empty\else\myhref[darkgray]{\lcode}{\faGithub~Code}\fi}}
+\newcommand{\publinkrow}{\\[2pt]\publinks}
+\newcommand{\pubmaybelinks}[1]{%
+  \def\lpaper{}\def\lproject{}\def\lcode{}%
+  \ifcsname links@#1\endcsname\csname links@#1\endcsname\fi
+  \ifx\lpaper\empty\ifx\lproject\empty\ifx\lcode\empty\else\publinkrow\fi\else\publinkrow\fi\else\publinkrow\fi}
+\input{sections/links}
+% inline icons only (Selected Publications list)
+\newcommand{\pubicons}[1]{%
+  \def\lpaper{}\def\lproject{}\def\lcode{}%
+  \ifcsname links@#1\endcsname\csname links@#1\endcsname\fi
+  {\small\sffamily\color{accent}%
+   \ifx\lpaper\empty\else\ \myhref[accent]{\lpaper}{\faFilePdf}\fi
+   \ifx\lproject\empty\else\ \myhref[accent]{\lproject}{\faGlobe}\fi
+   \ifx\lcode\empty\else\ \myhref[accent]{\lcode}{\faGithub}\fi}}

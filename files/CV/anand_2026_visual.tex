@@ -1,0 +1,9 @@
+%% Illustrated CV: the full CV with a teaser still and tl;dr beside each paper.
+%% Content lives in sections/cv_body.tex; teasers in sections/teasers.tex + teasers/.
+\documentclass[11pt,letterpaper]{article}
+\newif\iffull\fulltrue
+\newif\ifteasers\teaserstrue
+\input{sections/cv_preamble}
+\begin{document}
+\input{sections/cv_body}
+\end{document}

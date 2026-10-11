@@ -44,7 +44,7 @@
   *,*::before,*::after{box-sizing:border-box}
   body{
     font-family:var(--font-body);
-    font-size:18px;      /* Charter's x-height is ~12% lower than Inter's */
+    font-size:17px;      /* Charter's x-height is ~12% lower than Inter's */
     font-weight:400;
     line-height:1.5;
     color:#222;
