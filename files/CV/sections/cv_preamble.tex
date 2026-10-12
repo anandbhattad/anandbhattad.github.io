@@ -145,8 +145,9 @@
   \hfill\makebox[\cvdatew][r]{\color{muted}#4}}
 
 %---------- Venue token (sans, for publication metadata) ----------
-\definecolor{tagbg}{HTML}{EEEFF1}
-\newcommand{\venue}[1]{{\setlength{\fboxsep}{2.2pt}\colorbox{tagbg}{\normalfont\sffamily\bfseries\small\color{darkgray}#1}}}   % venue as a neutral tag (all CVs)
+\definecolor{tagbg}{HTML}{EEF3FA}
+\definecolor{tagink}{HTML}{2F4F7F}
+\newcommand{\venue}[1]{{\setlength{\fboxsep}{2.2pt}\colorbox{tagbg}{\normalfont\sffamily\bfseries\small\color{tagink}#1}}}   % venue as a pale-blue tag (all CVs)
 
 %---------- Invited talk : venue  ......  date ----------
 \newcommand{\talk}[2]{%
@@ -185,6 +186,7 @@
 \newif\ifpubitem
 \ifteasers
   \geometry{left=0.55in, right=0.55in}
+  \AtBeginDocument{\titlespacing*{\section}{0pt}{3.4ex}{1.1ex}\AtBeginShipout{\ifnum\value{page}=1 \global\titlespacing*{\section}{0pt}{2.4ex}{0.9ex}\fi}}
   \input{sections/teasers}
   \AtBeginEnvironment{etaremune}{\renewcommand*{\labelenumi}{\ifpubitem\else\theenumi.\fi}}% \pub prints its own number
   \newcommand{\pub}[2]{%
