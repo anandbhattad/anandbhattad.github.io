@@ -540,7 +540,7 @@ addPublication(
   "Preprint, arXiv 2026",
   "https://arxiv.org/abs/2609.38153",
   "https://power-sim.github.io/", // project page
-  "", // code link
+  "https://github.com/nttung1110/PowerSim", // code link
   "https://arxiv.org/abs/2609.38153",
   "", // github-repo-name
   "Differentiable MPM dynamics on a PowerFoam power-diagram scene: poke captured scenes, recover materials, compose objects, and ray-trace reflections that stay consistent as they deform.",
