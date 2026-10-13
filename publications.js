@@ -520,7 +520,7 @@ addPublication(
   "Preprint, arXiv 2026",
   "https://arxiv.org/abs/2610.02180",
   "https://generative-cinematographer.github.io/", // project page
-  "", // code link
+  "https://github.com/vanillaer/GenCine", // code link
   "https://arxiv.org/abs/2610.02180",
   "", // github-repo-name
   "Author the camera path and object motion together in a 3D scene lifted from a single image; a video diffusion model turns them into a coherent shot.",
