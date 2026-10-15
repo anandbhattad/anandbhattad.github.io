@@ -118,6 +118,9 @@
 \newcommand{\subhead}[1]{\needspace{3\baselineskip}\noindent{\bfseries\large #1}\par}
 \newcommand{\talkhead}[1]{\needspace{3\baselineskip}{\bfseries #1}\par}
 \newcommand{\authors}[1]{{\small\color{darkgray}#1}}   % author lines: a step lighter and smaller than titles
+\definecolor{ulcol}{HTML}{A9B3C2}
+\setul{1.4pt}{0.3pt}\setulcolor{ulcol}                      % thin, light underline (soul)
+\newcommand{\stu}[1]{\ul{#1}}                             % students I advised or co-mentored (see legend above the publication lists)
 
 %---------- Entry command : organisation, role  ......  dates ----------
 \newcommand{\workexpcompact}[3]{%
