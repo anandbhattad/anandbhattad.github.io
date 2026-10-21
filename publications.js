@@ -138,6 +138,16 @@ const publications = [];
 /* Author homepages: any author whose exact name (markers stripped) appears here is linked, new tab.
    Add a line to link someone; leave them out to keep the name plain. */
 const AUTHOR_LINKS = {
+  "Ariel Slepyan": "https://arielslepyan.me/",
+  "Geeta Chandra Raju Bethala": "https://bethalageetachandraraju.github.io/",
+  "Anagha Rajendra Dangle": "https://anaghad01.github.io/",
+  "Yinzhe Zhou": "https://stevenzhoooooooooooooou.github.io/",
+  "Tuhin Basu": "https://48tuhin-jpg.github.io/",
+  "Md Faizal Karim": "https://faizalkarim280280.github.io/",
+  "Gregory Hager": "https://www.cs.jhu.edu/hager/",
+  "Homanga Bharadhwaj": "https://homangab.github.io/",
+  "Krishna Murthy Jatavallabhula": "https://krrish94.github.io/",
+  "Nitish V. Thakor": "https://neuroengineering.bme.jhu.edu/",
   "Chaohao Yang": "https://louiscroix.github.io/",
   "Ankit Vaidya": "https://scholar.google.com/citations?user=IYizOPMAAAAJ&hl=en",
   "Annie Wang": "https://scholar.google.com/citations?user=8Pg7CpwAAAAJ&hl=en",
@@ -512,6 +522,26 @@ if (typeof module !== 'undefined') {
 // );
 
 // Adding Publications
+
+addPublication(
+  "./images/opentac_sensor.mp4",
+  "OpenTac: An Open Ecosystem for Customizable, Scalable, and Transferable 3D Tactile Sensing",
+  "Ariel Slepyan, Geeta Chandra Raju Bethala, Jiafeng Gu, Anagha Rajendra Dangle, Yinzhe Zhou, Hongyuan Fu, Jade Sim, Tuhin Basu, Xinyi Yin, Md Faizal Karim, Gregory Hager<sup>†</sup>, Homanga Bharadhwaj<sup>†</sup>, Anand Bhattad<sup>†</sup>, Krishna Murthy Jatavallabhula<sup>†</sup>, Nitish V. Thakor<sup>†</sup>",
+  "Preprint 2026",
+  "https://opentac.github.io/assets/opentac-preprint.pdf",
+  "https://opentac.github.io/", // project page
+  "https://github.com/opentac/opentac", // code link
+  "", // arXiv: not posted yet
+  "", // github-repo-name
+  "Open tools to design, fabricate, read, and simulate flex-PCB tactile skins that sense normal and shear force, shaped to any robot surface.",
+  "In Submission",
+  "pre-print",
+  true,
+  true,
+  [],
+  "",
+  "2026-10-21"
+);
 
 addPublication(
   {src: "./images/gencine_teaser.mp4", control: "./images/gencine_control.mp4", kind: "i2v"},

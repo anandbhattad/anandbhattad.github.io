@@ -114,9 +114,11 @@
 %---------- Anti-orphan section headers ----------
 % Keep a header with ~2 following lines; titlesec already glues the header to its
 % first line, so a small value here avoids eager page breaks that strand sections.
-\pretocmd{\section}{\needspace{4\baselineskip}}{}{}
-\newcommand{\subhead}[1]{\needspace{3\baselineskip}\noindent{\bfseries\large #1}\par}
-\newcommand{\talkhead}[1]{\needspace{3\baselineskip}{\bfseries #1}\par}
+\pretocmd{\section}{\Needspace{4\baselineskip}}{}{}
+\makeatletter
+\newcommand{\subhead}[1]{\if@nobreak\else\Needspace{3\baselineskip}\fi\noindent{\bfseries\large #1}\par}
+\newcommand{\talkhead}[1]{\if@nobreak\else\Needspace{3\baselineskip}\fi{\bfseries #1}\par}
+\makeatother
 \newcommand{\authors}[1]{{\small\color{darkgray}#1}}   % author lines: a step lighter and smaller than titles
 \definecolor{ulcol}{HTML}{A9B3C2}
 \setul{1.4pt}{0.3pt}\setulcolor{ulcol}                      % thin, light underline (soul)
@@ -204,7 +206,7 @@
       \parbox[t]{\dimexpr\linewidth-\pubnumw-\pubnumgap\relax}{\raggedright #2\pubmaybelinks{#1}}%
     \end{minipage}\par\vspace{9pt}}
 \else
-  \newcommand{\pub}[2]{\item #2\pubmaybelinks{#1}\par\vspace{3pt}}
+  \newcommand{\pub}[2]{\item\leavevmode\begin{minipage}[t]{\linewidth}#2\pubmaybelinks{#1}\end{minipage}\par\vspace{3pt}}   % whole entry kept on one page
 \fi
 
 %---------- Affiliation logos (illustrated CV only) ----------
