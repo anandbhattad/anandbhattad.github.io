@@ -527,11 +527,11 @@ addPublication(
   "./images/opentac_sensor.mp4",
   "OpenTac: An Open Ecosystem for Customizable, Scalable, and Transferable 3D Tactile Sensing",
   "Ariel Slepyan, Geeta Chandra Raju Bethala, Jiafeng Gu, Anagha Rajendra Dangle, Yinzhe Zhou, Hongyuan Fu, Jade Sim, Tuhin Basu, Xinyi Yin, Md Faizal Karim, Gregory Hager<sup>†</sup>, Homanga Bharadhwaj<sup>†</sup>, Anand Bhattad<sup>†</sup>, Krishna Murthy Jatavallabhula<sup>†</sup>, Nitish V. Thakor<sup>†</sup>",
-  "Preprint 2026",
-  "https://opentac.github.io/assets/opentac-preprint.pdf",
+  "Preprint, arXiv 2026",
+  "https://arxiv.org/abs/2610.31661",
   "https://opentac.github.io/", // project page
   "https://github.com/opentac/opentac", // code link
-  "", // arXiv: not posted yet
+  "https://arxiv.org/abs/2610.31661",
   "", // github-repo-name
   "Open tools to design, fabricate, read, and simulate flex-PCB tactile skins that sense normal and shear force, shaped to any robot surface.",
   "In Submission",
@@ -541,6 +541,26 @@ addPublication(
   [],
   "",
   "2026-10-21"
+);
+
+addPublication(
+  "./images/omniray_teaser.jpg",
+  "OmniRay: Camera-Agnostic Monocular 3D Reconstruction with Composite Ray Fields",
+  "Namitha Guruprasad, Abhay Yadav, Cheng Peng, Rama Chellappa<sup>†</sup>, Anand Bhattad<sup>†</sup>",
+  "Preprint, arXiv 2026",
+  "https://arxiv.org/abs/2610.31645",
+  "https://nam1410.github.io/omniray/", // project page
+  "", // code: TBD
+  "https://arxiv.org/abs/2610.31645",
+  "", // github-repo-name
+  "Single-image 3D from pinhole, GoPro, fisheye, catadioptric, and panoramic cameras, with no intrinsics and no camera-type input at inference.",
+  "In Submission",
+  "pre-print",
+  true,
+  false,
+  [],
+  "",
+  "2026-10-22"
 );
 
 addPublication(
