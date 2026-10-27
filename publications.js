@@ -650,7 +650,7 @@ addPublication(
   "NeurIPS 2026 (Evaluations & Datasets Track)",
   "https://arxiv.org/abs/2609.04200",
   "https://principiabench.github.io/", // project page
-  "", // code link
+  "https://github.com/PrincipiaBench/Principia", // code link
   "https://arxiv.org/abs/2609.04200",
   "", // github-repo-name
   "Calibration-free relational physics tests for video generators: state-of-the-art models show inconsistent, mostly sub-Earth gravity.",
@@ -670,7 +670,7 @@ addPublication(
   "NeurIPS 2026",
   "https://arxiv.org/abs/2606.20556",
   "https://thinking-in-boxes.github.io/", // project page
-  "", // code link
+  "https://github.com/PradhaanSBhat/Thinking-In-Boxes", // code link
   "https://arxiv.org/abs/2606.20556",
   "", // github-repo-name
   "Objects become coarse 3D boxes you can move, rotate, and rescale, giving in-the-wild 3D-aware edits of real images that keep identity and scene consistency.",
@@ -710,7 +710,7 @@ addPublication(
   "NeurIPS 2026",
   "https://arxiv.org/abs/2606.14701",
   "", // project page
-  "", // code link
+  "", // code link: not released yet
   "https://arxiv.org/abs/2606.14701",
   "", // github-repo-name
   "Learnable register tokens route patch information through a compress-communicate-broadcast bottleneck and specialize into object parts with no supervision: +12 mIoU on part segmentation.",
@@ -770,7 +770,7 @@ addPublication(
     "ICML 2026",
     "https://arxiv.org/abs/2602.01391",
     "https://augmented-latent-intrinsics.github.io/",
-    "", // code link",
+    "https://github.com/xyxingx/Relight_probe", // code link
     "https://arxiv.org/abs/2602.01391",
     "short project name",
     "Stronger semantic encoders can hurt relighting. Augmented Latent Intrinsics (ALI) balances semantic context with dense photometric structure.",
@@ -788,7 +788,7 @@ addPublication(
   "CVPR 2026 (Findings)",
   "https://arxiv.org/abs/2512.02016",
   "https://gravity-eval.github.io/",
-  "", // code link
+  "https://github.com/gravity-eval/gravity-eval-bench", // code link
   "https://arxiv.org/abs/2512.02016",
   "", // github-repo-name
   "A unit-free, relative-motion protocol shows generated videos violate Galileo's principle: objects fall with inconsistent, mostly sub-Earth accelerations.",
@@ -809,7 +809,7 @@ addPublication(
   "CVPR 2026 (Findings)",
   "https://arxiv.org/abs/2512.18003",
   "https://name-that-part.github.io/",
-  "", // code link,
+  "https://github.com/mvp18/name-that-part", // code link
   "https://arxiv.org/abs/2512.18003",
   "", // github-repo-name
   "Our model predicts a complete set of named 3D parts by aligning part-level representations (“Partlets”) to affordance-aware natural-language descriptions.",
@@ -826,10 +826,10 @@ addPublication(
   "Generalizable Sparse-View 3D Reconstruction from Unconstrained Images",
   "Vinayak Gupta, Chih-Hao Lin, Shenlong Wang, Anand Bhattad, Jia-Bin Huang",
   "CVPR 2026",
-  "",
-  "",
-  "",
-  "",
+  "https://arxiv.org/abs/2604.28193", // paper
+  "https://genwildsplat.github.io/", // project page
+  "https://github.com/Vinayak-VG/GenWildSplat", // code link
+  "https://arxiv.org/abs/2604.28193", // arXiv
   "",
   "Reconstructs 3D scenes from sparse, unposed images with changing illumination and transient objects in one 3-second feed-forward pass, no per-scene optimization.",
   2026,
@@ -864,8 +864,8 @@ addPublication(
   "Vaibhav Vavilala, Seemandhar Jain, Rahul Vasanth, D.A. Forsyth, Anand Bhattad",
   "ICLR 2026",
   "https://arxiv.org/abs/2506.20703",
-  "",
-  "", // code link
+  "https://generativeblocksworld.github.io/", // project page
+  "", // code link: not released yet
   "https://arxiv.org/abs/2506.20703",
   "", // github-repo-name
   "Edit generated images by moving multi-scale 3D convex primitives; a flow-based generator conditioned on depth and texture hints preserves object identity.",
