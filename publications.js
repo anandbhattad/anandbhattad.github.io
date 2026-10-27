@@ -182,7 +182,7 @@ const AUTHOR_LINKS = {
   "Xiangshan Tan": "https://vincent-tann.github.io/",
   "Yi-Ting Chen": "https://jamie725.github.io/website/",
   "Yuani Zhong": "https://scholar.google.com/citations?hl=en&user=PtmjwooAAAAJ",
-  "Namitha Guruprasad": "https://aiem.jhu.edu/people/namitha-guruprasad/",
+  "Namitha Guruprasad": "https://nam1410.github.io/",
   "Zhi-Hao Lin": "https://chih-hao-lin.github.io/",
   "Andrew Tao": "https://scholar.google.com/citations?user=Wel9l1wAAAAJ&hl=en",
   "Aditya Kusupati": "https://adityakusupati.com/",
@@ -253,7 +253,7 @@ const AUTHOR_LINKS = {
   "Xiaoyan Xing": "https://xyxingx.github.io/",
   "Yuxiong Wang": "https://yxw.cs.illinois.edu/",
   "Zeyu Zheng": "https://ieor.berkeley.edu/people/zeyu-zheng/",
-  "Zitian Zhang": "https://github.com/zzt76"
+  "Zitian Zhang": "https://zzt76.github.io/"
 };
 function linkAuthor(tok) {
   const name = tok.replace(/<sup>.*?<\/sup>|\*/g, "").trim();        // "Name*" / "Name<sup>†</sup>" -> "Name"
