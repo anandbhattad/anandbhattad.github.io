@@ -527,7 +527,7 @@ addPublication(
   "./images/opentac_sensor.mp4",
   "OpenTac: An Open Ecosystem for Customizable, Scalable, and Transferable 3D Tactile Sensing",
   "Ariel Slepyan, Geeta Chandra Raju Bethala, Jiafeng Gu, Anagha Rajendra Dangle, Yinzhe Zhou, Hongyuan Fu, Jade Sim, Tuhin Basu, Xinyi Yin, Md Faizal Karim, Gregory Hager<sup>†</sup>, Homanga Bharadhwaj<sup>†</sup>, Anand Bhattad<sup>†</sup>, Krishna Murthy Jatavallabhula<sup>†</sup>, Nitish V. Thakor<sup>†</sup>",
-  "Preprint, arXiv 2026",
+  "Preprint, arXiv 2026 · CoRL 2026 Demo",
   "https://arxiv.org/abs/2610.31661",
   "https://opentac.github.io/", // project page
   "https://github.com/opentac/opentac", // code link
