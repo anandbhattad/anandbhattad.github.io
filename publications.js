@@ -728,12 +728,12 @@ addPublication(
   "Context-Aware Autoregressive Image Generation for Emerging Reasoning Properties",
   "Jixuan Ying, Haoyu Liu, Timing Yang, Tingyu Zhu, Predrag Neskovic, Anand Bhattad, Cihang Xie, Zeyu Zheng, Alan Yuille, Feng Wang",
   "NeurIPS 2026",
-  "", // paper (not yet public)
+  "https://arxiv.org/abs/2611.06838", // paper
   "", // project page
-  "", // code link
-  "", // arXiv
+  "https://github.com/Hpesojyjx/Saccades-AR", // code link
+  "https://arxiv.org/abs/2611.06838", // arXiv
   "", // github-repo-name
-  "Context-aware autoregressive image generation from which reasoning properties emerge. Paper and project page to follow once the camera-ready is public.",
+  "Saccade AR lets the model choose where to generate next from global context, so images form object by object or outline to detail, with no new learned parameters.",
   "2026",
   "published",
   false,
