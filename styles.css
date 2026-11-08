@@ -479,6 +479,16 @@ h1,h2,h3,h4,nav a,.publication-year,.pub-venue,.pub-links a,.paper-list .conf,fo
 .section p{margin:.3rem 0 .55rem}
 .section ul,.section ol{margin:.3rem 0 .6rem}
 .section li{margin:0}
+.section p.research-area{margin:.95rem 0 .15rem}
+.section ul.research-list{margin-top:.15rem}
+.why-3p{margin:.95rem 0 .2rem}
+.why-3p summary{list-style:none;cursor:pointer;display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.25rem .55rem}
+.why-3p summary::-webkit-details-marker{display:none}
+.why-3p summary::after{content:"Show more \2193";font-size:.85em;color:var(--primary-color);border:1px solid var(--primary-color);border-radius:4px;padding:0 8px}
+.why-3p[open] summary::after{content:"Show less \2191"}
+.why-3p summary:hover::after{background:#f0f6ff}
+.why-3p summary:focus-visible{outline:2px solid var(--primary-color);outline-offset:3px;border-radius:2px}
+.why-3p[open] > p:first-of-type{margin-top:.5rem}
 
 /* a publication card can show two teasers side by side (e.g. FracGen early vs delayed fracture) */
 .pub-media-row{display:flex;gap:6px;width:280px}

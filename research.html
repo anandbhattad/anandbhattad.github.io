@@ -1,17 +1,36 @@
 <h2>Research Interests</h2>
 
-<p>My research focuses on the intersection of <span class="p3-style">p</span>ixels, <span class="p3-style">p</span>erception and <span class="p3-style">p</span>hysics -- what I colloquially call <span class="p3-style">3P Vision</span>. Thus my new research group at Hopkins is called 3P Vision Group.</p>
-<p>My goal is to develop, understand and improve generative models that are perception-driven and physics-aware, thereby advancing the fields of computer vision, computer graphics and computational photography. I work on fundamental questions such as: How do generative models learn to see? What perceptual and physical world knowledge do they encode and where? How can we extract this knowledge to build better models?</p>
-<p>I am also deeply curious in understanding how generative models stack up against human perceptual systems. Do they mimic how we see or have they found entirely new ways of perception? Are they creating abstract representations of the visual world or are their representations grounded in physics? Have these models discovered perceptual laws that traditional vision science has yet to discover?</p>
+<p>My research focuses on the intersection of <span class="p3-style">p</span>ixels, <span class="p3-style">p</span>erception, and <span class="p3-style">p</span>hysics, which I colloquially call <span class="p3-style">3P Vision</span>. My group at Johns Hopkins is the 3P Vision Group.</p>
+
+<p>I want to build AI models that perceive, recreate, and eventually physically interact with the visual world, learning as much as possible from raw images and video. One question sits at the center of this inquiry: what do models trained on pixels already know about the world? My group probes that knowledge, finds where it breaks, and works to improve it. Just as important is knowing when pixels are not enough, and when a problem needs touch, physical simulation, or other measurements, from robot manipulation to computational mechanics.</p>
+
+<p class="research-area"><strong>Pixels</strong> (I like pretty pixels!)</p>
+<ul class="research-list">
+    <li>Controllable generative models that are easy to use: <a href="https://generative-cinematographer.github.io/" target="_blank">Generative Cinematographer</a>, <a href="https://thinking-in-boxes.github.io/" target="_blank">Thinking in Boxes</a>, <a href="https://generativeblocksworld.github.io/" target="_blank">Generative Blocks World</a></li>
+    <li>Rendering and relighting: <a href="https://sync-light.github.io/" target="_blank">SyncLight</a>, <a href="https://luminet-relight.github.io/" target="_blank">LumiNet</a>, <a href="https://anandbhattad.github.io/stylitgan/" target="_blank">StyLitGAN</a>, <a href="https://lvsn.github.io/ZeroComp/" target="_blank">ZeroComp</a>, <a href="https://lvsn.github.io/spotlight/" target="_blank">SpotLight</a></li>
+</ul>
+
+<p class="research-area"><strong>Perception</strong></p>
+<ul class="research-list">
+    <li>Knowledge in generative models: <a href="https://arxiv.org/abs/2306.00987" target="_blank">StyleGAN Knows</a>, <a href="https://intrinsic-lora.github.io/" target="_blank">Intrinsic LoRA</a>, <a href="https://projective-geometry.github.io/" target="_blank">Shadows Don't Lie</a></li>
+    <li>3D and lighting perception: <a href="https://sites.google.com/uchicago.edu/latent-intrinsic/home" target="_blank">Latent Intrinsics</a>, <a href="https://nam1410.github.io/omniray/" target="_blank">OmniRay</a>, <a href="https://genwildsplat.github.io/" target="_blank">GenWildSplat</a>, <a href="https://syncfix.github.io/" target="_blank">SyncFix</a>, <a href="https://lwwu2.github.io/diver/" target="_blank">DIVeR</a>, <a href="https://arxiv.org/abs/2309.16646" target="_blank">Improving Equivariance</a></li>
+    <li>Vision architectures: <a href="https://arxiv.org/abs/2602.08071" target="_blank">ViT-5</a>, <a href="https://arxiv.org/abs/2606.14701" target="_blank">RATS!</a></li>
+</ul>
+
+<p class="research-area"><strong>Physics</strong></p>
+<ul class="research-list">
+    <li>Physically grounded models and computational mechanics: <a href="https://principiabench.github.io/" target="_blank">Principia</a>, <a href="https://gravity-eval.github.io/" target="_blank">Objects Are Slower Than They Appear</a>, <a href="https://fracgen.github.io/" target="_blank">FracGen</a>, <a href="https://power-sim.github.io/" target="_blank">PowerSim</a></li>
+    <li>Multisensory perception for robot learning: <a href="https://opentac.github.io/" target="_blank">OpenTac</a>, <a href="https://ripl.github.io/know_your_camera/" target="_blank">Do You Know Where Your Camera Is?</a></li>
+</ul>
+
+<details class="why-3p">
+<summary><strong>Why should we care about 3P Vision?</strong></summary>
+<p>For decades, computer vision has been guided by what Malik et al., called the Three R’s: Recognition, Reconstruction and Reorganization. We have made remarkable progress on all three and some would even argue they are nearly solved. Many things we struggled to do a few years ago can now be done with an off-the-shelf model. So, what’s next for computer vision? Do we all become roboticists, as many in our community are doing or is there a broader direction to explore? </p>
+
+<p>My group works on robots as well, though I think there's a more fundamental question beneath it all: do our models actually understand the world that they're trained on? That's the question that 3P Vision is trying to answer. The state of the art in today's models is that they can produce images and videos that look correct at the pixel level. Looking correct at the pixel level is not the same as being correct in any perceptual or physical sense, though.  This is crucial since the model might err easily if it fails to understand the concepts of gravity, geometry, or light in the ever-changing environment or through unintended assumptions.</p>
+
+<p>Thus, 3P Vision views pixels, perception, and physics as three layers of reasoning. The model must go from the pixels to perception, and further to the physics of the world. The testing of each layer separately will reveal its weaknesses and thus the way forward.</p>
+</details>
+
 <!-- To answer these questions, I dig deep into generative models. I look for what perceptual and physical world knowledge they encode and where, and how we can extract them.  -->
-<p>Why does this matter? I believe this will not only help build better generative models with useful controls and improve their knowledge gaps but more importantly, could fundamentally reshape our understanding of visual perception itself.</p>
-
-<p>Other directions my group is exploring:</p>
-<ul>
-    <li>Vision architectures</li>
-    <li>3D perception</li>
-    <li>Physically grounded generative models</li>
-    <li>Multisensory perception and generation for embodied AI</li>
-    <li>Generative models for computational mechanics</li>
-</ul><!-- My goal is to bridge classical perception theories with modern generative models, advancing computer vision, computer graphics and computational photography. My research is driven by curiosity to to understand how generative models stack up against biological perceptual systems. Are they truly mimicking how we see, or have they found entirely new ways of perceiving? Have these models stumbled upon perceptual laws that traditional vision science hasn't yet discovered? Toward this goal, I study where and how perceptual and physical world knowledge is encoded in generative models and how it can be extracted. I believe this will help us interpret and build better generative models. Colloquially, I often dub my research as </strong> <span class="p3-style">3P Vision</span> for <span class="p3-style">P</span>ixels, <span class="p3-style">P</span>erception and <span class="p3-style">P</span>hysics in Computer Vision.  -->
-
+<!-- My goal is to bridge classical perception theories with modern generative models, advancing computer vision, computer graphics and computational photography. My research is driven by curiosity to to understand how generative models stack up against biological perceptual systems. Are they truly mimicking how we see, or have they found entirely new ways of perceiving? Have these models stumbled upon perceptual laws that traditional vision science hasn't yet discovered? Toward this goal, I study where and how perceptual and physical world knowledge is encoded in generative models and how it can be extracted. I believe this will help us interpret and build better generative models. Colloquially, I often dub my research as </strong> <span class="p3-style">3P Vision</span> for <span class="p3-style">P</span>ixels, <span class="p3-style">P</span>erception and <span class="p3-style">P</span>hysics in Computer Vision.  -->
