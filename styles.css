@@ -481,6 +481,9 @@ h1,h2,h3,h4,nav a,.publication-year,.pub-venue,.pub-links a,.paper-list .conf,fo
 .section li{margin:0}
 .section p.research-area{margin:.95rem 0 .15rem}
 .section ul.research-list{margin-top:.15rem}
+.join-note{margin:1.1rem 0 .2rem;padding:.75rem 1rem;background:#f0f6ff;border:1px solid #cfe0fb;border-radius:6px}
+.join-note p{margin:0}
+.join-note p + p{margin-top:.5rem}
 .why-3p{margin:.95rem 0 .2rem}
 .why-3p summary{list-style:none;cursor:pointer;display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.25rem .55rem}
 .why-3p summary::-webkit-details-marker{display:none}
