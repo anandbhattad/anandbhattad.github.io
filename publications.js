@@ -173,6 +173,12 @@ const AUTHOR_LINKS = {
   "Prakhar Kaushik": "https://toshi2k2.github.io/",
   "Seemandhar Jain": "https://seemandhar.github.io/",
   "Sezer Karaoglu": "https://karaoglusezer.github.io/",
+  "Furkan Horoz": "https://scholar.google.com/citations?user=qp_6eHUAAAAJ&hl=en",
+  "Ozgur Kara": "https://karaozgur.com/",
+  "Kaan Oktay": "https://scholar.google.com/citations?user=vzNWjhUAAAAJ&hl=en",
+  "Adil Kaan Akan": "https://kaanakan.github.io/",
+  "Atakan Kara": "https://scholar.google.com/citations?user=XpTlVJYAAAAJ&hl=en",
+  "James Matthew Rehg": "https://rehg.org/",
   "Shuai Tang": "https://scholar.google.com/citations?user=-BWQeOoAAAAJ&hl=en",
   "Tianchong Jiang": "https://tianchong-jiang.github.io/",
   "Tiezheng Zhang": "https://tiezheng11.github.io/",
@@ -522,6 +528,26 @@ if (typeof module !== 'undefined') {
 // );
 
 // Adding Publications
+
+addPublication(
+  "./images/rediverse_web.mp4",
+  "Restoring Diversity in Distilled Image and Video Generators by Probing Activations",
+  "Furkan Horoz, Ozgur Kara, Kaan Oktay, Adil Kaan Akan, Atakan Kara, Anand Bhattad<sup>†</sup>, James Matthew Rehg<sup>†</sup>",
+  "Preprint, arXiv 2026",
+  "https://arxiv.org/abs/2611.18550",
+  "https://rediverse-distillation.github.io/rediverse-distillation/", // project page
+  "https://github.com/H-furkan/rediverse", // code link
+  "https://arxiv.org/abs/2611.18550",
+  "", // github-repo-name
+  "Distilled image and video generators lose diversity by packing activation variance into too few directions; ReDiverse restores them with a light adapter or by training-free steering along the teacher's PCA directions.",
+  "In Submission",
+  "pre-print",
+  false,
+  true,
+  [],
+  "",
+  "2026-11-18"
+);
 
 addPublication(
   "./images/opentac_sensor.mp4",

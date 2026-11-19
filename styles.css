@@ -34,6 +34,8 @@
     --gap-s:.5rem;
     --gap-m:1rem;
     --gap-l:1.5rem;
+    --pub-media-w:240px;     /* publication-card thumbnail width (desktop) */
+    --pub-media-gap:2.75rem; /* space between thumbnail and text */
     --radius:8px;
     --content-width:1240px;
   }
@@ -161,7 +163,7 @@ nav a:hover {
   
   /* card */
   .publication-item{
-    display:flex;gap:var(--gap-m);
+    display:flex;gap:var(--pub-media-gap);
     padding:var(--gap-m);margin-bottom:var(--gap-m);
     background:#fff;border-radius:var(--radius);
     box-shadow:var(--shadow-sm);
@@ -172,9 +174,9 @@ nav a:hover {
   }
   
   /* thumbnail */
-  .pub-image{flex:0 0 280px}
+  .pub-image{flex:0 0 var(--pub-media-w)}
   .pub-image img,.pub-image video{
-    width:280px;height:auto;max-height:220px;object-fit:contain;object-position:left;
+    width:var(--pub-media-w);height:auto;max-height:220px;object-fit:contain;object-position:left;
     border-radius:calc(var(--radius)*.8);
     transition:transform .3s ease;
   }
@@ -469,7 +471,7 @@ nav a:hover {
 h1,h2,h3,h4,nav a,.publication-year,.pub-venue,.pub-links a,.paper-list .conf,footer{font-family:var(--font-heading)}
 
 /* publication-card text tracks the body size (the base rules use rem, which is pinned to the 16px root) */
-.pub-title{font-size:1.1em}
+.pub-title{font-size:1.04em}
 .pub-authors,.pub-venue{font-size:.92em}
 .pub-tldr{font-size:.92em}
 .pub-links a{font-size:.82em}
@@ -494,7 +496,7 @@ h1,h2,h3,h4,nav a,.publication-year,.pub-venue,.pub-links a,.paper-list .conf,fo
 .why-3p[open] > p:first-of-type{margin-top:.5rem}
 
 /* a publication card can show two teasers side by side (e.g. FracGen early vs delayed fracture) */
-.pub-media-row{display:flex;gap:6px;width:280px}
+.pub-media-row{display:flex;gap:6px;width:var(--pub-media-w)}
 .pub-media-item{flex:1 1 0;min-width:0;margin:0}
 .pub-media-row img,.pub-media-row video{width:100%;height:auto;max-height:none}
 .pub-media-item figcaption{margin-top:3px;font-family:var(--font-heading,inherit);font-size:.72em;font-weight:600;text-align:center;color:var(--text-secondary)}
@@ -547,7 +549,7 @@ details.paper-dropdown{display:inline}                                   /* butt
 
 /* "single image -> generated video" teaser: the still phase looks like a photo, then unfolds into the clip */
 .i2v{position:relative;isolation:isolate;overflow:hidden;background:#fff}
-.pub-image .i2v{width:280px}
+.pub-image .i2v{width:var(--pub-media-w)}
 .i2v video{display:block;position:relative;z-index:0;width:100%;height:100%;object-fit:contain;transition:transform .7s cubic-bezier(.2,.7,.2,1),box-shadow .7s ease,filter .7s ease}
 .i2v.is-still video{transform:scale(.86);box-shadow:0 0 0 4px #fff,0 6px 18px rgba(0,0,0,.28);filter:saturate(.9)}
 .i2v-badge{position:absolute;left:8px;bottom:8px;z-index:2;transform:translateZ(0);font-family:var(--font-heading,inherit);font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.3;padding:3px 7px;border-radius:4px;color:#fff;background:rgba(15,23,42,.72);transition:background .4s}
